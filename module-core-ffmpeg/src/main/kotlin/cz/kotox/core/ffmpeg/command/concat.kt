@@ -4,7 +4,9 @@ import com.opkix.base.ffmpeg.model.BackgroundMusicItem
 import com.opkix.base.ffmpeg.model.CanvasItem
 import com.opkix.base.ffmpeg.model.FFMPEGVideoEncoder
 import com.opkix.base.ffmpeg.model.VideoCompositionItem
+import cz.kotox.core.ffmpeg.command.getTextFilterParams
 import cz.kotox.core.media.VideoUtils.getVideoDimensions
+import java.io.File
 
 private const val VIDEO_REFERENCE = "video"
 private const val VIDEO_WITH_TEXT_REFERENCE = "videotext"
@@ -15,6 +17,10 @@ private const val VIDEO_TEXT_OVERLAY_REFERENCE = "text"
 //[0:v:0] trim=100.250:200.500, setpts=PTS-STARTPTS, scale=w=max(iw*480/ih\,640):h=max(480\,ih*640/iw), setsar=1, crop=w=640:h=480 [video00]; //input 0 stream 0
 //[0:v:1] trim=100.250:200.500, setpts=PTS-STARTPTS, scale=w=max(iw*480/ih\,640):h=max(480\,ih*640/iw), setsar=1, crop=w=640:h=480 [video01]; //input 0 stream 1
 private fun getFilterVideoStreamParams(inputIndex: Int, item: VideoCompositionItem, canvasItem: CanvasItem): String {
+
+	//Check fonts if they exists.
+	item.textItemList.forEach { check(File(it.fontPath).exists()) { "${it.fontPath} NOT FOUND!" } }
+
 	//Passed translation is computed according to original video size
 	val translationParams = TranslationParams(getVideoDimensions(item.videoPath, item.rotateInDegreeClockwise), item.translationX, item.translationY)
 	return item.videoStreamList.map { streamIndex ->
@@ -25,6 +31,7 @@ private fun getFilterVideoStreamParams(inputIndex: Int, item: VideoCompositionIt
 			wrapMiddleFilterCommand(getRotateFilter(item.rotateInDegreeClockwise, ScaleType.FIT)) +
 			wrapMiddleFilterCommand(getScaleToCanvasFilterParams(item.zoom, canvasItem, ScaleType.CROP, translationParams)) +
 			wrapMiddleFilterCommand(getEffectFilterParams(item.effectType)) +
+			wrapMiddleFilterCommand(getTextFilterParams(item.textItemList)) + //Keep text params after scale to operate on scaled dimensions
 			" [$VIDEO_REFERENCE$inputIndex${streamIndex.index}];"
 	}.reduce { composedVideoStreams, oneVideoStream -> composedVideoStreams.plus(oneVideoStream) }
 }
@@ -129,7 +136,6 @@ internal fun getConcatFilterScaleCommand(
 	val commandVideoTextOverlayStreamDetails: String = inputItemsList
 		.mapIndexed { itemIndex, videoCompositionItem -> getFilterTextOverlayParams(itemIndex, videoCompositionItem) }
 		.reduce { composedStreamCommand, oneFileVideoStreamCommand -> composedStreamCommand.plus(oneFileVideoStreamCommand) }
-
 
 	val commandAudioInputStreamDetails: String = inputItemsList
 		.mapIndexed { itemIndex, videoCompositionItem -> getFilterAudioStreamParams(itemIndex, videoCompositionItem) }

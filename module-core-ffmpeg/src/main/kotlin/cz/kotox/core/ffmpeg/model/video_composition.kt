@@ -2,6 +2,25 @@ package com.opkix.base.ffmpeg.model
 
 import java.io.Serializable
 
+enum class VideoTextAlignment() {
+	LEFT,
+	CENTER,
+	RIGHT
+}
+
+data class TextMeasurement(val textBoxWidth: Float, val lineBaselineList: List<Float>) : Serializable
+
+data class VideoTextItem(
+	val text: String,
+	val translationX: Float,// Translation of top left corner according to the output video resolution
+	val translationY: Float,// Translation of top left corner according to the output video resolution
+	val fontPath: String,
+	val fontSize: Float,
+	val fontColorHex: String,
+	val textMeasurement: TextMeasurement,
+	val textAlignment: VideoTextAlignment
+) : Serializable
+
 data class VideoCompositionItem(
 	val videoPath: String,
 	val videoOverlayPath: String?,
@@ -15,7 +34,8 @@ data class VideoCompositionItem(
 	val translationX: Float,
 	val translationY: Float,
 	val speedMultiplier: Float,
-	val volumeMultiplier: Float
+	val volumeMultiplier: Float,
+	val textItemList: List<VideoTextItem>
 ) : Serializable
 
 
