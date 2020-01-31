@@ -2,7 +2,6 @@ package cz.kotox.template.ui
 
 import androidx.databinding.Bindable
 import androidx.lifecycle.MutableLiveData
-import cz.kotox.core.FeatureCore
 import cz.kotox.core.PreferencesCore
 import cz.kotox.core.arch.ObservableViewModel
 import cz.kotox.core.entity.AppVersion
@@ -17,8 +16,6 @@ class MainViewModel @Inject constructor(appVersion: AppVersion) : ObservableView
 	lateinit var preferencesCore: PreferencesCore
 
 	val token: MutableLiveData<String> = MutableLiveData()
-
-	val notificationsEnabled: Boolean @Bindable get() = FeatureCore.notificationsEnabled
 
 	val appVersionString = "${appVersion.versionName} (${appVersion.versionCode})"
 

@@ -18,9 +18,7 @@ class PreferencesCommon @Inject constructor(
 		private const val PREFS_REFRESH_TOKEN = "prefs_refresh_token"
 		private const val PREFS_USER_ID_TOKEN = "prefs_user_id_token"
 		private const val PREFS_LAST_SIGNED_USER_ID_TOKEN = "prefs_last_signed_user_id_token"
-		private const val PREFS_DISMISSED_BANNERS = "prefs_dismissed_banners"
 		private const val PREFS_ONBOARDED = "prefs_onboarded"
-		private const val PREFS_USER_TUTORIAL_PREFIX = "prefs_tutorial_"
 
 		private const val ID_TOKEN_DEFAULT_VALUE = -1L
 	}
@@ -43,15 +41,6 @@ class PreferencesCommon @Inject constructor(
 		get() = sharedPreferences.getBoolean(PREFS_ONBOARDED, false)
 		set(value) {
 			sharedPreferences.edit().putBoolean(PREFS_ONBOARDED, value).apply()
-		}
-
-	/**
-	 * TODO should be in realm, but for now UserLoginInfo sometimes is not fetched on user log in
-	 */
-	var isPostLoginTutorialCompleted: Boolean
-		get() = sharedPreferences.getBoolean(PREFS_USER_TUTORIAL_PREFIX + userId, false)
-		set(value) {
-			sharedPreferences.edit().putBoolean(PREFS_USER_TUTORIAL_PREFIX + userId, value).apply()
 		}
 
 	fun clearUserId() {
@@ -103,19 +92,4 @@ class PreferencesCommon @Inject constructor(
 			sharedPreferences.edit().putLong(PREFS_LAST_SIGNED_USER_ID_TOKEN, lastSignedUserId
 				?: -1L).apply()
 		}
-
-	val currentUserDifferentThanLast: Boolean
-		get() = lastSignedUserId != null && lastSignedUserId != userId
-
-	val dismissedBannerIds: Set<String>
-		get() = sharedPreferences.getStringSet(PREFS_DISMISSED_BANNERS, setOf()) ?: setOf()
-
-	fun dismissBanner(bannerId: String) {
-		val newBannerIds = dismissedBannerIds + bannerId
-
-		sharedPreferences
-			.edit()
-			.putStringSet(PREFS_DISMISSED_BANNERS, newBannerIds)
-			.apply()
-	}
 }
