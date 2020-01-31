@@ -6,10 +6,14 @@ import com.arthenica.mobileffmpeg.BuildConfig
 import com.arthenica.mobileffmpeg.Config
 import com.arthenica.mobileffmpeg.FFmpeg
 import com.arthenica.mobileffmpeg.Level
+import com.opkix.base.ffmpeg.ScaleType
+import com.opkix.base.ffmpeg.TranslationParams
 import com.opkix.base.ffmpeg.getConcatFilterScaleCommand
+import com.opkix.base.ffmpeg.getScaleToCanvasStandaloneCommand
 import com.opkix.base.ffmpeg.model.BackgroundMusicItem
 import com.opkix.base.ffmpeg.model.CanvasItem
 import com.opkix.base.ffmpeg.model.VideoCompositionItem
+import com.opkix.base.ffmpeg.model.VideoCompositionResult
 import com.opkix.base.ffmpeg.model.VideoDurationItem
 import com.opkix.base.ffmpeg.model.VideoOutputItem
 import cz.kotox.core.media.VideoUtils
@@ -173,5 +177,91 @@ class FFmpegWrapper() {
 			}
 		}
 	}
+
+
+	/******************************** EXPERIMENTAL SOLUTION *************************************************************/
+
+	/**
+	 * CONCAT MP4 SOLUTION: transcoding to TS using intermediate files.
+	 * ffmpeg -i input1.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts intermediate1.ts
+	 * ffmpeg -i input2.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts intermediate2.ts
+	 * ffmpeg -i "concat:intermediate1.ts|intermediate2.ts" -c copy -bsf:a aac_adtstoasc output.mp4
+	 *
+	 * 2videos 857MB original will be finally 1170MB when concatenated using this configuration. (duration about 1minute)
+	 *
+	 * Filtergraph 'scale=1080:1920' was defined for video output stream 0:0 but codec copy was selected.
+	 * Filtering and streamcopy cannot be used together.
+	 */
+//	private fun concatProtocolMp4UsingIntermediateFiles(
+//		inputItemsList: List<VideoCompositionItem>,
+//		progressCallback: (Float) -> Unit,
+//		outputPath: String,
+//		requiredCanvas: CanvasItem
+//	): FFmpegResponse {
+//
+//		val intermediateFileNameList = inputItemsList.map {
+//			val videoFile = File(it.videoPath)
+//			val videoIntermediateFileName = "${videoFile.parent}/${videoFile.nameWithoutExtension}_tmp.ts"
+//			val videoIntermediateFile = File(videoIntermediateFileName)
+//			if (videoIntermediateFile.exists()) videoIntermediateFile.delete()
+//			videoIntermediateFileName
+//		}
+//
+//		val stepsCount = 2 * inputItemsList.size + 1
+//		val stepsScaleCount = inputItemsList.size
+//
+//		val scaledItemsList = inputItemsList.map {
+//			val originalFile = File(it.videoPath)
+//			val scaledPath = "${originalFile.parent}/${originalFile.nameWithoutExtension}_scl.${originalFile.extension}"
+//			val scaledFile = File(scaledPath)
+//			if (scaledFile.exists()) scaledFile.delete() //TODO use -y instead of this way of delete!
+//			it.copy(videoPath = scaledPath)
+//		}
+//
+//		inputItemsList.forEachIndexed { index, videoItem ->
+//			val translationParams = TranslationParams(VideoUtils.getVideoDimensions(videoItem.videoPath, videoItem.rotateInDegreeClockwise), videoItem.translationX, videoItem.translationY)
+//			val scaleCommand = getScaleToCanvasStandaloneCommand(videoItem.videoPath, scaledItemsList[index].videoPath, requiredCanvas, ScaleType.CROP, translationParams)
+//			val scaleSuccess = FFmpegResponse.Success(Any())
+//			val scaleResult = executeFFmpegCommand(
+//				scaleCommand,
+//				scaleSuccess,
+//				{ progressCallback(getNonLinearProgress(stepsCount, index + 1, it)) },
+//				arrayOf(VideoDurationItem(videoItem.videoPath, videoItem.speedMultiplier, videoItem.startTimeInMillis, videoItem.endTimeInMillis))
+//			)
+//			check(scaleResult is FFmpegResponse.Success<Any>) { "Unable to scale ${videoItem.path} to ${scaledItemsList[index].path}!" }
+//		}
+//
+//		scaledItemsList.forEachIndexed { index, videoItem ->
+//			val transcodeToStreamCommand = getTransportStreamTranscodingToInterFileCommand(videoItem, intermediateFileNameList[index])
+//			val transcodeToStreamSuccess = FFmpegResponse.Success(Any())
+//			val transcodeResult = executeFFmpegCommand(
+//				transcodeToStreamCommand,
+//				transcodeToStreamSuccess,
+//				{ progressCallback(getNonLinearProgress(stepsCount, index + 1 + stepsScaleCount, it)) },
+//				arrayOf(VideoDurationItem(videoItem.path, videoItem.speedMultiplier, videoItem.startTimeInMillis, videoItem.endTimeInMillis))
+//			)
+//			check(transcodeResult is FFmpegResponse.Success<Any>) { "Unable to transcode ${videoItem.path} to stream!" }
+//		}
+//
+//		val composeCommand = getConcatFromInterFileCommand(intermediateFileNameList, outputPath)
+//		val composeSuccess = FFmpegResponse.Success(VideoCompositionResult(outputPath))
+//		return executeFFmpegCommand(
+//			composeCommand,
+//			composeSuccess,
+//			{ progressCallback(getNonLinearProgress(stepsCount, stepsCount, it)) },
+//			inputItemsList.map { VideoDurationItem(it.path, it.speedMultiplier, it.startTimeInMillis, it.endTimeInMillis) }.toTypedArray()
+//		)
+//	}
+
+	private fun getNonLinearProgress(stepsCount: Int, step: Int, localProgress: Float): Float {
+		var ret = (localProgress + (step - 1)) / stepsCount
+		//Use thresholds to eliminate random peaks in the local progress
+		val thresholdMin: Float = (step - 1f) / stepsCount
+		val thresholdMax: Float = step / stepsCount.toFloat()
+		if (ret < thresholdMin) ret = thresholdMin
+		if (ret > thresholdMax) ret = thresholdMax
+		return ret
+	}
+
 }
 
