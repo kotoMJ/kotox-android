@@ -8,8 +8,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import cz.kotox.template.R
 import cz.kotox.core.arch.BaseActivity
+import cz.kotox.template.R
 import cz.kotox.core.database.PreferencesCommon
 import javax.inject.Inject
 

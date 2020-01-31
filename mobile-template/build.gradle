@@ -96,6 +96,7 @@ android {
 dependencies {
 
     implementation project(':module-core')
+    implementation project(':module-core-arch')
 //    implementation project(':module-test-utils')
 
 }

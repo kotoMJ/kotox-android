@@ -6,8 +6,8 @@ import cz.kotox.core.CoreConfig
 import cz.kotox.core.arch.BaseApplication
 import cz.kotox.core.database.PreferencesCommon
 import cz.kotox.core.entity.AppVersion
-import cz.kotox.core.ktools.lazyUnsafe
 import cz.kotox.core.logging.timber.CrashReportingTree
+import cz.kotox.core.utility.lazyUnsafe
 import cz.kotox.template.di.DaggerAppComponent
 import cz.kotox.template.di.UserComponent
 import dagger.android.AndroidInjector
