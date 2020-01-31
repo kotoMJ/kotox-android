@@ -1,4 +1,4 @@
-package cz.kotox.core_media.extension
+package cz.kotox.core.media.extension
 
 import android.content.res.Resources
 
