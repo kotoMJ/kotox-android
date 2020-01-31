@@ -16,4 +16,4 @@
 
 include ':module-core',
 		':module-core-media',
-		':mobile-on-screen-nav'
+		':mobile-template'
