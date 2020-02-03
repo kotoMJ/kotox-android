@@ -11,7 +11,7 @@ import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class MobileTemplateDaggerModule {
+abstract class MobileDspDaggerModule {
 
 	@ContributesAndroidInjector()
 	abstract fun contributeMainActivity(): MainActivity

@@ -26,7 +26,7 @@ class MainActivity : BaseActivity() {
 		setSupportActionBar(toolbar)
 
 		val host: NavHostFragment = supportFragmentManager
-			.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment? ?: return
+			.findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment? ?: return
 
 		// Set up Action Bar
 		val navController = host.navController
@@ -61,7 +61,7 @@ class MainActivity : BaseActivity() {
 		// item id and navigate there if found.
 		// Otherwise, bubble up to the parent.
 		return NavigationUI.onNavDestinationSelected(item,
-			Navigation.findNavController(this, R.id.my_nav_host_fragment))
+			Navigation.findNavController(this, R.id.main_nav_host_fragment))
 			|| super.onOptionsItemSelected(item)
 	}
 

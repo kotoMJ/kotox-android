@@ -20,7 +20,7 @@ import javax.inject.Singleton
 		UserComponentModule::class,
 //		FeatureCoreModule::class,
 		ViewModelModule::class,
-		MobileTemplateDaggerModule::class
+		MobileDspDaggerModule::class
 	],
 	dependencies = [
 		BaseComponent::class

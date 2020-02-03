@@ -7,6 +7,7 @@
 			name="viewModel"
 			type="cz.kotox.dsp.ui.MainViewModel" />
 	</data>
+
 	<androidx.constraintlayout.widget.ConstraintLayout
 		xmlns:tools="http://schemas.android.com/tools"
 		android:id="@+id/linearLayout"
@@ -17,12 +18,18 @@
 
 		<!-- TODO this is temporary placeholder content for dashboard -->
 		<ImageView
-			android:id="@+id/ic_launcher_placeholder"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:layout_marginStart="8dp"
+			android:layout_marginTop="8dp"
+			android:layout_marginEnd="8dp"
+			android:layout_marginBottom="8dp"
 			android:alpha="0.05"
-			android:src="@drawable/ic_launcher_placeholder"
-			app:layout_constraintBottom_toBottomOf="parent" />
+			android:src="@drawable/ic_mic_black_24dp"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
 
 		<!--<Button-->
 		<!--android:id="@+id/navigate_dest_bt"-->
@@ -49,14 +56,5 @@
 		<!--app:layout_constraintHorizontal_bias="0.5"-->
 		<!--app:layout_constraintStart_toStartOf="parent"-->
 		<!--app:layout_constraintTop_toBottomOf="@+id/navigate_dest_bt" />-->
-
-		<Button
-			android:id="@+id/navigate_analyze_bt"
-			android:layout_width="384dp"
-			android:layout_height="48dp"
-			android:text="Analyze"
-			app:layout_constraintBottom_toBottomOf="@+id/ic_launcher_placeholder"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent" />
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

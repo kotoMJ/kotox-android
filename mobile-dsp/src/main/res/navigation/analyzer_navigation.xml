@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2017 The Android Open Source Project
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -11,17 +10,18 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<navigation
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/mobile_navigation"
-	app:startDestination="@id/launcher_home">
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/analyzer_navigation"
+	app:startDestination="@id/analyzer_home">
 
 	<fragment
-		android:id="@+id/launcher_home"
-		android:name="cz.kotox.dsp.ui.MainFragment"
+		android:id="@+id/analyzer_home"
+		android:name="cz.kotox.dsp.ui.analyzer.AnalyzerFragment"
 		android:label="@string/home"
-		tools:layout="@layout/main_fragment">
+		tools:layout="@layout/analyzer_fragment">
+
 	</fragment>
 
 </navigation>
