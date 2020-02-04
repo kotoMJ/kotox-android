@@ -87,4 +87,6 @@ dependencies {
     implementation project(':module-core')
     implementation project(':module-core-arch')
 
+    implementation files('libs/TarsosDSP-Android-2.4.jar')
+
 }

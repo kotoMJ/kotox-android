@@ -11,7 +11,12 @@
 		android:label="@string/home"
 		tools:layout="@layout/main_fragment">
 		<action
-			android:id="@+id/navigate_to_analyzer" app:destination="@id/analyzer_activity" />
+			android:id="@+id/navigate_to_analyzer"
+			app:destination="@id/analyzer_activity"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" />
 	</fragment>
 
 	<activity
@@ -24,7 +29,6 @@
 			android:name="user_id" app:argType="integer" />
 
 	</activity>
-
 
 
 </navigation>
