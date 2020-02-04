@@ -7,6 +7,7 @@ import cz.kotox.dsp.ui.MainFragment
 import cz.kotox.dsp.ui.MainViewModel
 import cz.kotox.dsp.ui.analyzer.AnalyzerActivity
 import cz.kotox.dsp.ui.analyzer.AnalyzerFragment
+import cz.kotox.dsp.ui.analyzer.AnalyzerResultFragment
 import cz.kotox.dsp.ui.analyzer.AnalyzerViewModel
 import dagger.Binds
 import dagger.Module
@@ -33,6 +34,9 @@ abstract class MobileDspDaggerModule {
 
 	@ContributesAndroidInjector
 	abstract fun contributeAnalyzerFragment(): AnalyzerFragment
+
+	@ContributesAndroidInjector
+	abstract fun contributeAnalyzerResultFragment(): AnalyzerResultFragment
 
 	@Binds
 	@IntoMap

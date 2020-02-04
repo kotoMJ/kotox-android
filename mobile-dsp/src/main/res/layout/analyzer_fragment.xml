@@ -18,6 +18,7 @@
 
 		<!-- TODO this is temporary placeholder content for dashboard -->
 		<ImageView
+			android:id="@+id/ic_analyzer_process_placeholder"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_marginStart="8dp"
@@ -31,30 +32,14 @@
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintTop_toTopOf="parent" />
 
-		<!--<Button-->
-		<!--android:id="@+id/navigate_dest_bt"-->
-		<!--android:layout_width="384dp"-->
-		<!--android:layout_height="48dp"-->
-		<!--android:layout_marginBottom="8dp"-->
-		<!--android:layout_marginTop="8dp"-->
-		<!--android:text="Navigate to destination"-->
-		<!--app:layout_constraintBottom_toTopOf="@+id/navigate_action_bt"-->
-		<!--app:layout_constraintEnd_toEndOf="parent"-->
-		<!--app:layout_constraintHorizontal_bias="0.5"-->
-		<!--app:layout_constraintStart_toStartOf="parent"-->
-		<!--app:layout_constraintTop_toBottomOf="@+id/text"-->
-		<!--app:layout_constraintVertical_bias="0.594" />-->
+		<Button
+			android:id="@+id/navigate_processing_bt"
+			android:layout_width="384dp"
+			android:layout_height="48dp"
+			android:text="Process"
+			app:layout_constraintBottom_toBottomOf="@+id/ic_analyzer_process_placeholder"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent" />
 
-		<!--<Button-->
-		<!--android:id="@+id/navigate_action_bt"-->
-		<!--android:layout_width="384dp"-->
-		<!--android:layout_height="48dp"-->
-		<!--android:layout_marginBottom="8dp"-->
-		<!--android:text="Navigate with action"-->
-		<!--app:layout_constraintBottom_toBottomOf="parent"-->
-		<!--app:layout_constraintEnd_toEndOf="parent"-->
-		<!--app:layout_constraintHorizontal_bias="0.5"-->
-		<!--app:layout_constraintStart_toStartOf="parent"-->
-		<!--app:layout_constraintTop_toBottomOf="@+id/navigate_dest_bt" />-->
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

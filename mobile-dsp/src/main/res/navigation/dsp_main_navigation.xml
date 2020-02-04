@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/dsp_navigation"
+	android:id="@+id/dsp_main_navigation"
 	app:startDestination="@id/dsp_home">
 
 	<fragment
@@ -24,5 +24,7 @@
 			android:name="user_id" app:argType="integer" />
 
 	</activity>
+
+
 
 </navigation>

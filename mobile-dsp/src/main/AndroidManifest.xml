@@ -28,7 +28,7 @@
 		android:theme="@style/AppTheme"
 		tools:ignore="GoogleAppIndexingWarning">
 		<activity android:name=".ui.MainActivity">
-			<nav-graph android:value="@navigation/mobile_navigation" />
+			<nav-graph android:value="@navigation/dsp_main_navigation" />
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 
