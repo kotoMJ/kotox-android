@@ -3,14 +3,16 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/analyzer_navigation"
-	app:startDestination="@id/analyzer_home">
+	app:startDestination="@id/analyzer_home"
+	tools:ignore="UnusedNavigation">
 
 	<fragment
 		android:id="@+id/analyzer_home"
 		android:name="cz.kotox.dsp.ui.analyzer.AnalyzerFragment"
 		android:label="@string/analyzer"
 		tools:layout="@layout/analyzer_fragment">
-
+		<argument
+			android:name="user_id" app:argType="integer" />
 	</fragment>
 
 </navigation>

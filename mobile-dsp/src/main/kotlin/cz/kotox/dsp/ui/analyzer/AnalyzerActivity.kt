@@ -1,7 +1,7 @@
 package cz.kotox.dsp.ui.analyzer
 
 import android.os.Bundle
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.Navigation.findNavController
 import cz.kotox.core.arch.BaseActivity
 import cz.kotox.core.database.PreferencesCommon
 import cz.kotox.dsp.R
@@ -16,8 +16,8 @@ class AnalyzerActivity : BaseActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.analyzer_activity)
 
-		val host: NavHostFragment = supportFragmentManager
-			.findFragmentById(R.id.analyzer_nav_host_fragment) as NavHostFragment? ?: return
+		findNavController(this, R.id.analyzer_nav_host_fragment)
+			.setGraph(R.navigation.analyzer_navigation, intent.extras)
 
 	}
 
