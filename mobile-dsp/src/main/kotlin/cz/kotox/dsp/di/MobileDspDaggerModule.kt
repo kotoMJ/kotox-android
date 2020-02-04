@@ -5,6 +5,9 @@ import cz.kotox.core.di.ViewModelKey
 import cz.kotox.dsp.ui.MainActivity
 import cz.kotox.dsp.ui.MainFragment
 import cz.kotox.dsp.ui.MainViewModel
+import cz.kotox.dsp.ui.analyzer.AnalyzerActivity
+import cz.kotox.dsp.ui.analyzer.AnalyzerFragment
+import cz.kotox.dsp.ui.analyzer.AnalyzerViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -22,6 +25,17 @@ abstract class MobileDspDaggerModule {
 	@Binds
 	@IntoMap
 	@ViewModelKey(MainViewModel::class)
-	abstract fun bindSettingsViewModel(settingsViewModel: MainViewModel): ViewModel
+	abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
 
+
+	@ContributesAndroidInjector()
+	abstract fun contributeAnalyzerActivity(): AnalyzerActivity
+
+	@ContributesAndroidInjector
+	abstract fun contributeAnalyzerFragment(): AnalyzerFragment
+
+	@Binds
+	@IntoMap
+	@ViewModelKey(AnalyzerViewModel::class)
+	abstract fun bindAnalyzerViewModel(analyzerViewModel: AnalyzerViewModel): ViewModel
 }

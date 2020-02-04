@@ -5,7 +5,7 @@
 
 		<variable
 			name="viewModel"
-			type="cz.kotox.dsp.ui.MainViewModel" />
+			type="cz.kotox.dsp.ui.analyzer.AnalyzerViewModel" />
 	</data>
 
 	<androidx.constraintlayout.widget.ConstraintLayout

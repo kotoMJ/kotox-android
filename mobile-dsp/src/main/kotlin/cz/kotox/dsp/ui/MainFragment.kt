@@ -62,7 +62,9 @@ class MainFragment : BaseFragmentViewModel<MainViewModel, MainFragmentBinding>()
 //			ActivityNavigator(context)
 //				.createDestination()
 //				.setIntent(Intent(context, AnalyzerActivity::class.java))
-			Navigation.createNavigateOnClickListener(R.id.analyzer_home, null)
+			//Navigation.createNavigateOnClickListener(R.id.analyzer_home, null)
+
+			startActivity(Intent(context, AnalyzerActivity::class.java))
 		}
 
 	}

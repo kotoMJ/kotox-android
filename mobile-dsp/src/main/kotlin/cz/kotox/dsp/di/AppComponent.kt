@@ -1,6 +1,6 @@
 package cz.kotox.dsp.di
 
-import cz.kotox.dsp.MobileTemplateApplication
+import cz.kotox.dsp.MobileDspApplication
 import cz.kotox.dsp.UserInitializer
 import cz.kotox.core.arch.ApplicationInterfaceContract
 import cz.kotox.core.di.BaseComponent
@@ -43,7 +43,7 @@ interface AppComponent {
 
 	fun userComponentBuilder(): UserComponent.Builder
 
-	fun inject(mobileTemplateApplication: MobileTemplateApplication)
+	fun inject(mobileDspApplication: MobileDspApplication)
 
 }
 
