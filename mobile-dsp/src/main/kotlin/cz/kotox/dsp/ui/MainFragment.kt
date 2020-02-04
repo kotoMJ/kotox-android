@@ -1,17 +1,12 @@
 package cz.kotox.dsp.ui
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.navigation.ActivityNavigator
-import androidx.navigation.Navigation
 import cz.kotox.dsp.R
-import cz.kotox.core.arch.BaseFragment
 import cz.kotox.core.arch.BaseFragmentViewModel
 import cz.kotox.dsp.databinding.MainFragmentBinding
 import cz.kotox.dsp.ui.analyzer.AnalyzerActivity
