@@ -112,6 +112,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	@ExperimentalCoroutinesApi
 	@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
 	private fun testLifeCycleOnResume() {
+		recordingJob = Job()
 		launch(recordingJob) {
 			pitchAlgorithm.value?.let { initRecording(requireNotNull(useProbability.value), pitchProbabilityThreshold, it) }
 		}
