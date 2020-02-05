@@ -51,7 +51,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	private val audioBufferSize = 1024 //size of the buffer defines how much samples are processed in one step.
 	private val bufferOverlap = 0// How much consecutive buffers overlap (in samples). Half of the AudioBufferSize is common.
 
-	private val minTreshlodPitchInHz = 20
+	private val pitchProbabilityThreshold = 0.8f
 
 	init {
 		Timber.e(">>> new viewmodel")
@@ -73,7 +73,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 		min.value = "0"
 		max.value = "0"
 		size.value = "0"
-		launch { initRecording(newPitchAlgorithm) }
+		launch { initRecording(pitchProbabilityThreshold, newPitchAlgorithm) }
 
 	}
 
@@ -81,26 +81,28 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
 	private fun testLifeCycleOnResume() {
 		launch {
-			pitchAlgorithm.value?.let { initRecording(it) }
+			pitchAlgorithm.value?.let { initRecording(pitchProbabilityThreshold, it) }
 		}
 
 	}
 
 	@ExperimentalCoroutinesApi
-	private suspend fun initRecording(pitchAlgorithm: PitchEstimationAlgorithm) {
+	private suspend fun initRecording(probabilityThreshold: Float, pitchAlgorithm: PitchEstimationAlgorithm) {
 		stopCurrentDispatcher()
-		runAudioDispatcher(pitchAlgorithm)
+		runAudioDispatcher(probabilityThreshold, pitchAlgorithm)
 			//.onStart { delay(5000) } //just the test whether recording start when collect is invoked.
 			.flowOn(Dispatchers.IO)
 			.collect { pitchInHz ->
 				Timber.i(">>> PITCH[$pitchInHz], min[${mainViewModel.pitchList.min()}],max[${mainViewModel.pitchList.max()}]")
-				if (pitchInHz > minTreshlodPitchInHz && pitchInHz < mainViewModel.pitchList.min() ?: pitchInHz) {
-					min.value = String.format("%.1f", pitchInHz)
-				}
-				if (pitchInHz > mainViewModel.pitchList.max() ?: pitchInHz) {
-					max.value = String.format("%.1f", pitchInHz)
-				}
-				if (pitchInHz > minTreshlodPitchInHz) {
+				if (pitchInHz > 0) {
+
+					if (pitchInHz < mainViewModel.pitchList.min() ?: pitchInHz) {
+						min.value = String.format("%.1f", pitchInHz)
+					}
+					if (pitchInHz > mainViewModel.pitchList.max() ?: pitchInHz) {
+						max.value = String.format("%.1f", pitchInHz)
+					}
+
 					mainViewModel.pitchList.add(pitchInHz)
 					size.value = mainViewModel.pitchList.size.toString()
 				}
@@ -119,11 +121,13 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	}
 
 	@ExperimentalCoroutinesApi
-	private fun runAudioDispatcher(pitchAlgorithm: PitchEstimationAlgorithm) = callbackFlow<Float> {
+	private fun runAudioDispatcher(probabilityThreshold: Float, pitchAlgorithm: PitchEstimationAlgorithm) = callbackFlow<Float> {
 		val pitchHandler = PitchDetectionHandler { pitchDetectionResult, audioEvent ->
 			val pitchInHz = pitchDetectionResult.pitch
-			Timber.i(">>> IN [$pitchInHz]Hz, [${audioEvent.getdBSPL()}dB] EVENT time[${audioEvent.timeStamp}]")
-			sendBlocking(pitchInHz)
+			Timber.i(">>> IN [$pitchInHz]Hz, probability[${pitchDetectionResult.probability}] EVENT time[${audioEvent.timeStamp}]")
+			if (pitchDetectionResult.probability > probabilityThreshold) {
+				sendBlocking(pitchInHz)
+			}
 		}
 
 		audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
@@ -138,8 +142,5 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 
 	}
 
-	private fun processEvent(audioEvent: AudioEvent) {
-
-	}
 }
 
