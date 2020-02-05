@@ -36,8 +36,6 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 
 	val appVersionString = "${appVersion.versionName} (${appVersion.versionCode})"
 
-	var recordingJob = Job()
-
 //	val appVersionString = preferencesCore.sampleToken
 
 	private var audioDispatcher: AudioDispatcher
@@ -46,39 +44,22 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	private val audioBufferSize = 1024 //size of the buffer defines how much samples are processed in one step.
 	private val bufferOverlap = 0// How much consecutive buffers overlap (in samples). Half of the AudioBufferSize is common.
 
-	private var recordFinished = false
-
 	init {
 		Timber.e(">>> new viewmodel")
 		token.value = "testicek"
 		audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
 	}
 
-	override fun onCleared() {
-		recordingJob.cancel()
-		super.onCleared()
-	}
-
-	fun finishRecording() {
-		Timber.e(">>> finish recording")
-		recordFinished = true
-		if (!audioDispatcher.isStopped) {
-			audioDispatcher.stop()
-		}
-		recordingJob.cancel()
-	}
-
+	@ExperimentalCoroutinesApi
 	@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
 	private fun testLifeCycleOnResume() {
-		recordingJob = Job()
-		if (!recordFinished) {
-			launch(recordingJob) {
-				runRecording().flowOn(Dispatchers.IO)
-					.collect { pitchInHz ->
-						Timber.i(">>> OUT $pitchInHz")
-					}
-			}
+		launch {
+			runRecording().flowOn(Dispatchers.IO)
+				.collect { pitchInHz ->
+					Timber.i(">>> OUT $pitchInHz")
+				}
 		}
+
 	}
 
 	@OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
@@ -86,7 +67,6 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 		if (!audioDispatcher.isStopped) {
 			audioDispatcher.stop()
 		}
-		recordingJob.cancel()
 	}
 
 	@ExperimentalCoroutinesApi
@@ -109,5 +89,5 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 		audioDispatcher.run()
 
 	}
-
 }
+

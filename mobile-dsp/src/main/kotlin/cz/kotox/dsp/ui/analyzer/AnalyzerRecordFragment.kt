@@ -39,7 +39,6 @@ class AnalyzerRecordFragment : BaseFragmentViewModel<AnalyzerRecordViewModel, An
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		binding.navigateProcessingBt.setOnClickListener {
-			viewModel.finishRecording()
 			Navigation.findNavController(view).navigate(R.id.navigate_to_processing)
 		}
 	}
