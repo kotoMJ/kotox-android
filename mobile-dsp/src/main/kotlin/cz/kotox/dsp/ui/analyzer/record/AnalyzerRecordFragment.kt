@@ -10,6 +10,7 @@ import cz.kotox.core.utility.lazyUnsafe
 import cz.kotox.dsp.R
 import cz.kotox.dsp.databinding.AnalyzerRecordFragmentBinding
 import cz.kotox.dsp.ui.analyzer.BaseAnalyzerFragment
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class AnalyzerRecordFragment : BaseAnalyzerFragment<AnalyzerRecordViewModel, AnalyzerRecordFragmentBinding>() {
 
@@ -37,10 +38,15 @@ class AnalyzerRecordFragment : BaseAnalyzerFragment<AnalyzerRecordViewModel, Ana
 		}
 	}
 
+	@ExperimentalCoroutinesApi
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		binding.navigateProcessingBt.setOnClickListener {
 			Navigation.findNavController(view).navigate(R.id.navigate_to_processing)
+		}
+
+		binding.changePitchAlgorythm.setOnClickListener {
+			viewModel.changePitchAlgorithm()
 		}
 	}
 

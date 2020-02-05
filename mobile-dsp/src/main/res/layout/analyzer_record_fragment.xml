@@ -17,6 +17,15 @@
 
 		<!-- TODO this is temporary placeholder content for dashboard -->
 
+		<Button
+			android:id="@+id/change_pitch_algorythm"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:text="@{viewModel.pitchAlgorithm.toString()}"
+			app:layout_constraintEnd_toEndOf="@id/keyline_end"
+			app:layout_constraintStart_toStartOf="@id/keyline_start"
+			app:layout_constraintTop_toTopOf="parent"
+			tools:text="FFT_PITCH" />
 
 		<ImageView
 			android:id="@+id/ic_analyzer_process_placeholder"
@@ -25,9 +34,9 @@
 			android:alpha="0.05"
 			android:src="@drawable/ic_mic_black_24dp"
 			app:layout_constraintBottom_toTopOf="@+id/processing_max"
-			app:layout_constraintTop_toTopOf="parent"
 			app:layout_constraintEnd_toEndOf="@id/keyline_end"
-			app:layout_constraintStart_toStartOf="@id/keyline_start"/>
+			app:layout_constraintStart_toStartOf="@id/keyline_start"
+			app:layout_constraintTop_toBottomOf="@+id/change_pitch_algorythm" />
 
 		<androidx.cardview.widget.CardView
 			android:id="@+id/processing_min"
@@ -40,8 +49,8 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:text="@{viewModel.min}"
-				android:textAppearance="?textAppearanceHeadline3"
 				android:textAlignment="center"
+				android:textAppearance="?textAppearanceHeadline3"
 				tools:text="50" />
 		</androidx.cardview.widget.CardView>
 
@@ -56,8 +65,8 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:text="@{viewModel.max}"
-				android:textAppearance="?textAppearanceHeadline3"
 				android:textAlignment="center"
+				android:textAppearance="?textAppearanceHeadline3"
 				tools:text="150" />
 		</com.google.android.material.card.MaterialCardView>
 
@@ -74,9 +83,9 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:text="@{viewModel.size}"
-				android:textAppearance="?textAppearanceHeadline2"
 				android:textAlignment="center"
-				tools:text="2"/>
+				android:textAppearance="?textAppearanceHeadline2"
+				tools:text="2" />
 
 		</com.google.android.material.card.MaterialCardView>
 		<Button
