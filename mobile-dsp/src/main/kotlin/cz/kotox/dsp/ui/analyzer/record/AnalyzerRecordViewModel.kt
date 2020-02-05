@@ -1,4 +1,4 @@
-package cz.kotox.dsp.ui.analyzer
+package cz.kotox.dsp.ui.analyzer.record
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

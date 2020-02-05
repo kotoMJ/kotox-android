@@ -6,10 +6,10 @@ import cz.kotox.dsp.ui.MainActivity
 import cz.kotox.dsp.ui.MainFragment
 import cz.kotox.dsp.ui.MainViewModel
 import cz.kotox.dsp.ui.analyzer.AnalyzerActivity
-import cz.kotox.dsp.ui.analyzer.AnalyzerRecordFragment
-import cz.kotox.dsp.ui.analyzer.AnalyzerResultFragment
-import cz.kotox.dsp.ui.analyzer.AnalyzerResultViewModel
-import cz.kotox.dsp.ui.analyzer.AnalyzerRecordViewModel
+import cz.kotox.dsp.ui.analyzer.record.AnalyzerRecordFragment
+import cz.kotox.dsp.ui.analyzer.result.AnalyzerResultFragment
+import cz.kotox.dsp.ui.analyzer.result.AnalyzerResultViewModel
+import cz.kotox.dsp.ui.analyzer.record.AnalyzerRecordViewModel
 import cz.kotox.dsp.ui.analyzer.AnalyzerViewModel
 import dagger.Binds
 import dagger.Module
