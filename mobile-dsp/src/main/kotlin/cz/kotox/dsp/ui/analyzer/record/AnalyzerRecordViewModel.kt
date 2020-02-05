@@ -39,11 +39,17 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 
 //	val appVersionString = preferencesCore.sampleToken
 
+	val min: MutableLiveData<String> = MutableLiveData("0")
+	val max: MutableLiveData<String> = MutableLiveData("0")
+	val size: MutableLiveData<String> = MutableLiveData("0")
+
 	private var audioDispatcher: AudioDispatcher
 
 	private val sampleRate = 22050 //sample rate must be supported by the capture device. Nonstandard sample rates can be problematic!
 	private val audioBufferSize = 1024 //size of the buffer defines how much samples are processed in one step.
 	private val bufferOverlap = 0// How much consecutive buffers overlap (in samples). Half of the AudioBufferSize is common.
+
+	private val minTreshlodPitchInHz = 20
 
 	init {
 		Timber.e(">>> new viewmodel")
@@ -57,8 +63,17 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 		launch {
 			runRecording().flowOn(Dispatchers.IO)
 				.collect { pitchInHz ->
-					Timber.i(">>> OUT $pitchInHz")
-					mainViewModel.pitchList.add(pitchInHz)
+					Timber.i(">>> PITCH[$pitchInHz], min[${mainViewModel.pitchList.min()}],max[${mainViewModel.pitchList.max()}]")
+					if (pitchInHz > minTreshlodPitchInHz && pitchInHz < mainViewModel.pitchList.min() ?: pitchInHz) {
+						min.value = pitchInHz.toString()
+					}
+					if (pitchInHz > mainViewModel.pitchList.max() ?: pitchInHz) {
+						max.value = pitchInHz.toString()
+					}
+					if (pitchInHz > minTreshlodPitchInHz) {
+						mainViewModel.pitchList.add(pitchInHz)
+						size.value = mainViewModel.pitchList.size.toString()
+					}
 				}
 		}
 
