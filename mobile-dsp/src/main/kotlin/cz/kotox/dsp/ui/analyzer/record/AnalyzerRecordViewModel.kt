@@ -158,7 +158,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	private fun runAudioDispatcher(useProbability: Boolean, probabilityThreshold: Float, pitchAlgorithm: PitchEstimationAlgorithm) = callbackFlow<Float> {
 		val pitchHandler = PitchDetectionHandler { pitchDetectionResult, audioEvent ->
 			val pitchInHz = pitchDetectionResult.pitch
-			Timber.i(">>> IN [$pitchInHz]Hz, probability[${pitchDetectionResult.probability}] EVENT time[${audioEvent.timeStamp}], ALGORITHM[$pitchAlgorithm]")
+			Timber.i(">>> IN [$pitchInHz]Hz, probability[${pitchDetectionResult.probability}] RMS[${audioEvent.rms}] EVENT time[${audioEvent.timeStamp}], ALGORITHM[$pitchAlgorithm]")
 			if (useProbability) {
 				if (pitchDetectionResult.probability > probabilityThreshold) {
 					sendBlocking(pitchInHz)
