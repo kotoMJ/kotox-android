@@ -9,8 +9,9 @@ import cz.kotox.core.utility.FragmentPermissionManager
 import cz.kotox.core.utility.lazyUnsafe
 import cz.kotox.dsp.R
 import cz.kotox.dsp.databinding.AnalyzerRecordFragmentBinding
+import cz.kotox.dsp.ui.analyzer.BaseAnalyzerFragment
 
-class AnalyzerRecordFragment : BaseFragmentViewModel<AnalyzerRecordViewModel, AnalyzerRecordFragmentBinding>() {
+class AnalyzerRecordFragment : BaseAnalyzerFragment<AnalyzerRecordViewModel, AnalyzerRecordFragmentBinding>() {
 
 	val permissionManager: FragmentPermissionManager by lazyUnsafe {
 		FragmentPermissionManager(this)
@@ -18,7 +19,7 @@ class AnalyzerRecordFragment : BaseFragmentViewModel<AnalyzerRecordViewModel, An
 
 	override fun inflateBindingLayout(inflater: LayoutInflater) = AnalyzerRecordFragmentBinding.inflate(inflater)
 
-	override fun setupViewModel() = findViewModel<AnalyzerRecordViewModel>()
+	override fun setupWizardViewModel() = findViewModel<AnalyzerRecordViewModel>()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)

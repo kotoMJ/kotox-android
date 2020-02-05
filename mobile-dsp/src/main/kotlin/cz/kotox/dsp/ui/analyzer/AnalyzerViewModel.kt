@@ -20,6 +20,8 @@ class AnalyzerViewModel @Inject constructor(appVersion: AppVersion) : BaseViewMo
 
 	val appVersionString = "${appVersion.versionName} (${appVersion.versionCode})"
 
+	val pitchList = mutableListOf<Float>()
+
 //	val appVersionString = preferencesCore.sampleToken
 
 	init {
