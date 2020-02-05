@@ -18,9 +18,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.sendBlocking
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.delayFlow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -61,14 +64,16 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
 	private fun testLifeCycleOnResume() {
 		launch {
-			runRecording().flowOn(Dispatchers.IO)
+			runRecording()
+				//.onStart { delay(5000) } //just the test whether recording start when collect is invoked.
+				.flowOn(Dispatchers.IO)
 				.collect { pitchInHz ->
 					Timber.i(">>> PITCH[$pitchInHz], min[${mainViewModel.pitchList.min()}],max[${mainViewModel.pitchList.max()}]")
 					if (pitchInHz > minTreshlodPitchInHz && pitchInHz < mainViewModel.pitchList.min() ?: pitchInHz) {
-						min.value = String.format("%.1f",pitchInHz)
+						min.value = String.format("%.1f", pitchInHz)
 					}
 					if (pitchInHz > mainViewModel.pitchList.max() ?: pitchInHz) {
-						max.value = String.format("%.1f",pitchInHz)
+						max.value = String.format("%.1f", pitchInHz)
 					}
 					if (pitchInHz > minTreshlodPitchInHz) {
 						mainViewModel.pitchList.add(pitchInHz)
@@ -102,7 +107,6 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 				audioBufferSize,
 				pitchHandler
 			))
-
 		audioDispatcher.run()
 
 	}
