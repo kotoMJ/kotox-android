@@ -12,9 +12,11 @@ import be.tarsos.dsp.pitch.PitchProcessor.PitchEstimationAlgorithm
 import cz.kotox.core.PreferencesCore
 import cz.kotox.core.arch.extension.mutableLiveDataOf
 import cz.kotox.core.entity.AppVersion
+import cz.kotox.core.utility.logWithTag
 import cz.kotox.dsp.ui.analyzer.BaseAnalyzerViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.sendBlocking
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.collect
@@ -35,6 +37,8 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 
 	val appVersionString = "${appVersion.versionName} (${appVersion.versionCode})"
 
+	var recordingJob = Job()
+
 //	val appVersionString = preferencesCore.sampleToken
 
 	val min: MutableLiveData<String> = mutableLiveDataOf("0")
@@ -51,7 +55,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 
 	private val pitchProbabilityThreshold = 0.8f
 
-	private var useProbability = true
+	var useProbability: MutableLiveData<Boolean> = mutableLiveDataOf(true)
 
 	init {
 		Timber.e(">>> new viewmodel")
@@ -59,20 +63,32 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 		audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
 	}
 
+	override fun onCleared() {
+		recordingJob.cancel()
+		super.onCleared()
+	}
+
 	@ExperimentalCoroutinesApi
 	fun changePitchAlgorithm() {
+		resetRecording()
 		val newPitchAlgorithm = getNextPitchAlgorithm()
 		pitchAlgorithm.value = newPitchAlgorithm
 		cleanUpMeasurement()
-		launch { initRecording(pitchProbabilityThreshold, newPitchAlgorithm) }
+		launch(recordingJob) { initRecording(requireNotNull(useProbability.value), pitchProbabilityThreshold, newPitchAlgorithm) }
 
 	}
 
 	@ExperimentalCoroutinesApi
 	fun changeProbabilityUsage(useProbability: Boolean) {
-		this.useProbability = useProbability
+		resetRecording()
+		this.useProbability.value = useProbability
 		cleanUpMeasurement()
-		launch { initRecording(pitchProbabilityThreshold, requireNotNull(pitchAlgorithm.value)) }
+		launch(recordingJob) { initRecording(useProbability, pitchProbabilityThreshold, requireNotNull(pitchAlgorithm.value)) }
+	}
+
+	private fun resetRecording() {
+		recordingJob.cancel()
+		recordingJob = Job()
 	}
 
 	private fun cleanUpMeasurement() {
@@ -96,16 +112,17 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	@ExperimentalCoroutinesApi
 	@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
 	private fun testLifeCycleOnResume() {
-		launch {
-			pitchAlgorithm.value?.let { initRecording(pitchProbabilityThreshold, it) }
+		launch(recordingJob) {
+			pitchAlgorithm.value?.let { initRecording(requireNotNull(useProbability.value), pitchProbabilityThreshold, it) }
 		}
 
 	}
 
 	@ExperimentalCoroutinesApi
-	private suspend fun initRecording(probabilityThreshold: Float, pitchAlgorithm: PitchEstimationAlgorithm) {
+	private suspend fun initRecording(useProbability: Boolean, probabilityThreshold: Float, pitchAlgorithm: PitchEstimationAlgorithm) {
+		Timber.w(">>> init recording")
 		stopCurrentDispatcher()
-		runAudioDispatcher(probabilityThreshold, pitchAlgorithm)
+		runAudioDispatcher(useProbability, probabilityThreshold, pitchAlgorithm)
 			//.onStart { delay(5000) } //just the test whether recording start when collect is invoked.
 			.flowOn(Dispatchers.IO)
 			.collect { pitchInHz ->
@@ -128,6 +145,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	@OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
 	private fun testLifeCycleOnPause() {
 		stopCurrentDispatcher()
+		recordingJob.cancel()
 	}
 
 	private fun stopCurrentDispatcher() {
@@ -137,10 +155,10 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	}
 
 	@ExperimentalCoroutinesApi
-	private fun runAudioDispatcher(probabilityThreshold: Float, pitchAlgorithm: PitchEstimationAlgorithm) = callbackFlow<Float> {
+	private fun runAudioDispatcher(useProbability: Boolean, probabilityThreshold: Float, pitchAlgorithm: PitchEstimationAlgorithm) = callbackFlow<Float> {
 		val pitchHandler = PitchDetectionHandler { pitchDetectionResult, audioEvent ->
 			val pitchInHz = pitchDetectionResult.pitch
-			Timber.i(">>> IN [$pitchInHz]Hz, probability[${pitchDetectionResult.probability}] EVENT time[${audioEvent.timeStamp}]")
+			Timber.i(">>> IN [$pitchInHz]Hz, probability[${pitchDetectionResult.probability}] EVENT time[${audioEvent.timeStamp}], ALGORITHM[$pitchAlgorithm]")
 			if (useProbability) {
 				if (pitchDetectionResult.probability > probabilityThreshold) {
 					sendBlocking(pitchInHz)

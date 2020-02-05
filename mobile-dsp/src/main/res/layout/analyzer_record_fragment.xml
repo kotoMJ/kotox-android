@@ -28,13 +28,14 @@
 			tools:text="FFT_PITCH" />
 
 		<com.google.android.material.switchmaterial.SwitchMaterial
-			app:layout_constraintTop_toBottomOf="@+id/change_pitch_algorithm"
 			android:id="@+id/use_probability"
-			android:text="Probability"
-			app:switchPadding="@dimen/global_keyline_horizontal"
-			app:layout_constraintStart_toStartOf="@id/keyline_start"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content"
+			android:checked="@{viewModel.useProbability}"
+			android:text="Probability"
+			app:layout_constraintStart_toStartOf="@id/keyline_start"
+			app:layout_constraintTop_toBottomOf="@+id/change_pitch_algorithm"
+			app:switchPadding="@dimen/global_keyline_horizontal" />
 
 		<ImageView
 			android:id="@+id/ic_analyzer_process_placeholder"
