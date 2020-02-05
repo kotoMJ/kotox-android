@@ -65,10 +65,10 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 				.collect { pitchInHz ->
 					Timber.i(">>> PITCH[$pitchInHz], min[${mainViewModel.pitchList.min()}],max[${mainViewModel.pitchList.max()}]")
 					if (pitchInHz > minTreshlodPitchInHz && pitchInHz < mainViewModel.pitchList.min() ?: pitchInHz) {
-						min.value = pitchInHz.toString()
+						min.value = String.format("%.1f",pitchInHz)
 					}
 					if (pitchInHz > mainViewModel.pitchList.max() ?: pitchInHz) {
-						max.value = pitchInHz.toString()
+						max.value = String.format("%.1f",pitchInHz)
 					}
 					if (pitchInHz > minTreshlodPitchInHz) {
 						mainViewModel.pitchList.add(pitchInHz)
