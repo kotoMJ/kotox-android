@@ -8,9 +8,9 @@
 
 	<fragment
 		android:id="@+id/analyzer_process"
-		android:name="cz.kotox.dsp.ui.analyzer.AnalyzerFragment"
+		android:name="cz.kotox.dsp.ui.analyzer.AnalyzerRecordFragment"
 		android:label="@string/analyzer"
-		tools:layout="@layout/analyzer_fragment">
+		tools:layout="@layout/analyzer_record_fragment">
 		<argument
 			android:name="user_id" app:argType="integer" />
 		<action

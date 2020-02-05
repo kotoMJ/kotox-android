@@ -6,11 +6,11 @@ import android.view.View
 import cz.kotox.core.arch.BaseFragmentViewModel
 import cz.kotox.dsp.databinding.AnalyzerResultFragmentBinding
 
-class AnalyzerResultFragment : BaseFragmentViewModel<AnalyzerViewModel, AnalyzerResultFragmentBinding>() {
+class AnalyzerResultFragment : BaseFragmentViewModel<AnalyzerResultViewModel, AnalyzerResultFragmentBinding>() {
 
 	override fun inflateBindingLayout(inflater: LayoutInflater) = AnalyzerResultFragmentBinding.inflate(inflater)
 
-	override fun setupViewModel() = findViewModel<AnalyzerViewModel>()
+	override fun setupViewModel() = findViewModel<AnalyzerResultViewModel>()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)

@@ -6,8 +6,10 @@ import cz.kotox.dsp.ui.MainActivity
 import cz.kotox.dsp.ui.MainFragment
 import cz.kotox.dsp.ui.MainViewModel
 import cz.kotox.dsp.ui.analyzer.AnalyzerActivity
-import cz.kotox.dsp.ui.analyzer.AnalyzerFragment
+import cz.kotox.dsp.ui.analyzer.AnalyzerRecordFragment
 import cz.kotox.dsp.ui.analyzer.AnalyzerResultFragment
+import cz.kotox.dsp.ui.analyzer.AnalyzerResultViewModel
+import cz.kotox.dsp.ui.analyzer.AnalyzerRecordViewModel
 import cz.kotox.dsp.ui.analyzer.AnalyzerViewModel
 import dagger.Binds
 import dagger.Module
@@ -28,12 +30,11 @@ abstract class MobileDspDaggerModule {
 	@ViewModelKey(MainViewModel::class)
 	abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
 
-
 	@ContributesAndroidInjector()
 	abstract fun contributeAnalyzerActivity(): AnalyzerActivity
 
 	@ContributesAndroidInjector
-	abstract fun contributeAnalyzerFragment(): AnalyzerFragment
+	abstract fun contributeAnalyzerFragment(): AnalyzerRecordFragment
 
 	@ContributesAndroidInjector
 	abstract fun contributeAnalyzerResultFragment(): AnalyzerResultFragment
@@ -42,4 +43,14 @@ abstract class MobileDspDaggerModule {
 	@IntoMap
 	@ViewModelKey(AnalyzerViewModel::class)
 	abstract fun bindAnalyzerViewModel(analyzerViewModel: AnalyzerViewModel): ViewModel
+
+	@Binds
+	@IntoMap
+	@ViewModelKey(AnalyzerRecordViewModel::class)
+	abstract fun bindAnalyzerRecordViewModel(analyzerRecordViewModel: AnalyzerRecordViewModel): ViewModel
+
+	@Binds
+	@IntoMap
+	@ViewModelKey(AnalyzerResultViewModel::class)
+	abstract fun bindAnalyzerProcessViewModel(analyzerResultViewModel: AnalyzerResultViewModel): ViewModel
 }

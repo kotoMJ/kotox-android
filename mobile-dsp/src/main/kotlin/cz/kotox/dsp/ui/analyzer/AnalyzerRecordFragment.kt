@@ -1,6 +1,5 @@
 package cz.kotox.dsp.ui.analyzer
 
-import android.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,17 +8,17 @@ import cz.kotox.core.arch.BaseFragmentViewModel
 import cz.kotox.core.utility.FragmentPermissionManager
 import cz.kotox.core.utility.lazyUnsafe
 import cz.kotox.dsp.R
-import cz.kotox.dsp.databinding.AnalyzerFragmentBinding
+import cz.kotox.dsp.databinding.AnalyzerRecordFragmentBinding
 
-class AnalyzerFragment : BaseFragmentViewModel<AnalyzerViewModel, AnalyzerFragmentBinding>() {
+class AnalyzerRecordFragment : BaseFragmentViewModel<AnalyzerRecordViewModel, AnalyzerRecordFragmentBinding>() {
 
 	val permissionManager: FragmentPermissionManager by lazyUnsafe {
 		FragmentPermissionManager(this)
 	}
 
-	override fun inflateBindingLayout(inflater: LayoutInflater) = AnalyzerFragmentBinding.inflate(inflater)
+	override fun inflateBindingLayout(inflater: LayoutInflater) = AnalyzerRecordFragmentBinding.inflate(inflater)
 
-	override fun setupViewModel() = findViewModel<AnalyzerViewModel>()
+	override fun setupViewModel() = findViewModel<AnalyzerRecordViewModel>()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -40,6 +39,7 @@ class AnalyzerFragment : BaseFragmentViewModel<AnalyzerViewModel, AnalyzerFragme
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		binding.navigateProcessingBt.setOnClickListener {
+			viewModel.finishRecording()
 			Navigation.findNavController(view).navigate(R.id.navigate_to_processing)
 		}
 	}

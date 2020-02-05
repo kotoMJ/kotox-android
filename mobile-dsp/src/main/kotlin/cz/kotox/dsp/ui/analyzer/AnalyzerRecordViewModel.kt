@@ -1,0 +1,113 @@
+package cz.kotox.dsp.ui.analyzer
+
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
+import be.tarsos.dsp.AudioDispatcher
+import be.tarsos.dsp.io.android.AudioDispatcherFactory
+import be.tarsos.dsp.pitch.PitchDetectionHandler
+import be.tarsos.dsp.pitch.PitchProcessor
+import be.tarsos.dsp.pitch.PitchProcessor.PitchEstimationAlgorithm
+import cz.kotox.core.PreferencesCore
+import cz.kotox.core.arch.BaseViewModel
+import cz.kotox.core.entity.AppVersion
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.sendBlocking
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
+import timber.log.Timber
+import javax.inject.Inject
+
+class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : BaseViewModel(), LifecycleObserver {
+
+//	@Inject
+//	lateinit var appVersion: AppVersion
+
+	@Inject
+	lateinit var preferencesCore: PreferencesCore
+
+	val token: MutableLiveData<String> = MutableLiveData()
+
+	val appVersionString = "${appVersion.versionName} (${appVersion.versionCode})"
+
+	var recordingJob = Job()
+
+//	val appVersionString = preferencesCore.sampleToken
+
+	private var audioDispatcher: AudioDispatcher
+
+	private val sampleRate = 22050 //sample rate must be supported by the capture device. Nonstandard sample rates can be problematic!
+	private val audioBufferSize = 1024 //size of the buffer defines how much samples are processed in one step.
+	private val bufferOverlap = 0// How much consecutive buffers overlap (in samples). Half of the AudioBufferSize is common.
+
+	private var recordFinished = false
+
+	init {
+		Timber.e(">>> new viewmodel")
+		token.value = "testicek"
+		audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
+	}
+
+	override fun onCleared() {
+		recordingJob.cancel()
+		super.onCleared()
+	}
+
+	fun finishRecording() {
+		Timber.e(">>> finish recording")
+		recordFinished = true
+		if (!audioDispatcher.isStopped) {
+			audioDispatcher.stop()
+		}
+		recordingJob.cancel()
+	}
+
+	@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+	private fun testLifeCycleOnResume() {
+		recordingJob = Job()
+		if (!recordFinished) {
+			launch(recordingJob) {
+				runRecording().flowOn(Dispatchers.IO)
+					.collect { pitchInHz ->
+						Timber.i(">>> OUT $pitchInHz")
+					}
+			}
+		}
+	}
+
+	@OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+	private fun testLifeCycleOnPause() {
+		if (!audioDispatcher.isStopped) {
+			audioDispatcher.stop()
+		}
+		recordingJob.cancel()
+	}
+
+	@ExperimentalCoroutinesApi
+	private fun runRecording() = callbackFlow<Float> {
+		val pitchHandler = PitchDetectionHandler { pitchDetectionResult, audioEvent ->
+			val pitchInHz = pitchDetectionResult.pitch
+			Timber.i(">>> IN $pitchInHz")
+			sendBlocking(pitchInHz)
+		}
+
+		audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
+		audioDispatcher.addAudioProcessor(
+			PitchProcessor(
+				PitchEstimationAlgorithm.FFT_YIN,
+				sampleRate.toFloat(),
+				audioBufferSize,
+				pitchHandler
+			))
+
+		audioDispatcher.run()
+
+	}
+
+}
