@@ -45,8 +45,12 @@ class AnalyzerRecordFragment : BaseAnalyzerFragment<AnalyzerRecordViewModel, Ana
 			Navigation.findNavController(view).navigate(R.id.navigate_to_processing)
 		}
 
-		binding.changePitchAlgorythm.setOnClickListener {
+		binding.changePitchAlgorithm.setOnClickListener {
 			viewModel.changePitchAlgorithm()
+		}
+
+		binding.useProbability.setOnCheckedChangeListener { _, isChecked ->
+			viewModel.changeProbabilityUsage(isChecked)
 		}
 	}
 

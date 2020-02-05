@@ -17,8 +17,8 @@
 
 		<!-- TODO this is temporary placeholder content for dashboard -->
 
-		<Button
-			android:id="@+id/change_pitch_algorythm"
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/change_pitch_algorithm"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"
 			android:text="@{viewModel.pitchAlgorithm.toString()}"
@@ -26,6 +26,15 @@
 			app:layout_constraintStart_toStartOf="@id/keyline_start"
 			app:layout_constraintTop_toTopOf="parent"
 			tools:text="FFT_PITCH" />
+
+		<com.google.android.material.switchmaterial.SwitchMaterial
+			app:layout_constraintTop_toBottomOf="@+id/change_pitch_algorithm"
+			android:id="@+id/use_probability"
+			android:text="Probability"
+			app:switchPadding="@dimen/global_keyline_horizontal"
+			app:layout_constraintStart_toStartOf="@id/keyline_start"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"/>
 
 		<ImageView
 			android:id="@+id/ic_analyzer_process_placeholder"
@@ -36,7 +45,7 @@
 			app:layout_constraintBottom_toTopOf="@+id/processing_max"
 			app:layout_constraintEnd_toEndOf="@id/keyline_end"
 			app:layout_constraintStart_toStartOf="@id/keyline_start"
-			app:layout_constraintTop_toBottomOf="@+id/change_pitch_algorythm" />
+			app:layout_constraintTop_toBottomOf="@+id/change_pitch_algorithm" />
 
 		<androidx.cardview.widget.CardView
 			android:id="@+id/processing_min"
@@ -88,7 +97,7 @@
 				tools:text="2" />
 
 		</com.google.android.material.card.MaterialCardView>
-		<Button
+		<com.google.android.material.button.MaterialButton
 			android:id="@+id/navigate_processing_bt"
 			android:layout_width="0dp"
 			android:layout_height="wrap_content"

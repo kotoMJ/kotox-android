@@ -5,14 +5,12 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import be.tarsos.dsp.AudioDispatcher
-import be.tarsos.dsp.AudioEvent
 import be.tarsos.dsp.io.android.AudioDispatcherFactory
 import be.tarsos.dsp.pitch.PitchDetectionHandler
 import be.tarsos.dsp.pitch.PitchProcessor
 import be.tarsos.dsp.pitch.PitchProcessor.PitchEstimationAlgorithm
 import cz.kotox.core.PreferencesCore
 import cz.kotox.core.arch.extension.mutableLiveDataOf
-import cz.kotox.core.arch.extension.observeOnce
 import cz.kotox.core.entity.AppVersion
 import cz.kotox.dsp.ui.analyzer.BaseAnalyzerViewModel
 import kotlinx.coroutines.Dispatchers
@@ -53,6 +51,8 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 
 	private val pitchProbabilityThreshold = 0.8f
 
+	private var useProbability = true
+
 	init {
 		Timber.e(">>> new viewmodel")
 		token.value = "testicek"
@@ -61,6 +61,28 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 
 	@ExperimentalCoroutinesApi
 	fun changePitchAlgorithm() {
+		val newPitchAlgorithm = getNextPitchAlgorithm()
+		pitchAlgorithm.value = newPitchAlgorithm
+		cleanUpMeasurement()
+		launch { initRecording(pitchProbabilityThreshold, newPitchAlgorithm) }
+
+	}
+
+	@ExperimentalCoroutinesApi
+	fun changeProbabilityUsage(useProbability: Boolean) {
+		this.useProbability = useProbability
+		cleanUpMeasurement()
+		launch { initRecording(pitchProbabilityThreshold, requireNotNull(pitchAlgorithm.value)) }
+	}
+
+	private fun cleanUpMeasurement() {
+		mainViewModel.pitchList.clear()
+		min.value = "0"
+		max.value = "0"
+		size.value = "0"
+	}
+
+	private fun getNextPitchAlgorithm(): PitchEstimationAlgorithm {
 		val currentPitchAlgorithm = requireNotNull(pitchAlgorithm.value)
 		val newIndex = if (currentPitchAlgorithm.ordinal == PitchEstimationAlgorithm.values().size - 1) {
 			0
@@ -68,13 +90,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 			currentPitchAlgorithm.ordinal + 1
 		}
 		val newPitchAlgorithm = PitchEstimationAlgorithm.values()[newIndex]
-		pitchAlgorithm.value = newPitchAlgorithm
-		mainViewModel.pitchList.clear()
-		min.value = "0"
-		max.value = "0"
-		size.value = "0"
-		launch { initRecording(pitchProbabilityThreshold, newPitchAlgorithm) }
-
+		return newPitchAlgorithm
 	}
 
 	@ExperimentalCoroutinesApi
@@ -125,7 +141,11 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 		val pitchHandler = PitchDetectionHandler { pitchDetectionResult, audioEvent ->
 			val pitchInHz = pitchDetectionResult.pitch
 			Timber.i(">>> IN [$pitchInHz]Hz, probability[${pitchDetectionResult.probability}] EVENT time[${audioEvent.timeStamp}]")
-			if (pitchDetectionResult.probability > probabilityThreshold) {
+			if (useProbability) {
+				if (pitchDetectionResult.probability > probabilityThreshold) {
+					sendBlocking(pitchInHz)
+				}
+			} else {
 				sendBlocking(pitchInHz)
 			}
 		}
