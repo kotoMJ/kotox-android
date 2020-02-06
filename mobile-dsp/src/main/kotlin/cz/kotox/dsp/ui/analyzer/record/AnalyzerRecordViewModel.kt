@@ -5,15 +5,17 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import be.tarsos.dsp.AudioDispatcher
+import be.tarsos.dsp.AudioEvent
+import be.tarsos.dsp.EnvelopeFollower
 import be.tarsos.dsp.io.android.AudioDispatcherFactory
 import be.tarsos.dsp.pitch.PitchDetectionHandler
+import be.tarsos.dsp.pitch.PitchDetectionResult
 import be.tarsos.dsp.pitch.PitchProcessor
 import be.tarsos.dsp.pitch.PitchProcessor.PitchEstimationAlgorithm
-import cz.kotox.core.PreferencesCore
 import cz.kotox.core.arch.extension.mutableLiveDataOf
 import cz.kotox.core.entity.AppVersion
-import cz.kotox.core.utility.logWithTag
 import cz.kotox.dsp.ui.analyzer.BaseAnalyzerViewModel
+import cz.kotox.dsp.ui.analyzer.VoiceAnalysisSettings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -27,18 +29,6 @@ import javax.inject.Inject
 
 class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : BaseAnalyzerViewModel(), LifecycleObserver {
 
-//	@Inject
-//	lateinit var appVersion: AppVersion
-
-	@Inject
-	lateinit var preferencesCore: PreferencesCore
-
-	val token: MutableLiveData<String> = MutableLiveData()
-
-	val appVersionString = "${appVersion.versionName} (${appVersion.versionCode})"
-
-//	val appVersionString = preferencesCore.sampleToken
-
 	val min: MutableLiveData<String> = mutableLiveDataOf("0")
 	val max: MutableLiveData<String> = mutableLiveDataOf("0")
 	val size: MutableLiveData<String> = mutableLiveDataOf("0")
@@ -50,17 +40,16 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 
 	var recordingJob = Job()
 
-	private val sampleRate = 22050 //sample rate must be supported by the capture device. Nonstandard sample rates can be problematic!
-	private val audioBufferSize = 1024 //size of the buffer defines how much samples are processed in one step.
+	private var voiceAnalysisSettings: VoiceAnalysisSettings = VoiceAnalysisSettings.DEFAULT
+	private val sampleRate = voiceAnalysisSettings.sampleRate//22050 //sample rate must be supported by the capture device. Nonstandard sample rates can be problematic!
+	private val audioBufferSize = voiceAnalysisSettings.bufferSize //size of the buffer defines how much samples are processed in one step.
 	private val bufferOverlap = 0// How much consecutive buffers overlap (in samples). Half of the AudioBufferSize is common.
-
 	private val pitchProbabilityThreshold = 0.8f
+	private val envelopeFollower = EnvelopeFollower(sampleRate.toDouble(), voiceAnalysisSettings.envelopeFollowAttackTime, voiceAnalysisSettings.envelopeFollowReleaseTime);//attack, release
 
 	var useProbability: MutableLiveData<Boolean> = mutableLiveDataOf(true)
 
 	init {
-		Timber.e(">>> new viewmodel")
-		token.value = "testicek"
 		audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
 	}
 
@@ -167,6 +156,13 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 			Timber.i(">>> HANDLER pitch[$pitchInHz]Hz, probability[${pitchDetectionResult.probability}] RMS[${audioEvent.rms}] EVENT time[${audioEvent.timeStamp}], ALGORITHM[$pitchAlgorithm]")
 			if (useProbability) {
 				if (pitchDetectionResult.probability > probabilityThreshold) {
+
+					val frequency = computeFrequency(pitchDetectionResult, mainViewModel.pitchList)
+					val amplitude = computeAmplitude(audioEvent)
+
+					Timber.i(">>> HANDLER2 pitch[$pitchInHz]Hz, RMS[${audioEvent.rms}], dbSPL[${audioEvent.getdBSPL()}]dB")
+					Timber.i(">>> HANDLER2b pitch[$pitchInHz]Hz, freq[${frequency}], amplitude[${amplitude}]")
+					Timber.i(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 					sendBlocking(pitchInHz)
 				}
 			} else {
@@ -185,6 +181,37 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 		audioDispatcher.addAudioProcessor(currentAudioProcessor)
 		audioDispatcher.run()
 
+	}
+
+	fun computeFrequency(pitchDetectionResult: PitchDetectionResult, previousPitchList: List<Float>): Float? {
+		var frequency: Float? = pitchDetectionResult.pitch
+		if (frequency == -1.0f || frequency == null) {
+			frequency = previousPitchList.lastOrNull()
+		} else {
+			if (previousPitchList.isNotEmpty()) { // median filter
+				// use the median as frequency
+				frequency = med(previousPitchList.plus(frequency))
+			}
+		}
+		return frequency
+	}
+
+	private fun computeEnvelope(audioBuffer: FloatArray): FloatArray {
+		var envelope: FloatArray = floatArrayOf()
+		if (voiceAnalysisSettings.envelopeFollow) {
+			envelope = audioBuffer.clone()
+			envelopeFollower.calculateEnvelope(envelope)
+		}
+		return envelope
+	}
+
+	fun computeAmplitude(audioEvent: AudioEvent): Float {
+		val env: FloatArray = computeEnvelope(audioEvent.floatBuffer)
+		return env[env.size - 1]
+	}
+
+	fun med(list: List<Float>) = list.sorted().let {
+		(it[it.size / 2] + it[(it.size - 1) / 2]) / 2
 	}
 
 }
