@@ -37,6 +37,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	val size: MutableLiveData<String> = mutableLiveDataOf("0")
 
 	val pitchAlgorithm: MutableLiveData<PitchEstimationAlgorithm> = mutableLiveDataOf(PitchEstimationAlgorithm.FFT_YIN)
+	var useProbability: MutableLiveData<Boolean> = mutableLiveDataOf(true)
 
 	private var audioDispatcher: AudioDispatcher
 	private var currentAudioProcessor: PitchProcessor? = null
@@ -50,7 +51,6 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	private val pitchProbabilityThreshold = 0.8f
 	private val envelopeFollower = EnvelopeFollower(sampleRate.toDouble(), voiceAnalysisSettings.envelopeFollowAttackTime, voiceAnalysisSettings.envelopeFollowReleaseTime);//attack, release
 
-	var useProbability: MutableLiveData<Boolean> = mutableLiveDataOf(true)
 
 	var waveList: ArrayList<WaveSample> = ArrayList()
 
@@ -86,6 +86,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	@ExperimentalCoroutinesApi
 	@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
 	private fun testLifeCycleOnResume() {
+		stopCurrentDispatcher()
 		recordingJob = Job()
 		launch(recordingJob) {
 			pitchAlgorithm.value?.let { initRecording(requireNotNull(useProbability.value), pitchProbabilityThreshold, it) }
