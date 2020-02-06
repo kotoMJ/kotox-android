@@ -1,10 +1,10 @@
 package cz.kotox.dsp.ui.analyzer.record
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.navigation.Navigation
-import cz.kotox.core.arch.BaseFragmentViewModel
 import cz.kotox.core.utility.FragmentPermissionManager
 import cz.kotox.core.utility.lazyUnsafe
 import cz.kotox.dsp.R
@@ -56,6 +56,21 @@ class AnalyzerRecordFragment : BaseAnalyzerFragment<AnalyzerRecordViewModel, Ana
 		binding.useProbability.setOnCheckedChangeListener { _, isChecked ->
 			viewModel.changeProbabilityUsage(isChecked)
 		}
+
+		binding.graphView.apply {
+			setGraphColor(Color.rgb(255, 255, 255))
+			setCanvasColor(Color.rgb(20, 20, 20))
+			setTimeColor(Color.rgb(255, 255, 255))
+			setWaveLengthPX(15)
+			maxAmplitude = 100/3
+			setMasterList(viewModel.waveList)
+			startPlotting()
+		}
+	}
+
+	override fun onDestroyView() {
+		binding.graphView.stopPlotting()
+		super.onDestroyView()
 	}
 
 	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

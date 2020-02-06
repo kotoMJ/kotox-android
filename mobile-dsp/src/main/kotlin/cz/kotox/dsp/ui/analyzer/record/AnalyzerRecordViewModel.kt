@@ -12,6 +12,7 @@ import be.tarsos.dsp.pitch.PitchDetectionHandler
 import be.tarsos.dsp.pitch.PitchDetectionResult
 import be.tarsos.dsp.pitch.PitchProcessor
 import be.tarsos.dsp.pitch.PitchProcessor.PitchEstimationAlgorithm
+import com.anand.brose.graphviewlibrary.WaveSample
 import cz.kotox.core.arch.extension.mutableLiveDataOf
 import cz.kotox.core.entity.AppVersion
 import cz.kotox.dsp.ui.analyzer.BaseAnalyzerViewModel
@@ -26,6 +27,8 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
+
+data class VoiceSample(val pitch: Float, val time: Double, val amplitude: Float, val frequency: Float)
 
 class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : BaseAnalyzerViewModel(), LifecycleObserver {
 
@@ -49,6 +52,8 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 
 	var useProbability: MutableLiveData<Boolean> = mutableLiveDataOf(true)
 
+	var waveList: ArrayList<WaveSample> = ArrayList()
+
 	init {
 		audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
 	}
@@ -60,6 +65,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 
 	@ExperimentalCoroutinesApi
 	fun changePitchAlgorithm() {
+		stopCurrentDispatcher()
 		resetRecording()
 		val newPitchAlgorithm = getNextPitchAlgorithm()
 		pitchAlgorithm.value = newPitchAlgorithm
@@ -70,6 +76,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 
 	@ExperimentalCoroutinesApi
 	fun changeProbabilityUsage(useProbability: Boolean) {
+		stopCurrentDispatcher()
 		resetRecording()
 		this.useProbability.value = useProbability
 		cleanUpMeasurement()
@@ -121,18 +128,21 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 		runAudioDispatcher(useProbability, probabilityThreshold, pitchAlgorithm)
 			//.onStart { delay(5000) } //just the test whether recording start when collect is invoked.
 			.flowOn(Dispatchers.IO)
-			.collect { pitchInHz ->
-				Timber.i(">>> FLOW pitch[$pitchInHz], min[${mainViewModel.pitchList.min()}],max[${mainViewModel.pitchList.max()}]")
-				if (pitchInHz > 0) {
+			.collect { sample ->
+				Timber.i(">>> FLOW pitch[$sample.pitch], min[${mainViewModel.pitchList.min()}],max[${mainViewModel.pitchList.max()}]")
 
-					if (pitchInHz < mainViewModel.pitchList.min() ?: pitchInHz) {
-						min.value = String.format("%.1f", pitchInHz)
+				waveList.add(WaveSample(sample.time.toLong(), (sample.amplitude * 100).toInt()))
+
+				if (sample.pitch > 0) {
+
+					if (sample.pitch < mainViewModel.pitchList.min() ?: sample.pitch) {
+						min.value = String.format("%.1f", sample.pitch)
 					}
-					if (pitchInHz > mainViewModel.pitchList.max() ?: pitchInHz) {
-						max.value = String.format("%.1f", pitchInHz)
+					if (sample.pitch > mainViewModel.pitchList.max() ?: sample.pitch) {
+						max.value = String.format("%.1f", sample.pitch)
 					}
 
-					mainViewModel.pitchList.add(pitchInHz)
+					mainViewModel.pitchList.add(sample.pitch)
 					size.value = mainViewModel.pitchList.size.toString()
 				}
 			}
@@ -151,28 +161,42 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 		useProbability: Boolean,
 		probabilityThreshold: Float,
 		pitchAlgorithm: PitchEstimationAlgorithm
-	) = callbackFlow<Float> {
+	) = callbackFlow<VoiceSample> {
 		val pitchHandler = PitchDetectionHandler { pitchDetectionResult, audioEvent ->
 			val pitchInHz = pitchDetectionResult.pitch
 			Timber.i(">>> HANDLER pitch[$pitchInHz]Hz, probability[${pitchDetectionResult.probability}] RMS[${audioEvent.rms}] EVENT time[${audioEvent.timeStamp}], ALGORITHM[$pitchAlgorithm]")
+			val amplitude = computeAmplitude(audioEvent)
+			val frequency = computeFrequency(pitchDetectionResult, mainViewModel.pitchList)
+
 			if (useProbability) {
 				if (pitchDetectionResult.probability > probabilityThreshold) {
-					val frequency = computeFrequency(pitchDetectionResult, mainViewModel.pitchList)
-					val amplitude = computeAmplitude(audioEvent)
 
 					Timber.i(">>> HANDLER2 pitch[$pitchInHz]Hz, RMS[${audioEvent.rms}], dbSPL[${audioEvent.getdBSPL()}]dB")
 					Timber.i(">>> HANDLER2b pitch[$pitchInHz]Hz, freq[${frequency}], amplitude[${amplitude}]")
 					Timber.i(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-					sendBlocking(pitchInHz)
+					sendBlocking(VoiceSample(pitchInHz, audioEvent.timeStamp, amplitude
+						?: 0f, frequency ?: 0f))
 
 				}
 			} else {
-				sendBlocking(pitchInHz)
+				sendBlocking(VoiceSample(pitchInHz, audioEvent.timeStamp, amplitude ?: 0f, frequency
+					?: 0f))
 			}
 		}
 
 		stopCurrentDispatcher()
-		audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
+		try {
+			audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
+		} catch (ise: IllegalStateException) {
+			stopCurrentDispatcher()
+			ise.printStackTrace()
+			/**
+			 *  java.lang.IllegalStateException: startRecording() called on an uninitialized AudioRecord.
+			 *  at android.media.AudioRecord.startRecording(AudioRecord.java:1075)
+			 *  at be.tarsos.dsp.io.android.AudioDispatcherFactory.fromDefaultMicrophone(Unknown Source:44)
+			 */
+			audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
+		}
 		currentAudioProcessor = PitchProcessor(
 			pitchAlgorithm,
 			sampleRate.toFloat(),

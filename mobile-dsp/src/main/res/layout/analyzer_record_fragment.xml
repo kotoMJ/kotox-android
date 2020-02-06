@@ -37,16 +37,26 @@
 			app:layout_constraintTop_toBottomOf="@+id/change_pitch_algorithm"
 			app:switchPadding="@dimen/global_keyline_horizontal" />
 
-		<ImageView
-			android:id="@+id/ic_analyzer_process_placeholder"
+<!--		<ImageView-->
+<!--			android:id="@+id/ic_analyzer_process_placeholder"-->
+<!--			android:layout_width="0dp"-->
+<!--			android:layout_height="0dp"-->
+<!--			android:alpha="0.05"-->
+<!--			android:src="@drawable/ic_mic_black_24dp"-->
+<!--			app:layout_constraintBottom_toTopOf="@+id/processing_max"-->
+<!--			app:layout_constraintEnd_toEndOf="@id/keyline_end"-->
+<!--			app:layout_constraintStart_toStartOf="@id/keyline_start"-->
+<!--			app:layout_constraintTop_toBottomOf="@+id/change_pitch_algorithm" />-->
+
+		<com.anand.brose.graphviewlibrary.GraphView
+			android:id="@+id/graphView"
 			android:layout_width="0dp"
 			android:layout_height="0dp"
-			android:alpha="0.05"
-			android:src="@drawable/ic_mic_black_24dp"
 			app:layout_constraintBottom_toTopOf="@+id/processing_max"
 			app:layout_constraintEnd_toEndOf="@id/keyline_end"
 			app:layout_constraintStart_toStartOf="@id/keyline_start"
-			app:layout_constraintTop_toBottomOf="@+id/change_pitch_algorithm" />
+			app:layout_constraintTop_toBottomOf="@+id/use_probability"
+			android:fillViewport="true" />
 
 		<androidx.cardview.widget.CardView
 			android:id="@+id/processing_min"

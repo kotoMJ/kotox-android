@@ -19,4 +19,5 @@ include ':module-core',
 		':module-core-media',
 		':module-core-ffmpeg',
 		':mobile-template',
-		':mobile-dsp'
+		':mobile-dsp',
+		':graphviewlibrary'
