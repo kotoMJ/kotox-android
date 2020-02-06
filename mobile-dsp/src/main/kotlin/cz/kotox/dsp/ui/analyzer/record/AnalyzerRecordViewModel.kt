@@ -37,8 +37,6 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 
 	val appVersionString = "${appVersion.versionName} (${appVersion.versionCode})"
 
-	var recordingJob = Job()
-
 //	val appVersionString = preferencesCore.sampleToken
 
 	val min: MutableLiveData<String> = mutableLiveDataOf("0")
@@ -48,6 +46,9 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	val pitchAlgorithm: MutableLiveData<PitchEstimationAlgorithm> = mutableLiveDataOf(PitchEstimationAlgorithm.FFT_YIN)
 
 	private var audioDispatcher: AudioDispatcher
+	private var currentAudioProcessor: PitchProcessor? = null
+
+	var recordingJob = Job()
 
 	private val sampleRate = 22050 //sample rate must be supported by the capture device. Nonstandard sample rates can be problematic!
 	private val audioBufferSize = 1024 //size of the buffer defines how much samples are processed in one step.
@@ -86,6 +87,21 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 		launch(recordingJob) { initRecording(useProbability, pitchProbabilityThreshold, requireNotNull(pitchAlgorithm.value)) }
 	}
 
+	@ExperimentalCoroutinesApi
+	@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+	private fun testLifeCycleOnResume() {
+		recordingJob = Job()
+		launch(recordingJob) {
+			pitchAlgorithm.value?.let { initRecording(requireNotNull(useProbability.value), pitchProbabilityThreshold, it) }
+		}
+	}
+
+	@OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+	private fun testLifeCycleOnPause() {
+		stopCurrentDispatcher()
+		recordingJob.cancel()
+	}
+
 	private fun resetRecording() {
 		recordingJob.cancel()
 		recordingJob = Job()
@@ -110,16 +126,6 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	}
 
 	@ExperimentalCoroutinesApi
-	@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-	private fun testLifeCycleOnResume() {
-		recordingJob = Job()
-		launch(recordingJob) {
-			pitchAlgorithm.value?.let { initRecording(requireNotNull(useProbability.value), pitchProbabilityThreshold, it) }
-		}
-
-	}
-
-	@ExperimentalCoroutinesApi
 	private suspend fun initRecording(useProbability: Boolean, probabilityThreshold: Float, pitchAlgorithm: PitchEstimationAlgorithm) {
 		Timber.w(">>> init recording")
 		stopCurrentDispatcher()
@@ -127,7 +133,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 			//.onStart { delay(5000) } //just the test whether recording start when collect is invoked.
 			.flowOn(Dispatchers.IO)
 			.collect { pitchInHz ->
-				Timber.i(">>> PITCH[$pitchInHz], min[${mainViewModel.pitchList.min()}],max[${mainViewModel.pitchList.max()}]")
+				Timber.i(">>> FLOW pitch[$pitchInHz], min[${mainViewModel.pitchList.min()}],max[${mainViewModel.pitchList.max()}]")
 				if (pitchInHz > 0) {
 
 					if (pitchInHz < mainViewModel.pitchList.min() ?: pitchInHz) {
@@ -143,23 +149,22 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 			}
 	}
 
-	@OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-	private fun testLifeCycleOnPause() {
-		stopCurrentDispatcher()
-		recordingJob.cancel()
-	}
-
 	private fun stopCurrentDispatcher() {
+		currentAudioProcessor?.let { audioDispatcher.removeAudioProcessor(it) }
 		if (!audioDispatcher.isStopped) {
 			audioDispatcher.stop()
 		}
 	}
 
 	@ExperimentalCoroutinesApi
-	private fun runAudioDispatcher(useProbability: Boolean, probabilityThreshold: Float, pitchAlgorithm: PitchEstimationAlgorithm) = callbackFlow<Float> {
+	private fun runAudioDispatcher(
+		useProbability: Boolean,
+		probabilityThreshold: Float,
+		pitchAlgorithm: PitchEstimationAlgorithm
+	) = callbackFlow<Float> {
 		val pitchHandler = PitchDetectionHandler { pitchDetectionResult, audioEvent ->
 			val pitchInHz = pitchDetectionResult.pitch
-			Timber.i(">>> IN [$pitchInHz]Hz, probability[${pitchDetectionResult.probability}] RMS[${audioEvent.rms}] EVENT time[${audioEvent.timeStamp}], ALGORITHM[$pitchAlgorithm]")
+			Timber.i(">>> HANDLER pitch[$pitchInHz]Hz, probability[${pitchDetectionResult.probability}] RMS[${audioEvent.rms}] EVENT time[${audioEvent.timeStamp}], ALGORITHM[$pitchAlgorithm]")
 			if (useProbability) {
 				if (pitchDetectionResult.probability > probabilityThreshold) {
 					sendBlocking(pitchInHz)
@@ -169,14 +174,15 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 			}
 		}
 
+		stopCurrentDispatcher()
 		audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
-		audioDispatcher.addAudioProcessor(
-			PitchProcessor(
-				pitchAlgorithm,
-				sampleRate.toFloat(),
-				audioBufferSize,
-				pitchHandler
-			))
+		currentAudioProcessor = PitchProcessor(
+			pitchAlgorithm,
+			sampleRate.toFloat(),
+			audioBufferSize,
+			pitchHandler
+		)
+		audioDispatcher.addAudioProcessor(currentAudioProcessor)
 		audioDispatcher.run()
 
 	}

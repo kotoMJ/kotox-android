@@ -25,11 +25,15 @@ class AnalyzerRecordFragment : BaseAnalyzerFragment<AnalyzerRecordViewModel, Ana
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		lifecycle.addObserver(viewModel)
+		verifyPermissions()
 	}
 
 	override fun onResume() {
 		super.onResume()
+		verifyPermissions()
+	}
 
+	private fun verifyPermissions() {
 		if (!permissionManager.checkRecordAudioPermission()) {
 			permissionManager.requestRecordAudioPermissions({}, {
 				showToast("RecordAudio permissions is required for audio analysis")
