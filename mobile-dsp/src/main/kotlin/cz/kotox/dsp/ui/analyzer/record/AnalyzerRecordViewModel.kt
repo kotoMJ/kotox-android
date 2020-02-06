@@ -139,6 +139,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 	}
 
 	private fun stopCurrentDispatcher() {
+		currentAudioProcessor?.processingFinished()
 		currentAudioProcessor?.let { audioDispatcher.removeAudioProcessor(it) }
 		if (!audioDispatcher.isStopped) {
 			audioDispatcher.stop()
@@ -156,7 +157,6 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 			Timber.i(">>> HANDLER pitch[$pitchInHz]Hz, probability[${pitchDetectionResult.probability}] RMS[${audioEvent.rms}] EVENT time[${audioEvent.timeStamp}], ALGORITHM[$pitchAlgorithm]")
 			if (useProbability) {
 				if (pitchDetectionResult.probability > probabilityThreshold) {
-
 					val frequency = computeFrequency(pitchDetectionResult, mainViewModel.pitchList)
 					val amplitude = computeAmplitude(audioEvent)
 
@@ -164,6 +164,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 					Timber.i(">>> HANDLER2b pitch[$pitchInHz]Hz, freq[${frequency}], amplitude[${amplitude}]")
 					Timber.i(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 					sendBlocking(pitchInHz)
+
 				}
 			} else {
 				sendBlocking(pitchInHz)
