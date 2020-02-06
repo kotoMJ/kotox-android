@@ -205,9 +205,9 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion) : Base
 		return envelope
 	}
 
-	fun computeAmplitude(audioEvent: AudioEvent): Float {
+	fun computeAmplitude(audioEvent: AudioEvent): Float? {
 		val env: FloatArray = computeEnvelope(audioEvent.floatBuffer)
-		return env[env.size - 1]
+		return env.lastOrNull()//env[env.size - 1]
 	}
 
 	fun med(list: List<Float>) = list.sorted().let {
