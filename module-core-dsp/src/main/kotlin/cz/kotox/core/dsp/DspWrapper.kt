@@ -1,0 +1,130 @@
+package cz.kotox.core.dsp
+
+import be.tarsos.dsp.AudioDispatcher
+import be.tarsos.dsp.AudioEvent
+import be.tarsos.dsp.EnvelopeFollower
+import be.tarsos.dsp.io.android.AudioDispatcherFactory
+import be.tarsos.dsp.pitch.PitchDetectionHandler
+import be.tarsos.dsp.pitch.PitchDetectionResult
+import be.tarsos.dsp.pitch.PitchProcessor
+import cz.kotox.core.dsp.model.PitchAlgorithm
+import cz.kotox.core.dsp.model.VoiceSample
+import cz.kotox.core.dsp.model.toPitchEstimationAlgorithm
+import cz.kotox.core.utility.median
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.sendBlocking
+import kotlinx.coroutines.flow.callbackFlow
+import timber.log.Timber
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class DspWrapper @Inject constructor() {
+
+	private var audioDispatcher: AudioDispatcher
+	private var currentAudioProcessor: PitchProcessor? = null
+
+	private var voiceAnalysisSettings: VoiceAnalysisSettings = VoiceAnalysisSettings.DEFAULT
+	private val sampleRate = voiceAnalysisSettings.sampleRate//22050 //sample rate must be supported by the capture device. Nonstandard sample rates can be problematic!
+	private val audioBufferSize = voiceAnalysisSettings.bufferSize //size of the buffer defines how much samples are processed in one step.
+	private val bufferOverlap = 0// How much consecutive buffers overlap (in samples). Half of the AudioBufferSize is common.
+	private val envelopeFollower = EnvelopeFollower(sampleRate.toDouble(), voiceAnalysisSettings.envelopeFollowAttackTime, voiceAnalysisSettings.envelopeFollowReleaseTime);//attack, release
+
+	init {
+		audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
+	}
+
+	fun stopDispatch() {
+		currentAudioProcessor?.processingFinished()
+		currentAudioProcessor?.let { audioDispatcher.removeAudioProcessor(it) }
+		if (!audioDispatcher.isStopped) {
+			audioDispatcher.stop()
+		}
+	}
+
+	@ExperimentalCoroutinesApi
+	fun runDispatch(
+		useProbability: Boolean,
+		probabilityThreshold: Float,
+		pitchAlgorithm: PitchAlgorithm,
+		currentPitchList: List<VoiceSample>
+	) = callbackFlow<VoiceSample> {
+		val pitchHandler = PitchDetectionHandler { pitchDetectionResult, audioEvent ->
+			val pitchInHz = pitchDetectionResult.pitch
+			Timber.i(">>> HANDLER pitch[$pitchInHz]Hz, probability[${pitchDetectionResult.probability}] RMS[${audioEvent.rms}] EVENT time[${audioEvent.timeStamp}], ALGORITHM[$pitchAlgorithm]")
+			val amplitude = computeAmplitude(audioEvent)
+			val frequency = computeFrequency(pitchDetectionResult, currentPitchList.map { it.pitch })
+
+			if (useProbability) {
+				if (pitchDetectionResult.probability > probabilityThreshold) {
+
+					Timber.i(">>> HANDLER2 pitch[$pitchInHz]Hz, RMS[${audioEvent.rms}], dbSPL[${audioEvent.getdBSPL()}]dB")
+					Timber.i(">>> HANDLER2b pitch[$pitchInHz]Hz, freq[${frequency}], amplitude[${amplitude}]")
+					Timber.i(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+					sendBlocking(VoiceSample(pitchInHz, audioEvent.timeStamp, amplitude
+						?: 0f, frequency ?: 0f))
+
+				}
+			} else {
+				sendBlocking(VoiceSample(pitchInHz, audioEvent.timeStamp, amplitude ?: 0f, frequency
+					?: 0f))
+			}
+		}
+
+		stopDispatch()
+		try {
+			audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
+		} catch (ise: IllegalStateException) {
+			stopDispatch()
+			ise.printStackTrace()
+			/**
+			 *  java.lang.IllegalStateException: startRecording() called on an uninitialized AudioRecord.
+			 *  at android.media.AudioRecord.startRecording(AudioRecord.java:1075)
+			 *  at be.tarsos.dsp.io.android.AudioDispatcherFactory.fromDefaultMicrophone(Unknown Source:44)
+			 */
+			/**
+			 *  java.lang.IllegalStateException: startRecording() called on an uninitialized AudioRecord.
+			 *  at android.media.AudioRecord.startRecording(AudioRecord.java:1075)
+			 *  at be.tarsos.dsp.io.android.AudioDispatcherFactory.fromDefaultMicrophone(Unknown Source:44)
+			 */
+			audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
+		}
+		currentAudioProcessor = PitchProcessor(
+			pitchAlgorithm.toPitchEstimationAlgorithm(),
+			sampleRate.toFloat(),
+			audioBufferSize,
+			pitchHandler
+		)
+		audioDispatcher.addAudioProcessor(currentAudioProcessor)
+		audioDispatcher.run()
+
+	}
+
+	fun computeFrequency(pitchDetectionResult: PitchDetectionResult, previousPitchList: List<Float>): Float? {
+		var frequency: Float? = pitchDetectionResult.pitch
+		if (frequency == -1.0f || frequency == null) {
+			frequency = previousPitchList.lastOrNull()
+		} else {
+			if (previousPitchList.isNotEmpty()) { // median filter
+				// use the median as frequency
+				frequency = median(previousPitchList.plus(frequency))
+			}
+		}
+		return frequency
+	}
+
+	private fun computeEnvelope(audioBuffer: FloatArray): FloatArray {
+		var envelope: FloatArray = floatArrayOf()
+		if (voiceAnalysisSettings.envelopeFollow) {
+			envelope = audioBuffer.clone()
+			envelopeFollower.calculateEnvelope(envelope)
+		}
+		return envelope
+	}
+
+	fun computeAmplitude(audioEvent: AudioEvent): Float? {
+		val env: FloatArray = computeEnvelope(audioEvent.floatBuffer)
+		return env.lastOrNull()//env[env.size - 1]
+	}
+
+}

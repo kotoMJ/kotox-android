@@ -1,4 +1,4 @@
-package cz.kotox.dsp.ui.analyzer
+package cz.kotox.core.dsp
 
 import android.media.AudioFormat
 
