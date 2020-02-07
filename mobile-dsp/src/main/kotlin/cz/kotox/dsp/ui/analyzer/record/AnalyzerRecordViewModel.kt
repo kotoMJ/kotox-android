@@ -104,15 +104,15 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion, val ds
 				if (sample.pitch > 0) {
 
 					if (sample.pitch < mainViewModel.pitchList.map { it.pitch }.min() ?: sample.pitch) {
-						min.value = String.format("%.1f Hz", sample.pitch)
+						min.value = String.format("%.1f", sample.pitch)
 					}
 					if (sample.pitch > mainViewModel.pitchList.map { it.pitch }.max() ?: sample.pitch) {
-						max.value = String.format("%.1f Hz", sample.pitch)
+						max.value = String.format("%.1f", sample.pitch)
 					}
 
 					mainViewModel.pitchList.add(sample)
-					frequency.value = String.format("%.1f Hz", sample.frequency)
-					amplitude.value = String.format("%.1f Hz", sample.amplitude)
+					frequency.value = String.format("%.1f", sample.frequency)
+					amplitude.value = String.format("%.3f", sample.amplitude)
 				}
 			}
 	}
