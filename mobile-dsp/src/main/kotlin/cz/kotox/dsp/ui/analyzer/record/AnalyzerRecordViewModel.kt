@@ -24,7 +24,8 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion, val ds
 
 	val min: MutableLiveData<String> = mutableLiveDataOf("0")
 	val max: MutableLiveData<String> = mutableLiveDataOf("0")
-	val size: MutableLiveData<String> = mutableLiveDataOf("0")
+	val frequency: MutableLiveData<String> = mutableLiveDataOf("0")
+	val amplitude: MutableLiveData<String> = mutableLiveDataOf("0")
 
 	val pitchAlgorithm: MutableLiveData<PitchAlgorithm> = mutableLiveDataOf(PitchAlgorithm.FFT_YIN)
 	var useProbability: MutableLiveData<Boolean> = mutableLiveDataOf(true)
@@ -84,7 +85,8 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion, val ds
 		mainViewModel.pitchList.clear()
 		min.value = "0"
 		max.value = "0"
-		size.value = "0"
+		frequency.value = "0"
+		amplitude.value = "0"
 	}
 
 	@ExperimentalCoroutinesApi
@@ -102,14 +104,15 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion, val ds
 				if (sample.pitch > 0) {
 
 					if (sample.pitch < mainViewModel.pitchList.map { it.pitch }.min() ?: sample.pitch) {
-						min.value = String.format("%.1f", sample.pitch)
+						min.value = String.format("%.1f Hz", sample.pitch)
 					}
 					if (sample.pitch > mainViewModel.pitchList.map { it.pitch }.max() ?: sample.pitch) {
-						max.value = String.format("%.1f", sample.pitch)
+						max.value = String.format("%.1f Hz", sample.pitch)
 					}
 
 					mainViewModel.pitchList.add(sample)
-					size.value = mainViewModel.pitchList.size.toString()
+					frequency.value = String.format("%.1f Hz", sample.frequency)
+					amplitude.value = String.format("%.1f Hz", sample.amplitude)
 				}
 			}
 	}
