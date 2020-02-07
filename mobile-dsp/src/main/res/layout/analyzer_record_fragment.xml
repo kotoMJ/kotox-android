@@ -32,7 +32,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:checked="@{viewModel.useProbability}"
-			android:text="Probability"
+			android:text="@{String.format(@string/confidence_title, viewModel.pitchProbabilityThreshold*100)}"
 			app:layout_constraintStart_toStartOf="@id/keyline_start"
 			app:layout_constraintTop_toBottomOf="@+id/change_pitch_algorithm"
 			app:switchPadding="@dimen/global_keyline_horizontal" />
@@ -76,8 +76,8 @@
 				<com.google.android.material.textfield.TextInputEditText
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:textAppearance="?textAppearanceBody1"
-					android:text="@{viewModel.min}" />
+					android:text="@{viewModel.min}"
+					android:textAppearance="?textAppearanceBody1" />
 
 			</com.google.android.material.textfield.TextInputLayout>
 		</androidx.cardview.widget.CardView>
@@ -99,8 +99,8 @@
 				<com.google.android.material.textfield.TextInputEditText
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:textAppearance="?textAppearanceBody1"
-					android:text="@{viewModel.max}" />
+					android:text="@{viewModel.max}"
+					android:textAppearance="?textAppearanceBody1" />
 			</com.google.android.material.textfield.TextInputLayout>
 		</com.google.android.material.card.MaterialCardView>
 
@@ -124,8 +124,8 @@
 				<com.google.android.material.textfield.TextInputEditText
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:textAppearance="?textAppearanceBody1"
-					android:text="@{viewModel.frequency}" />
+					android:text="@{viewModel.frequency}"
+					android:textAppearance="?textAppearanceBody1" />
 
 			</com.google.android.material.textfield.TextInputLayout>
 		</com.google.android.material.card.MaterialCardView>
@@ -150,8 +150,8 @@
 				<com.google.android.material.textfield.TextInputEditText
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:textAppearance="?textAppearanceBody1"
-					android:text="@{viewModel.amplitude}" />
+					android:text="@{viewModel.amplitude}"
+					android:textAppearance="?textAppearanceBody1" />
 
 			</com.google.android.material.textfield.TextInputLayout>
 

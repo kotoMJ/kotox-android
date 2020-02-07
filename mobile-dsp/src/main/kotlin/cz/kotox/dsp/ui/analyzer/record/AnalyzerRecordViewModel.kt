@@ -32,7 +32,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion, val ds
 
 	var recordingJob = Job()
 
-	private val pitchProbabilityThreshold = 0.8f
+	val pitchProbabilityThreshold = 0.8f
 
 	var waveList: ArrayList<WaveSample> = ArrayList()
 
