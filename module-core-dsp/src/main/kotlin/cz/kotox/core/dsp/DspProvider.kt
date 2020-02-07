@@ -19,7 +19,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DspWrapper @Inject constructor() {
+class DspProvider @Inject constructor() {
 
 	private var audioDispatcher: AudioDispatcher
 	private var currentAudioProcessor: PitchProcessor? = null
@@ -52,7 +52,7 @@ class DspWrapper @Inject constructor() {
 		val pitchHandler = PitchDetectionHandler { pitchDetectionResult, audioEvent ->
 			val pitchInHz = pitchDetectionResult.pitch
 			Timber.i(">>> HANDLER pitch[$pitchInHz]Hz, probability[${pitchDetectionResult.probability}] RMS[${audioEvent.rms}] EVENT time[${audioEvent.timeStamp}], ALGORITHM[$pitchAlgorithm]")
-			val amplitude = computeAmplitude(audioEvent)
+			val amplitude = computeAmplitude(audioEvent, voiceAnalysisSettings, envelopeFollower)
 			val frequency = computeFrequency(pitchDetectionResult, currentPitchList.map { it.pitch })
 
 			if (useProbability) {
@@ -82,11 +82,6 @@ class DspWrapper @Inject constructor() {
 			 *  at android.media.AudioRecord.startRecording(AudioRecord.java:1075)
 			 *  at be.tarsos.dsp.io.android.AudioDispatcherFactory.fromDefaultMicrophone(Unknown Source:44)
 			 */
-			/**
-			 *  java.lang.IllegalStateException: startRecording() called on an uninitialized AudioRecord.
-			 *  at android.media.AudioRecord.startRecording(AudioRecord.java:1075)
-			 *  at be.tarsos.dsp.io.android.AudioDispatcherFactory.fromDefaultMicrophone(Unknown Source:44)
-			 */
 			audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
 		}
 		currentAudioProcessor = PitchProcessor(
@@ -98,33 +93,6 @@ class DspWrapper @Inject constructor() {
 		audioDispatcher.addAudioProcessor(currentAudioProcessor)
 		audioDispatcher.run()
 
-	}
-
-	fun computeFrequency(pitchDetectionResult: PitchDetectionResult, previousPitchList: List<Float>): Float? {
-		var frequency: Float? = pitchDetectionResult.pitch
-		if (frequency == -1.0f || frequency == null) {
-			frequency = previousPitchList.lastOrNull()
-		} else {
-			if (previousPitchList.isNotEmpty()) { // median filter
-				// use the median as frequency
-				frequency = median(previousPitchList.plus(frequency))
-			}
-		}
-		return frequency
-	}
-
-	private fun computeEnvelope(audioBuffer: FloatArray): FloatArray {
-		var envelope: FloatArray = floatArrayOf()
-		if (voiceAnalysisSettings.envelopeFollow) {
-			envelope = audioBuffer.clone()
-			envelopeFollower.calculateEnvelope(envelope)
-		}
-		return envelope
-	}
-
-	fun computeAmplitude(audioEvent: AudioEvent): Float? {
-		val env: FloatArray = computeEnvelope(audioEvent.floatBuffer)
-		return env.lastOrNull()//env[env.size - 1]
 	}
 
 }

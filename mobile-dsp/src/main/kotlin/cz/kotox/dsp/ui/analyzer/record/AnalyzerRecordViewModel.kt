@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import com.anand.brose.graphviewlibrary.WaveSample
 import cz.kotox.core.arch.extension.mutableLiveDataOf
-import cz.kotox.core.dsp.DspWrapper
+import cz.kotox.core.dsp.DspProvider
 import cz.kotox.core.dsp.model.PitchAlgorithm
 import cz.kotox.core.dsp.model.getNextPitchAlgorithm
 import cz.kotox.core.entity.AppVersion
@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion, val dsp: DspWrapper) : BaseAnalyzerViewModel(), LifecycleObserver {
+class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion, val dsp: DspProvider) : BaseAnalyzerViewModel(), LifecycleObserver {
 
 	val min: MutableLiveData<String> = mutableLiveDataOf("0")
 	val max: MutableLiveData<String> = mutableLiveDataOf("0")
