@@ -33,8 +33,14 @@ class DspProvider @Inject constructor() {
 	fun stopDispatch() {
 		currentAudioProcessor?.processingFinished()
 		currentAudioProcessor?.let { audioDispatcher?.removeAudioProcessor(it) }
-		if (audioDispatcher?.isStopped == false) {
-			audioDispatcher?.stop()
+		//if (audioDispatcher?.isStopped == false) {
+		audioDispatcher?.let {
+			Timber.e(">>>X stopping dispatcher [${audioDispatcher}]")
+			try {
+				it.stop() //TODO MJ - think about checking for stopped
+			} catch (e: IllegalStateException) {
+				e.printStackTrace() //stop() called on an uninitialized AudioRecord.
+			}
 		}
 	}
 
@@ -66,6 +72,7 @@ class DspProvider @Inject constructor() {
 			getPitchDetectionHandler(useProbability, probabilityThreshold, pitchAlgorithm, currentPitchList) { sendBlocking(it) }
 		)
 		audioDispatcher?.addAudioProcessor(currentAudioProcessor)
+		Timber.e(">>>X running dispatcher [${audioDispatcher}]")
 		audioDispatcher?.run()
 
 	}
