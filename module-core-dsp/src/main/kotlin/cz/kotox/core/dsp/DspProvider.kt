@@ -5,12 +5,12 @@ import be.tarsos.dsp.AudioEvent
 import be.tarsos.dsp.EnvelopeFollower
 import be.tarsos.dsp.io.android.AudioDispatcherFactory
 import be.tarsos.dsp.pitch.PitchDetectionHandler
-import be.tarsos.dsp.pitch.PitchDetectionResult
 import be.tarsos.dsp.pitch.PitchProcessor
+import cz.kotox.core.dsp.TarsoDspUtils.computeAmplitude
+import cz.kotox.core.dsp.TarsoDspUtils.computeFrequency
 import cz.kotox.core.dsp.model.PitchAlgorithm
 import cz.kotox.core.dsp.model.VoiceSample
 import cz.kotox.core.dsp.model.toPitchEstimationAlgorithm
-import cz.kotox.core.utility.median
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.sendBlocking
 import kotlinx.coroutines.flow.callbackFlow
@@ -21,7 +21,7 @@ import javax.inject.Singleton
 @Singleton
 class DspProvider @Inject constructor() {
 
-	private var audioDispatcher: AudioDispatcher
+	private var audioDispatcher: AudioDispatcher? = null
 	private var currentAudioProcessor: PitchProcessor? = null
 
 	private var voiceAnalysisSettings: VoiceAnalysisSettings = VoiceAnalysisSettings.DEFAULT
@@ -30,15 +30,11 @@ class DspProvider @Inject constructor() {
 	private val bufferOverlap = 0// How much consecutive buffers overlap (in samples). Half of the AudioBufferSize is common.
 	private val envelopeFollower = EnvelopeFollower(sampleRate.toDouble(), voiceAnalysisSettings.envelopeFollowAttackTime, voiceAnalysisSettings.envelopeFollowReleaseTime);//attack, release
 
-	init {
-		audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
-	}
-
 	fun stopDispatch() {
 		currentAudioProcessor?.processingFinished()
-		currentAudioProcessor?.let { audioDispatcher.removeAudioProcessor(it) }
-		if (!audioDispatcher.isStopped) {
-			audioDispatcher.stop()
+		currentAudioProcessor?.let { audioDispatcher?.removeAudioProcessor(it) }
+		if (audioDispatcher?.isStopped == false) {
+			audioDispatcher?.stop()
 		}
 	}
 
@@ -72,8 +68,8 @@ class DspProvider @Inject constructor() {
 		}
 
 		stopDispatch()
-		try {
-			audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
+		audioDispatcher = try {
+			AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
 		} catch (ise: IllegalStateException) {
 			stopDispatch()
 			ise.printStackTrace()
@@ -82,7 +78,7 @@ class DspProvider @Inject constructor() {
 			 *  at android.media.AudioRecord.startRecording(AudioRecord.java:1075)
 			 *  at be.tarsos.dsp.io.android.AudioDispatcherFactory.fromDefaultMicrophone(Unknown Source:44)
 			 */
-			audioDispatcher = AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
+			AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
 		}
 		currentAudioProcessor = PitchProcessor(
 			pitchAlgorithm.toPitchEstimationAlgorithm(),
@@ -90,8 +86,8 @@ class DspProvider @Inject constructor() {
 			audioBufferSize,
 			pitchHandler
 		)
-		audioDispatcher.addAudioProcessor(currentAudioProcessor)
-		audioDispatcher.run()
+		audioDispatcher?.addAudioProcessor(currentAudioProcessor)
+		audioDispatcher?.run()
 
 	}
 
