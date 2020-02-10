@@ -20,6 +20,7 @@
 	<string name="analyze_action">Start voice analysis</string>
 
 	<string name="record_confidence_title">Use confidence %.0f \%%</string>
+	<string name="record_pitch_algorythm_title">Pitch algorithm</string>
 	<string name="record_max_pitch">max pitch</string>
 	<string name="record_min_pitch">min pitch</string>
 	<string name="record_freq">Freq</string>
