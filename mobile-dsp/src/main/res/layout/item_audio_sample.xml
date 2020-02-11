@@ -3,7 +3,10 @@
 	xmlns:tools="http://schemas.android.com/tools">
 
 	<data>
-
+		<import type="java.util.Date" />
+		<variable
+			name="item"
+			type="cz.kotox.core.dsp.model.VoiceSample" />
 
 	</data>
 
@@ -13,11 +16,62 @@
 		android:layout_margin="4dp"
 		android:foreground="?attr/selectableItemBackground">
 
-
-		<com.google.android.material.textview.MaterialTextView
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			tools:text="Audio sample" />
+			android:layout_height="wrap_content"
+			android:baselineAligned="false"
+			android:orientation="horizontal">
+
+			<com.google.android.material.textfield.TextInputLayout
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="0.6"
+				android:enabled="false"
+				android:hint="@string/result_time"
+				tools:text="2">
+
+				<com.google.android.material.textfield.TextInputEditText
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="@{String.format(@string/result_sample_item_time, item.time)}"
+					android:textAppearance="?textAppearanceOverline"
+					tools:text="2.35" />
+
+			</com.google.android.material.textfield.TextInputLayout>
+
+			<com.google.android.material.textfield.TextInputLayout
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="0.25"
+				android:enabled="false"
+				android:hint="@string/result_freq"
+				tools:text="2">
+
+				<com.google.android.material.textfield.TextInputEditText
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="@{String.format(@string/result_sample_item_frequency, item.frequency)}"
+					android:textAppearance="?textAppearanceOverline"
+					tools:text="2.35" />
+
+			</com.google.android.material.textfield.TextInputLayout>
+
+			<com.google.android.material.textfield.TextInputLayout
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="0.25"
+				android:enabled="false"
+				android:hint="@string/result_amplitude"
+				tools:text="2">
+
+				<com.google.android.material.textfield.TextInputEditText
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="@{String.format(@string/result_sample_item_frequency, item.amplitude)}"
+					android:textAppearance="?textAppearanceOverline" />
+
+			</com.google.android.material.textfield.TextInputLayout>
+		</LinearLayout>
 
 	</com.google.android.material.card.MaterialCardView>
 

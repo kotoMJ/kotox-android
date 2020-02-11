@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.navigation.Navigation
 import com.anand.brose.graphviewlibrary.WaveSample
-import cz.kotox.core.arch.extension.mutableLiveDataOf
+import cz.kotox.core.arch.ktools.mutableLiveDataOf
 import cz.kotox.core.dsp.DspProvider
 import cz.kotox.core.dsp.model.PitchAlgorithm
 import cz.kotox.core.dsp.model.getNextPitchAlgorithm

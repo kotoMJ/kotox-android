@@ -102,7 +102,8 @@ class DspProvider @Inject constructor() {
 
 				}
 			} else {
-				sendSample(VoiceSample(pitchInHz, audioEvent.timeStamp, amplitude ?: 0f, frequency
+				sendSample(VoiceSample(pitchInHz, audioEvent.timeStamp, amplitude
+					?: 0f, frequency
 					?: 0f))
 			}
 		}
