@@ -31,8 +31,8 @@ class AnalyzerResultFragment : BaseAnalyzerFragment<AnalyzerResultViewModel, Ana
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-//		binding.analyzerViewpager.adapter = AnalyzerResultPagerAdapter(requireActivity().supportFragmentManager, context)
-//		binding.analyzerTabs.setupWithViewPager(binding.analyzerViewpager)
+		binding.analyzerViewpager.adapter = AnalyzerResultPagerAdapter(requireActivity().supportFragmentManager, context)
+		binding.analyzerTabs.setupWithViewPager(binding.analyzerViewpager)
 
 		binding.navigateFinishAnalyzerBt.setOnClickListener {
 			activity?.finish()
