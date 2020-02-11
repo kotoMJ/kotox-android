@@ -11,6 +11,7 @@ import cz.kotox.core.entity.AppVersion
 import cz.kotox.dsp.BR
 import cz.kotox.dsp.R
 import cz.kotox.dsp.databinding.AnalyzerResultListFragmentBinding
+import cz.kotox.dsp.databinding.AnalyzerResultPlayerFragmentBinding
 import cz.kotox.dsp.ui.analyzer.BaseAnalyzerFragment
 import cz.kotox.dsp.ui.analyzer.BaseAnalyzerViewModel
 import timber.log.Timber
@@ -51,3 +52,21 @@ class AnalyzerResultListFragment : BaseAnalyzerFragment<AnalyzerResultListViewMo
 }
 
 class AnalyzerResultListViewModel @Inject constructor(appVersion: AppVersion) : BaseAnalyzerViewModel(), LifecycleObserver
+
+class AnalyzerResultPlayerFragment : BaseAnalyzerFragment<AnalyzerResultPlayerViewModel, AnalyzerResultPlayerFragmentBinding>() {
+
+	companion object {
+		fun newInstance() = AnalyzerResultPlayerFragment().apply {
+			val bundle = Bundle()
+			arguments = bundle
+		}
+
+	}
+
+	override fun inflateBindingLayout(inflater: LayoutInflater) = AnalyzerResultPlayerFragmentBinding.inflate(inflater)
+
+	override fun setupWizardViewModel() = findViewModel<AnalyzerResultPlayerViewModel>()
+
+}
+
+class AnalyzerResultPlayerViewModel @Inject constructor() : BaseAnalyzerViewModel(), LifecycleObserver
