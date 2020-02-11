@@ -18,7 +18,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DspProvider @Inject constructor() {
+class DspAnalyzerProvider @Inject constructor() {
 
 	private var audioDispatcher: AudioDispatcher? = null
 	private var currentAudioProcessor: PitchProcessor? = null
@@ -108,5 +108,4 @@ class DspProvider @Inject constructor() {
 			}
 		}
 	}
-
 }

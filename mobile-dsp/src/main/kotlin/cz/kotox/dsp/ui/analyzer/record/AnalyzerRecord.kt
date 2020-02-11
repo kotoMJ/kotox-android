@@ -11,10 +11,9 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.navigation.Navigation
 import com.anand.brose.graphviewlibrary.WaveSample
 import cz.kotox.core.arch.ktools.mutableLiveDataOf
-import cz.kotox.core.dsp.DspProvider
+import cz.kotox.core.dsp.DspAnalyzerProvider
 import cz.kotox.core.dsp.model.PitchAlgorithm
 import cz.kotox.core.dsp.model.getNextPitchAlgorithm
-import cz.kotox.core.entity.AppVersion
 import cz.kotox.core.utility.FragmentPermissionManager
 import cz.kotox.core.utility.lazyUnsafe
 import cz.kotox.dsp.R
@@ -94,13 +93,9 @@ class AnalyzerRecordFragment : BaseAnalyzerFragment<AnalyzerRecordViewModel, Ana
 	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
 		permissionManager.onPermissionResult(requestCode, permissions, grantResults)
 	}
-
-	private fun checkAudioPermissions() {
-
-	}
 }
 
-class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion, val dsp: DspProvider) : BaseAnalyzerViewModel(), LifecycleObserver {
+class AnalyzerRecordViewModel @Inject constructor(val dspAnalyzer: DspAnalyzerProvider) : BaseAnalyzerViewModel(), LifecycleObserver {
 
 	val min: MutableLiveData<String> = mutableLiveDataOf("0")
 	val max: MutableLiveData<String> = mutableLiveDataOf("0")
@@ -123,7 +118,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion, val ds
 
 	@ExperimentalCoroutinesApi
 	fun changePitchAlgorithm() {
-		dsp.stopDispatch()
+		dspAnalyzer.stopDispatch()
 		resetRecording()
 		pitchAlgorithm.value = requireNotNull(pitchAlgorithm.value).getNextPitchAlgorithm()
 		cleanUpMeasurement()
@@ -133,7 +128,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion, val ds
 
 	@ExperimentalCoroutinesApi
 	fun changeProbabilityUsage(useProbability: Boolean) {
-		dsp.stopDispatch()
+		dspAnalyzer.stopDispatch()
 		resetRecording()
 		this.useProbability.value = useProbability
 		cleanUpMeasurement()
@@ -143,7 +138,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion, val ds
 	@ExperimentalCoroutinesApi
 	@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
 	private fun testLifeCycleOnResume() {
-		dsp.stopDispatch()
+		dspAnalyzer.stopDispatch()
 		recordingJob = Job()
 		launch(recordingJob) {
 			pitchAlgorithm.value?.let { initRecording(requireNotNull(useProbability.value), pitchProbabilityThreshold, it) }
@@ -152,7 +147,7 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion, val ds
 
 	@OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
 	private fun testLifeCycleOnPause() {
-		dsp.stopDispatch()
+		dspAnalyzer.stopDispatch()
 		recordingJob.cancel()
 	}
 
@@ -172,8 +167,8 @@ class AnalyzerRecordViewModel @Inject constructor(appVersion: AppVersion, val ds
 	@ExperimentalCoroutinesApi
 	private suspend fun initRecording(useProbability: Boolean, probabilityThreshold: Float, pitchAlgorithm: PitchAlgorithm) {
 		Timber.w(">>> init recording")
-		dsp.stopDispatch()
-		dsp.runDispatch(useProbability, probabilityThreshold, pitchAlgorithm, mainViewModel.pitchList.toList())
+		dspAnalyzer.stopDispatch()
+		dspAnalyzer.runDispatch(useProbability, probabilityThreshold, pitchAlgorithm, mainViewModel.pitchList.toList())
 			//.onStart { delay(5000) } //just the test whether recording start when collect is invoked.
 			.flowOn(Dispatchers.IO)
 			.collect { sample ->
