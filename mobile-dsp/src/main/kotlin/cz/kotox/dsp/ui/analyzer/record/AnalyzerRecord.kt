@@ -13,7 +13,6 @@ import com.anand.brose.graphviewlibrary.WaveSample
 import cz.kotox.core.arch.ktools.mutableLiveDataOf
 import cz.kotox.core.dsp.DspAnalyzerProvider
 import cz.kotox.core.dsp.model.PitchAlgorithm
-import cz.kotox.core.dsp.model.getNextPitchAlgorithm
 import cz.kotox.core.utility.FragmentPermissionManager
 import cz.kotox.core.utility.lazyUnsafe
 import cz.kotox.dsp.R
@@ -63,6 +62,7 @@ class AnalyzerRecordFragment : BaseAnalyzerFragment<AnalyzerRecordViewModel, Ana
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		binding.navigateProcessingBt.setOnClickListener {
+			viewModel.stopRecording()
 			Navigation.findNavController(view).navigate(R.id.navigate_to_processing)
 		}
 
@@ -118,42 +118,40 @@ class AnalyzerRecordViewModel @Inject constructor(val dspAnalyzer: DspAnalyzerPr
 
 	@ExperimentalCoroutinesApi
 	fun changePitchAlgorithm() {
-		dspAnalyzer.stopDispatch()
-		resetRecording()
-		pitchAlgorithm.value = requireNotNull(pitchAlgorithm.value).getNextPitchAlgorithm()
-		cleanUpMeasurement()
-		launch(recordingJob) { initRecording(requireNotNull(useProbability.value), pitchProbabilityThreshold, requireNotNull(pitchAlgorithm.value)) }
+		//TODO MJ - temporarily commented because initRecording was called multiple times  (there is no way to stop previous service then)
+//		dspAnalyzer.stopDispatch()
+//		resetRecording()
+//		pitchAlgorithm.value = requireNotNull(pitchAlgorithm.value).getNextPitchAlgorithm()
+//		cleanUpMeasurement()
+//		launch(recordingJob) { initRecording(requireNotNull(useProbability.value), pitchProbabilityThreshold, requireNotNull(pitchAlgorithm.value)) }
 
 	}
 
 	@ExperimentalCoroutinesApi
 	fun changeProbabilityUsage(useProbability: Boolean) {
-		dspAnalyzer.stopDispatch()
-		resetRecording()
-		this.useProbability.value = useProbability
-		cleanUpMeasurement()
-		launch(recordingJob) { initRecording(useProbability, pitchProbabilityThreshold, requireNotNull(pitchAlgorithm.value)) }
+		//TODO MJ - temporarily commented because initRecording was called multiple times  (there is no way to stop previous service then)
+//		dspAnalyzer.stopDispatch()
+//		resetRecording()
+//		this.useProbability.value = useProbability
+//		cleanUpMeasurement()
+//		launch(recordingJob) { initRecording(useProbability, pitchProbabilityThreshold, requireNotNull(pitchAlgorithm.value)) }
 	}
 
 	@ExperimentalCoroutinesApi
 	@OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
 	private fun testLifeCycleOnResume() {
-		dspAnalyzer.stopDispatch()
-		recordingJob = Job()
-		launch(recordingJob) {
+		launch {
 			pitchAlgorithm.value?.let { initRecording(requireNotNull(useProbability.value), pitchProbabilityThreshold, it) }
 		}
 	}
 
 	@OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
 	private fun testLifeCycleOnPause() {
-		dspAnalyzer.stopDispatch()
-		recordingJob.cancel()
+		stopRecording()
 	}
 
-	private fun resetRecording() {
-		recordingJob.cancel()
-		recordingJob = Job()
+	fun stopRecording() {
+		dspAnalyzer.stopDispatch()
 	}
 
 	private fun cleanUpMeasurement() {
@@ -166,7 +164,7 @@ class AnalyzerRecordViewModel @Inject constructor(val dspAnalyzer: DspAnalyzerPr
 
 	@ExperimentalCoroutinesApi
 	private suspend fun initRecording(useProbability: Boolean, probabilityThreshold: Float, pitchAlgorithm: PitchAlgorithm) {
-		Timber.w(">>> init recording")
+		Timber.w(">>>X init recording")
 		dspAnalyzer.stopDispatch()
 		dspAnalyzer.runDispatch(useProbability, probabilityThreshold, pitchAlgorithm, mainViewModel.pitchList.toList())
 			//.onStart { delay(5000) } //just the test whether recording start when collect is invoked.

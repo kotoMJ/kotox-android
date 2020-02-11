@@ -117,6 +117,7 @@ class AnalyzerResultPlayerViewModel @Inject constructor(private val dspPlayer: D
 		Timber.d(">>> PLAYER STOP generator[${audioGenerator}]")
 		try {
 			audioGenerator?.stop()
+			dspPlayer.finished()
 		} catch (ise: IllegalStateException) {
 			Timber.w(ise, "Non fatal illegal state when stopping generator")
 		}

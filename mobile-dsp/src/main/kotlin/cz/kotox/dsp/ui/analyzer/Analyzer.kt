@@ -12,7 +12,6 @@ import cz.kotox.core.entity.AppVersion
 import cz.kotox.dsp.R
 import cz.kotox.dsp.databinding.AnalyzerActivityBinding
 import timber.log.Timber
-import java.util.Date
 import javax.inject.Inject
 
 class AnalyzerActivity : BaseActivityViewModel<AnalyzerViewModel, AnalyzerActivityBinding>() {
@@ -36,7 +35,7 @@ class AnalyzerActivity : BaseActivityViewModel<AnalyzerViewModel, AnalyzerActivi
 
 class AnalyzerViewModel @Inject constructor(appVersion: AppVersion) : BaseViewModel(), LifecycleObserver {
 
-	val pitchList = mutableListOf<VoiceSample>(VoiceSample(1f, Date().time.toDouble(), 2f, 1f))
+	val pitchList = mutableListOf<VoiceSample>()
 
 	init {
 		Timber.e(">>> AnalyzerViewModel INIT")

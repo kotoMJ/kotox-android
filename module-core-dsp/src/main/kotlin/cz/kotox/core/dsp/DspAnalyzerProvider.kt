@@ -51,12 +51,14 @@ class DspAnalyzerProvider @Inject constructor() {
 		currentPitchList: List<VoiceSample>
 	) = callbackFlow<VoiceSample> {
 
-		stopDispatch()
+		Timber.e(">>>X call runDispatch")
+		//stopDispatch()
 		audioDispatcher = try {
 			AudioDispatcherFactory.fromDefaultMicrophone(sampleRate, audioBufferSize, bufferOverlap)
 		} catch (ise: IllegalStateException) {
 			stopDispatch()
 			ise.printStackTrace()
+			Timber.e(">>>X failure when init dispatcher !!!")
 			/**
 			 *  java.lang.IllegalStateException: startRecording() called on an uninitialized AudioRecord.
 			 *  at android.media.AudioRecord.startRecording(AudioRecord.java:1075)

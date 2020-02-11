@@ -21,6 +21,7 @@ import javax.inject.Singleton
 @Singleton
 class DspPlayerProvider @Inject constructor() {
 
+	var androidAudioPlayer: AndroidAudioPlayer? = null
 	@ExperimentalCoroutinesApi
 	fun playFrequency() = callbackFlow<AudioGenerator> {
 
@@ -44,9 +45,21 @@ class DspPlayerProvider @Inject constructor() {
 		generator.addAudioProcessor(FlangerEffect(0.1, 0.2, 44100.0, 4.0))
 
 		//java.lang.IllegalArgumentException: The buffer size should be at least 10632 (samples) according to  AudioTrack.getMinBufferSize().
-		generator.addAudioProcessor(AndroidAudioPlayer(generator.format))
+
+		try {
+			androidAudioPlayer = AndroidAudioPlayer(generator.format)
+			generator.addAudioProcessor(AndroidAudioPlayer(generator.format))
+
+		} catch (iae: IllegalArgumentException) {
+			Timber.e(">>>X TarsosDSPAudioFormat failure!!!")
+			iae.printStackTrace()
+		}
 		sendBlocking(generator)
 		generator.run()
+	}
+
+	fun finished() {
+		androidAudioPlayer?.processingFinished()
 	}
 
 }
