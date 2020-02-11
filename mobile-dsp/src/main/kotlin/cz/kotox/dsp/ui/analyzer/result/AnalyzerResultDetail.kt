@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.LifecycleObserver
 import androidx.recyclerview.widget.DiffUtil
+import be.tarsos.dsp.AudioGenerator
 import cz.kotox.core.arch.ktools.DataBoundAdapter
 import cz.kotox.core.dsp.DspPlayerProvider
 import cz.kotox.core.dsp.model.VoiceSample
@@ -16,7 +17,6 @@ import cz.kotox.dsp.ui.analyzer.BaseAnalyzerFragment
 import cz.kotox.dsp.ui.analyzer.BaseAnalyzerViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
@@ -40,12 +40,7 @@ class AnalyzerResultListFragment : BaseAnalyzerFragment<AnalyzerResultListViewMo
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-//		lifecycle.addObserver(viewModel)
-		Timber.e(">>> ${viewModel.mainViewModel.pitchList.size}")
-	}
-
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-		super.onViewCreated(view, savedInstanceState)
+		lifecycle.addObserver(viewModel)
 	}
 
 	companion object {
@@ -71,17 +66,25 @@ class AnalyzerResultPlayerFragment : BaseAnalyzerFragment<AnalyzerResultPlayerVi
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 		binding.playBt.setOnClickListener {
-			it.isEnabled = false
-			viewModel.play()
-			binding.stopBt.isEnabled = true
+			startPlayer(it)
 		}
 
 		binding.stopBt.isEnabled = false
 		binding.stopBt.setOnClickListener {
-			it.isEnabled = false
-			viewModel.stop()
-			binding.playBt.isEnabled = true
+			stopPlayer(it)
 		}
+	}
+
+	private fun startPlayer(it: View) {
+		it.isEnabled = false
+		viewModel.play()
+		binding.stopBt.isEnabled = true
+	}
+
+	private fun stopPlayer(it: View) {
+		it.isEnabled = false
+		viewModel.stop()
+		binding.playBt.isEnabled = true
 	}
 
 	companion object {
@@ -90,28 +93,32 @@ class AnalyzerResultPlayerFragment : BaseAnalyzerFragment<AnalyzerResultPlayerVi
 			arguments = bundle
 		}
 	}
+
+	override fun onPause() {
+		stopPlayer(binding.stopBt)
+		super.onPause()
+	}
 }
 
 class AnalyzerResultPlayerViewModel @Inject constructor(private val dspPlayer: DspPlayerProvider) : BaseAnalyzerViewModel(), LifecycleObserver {
-	private var playerJob = Job()
-
-	override fun onCleared() {
-		playerJob.cancel()
-		super.onCleared()
-	}
+	private var audioGenerator: AudioGenerator? = null
 
 	@ExperimentalCoroutinesApi
 	fun play() {
-		if (playerJob.isActive) {
-			playerJob.cancel()
-		}
-		playerJob = Job()
-		launch(playerJob) {
-			dspPlayer.playFrequency().flowOn(Dispatchers.IO).collect { }
+		launch() {
+			dspPlayer.playFrequency().flowOn(Dispatchers.IO).collect {
+				audioGenerator = it
+				Timber.d(">>> PLAYER PLAY generator[${audioGenerator}]")
+			}
 		}
 	}
 
 	fun stop() {
-		playerJob.cancel()
+		Timber.d(">>> PLAYER STOP generator[${audioGenerator}]")
+		try {
+			audioGenerator?.stop()
+		} catch (ise: IllegalStateException) {
+			Timber.w(ise, "Non fatal illegal state when stopping generator")
+		}
 	}
 }

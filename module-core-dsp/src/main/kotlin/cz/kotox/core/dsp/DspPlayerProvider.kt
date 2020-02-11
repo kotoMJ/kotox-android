@@ -4,20 +4,25 @@ import be.tarsos.dsp.AudioGenerator
 import be.tarsos.dsp.effects.DelayEffect
 import be.tarsos.dsp.effects.FlangerEffect
 import be.tarsos.dsp.filters.LowPassFS
+import be.tarsos.dsp.io.android.AndroidAudioPlayer
 import be.tarsos.dsp.synthesis.AmplitudeLFO
 import be.tarsos.dsp.synthesis.NoiseGenerator
 import be.tarsos.dsp.synthesis.SineGenerator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.sendBlocking
 import kotlinx.coroutines.flow.callbackFlow
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * https://stackoverflow.com/questions/25956415/tarsos-dsp-android-audiotrack-plays-static-or-too-fast
+ */
 @Singleton
 class DspPlayerProvider @Inject constructor() {
 
 	@ExperimentalCoroutinesApi
-	fun playFrequency() = callbackFlow<Unit> {
+	fun playFrequency() = callbackFlow<AudioGenerator> {
 
 		Timber.d(">>> PLAY...")
 		val generator = AudioGenerator(1024, 0)
@@ -38,9 +43,8 @@ class DspPlayerProvider @Inject constructor() {
 		generator.addAudioProcessor(DelayEffect(0.757, 0.4, 44100.0))
 		generator.addAudioProcessor(FlangerEffect(0.1, 0.2, 44100.0, 4.0))
 
-		//val audioStream = UniversalAudioInputStream(wavStream, audioFormat)
-		//generator.addAudioProcessor(AndroidAudioPlayer(TarsosDSPAudioFormat()))
-
+		generator.addAudioProcessor(AndroidAudioPlayer(generator.format))
+		sendBlocking(generator)
 		generator.run()
 	}
 
