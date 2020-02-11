@@ -25,7 +25,7 @@ class DspPlayerProvider @Inject constructor() {
 	fun playFrequency() = callbackFlow<AudioGenerator> {
 
 		Timber.d(">>> PLAY...")
-		val generator = AudioGenerator(1024, 0)
+		val generator = AudioGenerator(/*1024*/12100, /*0*/6050)
 		generator.addAudioProcessor(NoiseGenerator(0.2))
 		generator.addAudioProcessor(LowPassFS(1000f, 44100f))
 		generator.addAudioProcessor(LowPassFS(1000f, 44100f))
@@ -43,6 +43,7 @@ class DspPlayerProvider @Inject constructor() {
 		generator.addAudioProcessor(DelayEffect(0.757, 0.4, 44100.0))
 		generator.addAudioProcessor(FlangerEffect(0.1, 0.2, 44100.0, 4.0))
 
+		//java.lang.IllegalArgumentException: The buffer size should be at least 10632 (samples) according to  AudioTrack.getMinBufferSize().
 		generator.addAudioProcessor(AndroidAudioPlayer(generator.format))
 		sendBlocking(generator)
 		generator.run()
