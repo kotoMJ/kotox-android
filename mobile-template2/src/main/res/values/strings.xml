@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017 The Android Open Source Project
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+
+
+	<string name="home">home</string>
+	<string name="title_settings">SettingsX</string>
+	<string name="analyzer">analyzer</string>
+	<string name="analyze_action">Start voice analysis</string>
+
+
+	<string name="record_confidence_title">Use confidence %.0f \%%</string>
+	<string name="record_pitch_algorythm_title">Pitch algorithm</string>
+	<string name="record_max_pitch">max pitch</string>
+	<string name="record_min_pitch">min pitch</string>
+	<string name="record_process">Process</string>
+	<string name="record_freq">Freq</string>
+	<string name="record_amplitude">Amplitude</string>
+	<string name="record_time">Time</string>
+
+
+	<string name="result_finish">Finish</string>
+	<string name="result_sample_item_frequency">%.3f</string>
+	<string name="result_sample_item_time">%.17f</string>
+	<string name="result_freq">Freq (Hz)</string>
+	<string name="result_amplitude">Ampl.</string>
+	<string name="result_time">Time (sec)</string>
+
+</resources>
