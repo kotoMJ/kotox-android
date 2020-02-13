@@ -18,7 +18,7 @@
 	<activity
 		android:id="@+id/analyzer_activity"
 		android:name="cz.kotox.dsp.ui.analyzer.AnalyzerActivity"
-		android:label="@string/analyzer"
+		android:label="@string/template"
 		tools:layout="@layout/analyzer_activity">
 
 		<argument
