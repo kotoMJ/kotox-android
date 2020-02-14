@@ -20,7 +20,6 @@ include ':module-core',
 		':module-core-media',
 		':module-core-ffmpeg',
 		':module-core-dsp',
-		':mobile-template',
 		':mobile-template2',
 		':mobile-dsp'
 
