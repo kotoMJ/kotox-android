@@ -66,7 +66,7 @@ class AnalyzerResultPagerAdapter(
 ) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
 	private val fragments: List<Pair<String, () -> Fragment>> = listOf(
-		Pair("result player", { AnalyzerResultPlayerFragment.newInstance() }),
+		Pair("result player", { WizardSecondPlayerFragment.newInstance() }),
 		Pair("result list", { AnalyzerResultListFragment.newInstance() })
 	)
 

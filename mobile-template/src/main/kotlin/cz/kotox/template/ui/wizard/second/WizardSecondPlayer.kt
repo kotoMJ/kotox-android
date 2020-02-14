@@ -10,7 +10,7 @@ import cz.kotox.core.arch.liveevent.Event
 import cz.kotox.core.arch.observeEvent
 import cz.kotox.core.dsp.DspPlayerProvider
 import cz.kotox.core.dsp.DspPlayerResult
-import cz.kotox.template.databinding.AnalyzerResultPlayerFragmentBinding
+import cz.kotox.template.databinding.WizardSecondPlayerFragmentBinding
 import cz.kotox.template.ui.wizard.BaseWizardFragment
 import cz.kotox.template.ui.wizard.BaseWizardViewModel
 import kotlinx.coroutines.Dispatchers
@@ -21,11 +21,11 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class AnalyzerResultPlayerFragment : BaseWizardFragment<AnalyzerResultPlayerViewModel, AnalyzerResultPlayerFragmentBinding>() {
+class WizardSecondPlayerFragment : BaseWizardFragment<WizardSecondPlayerViewModel, WizardSecondPlayerFragmentBinding>() {
 
-	override fun inflateBindingLayout(inflater: LayoutInflater) = AnalyzerResultPlayerFragmentBinding.inflate(inflater)
+	override fun inflateBindingLayout(inflater: LayoutInflater) = WizardSecondPlayerFragmentBinding.inflate(inflater)
 
-	override fun setupWizardViewModel() = findViewModel<AnalyzerResultPlayerViewModel>()
+	override fun setupWizardViewModel() = findViewModel<WizardSecondPlayerViewModel>()
 
 	@ExperimentalCoroutinesApi
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,14 +61,14 @@ class AnalyzerResultPlayerFragment : BaseWizardFragment<AnalyzerResultPlayerView
 	}
 
 	companion object {
-		fun newInstance() = AnalyzerResultPlayerFragment().apply {
+		fun newInstance() = WizardSecondPlayerFragment().apply {
 			val bundle = Bundle()
 			arguments = bundle
 		}
 	}
 }
 
-class AnalyzerResultPlayerViewModel @Inject constructor(private val dspPlayer: DspPlayerProvider) : BaseWizardViewModel(), LifecycleObserver {
+class WizardSecondPlayerViewModel @Inject constructor(private val dspPlayer: DspPlayerProvider) : BaseWizardViewModel(), LifecycleObserver {
 	private var audioGenerator: AudioGenerator? = null
 
 	@ExperimentalCoroutinesApi
