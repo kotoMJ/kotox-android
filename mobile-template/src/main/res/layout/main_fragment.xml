@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	<data>
+
+		<variable
+			name="viewModel"
+			type="cz.kotox.template.ui.MainViewModel" />
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:id="@+id/linearLayout"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:ignore="MissingDefaultResource"
+		tools:layout_editor_absoluteY="25dp">
+
+
+		<ImageView
+			android:id="@+id/ic_dsp_main_placeholder"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:alpha="0.05"
+			android:src="@drawable/ic_fast_forward_black_24dp"
+			app:layout_constraintBottom_toTopOf="@+id/navigate_analyze_bt"
+			app:layout_constraintEnd_toEndOf="@id/keyline_end"
+			app:layout_constraintStart_toStartOf="@id/keyline_start"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<Button
+			android:id="@+id/navigate_analyze_bt"
+			android:layout_width="0dp"
+			android:layout_height="0dp"
+			android:layout_marginBottom="@dimen/global_keyline_horizontal"
+			android:text="@string/template_action_feature"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="@id/keyline_end"
+			app:layout_constraintStart_toStartOf="@id/keyline_start"
+			app:layout_constraintTop_toTopOf="@+id/keyline_two_quarters_vertical" />
+
+		<androidx.constraintlayout.widget.Guideline
+			android:id="@+id/keyline_start"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			app:layout_constraintGuide_begin="@dimen/global_keyline_horizontal" />
+
+		<androidx.constraintlayout.widget.Guideline
+			android:id="@+id/keyline_end"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			app:layout_constraintGuide_end="@dimen/global_keyline_horizontal" />
+
+		<androidx.constraintlayout.widget.Guideline
+			android:id="@+id/keyline_two_quarters_vertical"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			app:layout_constraintGuide_percent="0.7" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
