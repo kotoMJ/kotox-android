@@ -12,12 +12,12 @@ import androidx.lifecycle.MutableLiveData
 import cz.kotox.core.PreferencesCore
 import cz.kotox.core.entity.AppVersion
 import cz.kotox.template.databinding.AnalyzerResultFragmentBinding
-import cz.kotox.template.ui.wizard.BaseAnalyzerFragment
-import cz.kotox.template.ui.wizard.BaseAnalyzerViewModel
+import cz.kotox.template.ui.wizard.BaseWizardFragment
+import cz.kotox.template.ui.wizard.BaseWizardViewModel
 import timber.log.Timber
 import javax.inject.Inject
 
-class AnalyzerResultFragment : BaseAnalyzerFragment<AnalyzerResultViewModel, AnalyzerResultFragmentBinding>() {
+class AnalyzerResultFragment : BaseWizardFragment<AnalyzerResultViewModel, AnalyzerResultFragmentBinding>() {
 
 	override fun inflateBindingLayout(inflater: LayoutInflater) = AnalyzerResultFragmentBinding.inflate(inflater)
 
@@ -40,7 +40,7 @@ class AnalyzerResultFragment : BaseAnalyzerFragment<AnalyzerResultViewModel, Ana
 	}
 }
 
-class AnalyzerResultViewModel @Inject constructor(appVersion: AppVersion) : BaseAnalyzerViewModel(), LifecycleObserver {
+class AnalyzerResultViewModel @Inject constructor(appVersion: AppVersion) : BaseWizardViewModel(), LifecycleObserver {
 
 //	@Inject
 //	lateinit var appVersion: AppVersion

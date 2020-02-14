@@ -19,8 +19,8 @@ import cz.kotox.core.utility.lazyUnsafe
 import cz.kotox.core.view.graph.WaveSample
 import cz.kotox.template.R
 import cz.kotox.template.databinding.WizardFirstFragmentBinding
-import cz.kotox.template.ui.wizard.BaseAnalyzerFragment
-import cz.kotox.template.ui.wizard.BaseAnalyzerViewModel
+import cz.kotox.template.ui.wizard.BaseWizardFragment
+import cz.kotox.template.ui.wizard.BaseWizardViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -30,7 +30,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class WizardFirstFragment : BaseAnalyzerFragment<WizardFirstViewModel, WizardFirstFragmentBinding>() {
+class WizardFirstFragment : BaseWizardFragment<WizardFirstViewModel, WizardFirstFragmentBinding>() {
 
 	val permissionManager: FragmentPermissionManager by lazyUnsafe {
 		FragmentPermissionManager(this)
@@ -97,7 +97,7 @@ class WizardFirstFragment : BaseAnalyzerFragment<WizardFirstViewModel, WizardFir
 	}
 }
 
-class WizardFirstViewModel @Inject constructor(val dspAnalyzer: DspAnalyzerProvider) : BaseAnalyzerViewModel(), LifecycleObserver {
+class WizardFirstViewModel @Inject constructor(val dspAnalyzer: DspAnalyzerProvider) : BaseWizardViewModel(), LifecycleObserver {
 
 	val min: MutableLiveData<String> = mutableLiveDataOf("0")
 	val max: MutableLiveData<String> = mutableLiveDataOf("0")

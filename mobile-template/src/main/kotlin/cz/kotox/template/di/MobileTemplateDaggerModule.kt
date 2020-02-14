@@ -5,8 +5,8 @@ import cz.kotox.core.di.ViewModelKey
 import cz.kotox.template.ui.MainActivity
 import cz.kotox.template.ui.MainFragment
 import cz.kotox.template.ui.MainViewModel
-import cz.kotox.template.ui.wizard.AnalyzerActivity
-import cz.kotox.template.ui.wizard.AnalyzerViewModel
+import cz.kotox.template.ui.wizard.WizardActivity
+import cz.kotox.template.ui.wizard.WizardViewModel
 import cz.kotox.template.ui.wizard.first.WizardFirstFragment
 import cz.kotox.template.ui.wizard.first.WizardFirstViewModel
 import cz.kotox.template.ui.wizard.second.AnalyzerResultFragment
@@ -35,12 +35,12 @@ abstract class MobileTemplateDaggerModule {
 	abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
 
 	@ContributesAndroidInjector()
-	abstract fun contributeAnalyzerActivity(): AnalyzerActivity
+	abstract fun contributeWizardActivity(): WizardActivity
 
 	@Binds
 	@IntoMap
-	@ViewModelKey(AnalyzerViewModel::class)
-	abstract fun bindAnalyzerViewModel(analyzerViewModel: AnalyzerViewModel): ViewModel
+	@ViewModelKey(WizardViewModel::class)
+	abstract fun bindWizardViewModel(wizardViewModel: WizardViewModel): ViewModel
 
 	@ContributesAndroidInjector
 	abstract fun contributeWizardFirstFragment(): WizardFirstFragment

@@ -17,8 +17,8 @@ import cz.kotox.template.BR
 import cz.kotox.template.R
 import cz.kotox.template.databinding.AnalyzerResultListFragmentBinding
 import cz.kotox.template.databinding.AnalyzerResultPlayerFragmentBinding
-import cz.kotox.template.ui.wizard.BaseAnalyzerFragment
-import cz.kotox.template.ui.wizard.BaseAnalyzerViewModel
+import cz.kotox.template.ui.wizard.BaseWizardFragment
+import cz.kotox.template.ui.wizard.BaseWizardViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
@@ -31,7 +31,7 @@ interface AnalyzerResultDetailView {
 	val resultListAdapter: DataBoundAdapter<VoiceSample>
 }
 
-class AnalyzerResultListFragment : BaseAnalyzerFragment<AnalyzerResultListViewModel, AnalyzerResultListFragmentBinding>(), AnalyzerResultDetailView {
+class AnalyzerResultListFragment : BaseWizardFragment<AnalyzerResultListViewModel, AnalyzerResultListFragmentBinding>(), AnalyzerResultDetailView {
 
 	override val resultListAdapter: DataBoundAdapter<VoiceSample> = DataBoundAdapter(this, R.layout.item_audio_sample, BR.item, object : DiffUtil.ItemCallback<VoiceSample>() {
 		override fun areItemsTheSame(oldItem: VoiceSample, newItem: VoiceSample): Boolean = oldItem.isItemTheSame(newItem)
@@ -56,11 +56,11 @@ class AnalyzerResultListFragment : BaseAnalyzerFragment<AnalyzerResultListViewMo
 
 }
 
-class AnalyzerResultListViewModel @Inject constructor() : BaseAnalyzerViewModel(), LifecycleObserver {
+class AnalyzerResultListViewModel @Inject constructor() : BaseWizardViewModel(), LifecycleObserver {
 
 }
 
-class AnalyzerResultPlayerFragment : BaseAnalyzerFragment<AnalyzerResultPlayerViewModel, AnalyzerResultPlayerFragmentBinding>() {
+class AnalyzerResultPlayerFragment : BaseWizardFragment<AnalyzerResultPlayerViewModel, AnalyzerResultPlayerFragmentBinding>() {
 
 	override fun inflateBindingLayout(inflater: LayoutInflater) = AnalyzerResultPlayerFragmentBinding.inflate(inflater)
 
@@ -107,7 +107,7 @@ class AnalyzerResultPlayerFragment : BaseAnalyzerFragment<AnalyzerResultPlayerVi
 	}
 }
 
-class AnalyzerResultPlayerViewModel @Inject constructor(private val dspPlayer: DspPlayerProvider) : BaseAnalyzerViewModel(), LifecycleObserver {
+class AnalyzerResultPlayerViewModel @Inject constructor(private val dspPlayer: DspPlayerProvider) : BaseWizardViewModel(), LifecycleObserver {
 	private var audioGenerator: AudioGenerator? = null
 
 	@ExperimentalCoroutinesApi

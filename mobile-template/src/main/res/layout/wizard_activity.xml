@@ -5,7 +5,7 @@
 
 		<variable
 			name="viewModel"
-			type="cz.kotox.template.ui.wizard.AnalyzerViewModel" />
+			type="cz.kotox.template.ui.wizard.WizardViewModel" />
 	</data>
 
 	<LinearLayout
