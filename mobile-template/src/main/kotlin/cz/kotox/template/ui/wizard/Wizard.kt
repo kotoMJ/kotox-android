@@ -12,10 +12,10 @@ import cz.kotox.core.arch.BaseActivityViewModel
 import cz.kotox.core.arch.BaseFragmentViewModel
 import cz.kotox.core.arch.BaseViewModel
 import cz.kotox.core.database.PreferencesCommon
-import cz.kotox.core.dsp.model.VoiceSample
 import cz.kotox.core.entity.AppVersion
 import cz.kotox.template.R
 import cz.kotox.template.databinding.WizardActivityBinding
+import cz.kotox.template.model.ValueSample
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -40,7 +40,10 @@ class WizardActivity : BaseActivityViewModel<WizardViewModel, WizardActivityBind
 
 class WizardViewModel @Inject constructor(appVersion: AppVersion) : BaseViewModel(), LifecycleObserver {
 
-	val pitchList = mutableListOf<VoiceSample>()
+	val pitchList = mutableListOf<ValueSample>(
+		ValueSample(100f, 0.12500, 0.3f, 100f),
+		ValueSample(101f, 0.14000, 0.3f, 1011f)
+	)
 
 	init {
 		Timber.e(">>> AnalyzerViewModel INIT")

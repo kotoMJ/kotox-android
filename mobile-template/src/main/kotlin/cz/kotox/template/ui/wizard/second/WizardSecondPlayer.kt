@@ -4,20 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.LifecycleObserver
-import be.tarsos.dsp.AudioGenerator
-import cz.kotox.core.arch.ShowToastEvent
 import cz.kotox.core.arch.liveevent.Event
 import cz.kotox.core.arch.observeEvent
-import cz.kotox.core.dsp.DspPlayerProvider
-import cz.kotox.core.dsp.DspPlayerResult
 import cz.kotox.template.databinding.WizardSecondPlayerFragmentBinding
 import cz.kotox.template.ui.wizard.BaseWizardFragment
 import cz.kotox.template.ui.wizard.BaseWizardViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -68,42 +60,15 @@ class WizardSecondPlayerFragment : BaseWizardFragment<WizardSecondPlayerViewMode
 	}
 }
 
-class WizardSecondPlayerViewModel @Inject constructor(private val dspPlayer: DspPlayerProvider) : BaseWizardViewModel(), LifecycleObserver {
-	private var audioGenerator: AudioGenerator? = null
+class WizardSecondPlayerViewModel @Inject constructor() : BaseWizardViewModel(), LifecycleObserver {
 
 	@ExperimentalCoroutinesApi
 	fun play() {
-		launch() {
-			dspPlayer.playFrequency().flowOn(Dispatchers.IO).collect {
-				run {
-					when (it) {
-						is DspPlayerResult.Error -> {
-							Timber.e(it.exception, ">>> PLAYER PLAY ERROR:")
-							launch(Dispatchers.Main) {
-								sendEvent(StopPlayerEvent)
-								sendEvent(ShowToastEvent(it.exception.message
-									?: "Unexpected issue!"))
-							}
-						}
-						is DspPlayerResult.Success -> {
-							audioGenerator = it.audioGenerator
-						}
-					}
-					Timber.d(">>> PLAYER PLAY generator[${audioGenerator}]")
-				}
-
-			}
-		}
+		Timber.d(">>> PLAYER PLAY")
 	}
 
 	fun stop() {
-		Timber.d(">>> PLAYER STOP generator[${audioGenerator}]")
-		try {
-			audioGenerator?.stop()
-			dspPlayer.finished()
-		} catch (ise: IllegalStateException) {
-			Timber.w(ise, "Non fatal illegal state when stopping generator")
-		}
+		Timber.d(">>> PLAYER STOP")
 	}
 }
 

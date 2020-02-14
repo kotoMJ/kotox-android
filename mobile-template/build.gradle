@@ -86,10 +86,5 @@ dependencies {
 
     implementation project(':module-core')
     implementation project(':module-core-arch')
-    implementation project(':module-core-dsp')
-
-    implementation project(':module-core-view')
-
-
 
 }

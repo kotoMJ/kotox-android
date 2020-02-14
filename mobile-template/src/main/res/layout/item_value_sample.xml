@@ -6,7 +6,7 @@
 		<import type="java.util.Date" />
 		<variable
 			name="item"
-			type="cz.kotox.core.dsp.model.VoiceSample" />
+			type="cz.kotox.template.model.ValueSample" />
 
 	</data>
 

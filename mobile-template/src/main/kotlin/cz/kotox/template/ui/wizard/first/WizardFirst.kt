@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.lifecycle.LifecycleObserver
 import androidx.navigation.Navigation
-import cz.kotox.core.dsp.DspAnalyzerProvider
 import cz.kotox.core.utility.FragmentPermissionManager
 import cz.kotox.core.utility.lazyUnsafe
 import cz.kotox.template.R

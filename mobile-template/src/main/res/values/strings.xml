@@ -16,7 +16,7 @@
 	<string name="home">home</string>
 	<string name="title_settings">Settings</string>
 	<string name="template">wizard</string>
-	<string name="template_action_feature">Start feature</string>
+	<string name="template_action_feature">Enter the wizard</string>
 
 
 	<string name="navigation_main_label">Main</string>
