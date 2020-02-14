@@ -1,4 +1,4 @@
-package cz.kotox.template.ui.analyzer
+package cz.kotox.template.ui.wizard
 
 import android.os.Bundle
 import android.view.LayoutInflater

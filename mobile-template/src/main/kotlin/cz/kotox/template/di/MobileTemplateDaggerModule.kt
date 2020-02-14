@@ -5,16 +5,16 @@ import cz.kotox.core.di.ViewModelKey
 import cz.kotox.template.ui.MainActivity
 import cz.kotox.template.ui.MainFragment
 import cz.kotox.template.ui.MainViewModel
-import cz.kotox.template.ui.analyzer.AnalyzerActivity
-import cz.kotox.template.ui.analyzer.AnalyzerViewModel
-import cz.kotox.template.ui.analyzer.record.AnalyzerRecordFragment
-import cz.kotox.template.ui.analyzer.record.AnalyzerRecordViewModel
-import cz.kotox.template.ui.analyzer.result.AnalyzerResultFragment
-import cz.kotox.template.ui.analyzer.result.AnalyzerResultListFragment
-import cz.kotox.template.ui.analyzer.result.AnalyzerResultListViewModel
-import cz.kotox.template.ui.analyzer.result.AnalyzerResultPlayerFragment
-import cz.kotox.template.ui.analyzer.result.AnalyzerResultPlayerViewModel
-import cz.kotox.template.ui.analyzer.result.AnalyzerResultViewModel
+import cz.kotox.template.ui.wizard.AnalyzerActivity
+import cz.kotox.template.ui.wizard.AnalyzerViewModel
+import cz.kotox.template.ui.wizard.first.WizardFirstFragment
+import cz.kotox.template.ui.wizard.first.WizardFirstViewModel
+import cz.kotox.template.ui.wizard.result.AnalyzerResultFragment
+import cz.kotox.template.ui.wizard.result.AnalyzerResultListFragment
+import cz.kotox.template.ui.wizard.result.AnalyzerResultListViewModel
+import cz.kotox.template.ui.wizard.result.AnalyzerResultPlayerFragment
+import cz.kotox.template.ui.wizard.result.AnalyzerResultPlayerViewModel
+import cz.kotox.template.ui.wizard.result.AnalyzerResultViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -43,12 +43,12 @@ abstract class MobileTemplateDaggerModule {
 	abstract fun bindAnalyzerViewModel(analyzerViewModel: AnalyzerViewModel): ViewModel
 
 	@ContributesAndroidInjector
-	abstract fun contributeAnalyzerRecordFragment(): AnalyzerRecordFragment
+	abstract fun contributeWizardFirstFragment(): WizardFirstFragment
 
 	@Binds
 	@IntoMap
-	@ViewModelKey(AnalyzerRecordViewModel::class)
-	abstract fun bindAnalyzerRecordViewModel(analyzerRecordViewModel: AnalyzerRecordViewModel): ViewModel
+	@ViewModelKey(WizardFirstViewModel::class)
+	abstract fun bindWizardFirstViewModel(wizardFirstViewModel: WizardFirstViewModel): ViewModel
 
 	@ContributesAndroidInjector
 	abstract fun contributeAnalyzerResultFragment(): AnalyzerResultFragment

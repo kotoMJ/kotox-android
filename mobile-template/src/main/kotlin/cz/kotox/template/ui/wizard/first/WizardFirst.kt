@@ -1,4 +1,4 @@
-package cz.kotox.template.ui.analyzer.record
+package cz.kotox.template.ui.wizard.first
 
 import android.graphics.Color
 import android.os.Bundle
@@ -18,9 +18,9 @@ import cz.kotox.core.utility.FragmentPermissionManager
 import cz.kotox.core.utility.lazyUnsafe
 import cz.kotox.core.view.graph.WaveSample
 import cz.kotox.template.R
-import cz.kotox.template.databinding.AnalyzerRecordFragmentBinding
-import cz.kotox.template.ui.analyzer.BaseAnalyzerFragment
-import cz.kotox.template.ui.analyzer.BaseAnalyzerViewModel
+import cz.kotox.template.databinding.WizardFirstFragmentBinding
+import cz.kotox.template.ui.wizard.BaseAnalyzerFragment
+import cz.kotox.template.ui.wizard.BaseAnalyzerViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -30,15 +30,15 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class AnalyzerRecordFragment : BaseAnalyzerFragment<AnalyzerRecordViewModel, AnalyzerRecordFragmentBinding>() {
+class WizardFirstFragment : BaseAnalyzerFragment<WizardFirstViewModel, WizardFirstFragmentBinding>() {
 
 	val permissionManager: FragmentPermissionManager by lazyUnsafe {
 		FragmentPermissionManager(this)
 	}
 
-	override fun inflateBindingLayout(inflater: LayoutInflater) = AnalyzerRecordFragmentBinding.inflate(inflater)
+	override fun inflateBindingLayout(inflater: LayoutInflater) = WizardFirstFragmentBinding.inflate(inflater)
 
-	override fun setupWizardViewModel() = findViewModel<AnalyzerRecordViewModel>()
+	override fun setupWizardViewModel() = findViewModel<WizardFirstViewModel>()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -97,7 +97,7 @@ class AnalyzerRecordFragment : BaseAnalyzerFragment<AnalyzerRecordViewModel, Ana
 	}
 }
 
-class AnalyzerRecordViewModel @Inject constructor(val dspAnalyzer: DspAnalyzerProvider) : BaseAnalyzerViewModel(), LifecycleObserver {
+class WizardFirstViewModel @Inject constructor(val dspAnalyzer: DspAnalyzerProvider) : BaseAnalyzerViewModel(), LifecycleObserver {
 
 	val min: MutableLiveData<String> = mutableLiveDataOf("0")
 	val max: MutableLiveData<String> = mutableLiveDataOf("0")

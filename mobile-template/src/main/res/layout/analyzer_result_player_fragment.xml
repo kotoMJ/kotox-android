@@ -8,7 +8,7 @@
 
 		<variable
 			name="viewModel"
-			type="cz.kotox.template.ui.analyzer.result.AnalyzerResultPlayerViewModel" />
+			type="cz.kotox.template.ui.wizard.result.AnalyzerResultPlayerViewModel" />
 
 	</data>
 

@@ -8,9 +8,9 @@
 
 	<fragment
 		android:id="@+id/analyzer_process"
-		android:name="cz.kotox.template.ui.analyzer.record.AnalyzerRecordFragment"
+		android:name="cz.kotox.template.ui.wizard.first.WizardFirstFragment"
 		android:label="@string/template"
-		tools:layout="@layout/analyzer_record_fragment">
+		tools:layout="@layout/wizard_first_fragment">
 		<argument
 			android:name="user_id" app:argType="integer" />
 		<action
@@ -24,7 +24,7 @@
 
 	<fragment
 		android:id="@+id/analyzer_result"
-		android:name="cz.kotox.template.ui.analyzer.result.AnalyzerResultFragment"
+		android:name="cz.kotox.template.ui.wizard.result.AnalyzerResultFragment"
 		android:label="@string/template"
 		tools:layout="@layout/analyzer_result_fragment" />
 

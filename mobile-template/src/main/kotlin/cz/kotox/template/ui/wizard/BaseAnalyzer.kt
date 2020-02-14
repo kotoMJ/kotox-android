@@ -1,4 +1,4 @@
-package cz.kotox.template.ui.analyzer
+package cz.kotox.template.ui.wizard
 
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity

@@ -6,7 +6,7 @@
 
 		<variable
 			name="viewModel"
-			type="cz.kotox.template.ui.analyzer.record.AnalyzerRecordViewModel" />
+			type="cz.kotox.template.ui.wizard.first.WizardFirstViewModel" />
 	</data>
 
 	<androidx.constraintlayout.widget.ConstraintLayout

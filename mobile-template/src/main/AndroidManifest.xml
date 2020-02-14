@@ -38,7 +38,7 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name="cz.kotox.template.ui.analyzer.AnalyzerActivity">
+		<activity android:name="cz.kotox.template.ui.wizard.AnalyzerActivity">
 			<nav-graph android:value="@navigation/analyzer_navigation" />
 		</activity>
 

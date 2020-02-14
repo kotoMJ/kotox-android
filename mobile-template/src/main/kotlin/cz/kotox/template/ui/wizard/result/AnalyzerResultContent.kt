@@ -1,4 +1,4 @@
-package cz.kotox.template.ui.analyzer.result
+package cz.kotox.template.ui.wizard.result
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,8 +17,8 @@ import cz.kotox.template.BR
 import cz.kotox.template.R
 import cz.kotox.template.databinding.AnalyzerResultListFragmentBinding
 import cz.kotox.template.databinding.AnalyzerResultPlayerFragmentBinding
-import cz.kotox.template.ui.analyzer.BaseAnalyzerFragment
-import cz.kotox.template.ui.analyzer.BaseAnalyzerViewModel
+import cz.kotox.template.ui.wizard.BaseAnalyzerFragment
+import cz.kotox.template.ui.wizard.BaseAnalyzerViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect

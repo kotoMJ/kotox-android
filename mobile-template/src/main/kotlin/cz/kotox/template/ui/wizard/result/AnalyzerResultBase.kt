@@ -1,4 +1,4 @@
-package cz.kotox.template.ui.analyzer.result
+package cz.kotox.template.ui.wizard.result
 
 import android.content.Context
 import android.os.Bundle
@@ -12,8 +12,8 @@ import androidx.lifecycle.MutableLiveData
 import cz.kotox.core.PreferencesCore
 import cz.kotox.core.entity.AppVersion
 import cz.kotox.template.databinding.AnalyzerResultFragmentBinding
-import cz.kotox.template.ui.analyzer.BaseAnalyzerFragment
-import cz.kotox.template.ui.analyzer.BaseAnalyzerViewModel
+import cz.kotox.template.ui.wizard.BaseAnalyzerFragment
+import cz.kotox.template.ui.wizard.BaseAnalyzerViewModel
 import timber.log.Timber
 import javax.inject.Inject
 
