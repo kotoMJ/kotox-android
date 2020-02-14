@@ -7,11 +7,11 @@
 
 		<variable
 			name="view"
-			type="cz.kotox.template.ui.wizard.second.AnalyzerResultDetailView" />
+			type="cz.kotox.template.ui.wizard.second.WizardSecondListView" />
 
 		<variable
 			name="viewModel"
-			type="cz.kotox.template.ui.wizard.second.AnalyzerResultListViewModel" />
+			type="cz.kotox.template.ui.wizard.second.WizardSecondListViewModel" />
 
 	</data>
 

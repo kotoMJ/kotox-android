@@ -8,25 +8,25 @@ import cz.kotox.core.arch.ktools.DataBoundAdapter
 import cz.kotox.core.dsp.model.VoiceSample
 import cz.kotox.template.BR
 import cz.kotox.template.R
-import cz.kotox.template.databinding.AnalyzerResultListFragmentBinding
+import cz.kotox.template.databinding.WizardSecondListFragmentBinding
 import cz.kotox.template.ui.wizard.BaseWizardFragment
 import cz.kotox.template.ui.wizard.BaseWizardViewModel
 import javax.inject.Inject
 
-interface AnalyzerResultDetailView {
+interface WizardSecondListView {
 	val resultListAdapter: DataBoundAdapter<VoiceSample>
 }
 
-class AnalyzerResultListFragment : BaseWizardFragment<AnalyzerResultListViewModel, AnalyzerResultListFragmentBinding>(), AnalyzerResultDetailView {
+class AnalyzerResultListFragment : BaseWizardFragment<WizardSecondListViewModel, WizardSecondListFragmentBinding>(), WizardSecondListView {
 
 	override val resultListAdapter: DataBoundAdapter<VoiceSample> = DataBoundAdapter(this, R.layout.item_audio_sample, BR.item, object : DiffUtil.ItemCallback<VoiceSample>() {
 		override fun areItemsTheSame(oldItem: VoiceSample, newItem: VoiceSample): Boolean = oldItem.isItemTheSame(newItem)
 		override fun areContentsTheSame(oldItem: VoiceSample, newItem: VoiceSample): Boolean = oldItem == newItem
 	})
 
-	override fun inflateBindingLayout(inflater: LayoutInflater) = AnalyzerResultListFragmentBinding.inflate(inflater)
+	override fun inflateBindingLayout(inflater: LayoutInflater) = WizardSecondListFragmentBinding.inflate(inflater)
 	//
-	override fun setupWizardViewModel() = findViewModel<AnalyzerResultListViewModel>()
+	override fun setupWizardViewModel() = findViewModel<WizardSecondListViewModel>()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -42,6 +42,6 @@ class AnalyzerResultListFragment : BaseWizardFragment<AnalyzerResultListViewMode
 
 }
 
-class AnalyzerResultListViewModel @Inject constructor() : BaseWizardViewModel(), LifecycleObserver {
+class WizardSecondListViewModel @Inject constructor() : BaseWizardViewModel(), LifecycleObserver {
 
 }

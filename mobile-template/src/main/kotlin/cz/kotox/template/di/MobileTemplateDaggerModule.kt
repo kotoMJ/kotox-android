@@ -10,10 +10,10 @@ import cz.kotox.template.ui.wizard.WizardViewModel
 import cz.kotox.template.ui.wizard.first.WizardFirstFragment
 import cz.kotox.template.ui.wizard.first.WizardFirstViewModel
 import cz.kotox.template.ui.wizard.second.AnalyzerResultListFragment
-import cz.kotox.template.ui.wizard.second.AnalyzerResultListViewModel
 import cz.kotox.template.ui.wizard.second.AnalyzerResultPlayerFragment
 import cz.kotox.template.ui.wizard.second.AnalyzerResultPlayerViewModel
 import cz.kotox.template.ui.wizard.second.WizardSecondFragment
+import cz.kotox.template.ui.wizard.second.WizardSecondListViewModel
 import cz.kotox.template.ui.wizard.second.WizardSecondViewModel
 import dagger.Binds
 import dagger.Module
@@ -63,8 +63,8 @@ abstract class MobileTemplateDaggerModule {
 
 	@Binds
 	@IntoMap
-	@ViewModelKey(AnalyzerResultListViewModel::class)
-	abstract fun bindAnalyzerResultListViewModel(analyzerResultViewModel: AnalyzerResultListViewModel): ViewModel
+	@ViewModelKey(WizardSecondListViewModel::class)
+	abstract fun bindAnalyzerResultListViewModel(wizardSecondViewModel: WizardSecondListViewModel): ViewModel
 
 	@ContributesAndroidInjector
 	abstract fun contributeAnalyzerResultPlayerFragment(): AnalyzerResultPlayerFragment
