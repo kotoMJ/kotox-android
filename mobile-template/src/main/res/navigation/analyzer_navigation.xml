@@ -24,8 +24,8 @@
 
 	<fragment
 		android:id="@+id/analyzer_result"
-		android:name="cz.kotox.template.ui.wizard.second.AnalyzerResultFragment"
+		android:name="cz.kotox.template.ui.wizard.second.WizardSecondFragment"
 		android:label="@string/template"
-		tools:layout="@layout/analyzer_result_fragment" />
+		tools:layout="@layout/wizard_second_fragment" />
 
 </navigation>

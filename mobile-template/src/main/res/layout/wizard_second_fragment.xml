@@ -6,7 +6,7 @@
 
 		<variable
 			name="viewModel"
-			type="cz.kotox.template.ui.wizard.second.AnalyzerResultViewModel" />
+			type="cz.kotox.template.ui.wizard.second.WizardSecondViewModel" />
 	</data>
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/linearLayout"

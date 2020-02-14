@@ -11,17 +11,17 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import cz.kotox.core.PreferencesCore
 import cz.kotox.core.entity.AppVersion
-import cz.kotox.template.databinding.AnalyzerResultFragmentBinding
+import cz.kotox.template.databinding.WizardSecondFragmentBinding
 import cz.kotox.template.ui.wizard.BaseWizardFragment
 import cz.kotox.template.ui.wizard.BaseWizardViewModel
 import timber.log.Timber
 import javax.inject.Inject
 
-class AnalyzerResultFragment : BaseWizardFragment<AnalyzerResultViewModel, AnalyzerResultFragmentBinding>() {
+class WizardSecondFragment : BaseWizardFragment<WizardSecondViewModel, WizardSecondFragmentBinding>() {
 
-	override fun inflateBindingLayout(inflater: LayoutInflater) = AnalyzerResultFragmentBinding.inflate(inflater)
+	override fun inflateBindingLayout(inflater: LayoutInflater) = WizardSecondFragmentBinding.inflate(inflater)
 
-	override fun setupWizardViewModel() = findViewModel<AnalyzerResultViewModel>()
+	override fun setupWizardViewModel() = findViewModel<WizardSecondViewModel>()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class AnalyzerResultFragment : BaseWizardFragment<AnalyzerResultViewModel, Analy
 	}
 }
 
-class AnalyzerResultViewModel @Inject constructor(appVersion: AppVersion) : BaseWizardViewModel(), LifecycleObserver {
+class WizardSecondViewModel @Inject constructor(appVersion: AppVersion) : BaseWizardViewModel(), LifecycleObserver {
 
 //	@Inject
 //	lateinit var appVersion: AppVersion
