@@ -23,11 +23,6 @@ class AnalyzerResultFragment  @Inject constructor() : BaseAnalyzerFragment<Analy
 
 	override val viewModel: AnalyzerResultViewModel by viewModels()
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		lifecycle.addObserver(viewModel)
-	}
-
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 

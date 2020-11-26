@@ -32,11 +32,6 @@ class AnalyzerResultListFragment @Inject constructor() : BaseAnalyzerFragment<An
 
 	override val viewModel: AnalyzerResultListViewModel by viewModels()
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		lifecycle.addObserver(viewModel)
-	}
-
 	companion object {
 		fun newInstance() = AnalyzerResultListFragment().apply {
 			val bundle = Bundle()
@@ -46,6 +41,4 @@ class AnalyzerResultListFragment @Inject constructor() : BaseAnalyzerFragment<An
 
 }
 
-class AnalyzerResultListViewModel @Inject constructor() : BaseAnalyzerViewModel(), LifecycleObserver {
-
-}
+class AnalyzerResultListViewModel @Inject constructor() : BaseAnalyzerViewModel()

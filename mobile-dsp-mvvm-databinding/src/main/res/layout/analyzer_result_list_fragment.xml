@@ -27,7 +27,7 @@
 			android:paddingLeft="20dp"
 			android:paddingRight="20dp"
 			app:adapter="@{view.resultListAdapter}"
-			app:items="@{viewModel.mainViewModel.pitchList}"
+			app:items="@{viewModel.analyzerViewModel.pitchList}"
 			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 			tools:listitem="@layout/item_audio_sample" />
 
