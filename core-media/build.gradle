@@ -5,8 +5,4 @@ dependencies {
 
 	implementation project(':core')
 
-	api "com.google.android.exoplayer:exoplayer:${versions.exo_player}"
-
-	api "com.google.android.exoplayer:exoplayer:${versions.exo_player}"
-
 }

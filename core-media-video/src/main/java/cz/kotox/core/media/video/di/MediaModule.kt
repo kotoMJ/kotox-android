@@ -1,4 +1,4 @@
-package cz.kotox.core.media.di
+package cz.kotox.core.media.video.di
 
 import android.app.Application
 import com.google.android.exoplayer2.C

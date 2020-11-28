@@ -74,6 +74,7 @@ dependencies {
     implementation project(':core-media')
     implementation project(':core-media-image')
     implementation project(':core-media-image-databinding')
+    implementation project(':core-media-video')
     implementation project(':core-view')
 
 
