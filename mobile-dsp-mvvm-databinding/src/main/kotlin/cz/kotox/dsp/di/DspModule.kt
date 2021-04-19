@@ -2,7 +2,6 @@ package cz.kotox.dsp.di
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import com.squareup.inject.assisted.dagger2.AssistedModule
 import cz.kotox.dsp.ui.MainActivity
 import cz.kotox.dsp.ui.MainFragment
 import cz.kotox.dsp.ui.MainViewModel
@@ -21,8 +20,7 @@ import cz.kotox.core.arch.di.viewModel.AssistedSavedStateViewModelFactory
 import cz.kotox.dsp.ui.analyzer.record.NoMicFragment
 import cz.kotox.dsp.ui.analyzer.record.NoMicrophoneViewModel
 
-@AssistedModule
-@Module(includes = [AssistedInject_DspModuleBuilder::class])
+@Module
 abstract class DspModuleBuilder {
 
 	@Binds

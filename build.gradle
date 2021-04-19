@@ -1,144 +1,127 @@
-/*
- * Copyright 2017, The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
 
-	ext {
-		project_directory = "${rootProject.projectDir}"
+    ext {
+        project_directory = "${rootProject.projectDir}"
 
         versions = [
                 'min_sdk'                  : 21,
                 'sdk'                      : 30,
-                'kotlin'                   : '1.4.20',
-                'android_gradle'           : '4.1.1',
-				'play_services_gradle'     : '4.3.3',
-				'crashlytics_gradle'       : '2.2.0',
+                'kotlin'                   : '1.4.32',
+                'android_gradle'           : '4.1.3',
+                'play_services_gradle'     : '4.3.3',
+                'crashlytics_gradle'       : '2.2.0',
 
-				'android_play_services'    : '11.0.1',
-				'android_navigation'       : '2.3.0',
-				'material_design'          : '1.2.1', //ATTENTION 1.3.0-alpha01 makes bottom sheet on VibeResultFragment not collapse fully
-				'androidx_appcompat'       : '1.2.0',
-				'androidx_cardview'        : '1.0.0',
-				'androidx_constraintlayout': '2.0.1',
-				'androidx_recyclerview'    : '1.1.0-beta01',
-				'androidx_gridlayout'      : '1.0.0',
-				'androidx_browser'         : '1.2.0',
-				'androidx_media'           : '1.2.0',
-				'androidx_lifecycle'       : '2.2.0',
-				'androidx_core_testing'    : '2.1.0-rc01',
-				'androidx_biometric'       : '1.0.0-beta01',
-				'androidx_preference'      : "1.1.1",
-				'androidx_databinding'     : '4.2.0-alpha12',
-				'androidx_animation'       : '1.0.0-alpha02',
-				'android_billing'          : '3.0.0',
+                'android_play_services'    : '11.0.1',
+                'android_navigation'       : '2.3.0',
+                'material_design'          : '1.3.0',
+                'androidx_appcompat'       : '1.2.0',
+                'androidx_cardview'        : '1.0.0',
+                'androidx_constraintlayout': '2.0.1',
+                'androidx_recyclerview'    : '1.1.0-beta01',
+                'androidx_gridlayout'      : '1.0.0',
+                'androidx_browser'         : '1.2.0',
+                'androidx_media'           : '1.2.0',
+                'androidx_lifecycle'       : '2.2.0',
+                'androidx_core_testing'    : '2.1.0-rc01',
+                'androidx_biometric'       : '1.0.0-beta01',
+                'androidx_preference'      : "1.1.1",
+                'androidx_databinding'     : '4.2.0-alpha12',
+                'androidx_animation'       : '1.0.0-alpha02',
+                'android_billing'          : '3.0.0',
 
-				'ktx_core'                 : '1.3.0',
-				'ktx_fragment'             : '1.2.5',
-				'ktx_activity'             : '1.2.0-beta01',
-				'ktx_lifecycle'            : '2.2.0',
-				'ktx_collection'           : '1.1.0',
-				'ktx_paging'               : '2.1.1',
-				'ktx_billing'              : '3.0.0',
+                'ktx_core'                 : '1.3.0',
+                'ktx_fragment'             : '1.2.5',
+                'ktx_activity'             : '1.2.0-beta01',
+                'ktx_lifecycle'            : '2.2.0',
+                'ktx_collection'           : '1.1.0',
+                'ktx_paging'               : '2.1.1',
+                'ktx_billing'              : '3.0.0',
 
-				'rx_rxandroid'             : '2.1.1',
-				'rx_rxjava'                : '2.2.11',
-				'rx_rxkotlin'              : '2.4.0',
-				'rx_rxrelay'               : '2.1.0',
+                'rx_rxandroid'             : '2.1.1',
+                'rx_rxjava'                : '2.2.11',
+                'rx_rxkotlin'              : '2.4.0',
+                'rx_rxrelay'               : '2.1.0',
 
-				'okhttp'                   : '4.4.0',
-				'retrofit'                 : '2.7.2',
-				'moshi'                    : '1.9.2',
-				'moshi_converter'          : '2.7.2',
+                'okhttp'                   : '4.4.0',
+                'retrofit'                 : '2.7.2',
+                'moshi'                    : '1.9.2',
+                'moshi_converter'          : '2.7.2',
 
-				'firebase_analytics'       : '18.0.0',
-				'firebase_crashlytics'     : '17.2.2',
+                'firebase_analytics'       : '18.0.3',
+                'firebase_crashlytics'     : '17.4.1',
 
-				'leakcanary'               : '2.0-beta-2',
-				'dagger'                   : '2.26',
-				'espresso'                 : '3.0.2-beta1',
-				'junit'                    : '4.12',
-				'junit5'                   : '5.5.1',
-				'mockito'                  : '3.0.0',
-				'powermock'                : '2.0.2',    //https://github.com/powermock/powermock/wiki/Mockito#supported-versions
-				'glide'                    : '4.11.0',
-				'crashlytics'              : '2.10.1',
-				'jacoco'                   : '0.8.4',
-				'timber'                   : '4.7.1',
-				'exo_player'               : '2.11.4',
+                'leakcanary-android'       : '2.6',
+                'dagger'                   : '2.31',
+                'espresso'                 : '3.0.2-beta1',
+                'junit-jupiter'            : '5.6',
+                'mockito'                  : '3.0.0',
+                'powermock'                : '2.0.2',    //https://github.com/powermock/powermock/wiki/Mockito#supported-versions
+                'glide'                    : '4.11.0',
+                'crashlytics'              : '2.10.1',
+                'jacoco'                   : '0.8.4',
+                'timber'                   : '4.7.1',
+                'exo_player'               : '2.11.4',
 
-				'google_places'            : '2.4.0'
-		]
+                'google_places'            : '2.4.0'
+        ]
 
-	}
-	repositories {
-		google()
-		maven {url 'https://maven.fabric.io/public'}
-		jcenter()
-		maven {
-			url "http://dl.bintray.com/kotlin/kotlin-eap"
-		}
-		maven {
-			url 'http://dl.bintray.com/kotlin/kotlin-eap'
-		}
-	}
-	dependencies {
-		classpath "com.android.tools.build:gradle:${versions.android_gradle}"
-		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
-		classpath "org.jetbrains.kotlin:kotlin-allopen:${versions.kotlin}"
-		classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.android_navigation}"
-		classpath "com.google.gms:google-services:${versions.play_services_gradle}"
-		classpath "com.google.firebase:firebase-crashlytics-gradle:${versions.crashlytics_gradle}"
-		// NOTE: Do not place your application dependencies here; they belong
-		// in the individual module build.gradle files
-	}
+    }
+    repositories {
+        google()
+        maven {url 'https://maven.fabric.io/public'}
+        jcenter()
+        maven {
+            url "http://dl.bintray.com/kotlin/kotlin-eap"
+        }
+        maven {
+            url 'http://dl.bintray.com/kotlin/kotlin-eap'
+        }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:${versions.android_gradle}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:${versions.kotlin}"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.android_navigation}"
+        classpath "com.google.gms:google-services:${versions.play_services_gradle}"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:${versions.crashlytics_gradle}"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
 }
 
 allprojects {
-	repositories {
-		google()
-		maven {url 'https://maven.fabric.io/public'}
-		jcenter()
-		maven {url "https://jitpack.io"} //Temporarily because of com.github.davidliu.AssistedInject
-	}
+    repositories {
+        google()
+        maven {url 'https://maven.fabric.io/public'}
+        jcenter()//https://medium.com/codechai/jcenter-bintray-shutting-down-2e029d98a812
+    }
 }
 
 task clean(type: Delete) {
-	delete rootProject.buildDir
+    delete rootProject.buildDir
 }
 
 def getLocalProperty(String propertyName) {
-	println "propertyName>>> ${propertyName}"
-	def propsFile = rootProject.file('local.properties')
-	if (propsFile.exists()) {
-		def props = new Properties()
-		props.load(new FileInputStream(propsFile))
+    println "propertyName>>> ${propertyName}"
+    def propsFile = rootProject.file('local.properties')
+    if (propsFile.exists()) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
 
-		//Attempt to load property from local.properties
-		def localProperty = props[propertyName]
-		if (localProperty != null) return localProperty
-	}
+        //Attempt to load property from local.properties
+        def localProperty = props[propertyName]
+        if (localProperty != null) return localProperty
+    }
 
-	//Attempt to load property from environment variable
-	def envProperty = System.getenv(propertyName)
-	if (envProperty != null) return envProperty
+    //Attempt to load property from environment variable
+    def envProperty = System.getenv(propertyName)
+    if (envProperty != null) return envProperty
 
-	def systemProperty = System.properties[propertyName]
-	if (systemProperty != null) return envProperty
+    def systemProperty = System.properties[propertyName]
+    if (systemProperty != null) return envProperty
 
-	throw IllegalStateException("Missing local|env|system property ${propertyName}")
+    throw IllegalStateException("Missing local|env|system property ${propertyName}")
 }

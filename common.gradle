@@ -111,12 +111,6 @@ allprojects {
 		// Common Dagger (minimal dagger dependency to generate classes across all modules)
 		kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
-//		compileOnly 'com.squareup.inject:assisted-inject-annotations-dagger2:0.5.2'
-//		kapt 'com.squareup.inject:assisted-inject-processor-dagger2:0.5.2'
-		//Temporarily workaround because of: https://github.com/square/AssistedInject/issues/81
-		compileOnly 'com.github.davidliu.AssistedInject:assisted-inject-annotations-dagger2:268bff6'
-		kapt 'com.github.davidliu.AssistedInject:assisted-inject-processor-dagger2:268bff6'
-
 		//Moshi (minimal moshi dependency to generate classes across all modules)
 		kapt "com.squareup.moshi:moshi-kotlin-codegen:${versions.moshi}"
 		implementation "com.squareup.moshi:moshi-kotlin:${versions.moshi}"

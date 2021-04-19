@@ -1,6 +1,5 @@
 package cz.kotox.dsp.ui
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
@@ -8,21 +7,20 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.SavedStateHandle
-import androidx.navigation.ActivityNavigator
 import androidx.navigation.Navigation
-import cz.kotox.core.entity.AppVersion
-import com.squareup.inject.assisted.Assisted
-import com.squareup.inject.assisted.AssistedInject
 import cz.kotox.core.arch.*
 import cz.kotox.core.arch.di.viewModel.AssistedSavedStateViewModelFactory
 import cz.kotox.core.arch.di.viewModel.ViewModelArgs
+import cz.kotox.core.entity.AppVersion
 import cz.kotox.dsp.R
 import cz.kotox.dsp.app.AppNavigator
 import cz.kotox.dsp.databinding.AnalyzerActivityBinding
 import cz.kotox.dsp.databinding.MainFragmentBinding
 import cz.kotox.dsp.di.injector
-import cz.kotox.dsp.ui.analyzer.AnalyzerActivity
 import cz.kotox.dsp.ui.analyzer.AnalyzerViewModel
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import javax.inject.Inject
 
 class MainActivity : BaseActivityViewModel<AnalyzerViewModel, AnalyzerActivityBinding>(R.layout.main_activity, R.id.main_nav_host_fragment, R.navigation.dsp_main_navigation) {
@@ -58,7 +56,7 @@ class MainViewModel @AssistedInject constructor(
 		@Assisted private val args: ViewModelArgs
 ) : BaseViewModel() {
 
-	@AssistedInject.Factory
+	@AssistedFactory
 	interface Factory : AssistedSavedStateViewModelFactory<MainViewModel>
 
 	@OnLifecycleEvent(Lifecycle.Event.ON_START)

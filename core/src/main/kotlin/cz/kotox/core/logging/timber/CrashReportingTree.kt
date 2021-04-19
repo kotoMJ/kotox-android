@@ -1,7 +1,7 @@
 package cz.kotox.core.logging.timber
 
+import android.util.Log
 import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.google.firebase.crashlytics.internal.common.CommonUtils
 import timber.log.Timber
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -27,7 +27,7 @@ class CrashReportingTree : Timber.Tree() {
 			tag
 		}
 
-		val priorityString = CommonUtils.logPriorityToString(priority)
+		val priorityString = logPriorityToString(priority)
 		val messageWithPrefix = "| $priorityString/$customTag: $message"
 
 		FirebaseCrashlytics.getInstance().log(messageWithPrefix)
@@ -45,6 +45,18 @@ class CrashReportingTree : Timber.Tree() {
 			error.message?.let { FirebaseCrashlytics.getInstance().log(it) }
 		} else {
 			FirebaseCrashlytics.getInstance().recordException(error)
+		}
+	}
+
+	fun logPriorityToString(priority: Int): String {
+		return when (priority) {
+			Log.VERBOSE -> "V"
+			Log.DEBUG -> "D"
+			Log.INFO -> "I"
+			Log.WARN -> "W"
+			Log.ERROR -> "E"
+			Log.ASSERT -> "A"
+			else -> "?"
 		}
 	}
 

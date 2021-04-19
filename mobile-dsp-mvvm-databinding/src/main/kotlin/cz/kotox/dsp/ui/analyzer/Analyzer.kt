@@ -7,8 +7,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModelProvider
-import com.squareup.inject.assisted.Assisted
-import com.squareup.inject.assisted.AssistedInject
 import cz.kotox.core.arch.*
 import cz.kotox.core.arch.di.viewModel.AssistedSavedStateViewModelFactory
 import cz.kotox.core.arch.di.viewModel.ViewModelArgs
@@ -22,6 +20,9 @@ import cz.kotox.dsp.databinding.AnalyzerActivityBinding
 import cz.kotox.dsp.di.injector
 import cz.kotox.dsp.ui.analyzer.record.AnalyzerRecordFragmentDirections
 import cz.kotox.dsp.ui.analyzer.record.NoMicFragmentDirections
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -67,7 +68,7 @@ class AnalyzerViewModel @AssistedInject constructor(
 		@Assisted private val args: ViewModelArgs
 ) : BaseViewModel() {
 
-	@AssistedInject.Factory
+	@AssistedFactory
 	interface Factory : AssistedSavedStateViewModelFactory<AnalyzerViewModel>
 
 	val pitchList = mutableListOf<VoiceSample>()
