@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Kotox Tasks</string>
+    <string name="generic_back_description">Go to the previous screen</string>
+    <string name="generic_click_to_refresh">Click to refresh</string>
+
+    <string name="offline_message">Device is offline</string>
+
+    <string name="main_screen_title">@string/app_name</string>
+    <string name="main_screen_section_title_all">All</string>
+    <string name="main_screen_section_title_upcoming">Upcoming</string>
+
+</resources>
