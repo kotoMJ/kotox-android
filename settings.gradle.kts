@@ -18,5 +18,7 @@ include(
     ":core-kotox-ui",
     ":core-kotox-crypto",
     ":domain-kotox-task",
-    ":feature-kotox-task-detail"
+    ":feature-kotox-task-detail",
+    ":feature-kotox-camera-custom"
+
 )
