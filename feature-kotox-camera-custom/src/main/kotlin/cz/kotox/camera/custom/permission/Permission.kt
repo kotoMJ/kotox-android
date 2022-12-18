@@ -1,13 +1,17 @@
 package cz.kotox.camera.custom.permission
 
+import android.view.WindowInsets.Side
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.rememberPermissionState
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @ExperimentalPermissionsApi
 @Composable
@@ -19,7 +23,8 @@ fun Permission(
     val permissionState = rememberPermissionState(permission)
 
     val permissionDataStore = PermissionPersistence(LocalContext.current)
-    val permissionNotRequestedYet = permissionDataStore.permissionNotRequestedYet(permission).collectAsState(initial = false)
+    val permissionNotRequestedYet =
+        permissionDataStore.permissionNotRequestedYet(permission).collectAsState(initial = false)
 
     val scope = rememberCoroutineScope()
 
@@ -29,9 +34,11 @@ fun Permission(
          * Ask for permission for very first time since shouldShowRequestPermissionRationale returns false also for
          * the situation if the user has never been asked for permission before.
          */
-        permissionState.launchPermissionRequest()
-        scope.launch {
-            permissionDataStore.savePermissionRequest(permission)
+        SideEffect {
+            permissionState.launchPermissionRequest()
+            scope.launch {
+                permissionDataStore.savePermissionRequest(permission)
+            }
         }
     }
 
@@ -43,15 +50,18 @@ fun Permission(
         is PermissionStatus.Denied -> {
             if (status.shouldShowRationale) {
                 //Explain need for permission
-                try {
-                    permissionState.launchPermissionRequest()
-                } catch (e: Exception) {
-                    /**
-                     * When user rejects already permitted permission, shouldShowRationale is for some reason true but launchPermissionRequest will fail
-                     * in MutablePermissionState to java.lang.IllegalStateException: ActivityResultLauncher cannot be null
-                     */
-                    permissionNotAvailableContent.invoke()
-                }
+
+                SideEffect(effect = {
+                    try {
+                        permissionState.launchPermissionRequest()
+                    } catch (e: Exception) {
+                        /**
+                         * When user rejects already permitted permission, shouldShowRationale is for some reason true but launchPermissionRequest will fail
+                         * in MutablePermissionState to java.lang.IllegalStateException: ActivityResultLauncher cannot be null
+                         */
+                        Timber.e(e)
+                    }
+                })
             } else {
                 //permission fully denied. Go to settings to enable
                 permissionNotAvailableContent.invoke()
