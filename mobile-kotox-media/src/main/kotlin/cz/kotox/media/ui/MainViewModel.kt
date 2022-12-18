@@ -1,5 +1,6 @@
 package cz.kotox.media.ui
 
+import android.net.Uri
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -15,11 +16,11 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
-    private val latestPhotoUri: MutableState<String?> = mutableStateOf(null)
+    private val latestPhotoUri: MutableState<Uri?> = mutableStateOf(null)
 
     val latestPhotoUriPresenter = derivedStateOf { latestPhotoUri.value }
 
-    fun updateLatestPhotoUri(photoUri: String) {
+    fun updateLatestPhotoUri(photoUri: Uri?) {
         latestPhotoUri.value = photoUri
     }
 

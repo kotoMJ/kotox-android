@@ -2,7 +2,10 @@ package cz.kotox.media.ui
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
+import android.net.Uri
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -17,13 +20,18 @@ import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import cz.kotox.android.media.R
 import cz.kotox.core.ui.theme.KotoxBasicTheme
 import cz.kotox.core.ui.theme.LocalColors
@@ -31,6 +39,11 @@ import cz.kotox.core.ui.theme.LocalColors
 sealed class MainScreenEvent {
     object StartCustomCamera : MainScreenEvent()
 }
+
+data class MainScreenInput(
+    val latestPhotoUri: Uri?
+)
+
 
 //Night mode @Preview does not work for scaffold correctly due to current solution in ThemeUtils
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -49,6 +62,7 @@ sealed class MainScreenEvent {
 )
 @Composable
 fun MainScreen(
+    @PreviewParameter(MainScreenPreviewProvider::class) input: MainScreenInput,
     onEventHandler: (MainScreenEvent) -> Unit = {}
 ) {
     KotoxBasicTheme {
@@ -79,10 +93,19 @@ fun MainScreen(
                             modifier = Modifier
                                 .fillMaxSize()
                         ) {
-                            Text(
-                                text = "TODO Media content",
-                                modifier = Modifier.align(Alignment.Center)
-                            )
+                            if (input.latestPhotoUri == null) {
+                                Text(
+                                    text = "TODO Media content",
+                                    modifier = Modifier.align(Alignment.Center)
+                                )
+                            } else {
+                                Image(
+                                    modifier = Modifier
+                                        .fillMaxSize(),
+                                    painter = rememberAsyncImagePainter(input.latestPhotoUri),
+                                    contentDescription = "Captured image"
+                                )
+                            }
                         }
                     }
 
@@ -121,4 +144,10 @@ fun MainScreen(
             }
         )
     }
+}
+
+class MainScreenPreviewProvider : PreviewParameterProvider<MainScreenInput> {
+    override val values: Sequence<MainScreenInput> = sequenceOf(
+        MainScreenInput(null)
+    )
 }
