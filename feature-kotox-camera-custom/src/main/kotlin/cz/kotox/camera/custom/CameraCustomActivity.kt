@@ -27,7 +27,7 @@ val EMPTY_IMAGE_URI: Uri = Uri.parse("file://dev/null")
     ExperimentalCoroutinesApi::class,
 )
 @AndroidEntryPoint
-class CameraActivity : ComponentActivity() {
+class CameraCustomActivity : ComponentActivity() {
 
     val viewModel: CameraActivityViewModel by viewModels()
 

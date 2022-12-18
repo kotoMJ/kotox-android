@@ -16,7 +16,7 @@
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
 
         <activity
-            android:name="cz.kotox.media.ui.MainActivity"
+            android:name="cz.kotox.task.list.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

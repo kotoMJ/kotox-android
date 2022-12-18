@@ -79,14 +79,17 @@ fun MainScreen(
                             modifier = Modifier
                                 .fillMaxSize()
                         ) {
-                            Text(text = "TODO Media content", modifier = Modifier.align(Alignment.Center))
+                            Text(
+                                text = "TODO Media content",
+                                modifier = Modifier.align(Alignment.Center)
+                            )
                         }
                     }
 
                     Row(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(8.dp)
+                            .padding(16.dp)
                             .weight(0.1f),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -99,7 +102,7 @@ fun MainScreen(
                                 backgroundColor = LocalColors.current.background
                             ),
                             onClick = {
-                                //context.startActivity(getAppSettingsIntent(context))
+                                onEventHandler.invoke(MainScreenEvent.StartCustomCamera)
                             }) {
 
                             Icon(
