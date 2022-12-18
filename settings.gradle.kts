@@ -13,6 +13,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(
     ":mobile-kotox-task",
+    ":mobile-kotox-media",
     ":core-kotox",
     ":core-kotox-network",
     ":core-kotox-ui",
