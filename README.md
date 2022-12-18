@@ -6,7 +6,7 @@ Repository contains multiple applications representing specific feature/core mod
 
 ### Kotox Media
 App presenting different media related modules:
-* Advanced custom camera (including zoom feature)
+* Advanced custom camera (including zoom feature via pinch to zoom, toggle & slider)
 * tbd.
 
 ### Kotox Task
