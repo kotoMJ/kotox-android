@@ -8,6 +8,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import java.io.File
 import java.util.concurrent.Executor
 import kotlin.coroutines.resume
@@ -34,7 +35,7 @@ suspend fun ImageCapture.takePicture(executor: Executor): File {
             //Creates file in cache in path data/data/com.aisense.otter.../cache/image12345.jpg
             File.createTempFile("image", "jpg")
         }.getOrElse { ex ->
-            Log.e("TakePicture", "Failed to create temporary file", ex)
+            Timber.e("TakePicture", "Failed to create temporary file", ex)
             File("/dev/null")
         }
     }
@@ -49,7 +50,7 @@ suspend fun ImageCapture.takePicture(executor: Executor): File {
                 }
 
                 override fun onError(ex: ImageCaptureException) {
-                    Log.e("TakePicture", "Image capture failed", ex)
+                    Timber.e("TakePicture", "Image capture failed", ex)
                     continuation.resumeWithException(ex)
                 }
             }
