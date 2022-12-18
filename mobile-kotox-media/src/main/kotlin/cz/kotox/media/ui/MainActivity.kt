@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity(),CameraCustomActivityLauncher {
+class MainActivity : ComponentActivity(), CameraCustomActivityLauncher {
 
     private val viewModel: MainViewModel by viewModels()
 
@@ -23,6 +23,7 @@ class MainActivity : ComponentActivity(),CameraCustomActivityLauncher {
 
     override fun onPhoto(photoUri: Uri) {
         Timber.d(">>>_ captured uri: $photoUri")
+        viewModel.updateLatestPhotoUri(photoUri = photoUri)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +33,7 @@ class MainActivity : ComponentActivity(),CameraCustomActivityLauncher {
         setContent {
             KotoxBasicTheme {
                 MainScreen(
+                    input = MainScreenInput(viewModel.latestPhotoUriPresenter.value),
                     onEventHandler = { event ->
                         when (event) {
                             MainScreenEvent.StartCustomCamera -> {
