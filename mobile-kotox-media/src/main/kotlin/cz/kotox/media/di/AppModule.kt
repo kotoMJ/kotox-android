@@ -1,7 +1,7 @@
-package cz.kotox.task.list.di
+package cz.kotox.media.di
 
 import cz.kotox.android.core.config.AppProperties
-import cz.kotox.task.list.config.KotoxTaskAppProperties
+import cz.kotox.media.config.KotoxMediaAppProperties
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,6 +12,6 @@ import dagger.hilt.components.SingletonComponent
 object AppModule {
 
     @Provides
-    fun provideAppProperties(): AppProperties = KotoxTaskAppProperties()
+    fun provideAppProperties(): AppProperties = KotoxMediaAppProperties()
 
 }

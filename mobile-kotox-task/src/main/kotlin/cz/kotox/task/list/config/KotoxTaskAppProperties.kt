@@ -21,7 +21,7 @@ private val AppFlavor = Flavor.values().first { it.flavorName == BuildConfig.FLA
 
 private const val URL = "https://api.npoint.io/"//"https://api.npoint.io/86329e68087a3d2bca54"
 
-data class AndroidTemplateAppProperties(
+data class KotoxTaskAppProperties(
     override val baseUrl: String = when (AppFlavor) {
         Flavor.Develop -> URL//"https://api.jsonbin.io/v3/"
         Flavor.Staging -> URL//"https://api.jsonbin.io/v3/"

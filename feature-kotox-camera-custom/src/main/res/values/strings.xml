@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="camera_capture_camera_not_detected">Camera not detected</string>
+    <string name="camera_capture_permission_not_available">Can\'t use camera due to not granted permission. Grant camera permission in settings.</string>
+    <string name="camera_capture_permission_settings_title">Permission settings</string>
+</resources>
