@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -94,10 +95,25 @@ fun MainScreen(
                                 .fillMaxSize()
                         ) {
                             if (input.latestPhotoUri == null) {
-                                Text(
-                                    text = "TODO Media content",
-                                    modifier = Modifier.align(Alignment.Center)
-                                )
+                                Box(
+                                    modifier = Modifier
+                                        .wrapContentSize()
+                                        .align(Alignment.Center)
+                                ) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ) {
+                                        Icon(
+                                            painter = painterResource(id = R.drawable.ic_image),
+                                            contentDescription = null,
+                                            tint = LocalColors.current.onControlsSecondary
+                                        )
+                                        Text(
+                                            text = stringResource(id = R.string.main_screen_image_placeholder),
+                                            color = LocalColors.current.onControlsSecondary
+                                        )
+                                    }
+                                }
                             } else {
                                 Image(
                                     modifier = Modifier

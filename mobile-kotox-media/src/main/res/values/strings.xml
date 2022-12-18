@@ -4,6 +4,7 @@
     <string name="generic_click_to_refresh">Click to refresh</string>
 
     <string name="main_screen_title">@string/app_name</string>
+    <string name="main_screen_image_placeholder">Nothing captured</string>
     <string name="main_screen_action_camera_custom">Custom</string>
 
 </resources>
