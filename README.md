@@ -2,7 +2,7 @@
 MJ's personal Android knowledge base and playground mono-repo
 
 ## apps  
-Repository contains multiple applications representing specific feature/core modules functionality.
+Repository contains multiple applications presenting specific feature/core modules functionality.
 
 ### Kotox Media (mobile-kotox-media)
 App presenting different media related modules:
