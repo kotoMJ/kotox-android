@@ -10,5 +10,5 @@ App presenting different media related modules:
 * tbd.
 
 ### Kotox Task (mobile-kotox-task)
-Simple master detail demo app presenting different kind of test cases.
+Simple master-detail demo app presenting different kind of test cases.
 
