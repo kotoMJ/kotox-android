@@ -17,7 +17,7 @@ android {
         versionCode = Versioning.VERSION_CODE
         versionName = Versioning.VERSION_NAME
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "cz.kotox.task.list.TaskTestRunner"
     }
     buildTypes {
         val release by getting {
@@ -103,4 +103,5 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.hilt.android.testing)
+    kaptAndroidTest(libs.hilt.compiler)
 }
