@@ -111,7 +111,11 @@ fun CameraCaptureLandscape(
                     .padding(16.dp),
                 onClick = {
                     coroutineScope.launch {
-                        onEventHandler.invoke(CameraScreenEvent.CaptureImageFile(imageCaptureUseCase.takePicture(context.executor)))
+                        onEventHandler.invoke(
+                            CameraScreenEvent.CaptureImageFile(
+                                imageCaptureUseCase.takePicture(context.executor)
+                            )
+                        )
                     }
                 }
             )
