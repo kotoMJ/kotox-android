@@ -45,7 +45,7 @@ data class CameraScreenInput(
 sealed class CameraScreenEvent {
     object SwitchCameraSelector : CameraScreenEvent()
     data class ExitCamera(val uri: Uri) : CameraScreenEvent()
-    data class CaptureImageFile(val file: File) : CameraScreenEvent()
+    data class CaptureImageFile(val file: File?) : CameraScreenEvent()
 }
 
 @OptIn(ExperimentalPermissionsApi::class)
@@ -96,7 +96,8 @@ fun CameraScreenContent(
                 }
             )
         } else {
-            val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
+            val isLandscape =
+                LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
             Box(modifier = modifier) {
                 CameraCapture(
                     input = CameraCaptureInput(
@@ -107,7 +108,7 @@ fun CameraScreenContent(
                     modifier = modifier,
                     onEventHandler = { event ->
                         if (event is CameraScreenEvent.CaptureImageFile) {
-                            imageUri = event.file.toUri()
+                            imageUri = event.file?.toUri() ?: EMPTY_IMAGE_URI
                         }
                         onEventHandler.invoke(event)
                     },
