@@ -10,6 +10,10 @@ App presenting different media related modules:
 * tbd.
 
 ### Kotox Task (mobile-kotox-task)
-Simple master-detail demo app presenting different kind of test cases.
-* tests still WIP
+Simple master-detail demo app presenting different kind of test cases.  
+1. Unit testing
+  * Hilt ViewModelTesting 
+  * tbd.
+2. Integration Testing
+ * tbd.
 
