@@ -12,6 +12,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import javax.inject.Inject
 import androidx.activity.viewModels
+import cz.kotox.task.list.ui.MainViewModel
 
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
@@ -24,7 +25,7 @@ class MainViewModelTest {
 //    @Inject
 //    lateinit var mainViewModel: MainViewModel2
 
-    var mainViewModel: MainViewModel2 = MainViewModel2()
+    private lateinit var mainViewModel: MainViewModel
 
 
     @Before
