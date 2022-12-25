@@ -16,12 +16,13 @@ import cz.kotox.camera.custom.capture.CameraScreenEvent
 import cz.kotox.camera.custom.capture.CameraScreenInput
 import com.google.common.util.concurrent.ListenableFuture
 import cz.kotox.android.core.extensions.exhaustive
+import cz.kotox.camera.custom.capture.EMPTY_IMAGE_FILE_PATH_NAME
 import cz.kotox.core.ui.theme.KotoxBasicTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import timber.log.Timber
 
-val EMPTY_IMAGE_URI: Uri = Uri.parse("file://dev/null")
+val EMPTY_IMAGE_URI: Uri = Uri.parse("file:/$EMPTY_IMAGE_FILE_PATH_NAME")
 
 @OptIn(
     ExperimentalCoroutinesApi::class,
