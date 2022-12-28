@@ -42,7 +42,6 @@ internal fun Project.configureKotlinAndroid(
                 "-opt-in=kotlinx.serialization.ExperimentalSerializationApi"
             )
 
-            //jvmTarget = JavaVersion.VERSION_1_8.toString()
             jvmTarget = JavaVersion.VERSION_11.toString()
         }
     }
