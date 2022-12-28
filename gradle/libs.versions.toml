@@ -16,7 +16,6 @@ accompanist = "0.25.1"
 coil = "2.1.0"
 constraint = "1.0.1"
 detekt = "1.19.0"
-desugarJdkLibs = "2.0.0"
 firebase = "18.2.11"
 firebaseGradlePlugin = "2.9.1"
 gradleDependencyUpdate = "0.42.0"
@@ -45,7 +44,7 @@ ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 [libraries]
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
 android-material = { module = "com.google.android.material:material", version.ref = "androidMaterial" }
-android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version = "desugarJdkLibs" }
+android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version = "2.0.0" }
 
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActitivty" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidxAppcompat" }

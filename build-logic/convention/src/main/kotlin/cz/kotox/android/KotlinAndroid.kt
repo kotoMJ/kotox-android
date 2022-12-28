@@ -19,13 +19,13 @@ internal fun Project.configureKotlinAndroid(
         compileSdk = 33
 
         defaultConfig {
-            minSdk = 26
+            minSdk = 23
         }
 
         compileOptions {
             sourceCompatibility = JavaVersion.VERSION_11
             targetCompatibility = JavaVersion.VERSION_11
-            //isCoreLibraryDesugaringEnabled = true
+            isCoreLibraryDesugaringEnabled = true
         }
 
         kotlinOptions {
@@ -47,9 +47,9 @@ internal fun Project.configureKotlinAndroid(
     }
 
     val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
-//    dependencies {
-//        add("coreLibraryDesugaring", libs.findLibrary("android.desugarJdkLibs").get())
-//    }
+    dependencies {
+        add("coreLibraryDesugaring", libs.findLibrary("android.desugarJdkLibs").get())
+    }
 }
 
 fun CommonExtension<*, *, *, *>.kotlinOptions(block: KotlinJvmOptions.() -> Unit) {
