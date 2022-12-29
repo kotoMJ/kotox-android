@@ -15,11 +15,14 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension<*, *, *, *>,
 ) {
+
+    val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
     commonExtension.apply {
-        compileSdk = 33
+        compileSdk = libs.findVersion("sdk-compile").get().toString().toInt()
 
         defaultConfig {
-            minSdk = 23
+            minSdk = libs.findVersion("sdk-min").get().toString().toInt()
         }
 
         compileOptions {
@@ -46,7 +49,7 @@ internal fun Project.configureKotlinAndroid(
         }
     }
 
-    val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
     dependencies {
         add("coreLibraryDesugaring", libs.findLibrary("android.desugarJdkLibs").get())
     }
