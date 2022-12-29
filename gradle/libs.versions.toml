@@ -18,12 +18,16 @@ android-gradle = "7.4.0-rc03"
 # https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
 
 # KSP - https://github.com/google/ksp/releases
-# HILT - https://github.com/google/dagger/releases
 # ==================================================================================================
 androidx-compose-compiler = "1.3.2"
 kotlin = "1.7.20"
 ksp = "1.7.20-1.0.8"
+
+# ==================================================================================================
+# HILT - https://github.com/google/dagger/releases
+# ------------------------------------------------
 androidx-hilt = "2.44.2"
+androidx-hilt-navigation-compose = "1.0.0"
 
 # ==================================================================================================
 # AndroidX libs
@@ -126,7 +130,7 @@ androidx-datastore-preferences = { module = "androidx.datastore:datastore-prefer
 
 androidx-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "androidx-hilt" }
 androidx-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "androidx-hilt" }
-androidx-hilt-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidx-hilt" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidx-hilt-navigation-compose" }
 androidx-hilt-gradle = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "androidx-hilt" }
 androidx-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "androidx-hilt" }
 

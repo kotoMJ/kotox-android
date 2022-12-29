@@ -14,7 +14,7 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.hilt.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(libs.accompanist.systemuicontroller)
 

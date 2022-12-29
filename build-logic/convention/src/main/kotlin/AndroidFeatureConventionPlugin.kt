@@ -51,7 +51,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
             add("implementation", libs.findLibrary("timber").get())
 
-            add("implementation", libs.findLibrary("androidx.hilt.compose").get())
+            add("implementation", libs.findLibrary("androidx.hilt.navigation.compose").get())
             add("implementation", libs.findLibrary("androidx.hilt.android").get())
             add("kapt", libs.findLibrary("androidx.hilt.compiler").get())
         }
