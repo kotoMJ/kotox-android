@@ -6,7 +6,7 @@ buildscript {
     dependencies {
         classpath(libs.android.gradle)
         classpath(libs.kotlin.gradle)
-        classpath(libs.hilt.gradle)
+        classpath(libs.androidx.hilt.gradle)
     }
 }
 

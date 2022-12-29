@@ -71,7 +71,7 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.ui.tooling)
-    //implementation(libs.hilt.compose)
+    implementation(libs.androidx.hilt.compose)
 
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicators)
@@ -79,8 +79,8 @@ dependencies {
 
     implementation(libs.androidx.constraint.compose)
 
-    implementation(libs.hilt)
-    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.android)
+    kapt(libs.androidx.hilt.compiler)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.android)
@@ -111,7 +111,7 @@ dependencies {
     androidTestImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    androidTestImplementation(libs.hilt.android.testing)
+    androidTestImplementation(libs.androidx.hilt.android.testing)
     androidTestImplementation(libs.mockk.instrumented)
-    kaptAndroidTest(libs.hilt.compiler)
+    kaptAndroidTest(libs.androidx.hilt.compiler)
 }

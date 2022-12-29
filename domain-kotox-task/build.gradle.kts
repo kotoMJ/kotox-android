@@ -17,8 +17,8 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
 
-    implementation(libs.hilt)
-    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.android)
+    kapt(libs.androidx.hilt.compiler)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)

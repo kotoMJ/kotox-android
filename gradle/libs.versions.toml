@@ -16,6 +16,7 @@ android-gradle = "7.4.0-rc03"
 # Must be upgraded together. See the table linked below for compatible versions. Prefer small
 # increments when upgrading. Prefer to upgrade before other compose libs (speculation: more stable).
 # https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
+
 # KSP - https://github.com/google/ksp/releases
 # HILT - https://github.com/google/dagger/releases
 # ==================================================================================================
@@ -123,11 +124,11 @@ androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "androidx-datastore" }
 
-hilt = { module = "com.google.dagger:hilt-android", version.ref = "androidx-hilt" }
-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "androidx-hilt" }
-#hilt-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidx-hilt" }
-hilt-gradle = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "androidx-hilt" }
-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "androidx-hilt" }
+androidx-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "androidx-hilt" }
+androidx-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "androidx-hilt" }
+androidx-hilt-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidx-hilt" }
+androidx-hilt-gradle = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "androidx-hilt" }
+androidx-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "androidx-hilt" }
 
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
