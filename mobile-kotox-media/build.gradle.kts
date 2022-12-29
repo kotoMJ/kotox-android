@@ -12,10 +12,12 @@ plugins {
 android {
 
     defaultConfig {
-        applicationId = Config.TEST_APPLICATION_ID
+        applicationId = "cz.kotox.android.media"
 
-        versionCode = Versioning.VERSION_CODE
-        versionName = Versioning.VERSION_NAME
+        val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
+
+        versionCode = version.versionCode
+        versionName = version.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
