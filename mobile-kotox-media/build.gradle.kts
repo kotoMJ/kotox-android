@@ -62,12 +62,12 @@ dependencies {
 
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.preview)
+    implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.hilt.compose)
+    //implementation(libs.hilt.compose)
 
     implementation(libs.accompanist.pager)
-    implementation(libs.accompanist.pagerIndicators)
+    implementation(libs.accompanist.pager.indicators)
     implementation(libs.accompanist.swiperefresh)
 
     implementation(libs.androidx.constraint.compose)

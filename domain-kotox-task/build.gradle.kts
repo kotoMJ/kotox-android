@@ -13,9 +13,9 @@ dependencies {
     implementation(projects.coreKotoxNetwork)
     implementation(projects.coreKotoxCrypto)
 
-    implementation(libs.room.ktx)
-    implementation(libs.room.runtime)
-    ksp(libs.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
 
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)

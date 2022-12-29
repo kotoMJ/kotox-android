@@ -10,8 +10,8 @@ java {
 }
 
 dependencies {
-    implementation(libs.android.gradlePlugin)
-    implementation(libs.kotlin.gradlePlugin)
+    implementation(libs.android.gradle)
+    implementation(libs.kotlin.gradle)
 }
 
 gradlePlugin {

@@ -19,7 +19,7 @@ Simple master-detail demo app presenting different kind of test cases.
 
 1. Unit testing
 
-* [Hilt ViewModelTesting](https://github.com/kotoMJ/kotox-android/blob/main/mobile-kotox-task/src/test/kotlin/cz/kotox/task/list/ui/MainViewModelTest.kt)
+* [Hilt ViewModelTesting](https://github.com/kotoMJ/kotox-android/blob/main/mobile-kotox-task/src/test/kotlin/cz/kotox/task/list/ui/MainViewModelUnitTest.kt)
 * tbd.
 
 2. Integration Testing

@@ -37,9 +37,9 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
             add("implementation", libs.findLibrary("androidx.compose.material").get())
             add("implementation", libs.findLibrary("androidx.compose.ui").get())
-            add("implementation", libs.findLibrary("androidx.compose.ui.preview").get())
+            add("implementation", libs.findLibrary("androidx.compose.ui.tooling.preview").get())
             add("implementation", libs.findLibrary("androidx.compose.ui.tooling").get())
-            add("implementation", libs.findLibrary("androidx.hilt.compose").get())
+            //add("implementation", libs.findLibrary("hilt.compose").get())
 
             add("implementation", libs.findLibrary("androidx.constraint.compose").get())
 

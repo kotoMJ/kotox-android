@@ -17,7 +17,7 @@ import org.junit.Before
 import org.junit.Test
 import java.time.LocalDateTime
 
-class MainViewModelTest {
+class MainViewModelUnitTest {
 
 
     private lateinit var mainViewModel: MainViewModel
