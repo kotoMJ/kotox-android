@@ -1,6 +1,7 @@
 import cz.kotox.android.configureFlavors
 import cz.kotox.android.configureKotlinAndroid
 import com.android.build.gradle.LibraryExtension
+import cz.kotox.android.extensions.catalog
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -25,11 +26,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
     }
 
     private fun Project.configureLibrary() {
-        val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
         extensions.configure<LibraryExtension> {
             configureKotlinAndroid(this)
-            defaultConfig.targetSdk = libs.findVersion("sdk-target").get().toString().toInt()
+            defaultConfig.targetSdk = catalog.findVersion("sdk-target").get().toString().toInt()
             configureFlavors(this)
         }
     }

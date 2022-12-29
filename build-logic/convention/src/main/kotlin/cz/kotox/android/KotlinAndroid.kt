@@ -1,6 +1,7 @@
 package cz.kotox.android
 
 import com.android.build.api.dsl.CommonExtension
+import cz.kotox.android.extensions.catalog
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -16,7 +17,7 @@ internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension<*, *, *, *>,
 ) {
 
-    val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+    val libs = catalog
 
     commonExtension.apply {
         compileSdk = libs.findVersion("sdk-compile").get().toString().toInt()

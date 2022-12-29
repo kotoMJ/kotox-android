@@ -1,3 +1,4 @@
+import cz.kotox.android.extensions.catalog
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -24,7 +25,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
     }
 
     private fun Project.configureBaseDependencies() {
-        val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+        val libs = catalog
 
         dependencies {
 

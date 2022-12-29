@@ -1,5 +1,6 @@
 import cz.kotox.android.configureKotlinAndroid
 import com.android.build.gradle.TestExtension
+import cz.kotox.android.extensions.catalog
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -24,11 +25,10 @@ class AndroidTestConventionPlugin : Plugin<Project> {
     }
 
     private fun Project.configureTest() {
-        val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
         extensions.configure<TestExtension> {
             configureKotlinAndroid(this)
-            defaultConfig.targetSdk = libs.findVersion("sdk-target").get().toString().toInt()
+            defaultConfig.targetSdk = catalog.findVersion("sdk-target").get().toString().toInt()
         }
     }
 

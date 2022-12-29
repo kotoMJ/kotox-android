@@ -1,6 +1,7 @@
 package cz.kotox.android
 
 import com.android.build.api.dsl.CommonExtension
+import cz.kotox.android.extensions.catalog
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.getByType
@@ -11,7 +12,6 @@ import org.gradle.kotlin.dsl.getByType
 internal fun Project.configureAndroidCompose(
     commonExtension: CommonExtension<*, *, *, *>,
 ) {
-    val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
     commonExtension.apply {
         buildFeatures {
@@ -19,7 +19,7 @@ internal fun Project.configureAndroidCompose(
         }
 
         composeOptions {
-            kotlinCompilerExtensionVersion = libs.findVersion("androidx-compose-compiler").get().toString()
+            kotlinCompilerExtensionVersion = catalog.findVersion("androidx-compose-compiler").get().toString()
             //libs.versions.androidx.compose.compiler.get()
         }
 

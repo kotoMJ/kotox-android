@@ -1,5 +1,6 @@
 import cz.kotox.android.configureKotlinAndroid
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
+import cz.kotox.android.extensions.catalog
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
@@ -24,11 +25,10 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
     }
 
     private fun Project.configureBaseAppModule() {
-        val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
         extensions.configure<BaseAppModuleExtension> {
             configureKotlinAndroid(this)
-            defaultConfig.targetSdk = libs.findVersion("sdk-target").get().toString().toInt()
+            defaultConfig.targetSdk = catalog.findVersion("sdk-target").get().toString().toInt()
         }
     }
 }
