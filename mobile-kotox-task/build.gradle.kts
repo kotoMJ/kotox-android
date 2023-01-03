@@ -58,6 +58,7 @@ android {
 dependencies {
 
     implementation(projects.coreKotox)
+    implementation(projects.coreKotoxJvm)
     implementation(projects.coreKotoxUi)
     implementation(projects.domainKotoxTask)
     implementation(projects.featureKotoxTaskDetail)

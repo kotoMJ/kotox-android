@@ -2,6 +2,7 @@ plugins {
     id("cz.kotox.android.library")
 }
 
+
 dependencies {
     implementation(projects.coreKotoxJvm)
     implementation(libs.androidx.appcompat)
@@ -11,5 +12,6 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.core)
 
-    implementation(libs.timber)
+    testImplementation(libs.bundles.test.unit)
+    androidTestImplementation(libs.bundles.test.android)
 }

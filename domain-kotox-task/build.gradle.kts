@@ -9,7 +9,9 @@ plugins {
 
 
 dependencies {
+
     implementation(projects.coreKotox)
+    implementation(projects.coreKotoxJvm)
     implementation(projects.coreKotoxNetwork)
     implementation(projects.coreKotoxCrypto)
 
@@ -33,7 +35,12 @@ dependencies {
 
     implementation(libs.timber)
 
-    testImplementation(libs.junit)
 
-    androidTestImplementation(libs.androidx.test.ext.junit)
+    testImplementation(projects.coreKotoxTest)
+    testImplementation(libs.bundles.test.unit)
+    androidTestImplementation(libs.bundles.test.android)
+
+//    testImplementation(libs.junit)
+//
+//    androidTestImplementation(libs.androidx.test.ext.junit)
 }

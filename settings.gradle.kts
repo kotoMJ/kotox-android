@@ -15,6 +15,8 @@ include(
     ":mobile-kotox-task",
     ":mobile-kotox-media",
     ":core-kotox",
+    ":core-kotox-jvm",
+    ":core-kotox-test",
     ":core-kotox-network",
     ":core-kotox-ui",
     ":core-kotox-crypto",

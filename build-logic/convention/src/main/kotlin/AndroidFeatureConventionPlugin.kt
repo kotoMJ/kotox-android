@@ -29,7 +29,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
         dependencies {
 
-            add("implementation", project(":core-kotox"))
+            add("implementation", project(":core-kotox-jvm"))
             add("implementation", project(":core-kotox-network"))
             add("implementation", project(":core-kotox-ui"))
 
