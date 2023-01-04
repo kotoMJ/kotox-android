@@ -50,8 +50,12 @@ android {
 
     packagingOptions {
         //Following excludes are hot-fix in order to compile AndroidTest
-        exclude ("META-INF/LICENSE.md")
-        exclude ("META-INF/LICENSE-notice.md")
+        resources {
+            excludes += listOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md"
+            )
+        }
     }
 }
 
