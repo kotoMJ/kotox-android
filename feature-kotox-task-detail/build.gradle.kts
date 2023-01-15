@@ -6,7 +6,7 @@ plugins {
 
 
 dependencies {
-    implementation(projects.domainKotoxTask)
+    implementation(projects.dataDomainKotoxTask)
 
     testImplementation(libs.junit)
 

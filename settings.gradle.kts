@@ -20,7 +20,7 @@ include(
     ":core-kotox-network",
     ":core-kotox-ui",
     ":core-kotox-crypto",
-    ":domain-kotox-task",
+    ":data-domain-kotox-task",
     ":feature-kotox-task-detail",
     ":feature-kotox-camera-custom"
 
