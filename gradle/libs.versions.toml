@@ -270,7 +270,8 @@ test-android = [
     "androidx-compose-ui-test",
     "androidx-compose-ui-test-junit4",
     "androidx-compose-ui-test-manifest",
-    "mockk-instrumented"
+    "mockk-instrumented",
+    "kotlinx-coroutines-test"
 ]
 
 test-unit = [
@@ -280,7 +281,8 @@ test-unit = [
     "androidx-test-ext-truth",
     "androidx-test-rules",
     "mockk-unit",
-    "okhttp-mock-web-server"
+    "okhttp-mock-web-server",
+    "kotlinx-coroutines-test"
 ]
 
 google-accompanist = [

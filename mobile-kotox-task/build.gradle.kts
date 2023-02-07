@@ -11,6 +11,10 @@ plugins {
 
 android {
 
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
+
     defaultConfig {
         applicationId = "cz.kotox.android.task"
 

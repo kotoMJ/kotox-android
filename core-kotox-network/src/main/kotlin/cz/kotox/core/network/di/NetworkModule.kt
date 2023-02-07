@@ -19,18 +19,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+    val provider = NetworkModuleProvider()
+
     @Provides
     @Singleton
     internal fun provideLoggingInterceptor(
         applicationProperties: AppProperties
-    ): HttpLoggingInterceptor = HttpLoggingInterceptor { message ->
-        Timber.tag("OkHttp").d(message)
-    }.apply {
-        level = when (applicationProperties.isDevEnvironment) {
-            false -> HttpLoggingInterceptor.Level.BASIC
-            true -> HttpLoggingInterceptor.Level.BODY
-        }
-    }
+    ): HttpLoggingInterceptor = provider.provideLoggingInterceptor(applicationProperties)
 
     @Provides
     @Singleton
@@ -38,22 +33,13 @@ object NetworkModule {
     internal fun provideCommonOkHttpClient(
         applicationProperties: AppProperties,
         httpLoggingInterceptor: HttpLoggingInterceptor,
-    ): OkHttpClient = OkHttpClient.Builder().apply {
-        connectTimeout(applicationProperties.networkRequestTimeoutSec, TimeUnit.SECONDS)
-        readTimeout(applicationProperties.networkRequestTimeoutSec, TimeUnit.SECONDS)
-        writeTimeout(applicationProperties.networkRequestTimeoutSec, TimeUnit.SECONDS)
-
-        retryOnConnectionFailure(false)
-
-        addInterceptor(httpLoggingInterceptor)
-    }.build()
+    ): OkHttpClient =
+        provider.provideCommonOkHttpClient(applicationProperties, httpLoggingInterceptor)
 
 
     @Provides
     @Singleton
-    internal fun provideMoshi(): Moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory())
-        .build()
+    internal fun provideMoshi(): Moshi = provider.provideMoshi()
 
     @Provides
     @Singleton
@@ -62,10 +48,6 @@ object NetworkModule {
         applicationProperties: AppProperties,
         @CommonOkHttpClient okHttpClient: OkHttpClient,
         moshi: Moshi
-    ): Retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create(moshi)/*.asLenient()*/)
-        .baseUrl(applicationProperties.baseUrl)
-        .client(okHttpClient)
-        .build()
+    ): Retrofit = provider.provideCommonRetrofit(applicationProperties, okHttpClient, moshi)
 
 }
