@@ -98,6 +98,7 @@ junit = "4.13.2"
 kotlinx-coroutines = "1.4.1"
 ktlint = "10.3.0"
 leakcanary = "2.9.1"
+libphonenumber = "8.13.5"
 moshi = "1.13.0"
 okhttp = "4.9.3"
 retrofit = "2.9.0"
@@ -196,6 +197,8 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
+
+libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "libphonenumber"}
 
 moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
