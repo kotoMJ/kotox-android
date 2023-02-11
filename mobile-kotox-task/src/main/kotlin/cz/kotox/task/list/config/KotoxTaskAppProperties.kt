@@ -3,6 +3,7 @@ package cz.kotox.task.list.config
 import android.content.res.Configuration
 import cz.kotox.android.core.config.AppProperties
 import cz.kotox.android.task.BuildConfig
+import cz.kotox.core.network.config.AppNetworkingProperties
 import cz.kotox.task.list.TaskApplication
 
 private enum class BuildType(val buildTypeName: String) {
@@ -30,6 +31,7 @@ data class KotoxTaskAppProperties(
     override val isDevEnvironment: Boolean = AppBuildType == BuildType.Debug,
     override val networkRequestTimeoutSec: Long = 30,
     override val isDarkMode: Boolean =
-        TaskApplication.application.resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        TaskApplication.application.resources.configuration.uiMode
+            .and(Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
 
-) : AppProperties
+) : AppProperties, AppNetworkingProperties

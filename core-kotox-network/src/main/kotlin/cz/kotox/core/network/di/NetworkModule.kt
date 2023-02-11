@@ -3,6 +3,7 @@ package cz.kotox.core.network.di
 import cz.kotox.android.core.config.AppProperties
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import cz.kotox.core.network.config.AppNetworkingProperties
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,7 +37,7 @@ object NetworkModule {
     @Singleton
     @CommonOkHttpClient
     internal fun provideCommonOkHttpClient(
-        applicationProperties: AppProperties,
+        applicationProperties: AppNetworkingProperties,
         httpLoggingInterceptor: HttpLoggingInterceptor,
     ): OkHttpClient = OkHttpClient.Builder().apply {
         connectTimeout(applicationProperties.networkRequestTimeoutSec, TimeUnit.SECONDS)
@@ -59,7 +60,7 @@ object NetworkModule {
     @Singleton
     @CommonRetrofit
     internal fun provideCommonRetrofit(
-        applicationProperties: AppProperties,
+        applicationProperties: AppNetworkingProperties,
         @CommonOkHttpClient okHttpClient: OkHttpClient,
         moshi: Moshi
     ): Retrofit = Retrofit.Builder()

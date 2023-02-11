@@ -12,14 +12,14 @@ plugins {
 android {
 
     defaultConfig {
-        applicationId = "cz.kotox.android.task"
+        applicationId = "cz.kotox.android.playground"
 
         val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
 
         versionCode = version.versionCode
         versionName = version.versionName
 
-        testInstrumentationRunner = "cz.kotox.task.list.TaskTestRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         val release by getting {
@@ -47,21 +47,15 @@ android {
             }
         }
     }
-
-    packagingOptions {
-        //Following excludes are hot-fix in order to compile AndroidTest
-        exclude ("META-INF/LICENSE.md")
-        exclude ("META-INF/LICENSE-notice.md")
-    }
 }
 
 dependencies {
 
     implementation(projects.coreKotox)
     implementation(projects.coreKotoxUi)
-    implementation(projects.coreKotoxNetwork)
-    implementation(projects.domainKotoxTask)
-    implementation(projects.featureKotoxTaskDetail)
+
+    implementation(projects.kotoxI18nDataDomain)
+    implementation(projects.kotoxI18nUi)
 
 
     implementation(libs.android.material)
@@ -100,8 +94,6 @@ dependencies {
     debugImplementation(libs.leakcanary)
 
     testImplementation(libs.junit)
-    testImplementation(libs.mockk.unit)
-    testImplementation(libs.kotlinx.coroutines.test)
 
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
@@ -115,6 +107,4 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.hilt.android.testing)
-    androidTestImplementation(libs.mockk.instrumented)
-    kaptAndroidTest(libs.androidx.hilt.compiler)
 }

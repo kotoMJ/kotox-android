@@ -89,7 +89,7 @@ google-firebase-config = "21.0.1"
 google-firebase-core = "20.0.2"
 google-firebase-crashlytics = "18.2.6"
 google-firebase-crashlytics-gradle = "2.9.2"
-
+google-libphonenumber = "8.13.5"
 
 coil = "2.1.0"
 detekt = "1.19.0"
@@ -187,6 +187,7 @@ google-firebase-config = { module = "com.google.firebase:firebase-config", versi
 google-firebase-core = { module = "com.google.firebase:firebase-core", version.ref = "google-firebase-core" }
 google-firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx", version.ref = "google-firebase-crashlytics" }
 google-firebase-crashlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "google-firebase-crashlytics-gradle" }
+google-libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "google-libphonenumber"}
 
 junit = { module = "junit:junit", version.ref = "junit" }
 kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }

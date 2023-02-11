@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name="cz.kotox.task.detail.ui.TaskDetailActivity"
+            android:name="cz.kotox.i18n.ui.component.TaskDetailActivity"
             android:exported="true">
         </activity>
     </application>
