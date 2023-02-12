@@ -3,8 +3,8 @@ package cz.kotox.task.list
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import cz.kotox.core.ui.theme.KotoxBasicTheme
-import cz.kotox.domain.task.api.factory.toTask
-import cz.kotox.domain.task.impl.remote.dto.TaskDTO
+import cz.kotox.task.domain.api.factory.toTask
+import cz.kotox.task.domain.impl.remote.dto.TaskDTO
 import cz.kotox.task.detail.ui.component.TaskSummaryItem
 import cz.kotox.task.list.ui.MainFeedState
 import cz.kotox.task.list.ui.MainScreen

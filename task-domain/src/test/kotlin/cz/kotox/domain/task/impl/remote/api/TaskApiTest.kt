@@ -4,9 +4,10 @@ import android.util.Log
 import cz.kotox.android.core.config.AppProperties
 import cz.kotox.core.network.di.NetworkModuleProvider
 import cz.kotox.core.test.MockResponseFileReader
-import cz.kotox.domain.task.impl.di.DomainTaskModule
-import cz.kotox.domain.task.impl.di.DomainTaskModuleProvider
-import cz.kotox.domain.task.impl.remote.dto.TaskDTO
+import cz.kotox.task.domain.impl.di.DomainTaskModule
+import cz.kotox.task.domain.impl.di.DomainTaskModuleProvider
+import cz.kotox.task.domain.impl.remote.dto.TaskDTO
+import cz.kotox.task.domain.impl.remote.api.TaskApi
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockResponse

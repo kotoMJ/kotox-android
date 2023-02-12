@@ -3,9 +3,9 @@ package cz.kotox.task.list.ui
 import androidx.lifecycle.ViewModel
 import cz.kotox.android.core.error.BasicError
 import cz.kotox.android.task.R
-import cz.kotox.domain.task.api.usecase.GetAllTasksUseCase
-import cz.kotox.domain.task.api.usecase.GetOneTaskImageUseCase
-import cz.kotox.domain.task.api.usecase.RefreshTasksUseCase
+import cz.kotox.task.domain.api.usecase.GetAllTasksUseCase
+import cz.kotox.task.domain.api.usecase.GetOneTaskImageUseCase
+import cz.kotox.task.domain.api.usecase.RefreshTasksUseCase
 
 import cz.kotox.task.detail.ui.component.TaskSummaryItem
 import dagger.hilt.android.lifecycle.HiltViewModel

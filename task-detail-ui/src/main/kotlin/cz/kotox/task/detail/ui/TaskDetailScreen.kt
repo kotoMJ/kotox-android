@@ -34,8 +34,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.core.ui.theme.LocalTypography
-import cz.kotox.domain.task.api.factory.toTask
-import cz.kotox.domain.task.impl.remote.dto.TaskDTO
+import cz.kotox.task.domain.api.factory.toTask
+import cz.kotox.task.domain.impl.remote.dto.TaskDTO
 import cz.kotox.task.detail.ui.component.TaskSummaryComponentInput
 import coil.compose.AsyncImage
 import cz.kotox.android.feature.task.detail.R

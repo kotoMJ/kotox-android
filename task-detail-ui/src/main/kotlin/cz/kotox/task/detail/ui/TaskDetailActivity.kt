@@ -9,7 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.viewModelScope
 import cz.kotox.android.feature.task.detail.R
 import cz.kotox.core.ui.theme.KotoxBasicTheme
-import cz.kotox.domain.task.api.usecase.DownloadTaskPhotoUseCase
+import cz.kotox.task.domain.api.usecase.DownloadTaskPhotoUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

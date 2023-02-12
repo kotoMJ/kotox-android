@@ -21,6 +21,7 @@ include(
     ":common-ui",
     ":common-crypto",
     ":task-domain",
+    ":task-data",
     ":task-detail-ui",
     ":camera-ui",
     ":i18n-data",

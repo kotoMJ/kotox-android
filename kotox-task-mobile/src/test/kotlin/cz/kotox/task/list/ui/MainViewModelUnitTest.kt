@@ -1,9 +1,9 @@
 package cz.kotox.task.list.ui
 
-import cz.kotox.domain.task.api.Task
-import cz.kotox.domain.task.api.usecase.GetAllTasksUseCase
-import cz.kotox.domain.task.api.usecase.GetOneTaskImageUseCase
-import cz.kotox.domain.task.api.usecase.RefreshTasksUseCase
+import cz.kotox.task.domain.api.Task
+import cz.kotox.task.domain.api.usecase.GetAllTasksUseCase
+import cz.kotox.task.domain.api.usecase.GetOneTaskImageUseCase
+import cz.kotox.task.domain.api.usecase.RefreshTasksUseCase
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

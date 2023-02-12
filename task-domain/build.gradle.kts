@@ -14,6 +14,7 @@ dependencies {
     implementation(projects.commonNetwork)
     implementation(projects.commonCrypto)
 
+
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)

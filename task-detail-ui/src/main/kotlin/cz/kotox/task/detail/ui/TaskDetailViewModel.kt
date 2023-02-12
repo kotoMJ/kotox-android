@@ -3,8 +3,8 @@ package cz.kotox.task.detail.ui
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cz.kotox.domain.task.api.usecase.GetOneTaskImageUseCase
-import cz.kotox.domain.task.api.usecase.GetOneTaskUseCase
+import cz.kotox.task.domain.api.usecase.GetOneTaskImageUseCase
+import cz.kotox.task.domain.api.usecase.GetOneTaskUseCase
 import cz.kotox.task.detail.ui.component.TaskSummaryItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

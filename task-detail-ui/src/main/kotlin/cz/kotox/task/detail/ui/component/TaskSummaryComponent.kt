@@ -23,8 +23,8 @@ import cz.kotox.android.feature.task.detail.R
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.core.ui.theme.LocalTypography
 import cz.kotox.core.ui.theme.KotoxBasicTheme
-import cz.kotox.domain.task.api.factory.toTask
-import cz.kotox.domain.task.impl.remote.dto.TaskDTO
+import cz.kotox.task.domain.api.factory.toTask
+import cz.kotox.task.domain.impl.remote.dto.TaskDTO
 
 data class TaskSummaryComponentInput(
     val item: TaskSummaryItem,

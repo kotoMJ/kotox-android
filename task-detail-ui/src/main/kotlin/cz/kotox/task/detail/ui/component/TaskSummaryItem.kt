@@ -1,6 +1,6 @@
 package cz.kotox.task.detail.ui.component
 
-import cz.kotox.domain.task.api.Task
+import cz.kotox.task.domain.api.Task
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
