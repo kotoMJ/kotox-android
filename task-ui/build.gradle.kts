@@ -7,7 +7,6 @@ plugins {
 
 dependencies {
     implementation(projects.taskDomain)
-    implementation(projects.taskUi)
 
     testImplementation(libs.junit)
 
