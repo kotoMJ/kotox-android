@@ -52,7 +52,7 @@ android {
 dependencies {
     implementation(projects.coreKotoxJvm)
     implementation(projects.coreKotoxUi)
-    implementation(projects.featureKotoxCameraCustom)
+    implementation(projects.cameraCustomUi)
 
 
     implementation(libs.android.material)

@@ -12,17 +12,17 @@ rootProject.name = "KotoxAndroid"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(
-    ":mobile-kotox-task",
-    ":mobile-kotox-media",
-    ":mobile-kotox-playground",
+    ":task-mobile",
+    ":media-mobile",
+    ":playground-mobile",
     ":core-kotox-jvm",
     ":core-kotox-test",
     ":core-kotox-network",
     ":core-kotox-ui",
     ":core-kotox-crypto",
-    ":data-domain-kotox-task",
-    ":feature-kotox-task-detail",
-    ":feature-kotox-camera-custom",
+    ":task-domain",
+    ":task-detail-ui",
+    ":camera-custom-ui",
     ":i18n-data",
     ":i18n-domain",
     ":i18n-ui",

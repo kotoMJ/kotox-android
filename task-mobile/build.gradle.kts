@@ -68,8 +68,8 @@ dependencies {
     implementation(projects.coreKotoxJvm)
     implementation(projects.coreKotoxUi)
     implementation(projects.coreKotoxNetwork)
-    implementation(projects.dataDomainKotoxTask)
-    implementation(projects.featureKotoxTaskDetail)
+    implementation(projects.taskDomain)
+    implementation(projects.taskDetailUi)
 
 
     implementation(libs.android.material)
