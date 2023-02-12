@@ -4,7 +4,7 @@ plugins {
 
 
 dependencies {
-    implementation(projects.coreKotoxJvm)
+    implementation(projects.common)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core)
 

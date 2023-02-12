@@ -29,9 +29,9 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
         dependencies {
 
-            add("implementation", project(":core-kotox-jvm"))
-            add("implementation", project(":core-kotox-network"))
-            add("implementation", project(":ui-common"))
+            add("implementation", project(":common"))
+            add("implementation", project(":common-network"))
+            add("implementation", project(":common-ui"))
 
             add("implementation", libs.findLibrary("androidx.activity.compose").get())
             add("implementation", libs.findLibrary("androidx.appcompat").get())

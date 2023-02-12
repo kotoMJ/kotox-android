@@ -11,15 +11,19 @@ plugins {
 
 android {
 
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
+
     defaultConfig {
-        applicationId = "cz.kotox.android.media"
+        applicationId = "cz.kotox.android.task"
 
         val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
 
         versionCode = version.versionCode
         versionName = version.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "cz.kotox.task.list.TaskTestRunner"
     }
     buildTypes {
         val release by getting {
@@ -47,12 +51,25 @@ android {
             }
         }
     }
+
+    packagingOptions {
+        //Following excludes are hot-fix in order to compile AndroidTest
+        resources {
+            excludes += listOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md"
+            )
+        }
+    }
 }
 
 dependencies {
-    implementation(projects.coreKotoxJvm)
-    implementation(projects.uiCommon)
-    implementation(projects.cameraCustomUi)
+
+    implementation(projects.common)
+    implementation(projects.commonUi)
+    implementation(projects.commonNetwork)
+    implementation(projects.taskDomain)
+    implementation(projects.taskDetailUi)
 
 
     implementation(libs.android.material)
@@ -91,6 +108,8 @@ dependencies {
     debugImplementation(libs.leakcanary)
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockk.unit)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
@@ -104,4 +123,6 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.hilt.android.testing)
+    androidTestImplementation(libs.mockk.instrumented)
+    kaptAndroidTest(libs.androidx.hilt.compiler)
 }

@@ -10,9 +10,9 @@ plugins {
 
 dependencies {
 
-    implementation(projects.coreKotoxJvm)
-    implementation(projects.coreKotoxNetwork)
-    implementation(projects.cryptoCommon)
+    implementation(projects.common)
+    implementation(projects.commonNetwork)
+    implementation(projects.commonCrypto)
 
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
@@ -35,7 +35,7 @@ dependencies {
     implementation(libs.timber)
 
 
-    testImplementation(projects.coreKotoxTest)
+    testImplementation(projects.commonTest)
     testImplementation(libs.bundles.test.unit)
     androidTestImplementation(libs.bundles.test.android)
 
