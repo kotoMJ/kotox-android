@@ -66,7 +66,7 @@ android {
 dependencies {
 
     implementation(projects.coreKotoxJvm)
-    implementation(projects.coreKotoxUi)
+    implementation(projects.uiCommon)
     implementation(projects.coreKotoxNetwork)
     implementation(projects.taskDomain)
     implementation(projects.taskDetailUi)

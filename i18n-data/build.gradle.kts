@@ -11,7 +11,7 @@ plugins {
 dependencies {
     implementation(projects.coreKotoxJvm)
     implementation(projects.coreKotoxNetwork)
-    implementation(projects.coreKotoxCrypto)
+//    implementation(projects.coreKotoxCrypto)
 
     implementation(libs.androidx.hilt.android)
     kapt(libs.androidx.hilt.compiler)

@@ -12,7 +12,7 @@ dependencies {
 
     implementation(projects.coreKotoxJvm)
     implementation(projects.coreKotoxNetwork)
-    implementation(projects.coreKotoxCrypto)
+    implementation(projects.cryptoCommon)
 
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
