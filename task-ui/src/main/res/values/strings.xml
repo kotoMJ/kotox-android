@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="generic_back_description">Go to the previous screen</string>
+    <string name="task_summary_component_label_created">Created:</string>
+    <string name="task_summary_component_label_due">Resolution:</string>
+</resources>

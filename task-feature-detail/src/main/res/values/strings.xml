@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="task_detail_button_download_label">Download image</string>
+    <string name="task_detail_image_download_failed">Unable to download image</string>
+
+</resources>
