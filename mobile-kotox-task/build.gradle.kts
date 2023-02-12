@@ -11,6 +11,10 @@ plugins {
 
 android {
 
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
+
     defaultConfig {
         applicationId = "cz.kotox.android.task"
 
@@ -50,17 +54,21 @@ android {
 
     packagingOptions {
         //Following excludes are hot-fix in order to compile AndroidTest
-        exclude ("META-INF/LICENSE.md")
-        exclude ("META-INF/LICENSE-notice.md")
+        resources {
+            excludes += listOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md"
+            )
+        }
     }
 }
 
 dependencies {
 
-    implementation(projects.coreKotox)
+    implementation(projects.coreKotoxJvm)
     implementation(projects.coreKotoxUi)
     implementation(projects.coreKotoxNetwork)
-    implementation(projects.domainKotoxTask)
+    implementation(projects.dataDomainKotoxTask)
     implementation(projects.featureKotoxTaskDetail)
 
 

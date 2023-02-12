@@ -9,9 +9,14 @@ plugins {
 
 
 dependencies {
-    implementation(projects.coreKotoxJvm)
 
-    implementation(projects.kotoxI18nData)
+    implementation(projects.coreKotoxJvm)
+    implementation(projects.coreKotoxNetwork)
+    implementation(projects.coreKotoxCrypto)
+
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
 
     implementation(libs.androidx.hilt.android)
     kapt(libs.androidx.hilt.compiler)
@@ -29,9 +34,12 @@ dependencies {
 
     implementation(libs.timber)
 
-    implementation(libs.google.libphonenumber)
-    
-    testImplementation(libs.junit)
 
-    androidTestImplementation(libs.androidx.test.ext.junit)
+    testImplementation(projects.coreKotoxTest)
+    testImplementation(libs.bundles.test.unit)
+    androidTestImplementation(libs.bundles.test.android)
+
+//    testImplementation(libs.junit)
+//
+//    androidTestImplementation(libs.androidx.test.ext.junit)
 }

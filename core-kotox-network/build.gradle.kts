@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.coreKotox)
+    implementation(projects.coreKotoxJvm)
 
     implementation(libs.androidx.hilt.android)
     kapt(libs.androidx.hilt.compiler)

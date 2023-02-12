@@ -11,7 +11,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.coreKotox)
+   implementation(projects.coreKotoxJvm)
 
     /**
      * TODO Adding crypto library cause compilation problems when integrating this module into the app!
