@@ -19,11 +19,11 @@ include(
     ":core-kotox-network",
     ":core-kotox-ui",
     ":core-kotox-crypto",
-    ":core-kotox-i18n",
     ":domain-kotox-task",
-    ":kotox-i18n-data-domain",
     ":feature-kotox-task-detail",
     ":feature-kotox-camera-custom",
+    ":kotox-i18n-data",
+    ":kotox-i18n-domain",
     ":kotox-i18n-ui",
 
 )

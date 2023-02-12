@@ -6,7 +6,7 @@ plugins {
 
 
 dependencies {
-    implementation(projects.kotoxI18nDataDomain)
+    //implementation(projects.kotoxI18nDataDomain)
 
     testImplementation(libs.junit)
 

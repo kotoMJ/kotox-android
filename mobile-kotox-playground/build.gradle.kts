@@ -54,7 +54,7 @@ dependencies {
     implementation(projects.coreKotox)
     implementation(projects.coreKotoxUi)
 
-    implementation(projects.kotoxI18nDataDomain)
+    implementation(projects.kotoxI18nDomain)
     implementation(projects.kotoxI18nUi)
 
 
