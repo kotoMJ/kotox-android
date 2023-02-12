@@ -1,7 +1,7 @@
-package cz.kotox.task.domain.impl.di
+package cz.kotox.task.data.impl.di
 
-import cz.kotox.task.domain.api.repository.TaskRepository
-import cz.kotox.task.domain.api.repository.TaskRepositoryImpl
+import cz.kotox.task.data.api.respository.TaskRepository
+import cz.kotox.task.data.impl.repository.TaskRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -34,12 +34,12 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.core.ui.theme.LocalTypography
-import cz.kotox.task.domain.api.factory.toTask
-import cz.kotox.task.domain.impl.remote.dto.TaskDTO
 import cz.kotox.task.detail.ui.component.TaskSummaryComponentInput
 import coil.compose.AsyncImage
 import cz.kotox.android.feature.task.detail.R
 import cz.kotox.task.detail.ui.component.TaskSummaryItem
+import cz.kotox.task.domain.api.model.Task
+import java.time.LocalDateTime
 
 const val UI_TEST_DOWNLOAD_BUTTON_TAG = "TestTagDownloadButton"
 
@@ -134,9 +134,11 @@ fun TaskDetailScreen(
                             )
                             AnimatedVisibility(visible = input.taskItem.localImageUrl == null) {
                                 TextButton(
-                                    modifier = Modifier.fillMaxWidth().testTag(
-                                        UI_TEST_DOWNLOAD_BUTTON_TAG
-                                    ),
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .testTag(
+                                            UI_TEST_DOWNLOAD_BUTTON_TAG
+                                        ),
                                     colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
                                     enabled = !input.onGoingDownload,
                                     onClick = {
@@ -191,9 +193,11 @@ fun TaskDetailScreen(
                             verticalArrangement = Arrangement.Bottom
                         ) {
                             TextButton(
-                                modifier = Modifier.fillMaxWidth().testTag(
-                                    UI_TEST_DOWNLOAD_BUTTON_TAG
-                                ),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .testTag(
+                                        UI_TEST_DOWNLOAD_BUTTON_TAG
+                                    ),
                                 colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
                                 enabled = !input.onGoingDownload,
                                 onClick = {
@@ -227,14 +231,14 @@ class MainScreenPreviewProvider : PreviewParameterProvider<TaskDetailScreenInput
         TaskDetailScreenInput(
             taskItem =
             TaskSummaryItem.from(
-                TaskDTO(
-                    creationDate = "2016-04-23T18:25:43.511Z",
-                    dueDate = "2017-01-23T18:00:00.511Z",
-                    encryptedDescription = "UHJvdG9uVlBOIGxhdW5jaA==",
-                    encryptedTitle = "UHJvdG9uVlBO",
+                Task(
+                    creationDate = LocalDateTime.now(),
+                    dueDate = LocalDateTime.now().plusDays(2),
                     id = "1",
-                    encryptedImage = "https://i.imgur.com/GTag1cl.png"
-                ).toTask()
+                    description = "Some description",
+                    title = "Some title",
+                    image = "https://fastly.picsum.photos/id/25/5000/3333.jpg?hmac=yCz9LeSs-i72Ru0YvvpsoECnCTxZjzGde805gWrAHkM"
+                )
             )
         )
     )

@@ -1,4 +1,4 @@
-package cz.kotox.task.domain.api
+package cz.kotox.task.domain.api.model
 
 import java.time.LocalDateTime
 

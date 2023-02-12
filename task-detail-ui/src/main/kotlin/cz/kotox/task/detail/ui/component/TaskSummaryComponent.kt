@@ -23,8 +23,8 @@ import cz.kotox.android.feature.task.detail.R
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.core.ui.theme.LocalTypography
 import cz.kotox.core.ui.theme.KotoxBasicTheme
-import cz.kotox.task.domain.api.factory.toTask
-import cz.kotox.task.domain.impl.remote.dto.TaskDTO
+import cz.kotox.task.domain.api.model.Task
+import java.time.LocalDateTime
 
 data class TaskSummaryComponentInput(
     val item: TaskSummaryItem,
@@ -193,27 +193,27 @@ class TaskSummaryComponentPreviewProvider : PreviewParameterProvider<TaskSummary
     override val values: Sequence<TaskSummaryComponentInput> = sequenceOf(
         TaskSummaryComponentInput(
             item = TaskSummaryItem.from(
-                TaskDTO(
-                    creationDate = "2016-04-23T18:25:43.511Z",
-                    dueDate = "2017-01-23T18:00:00.511Z",
-                    encryptedDescription = "UHJvdG9uVlBOIGxhdW5jaA==",
-                    encryptedTitle = "UHJvdG9uVlBO",
+                Task(
+                    creationDate = LocalDateTime.now(),
+                    dueDate = LocalDateTime.now().plusDays(2),
                     id = "1",
-                    encryptedImage = "https://i.imgur.com/GTag1cl.png"
-                ).toTask()
+                    description = "Some description",
+                    title = "Some title",
+                    image = "https://fastly.picsum.photos/id/25/5000/3333.jpg?hmac=yCz9LeSs-i72Ru0YvvpsoECnCTxZjzGde805gWrAHkM"
+                )
             ),
             useHeadlineTitle = false
         ),
         TaskSummaryComponentInput(
             item = TaskSummaryItem.from(
-                TaskDTO(
-                    creationDate = "2016-04-23T18:25:43.511Z",
-                    dueDate = "2017-01-23T18:00:00.511Z",
-                    encryptedDescription = "UHJvdG9uVlBOIGxhdW5jaA==",
-                    encryptedTitle = "UHJvdG9uVlBO",
-                    id = "1",
-                    encryptedImage = "https://i.imgur.com/GTag1cl.png"
-                ).toTask()
+                Task(
+                    creationDate = LocalDateTime.now(),
+                    dueDate = LocalDateTime.now().plusDays(3),
+                    id = "2",
+                    description = "Some description 2",
+                    title = "Some title 2",
+                    image = "https://fastly.picsum.photos/id/26/4209/2769.jpg?hmac=vcInmowFvPCyKGtV7Vfh7zWcA_Z0kStrPDW3ppP0iGI"
+                )
             ),
             useHeadlineTitle = true
         )

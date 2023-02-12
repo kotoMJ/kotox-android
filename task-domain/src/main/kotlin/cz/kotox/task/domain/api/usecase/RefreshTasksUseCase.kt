@@ -4,9 +4,9 @@ import cz.kotox.android.core.error.BasicError
 import cz.kotox.core.network.apicall.apiCall
 import cz.kotox.core.network.apicall.mapErrorBasic
 import cz.kotox.android.core.result.fold
+import cz.kotox.task.data.api.respository.TaskRepository
 import cz.kotox.task.domain.api.factory.toTaskEntity
-import cz.kotox.task.domain.api.repository.TaskRepository
-import cz.kotox.task.domain.impl.remote.api.TaskApi
+import cz.kotox.task.data.impl.remote.api.TaskApi
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject

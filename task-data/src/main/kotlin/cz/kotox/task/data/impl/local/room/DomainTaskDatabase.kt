@@ -1,4 +1,4 @@
-package cz.kotox.task.domain.impl.local.database
+package cz.kotox.task.data.impl.local.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

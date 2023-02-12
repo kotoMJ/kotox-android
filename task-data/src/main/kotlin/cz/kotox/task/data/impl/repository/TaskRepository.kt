@@ -1,25 +1,13 @@
-package cz.kotox.task.domain.api.repository
+package cz.kotox.task.data.impl.repository
 
-import cz.kotox.task.domain.impl.local.database.TaskDao
-import cz.kotox.task.domain.impl.local.database.TaskEntity
-import cz.kotox.task.domain.impl.local.database.TaskLocalImageEntity
+import cz.kotox.task.data.api.respository.TaskRepository
+import cz.kotox.task.data.impl.local.room.TaskDao
+import cz.kotox.task.data.impl.local.room.TaskEntity
+import cz.kotox.task.data.impl.local.room.TaskLocalImageEntity
 import kotlinx.coroutines.flow.Flow
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
-
-interface TaskRepository {
-
-    fun getAll(): Flow<List<TaskEntity>>
-
-    suspend fun getOne(taskId: String): TaskEntity
-
-    suspend fun insertAll(taskEntities: List<TaskEntity>)
-
-    suspend fun getLocalImagePath(taskId: String): String?
-
-    suspend fun insertLocalImagePath(taskId: String, localPath: String)
-}
 
 
 @Singleton

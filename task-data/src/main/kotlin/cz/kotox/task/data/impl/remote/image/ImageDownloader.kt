@@ -1,4 +1,4 @@
-package cz.kotox.task.domain.impl.remote.image
+package cz.kotox.task.data.impl.remote.image
 
 import android.content.Context
 import android.os.Environment
@@ -15,7 +15,7 @@ import java.net.URL
  * implemented yet. So we can have more downloads in time, but all will target the same file
  * so it's acceptable solution for now.
  */
-internal class ImageDownloader {
+class ImageDownloader {
 
     fun download(context: Context, imageUrl: String, taskId: String): String? {
 

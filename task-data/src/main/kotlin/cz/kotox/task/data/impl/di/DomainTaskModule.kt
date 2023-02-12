@@ -1,10 +1,9 @@
-package cz.kotox.task.domain.impl.di
+package cz.kotox.task.data.impl.di
 
 
 import android.content.Context
-import androidx.room.Room
 import cz.kotox.core.network.di.CommonRetrofit
-import cz.kotox.task.domain.impl.local.database.DomainTaskDatabase
+import cz.kotox.task.data.impl.local.room.DomainTaskDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

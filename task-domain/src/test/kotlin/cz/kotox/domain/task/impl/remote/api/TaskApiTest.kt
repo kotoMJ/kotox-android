@@ -1,35 +1,34 @@
 package cz.kotox.domain.task.impl.remote.api
 
-import android.util.Log
 import cz.kotox.android.core.config.AppProperties
+import cz.kotox.core.network.config.AppNetworkingProperties
 import cz.kotox.core.network.di.NetworkModuleProvider
 import cz.kotox.core.test.MockResponseFileReader
-import cz.kotox.task.domain.impl.di.DomainTaskModule
-import cz.kotox.task.domain.impl.di.DomainTaskModuleProvider
-import cz.kotox.task.domain.impl.remote.dto.TaskDTO
-import cz.kotox.task.domain.impl.remote.api.TaskApi
+import cz.kotox.task.data.impl.di.DomainTaskModuleProvider
+import cz.kotox.task.data.impl.remote.dto.TaskDTO
+import cz.kotox.task.data.impl.remote.api.TaskApi
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.json.JSONObject
 import org.junit.After
-import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import timber.log.Timber
 import java.net.HttpURLConnection
 
 
-class TestAppProperties(
-    override val baseUrl: String = "https://api.npoint.io",
-    override val isDevEnvironment: Boolean = true,
+class TestAppNetworkingProperties(
     override val networkRequestTimeoutSec: Long = 30,
-    override val isDarkMode: Boolean = false
-) : AppProperties
+    override val baseUrl: String = "",
+) : AppNetworkingProperties
 
+class TestAppProperties(
+    override val isDevEnvironment: Boolean = true,
+    override val isDarkMode: Boolean = false,
+) : AppProperties
 
 class TaskApiTest {
 
@@ -59,13 +58,14 @@ class TaskApiTest {
 
 
         val appProperties = TestAppProperties()
+        val appNetworkingProperties = TestAppNetworkingProperties()
         val networkProvider = NetworkModuleProvider()
         val okHttpClient = networkProvider.provideCommonOkHttpClient(
-            appProperties,
+            appNetworkingProperties,
             networkProvider.provideLoggingInterceptor(appProperties)
         )
         val retrofit = networkProvider.provideCommonRetrofit(
-            appProperties,
+            appNetworkingProperties,
             okHttpClient,
             networkProvider.provideMoshi()
         )

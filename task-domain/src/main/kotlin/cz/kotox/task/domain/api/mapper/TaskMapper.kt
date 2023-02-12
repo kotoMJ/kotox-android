@@ -1,10 +1,10 @@
 package cz.kotox.task.domain.api.factory
 
 import cz.kotox.core.crypto.CryptoHelper
-import cz.kotox.task.domain.api.Task
-import cz.kotox.task.domain.impl.local.database.TaskEntity
-import cz.kotox.task.domain.impl.remote.dto.TASK_DATE_TIME_PATTERN
-import cz.kotox.task.domain.impl.remote.dto.TaskDTO
+import cz.kotox.task.domain.api.model.Task
+import cz.kotox.task.data.impl.local.room.TaskEntity
+import cz.kotox.task.data.impl.remote.dto.TASK_DATE_TIME_PATTERN
+import cz.kotox.task.data.impl.remote.dto.TaskDTO
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

@@ -1,6 +1,6 @@
-package cz.kotox.task.domain.impl.remote.api
+package cz.kotox.task.data.impl.remote.api
 
-import cz.kotox.task.domain.impl.remote.dto.TaskDTO
+import cz.kotox.task.data.impl.remote.dto.TaskDTO
 import retrofit2.http.GET
 
 private const val ALL_TASKS_DOCUMENT = "86329e68087a3d2bca54"

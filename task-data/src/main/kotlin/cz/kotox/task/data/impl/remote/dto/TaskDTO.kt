@@ -1,4 +1,4 @@
-package cz.kotox.task.domain.impl.remote.dto
+package cz.kotox.task.data.impl.remote.dto
 
 import androidx.annotation.Keep
 import com.squareup.moshi.Json

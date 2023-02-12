@@ -1,6 +1,6 @@
 package cz.kotox.task.list.ui
 
-import cz.kotox.task.domain.api.Task
+import cz.kotox.task.domain.api.model.Task
 import cz.kotox.task.domain.api.usecase.GetAllTasksUseCase
 import cz.kotox.task.domain.api.usecase.GetOneTaskImageUseCase
 import cz.kotox.task.domain.api.usecase.RefreshTasksUseCase

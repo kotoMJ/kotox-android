@@ -1,9 +1,9 @@
 package cz.kotox.task.domain.api.usecase
 
 import android.content.Context
+import cz.kotox.task.data.api.respository.TaskRepository
+import cz.kotox.task.data.impl.remote.image.ImageDownloader
 import cz.kotox.task.domain.api.factory.toTask
-import cz.kotox.task.domain.api.repository.TaskRepository
-import cz.kotox.task.domain.impl.remote.image.ImageDownloader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -19,6 +19,8 @@ class DownloadTaskPhotoUseCase @Inject constructor(
                 .getOne(taskId)
                 .toTask().image
 
+            //TODO MJ - think about imageDownloader being testable and being in the data.
+            // Is it worth to change it somehow?
             val localImageUrl = ImageDownloader().download(
                 context = context,
                 imageUrl = imageUrl,

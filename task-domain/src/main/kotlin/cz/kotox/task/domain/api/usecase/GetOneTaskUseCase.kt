@@ -1,8 +1,8 @@
 package cz.kotox.task.domain.api.usecase
 
-import cz.kotox.task.domain.api.Task
+import cz.kotox.task.data.api.respository.TaskRepository
+import cz.kotox.task.domain.api.model.Task
 import cz.kotox.task.domain.api.factory.toTask
-import cz.kotox.task.domain.api.repository.TaskRepository
 import javax.inject.Inject
 
 class GetOneTaskUseCase @Inject constructor(

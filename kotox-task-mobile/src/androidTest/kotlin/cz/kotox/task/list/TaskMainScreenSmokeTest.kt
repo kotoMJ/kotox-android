@@ -4,7 +4,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import cz.kotox.core.ui.theme.KotoxBasicTheme
 import cz.kotox.task.domain.api.factory.toTask
-import cz.kotox.task.domain.impl.remote.dto.TaskDTO
+import cz.kotox.task.data.impl.remote.dto.TaskDTO
 import cz.kotox.task.detail.ui.component.TaskSummaryItem
 import cz.kotox.task.list.ui.MainFeedState
 import cz.kotox.task.list.ui.MainScreen
@@ -36,7 +36,7 @@ class TaskMainScreenSmokeTest {
                                 TaskGroup(
                                     tasks = listOf(
                                         TaskSummaryItem.from(
-                                            TaskDTO(
+                                            cz.kotox.task.data.impl.remote.dto.TaskDTO(
                                                 creationDate = "2016-04-23T18:25:43.511Z",
                                                 dueDate = "2017-01-23T18:00:00.511Z",
                                                 encryptedDescription = "VGhlIGRpZmZlcmVuY2UgaW4gYmV0d2VlbiB0aGUgcHJvZ3Jlc3MgYW5kIHRoZSByZXN1bHQuCgo=",
@@ -46,7 +46,7 @@ class TaskMainScreenSmokeTest {
                                             ).toTask()
                                         ),
                                         TaskSummaryItem.from(
-                                            TaskDTO(
+                                            cz.kotox.task.data.impl.remote.dto.TaskDTO(
                                                 creationDate = "2016-04-23T18:25:43.511Z",
                                                 dueDate = "2017-01-23T18:00:00.511Z",
                                                 encryptedDescription = "VGhlIGRpZmZlcmVuY2UgaW4gYmV0d2VlbiB0aGUgcHJvZ3Jlc3MgYW5kIHRoZSByZXN1bHQuCgo=",
@@ -56,7 +56,7 @@ class TaskMainScreenSmokeTest {
                                             ).toTask()
                                         ),
                                         TaskSummaryItem.from(
-                                            TaskDTO(
+                                            cz.kotox.task.data.impl.remote.dto.TaskDTO(
                                                 creationDate = "2016-04-23T18:25:43.511Z",
                                                 dueDate = "2017-01-23T18:00:00.511Z",
                                                 encryptedDescription = "VGhlIGRpZmZlcmVuY2UgaW4gYmV0d2VlbiB0aGUgcHJvZ3Jlc3MgYW5kIHRoZSByZXN1bHQuCgo=",
@@ -66,7 +66,7 @@ class TaskMainScreenSmokeTest {
                                             ).toTask()
                                         ),
                                         TaskSummaryItem.from(
-                                            TaskDTO(
+                                            cz.kotox.task.data.impl.remote.dto.TaskDTO(
                                                 creationDate = "2016-04-23T18:25:43.511Z",
                                                 dueDate = "2017-01-23T18:00:00.511Z",
                                                 encryptedDescription = "VGhlIGRpZmZlcmVuY2UgaW4gYmV0d2VlbiB0aGUgcHJvZ3Jlc3MgYW5kIHRoZSByZXN1bHQuCgo=",
@@ -80,7 +80,7 @@ class TaskMainScreenSmokeTest {
                                 TaskGroup(
                                     tasks = listOf(
                                         TaskSummaryItem.from(
-                                            TaskDTO(
+                                            cz.kotox.task.data.impl.remote.dto.TaskDTO(
                                                 creationDate = "2016-04-23T18:25:43.511Z",
                                                 dueDate = "2017-01-23T18:00:00.511Z",
                                                 encryptedDescription = "VGhlIGRpZmZlcmVuY2UgaW4gYmV0d2VlbiB0aGUgcHJvZ3Jlc3MgYW5kIHRoZSByZXN1bHQuCgo=",
@@ -90,7 +90,7 @@ class TaskMainScreenSmokeTest {
                                             ).toTask()
                                         ),
                                         TaskSummaryItem.from(
-                                            TaskDTO(
+                                            cz.kotox.task.data.impl.remote.dto.TaskDTO(
                                                 creationDate = "2016-04-23T18:25:43.511Z",
                                                 dueDate = "2017-01-23T18:00:00.511Z",
                                                 encryptedDescription = "VGhlIGRpZmZlcmVuY2UgaW4gYmV0d2VlbiB0aGUgcHJvZ3Jlc3MgYW5kIHRoZSByZXN1bHQuCgo=",

@@ -31,7 +31,6 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.layoutId
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.task.domain.api.factory.toTask
-import cz.kotox.task.domain.impl.remote.dto.TaskDTO
 import cz.kotox.task.detail.ui.TaskDetailActivityIntentUtil
 import cz.kotox.task.detail.ui.component.TaskSummaryComponentInput
 import cz.kotox.task.detail.ui.component.TaskSummaryItem
@@ -41,6 +40,8 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import cz.kotox.task.domain.api.model.Task
+import java.time.LocalDateTime
 
 const val UI_TEST_MAIN_LIST_TAG = "MainListTag"
 
@@ -177,68 +178,68 @@ class MainScreenPreviewProvider : PreviewParameterProvider<MainScreenInput> {
                     TaskGroup(
                         tasks = listOf(
                             TaskSummaryItem.from(
-                                TaskDTO(
-                                    creationDate = "2016-04-23T18:25:43.511Z",
-                                    dueDate = "2017-01-23T18:00:00.511Z",
-                                    encryptedDescription = "UHJvdG9uVlBOIGxhdW5jaA==",
-                                    encryptedTitle = "UHJvdG9uVlBO",
+                                Task(
                                     id = "1",
-                                    encryptedImage = "https://i.imgur.com/GTag1cl.png"
-                                ).toTask()
+                                    creationDate = LocalDateTime.now(),
+                                    dueDate = LocalDateTime.now().plusDays(2),
+                                    description = "Description",
+                                    title = "Title",
+                                    image = "https://i.imgur.com/GTag1cl.png"
+                                )
                             ),
                             TaskSummaryItem.from(
-                                TaskDTO(
-                                    creationDate = "2016-04-23T18:25:43.511Z",
-                                    dueDate = "2017-01-23T18:00:00.511Z",
-                                    encryptedDescription = "UHJvdG9uVlBOIGxhdW5jaA==",
-                                    encryptedTitle = "UHJvdG9uVlBO",
-                                    id = "1",
-                                    encryptedImage = "https://i.imgur.com/GTag1cl.png"
-                                ).toTask()
+                                Task(
+                                    id = "2",
+                                    creationDate = LocalDateTime.now(),
+                                    dueDate = LocalDateTime.now().plusDays(2),
+                                    description = "Description",
+                                    title = "Title",
+                                    image = "https://i.imgur.com/GTag1cl.png"
+                                )
                             ),
                             TaskSummaryItem.from(
-                                TaskDTO(
-                                    creationDate = "2016-04-23T18:25:43.511Z",
-                                    dueDate = "2017-01-23T18:00:00.511Z",
-                                    encryptedDescription = "UHJvdG9uVlBOIGxhdW5jaA==",
-                                    encryptedTitle = "UHJvdG9uVlBO",
-                                    id = "1",
-                                    encryptedImage = "https://i.imgur.com/GTag1cl.png"
-                                ).toTask()
+                                Task(
+                                    id = "3",
+                                    creationDate = LocalDateTime.now(),
+                                    dueDate = LocalDateTime.now().plusDays(2),
+                                    description = "Description",
+                                    title = "Title",
+                                    image = "https://i.imgur.com/GTag1cl.png"
+                                )
                             ),
                             TaskSummaryItem.from(
-                                TaskDTO(
-                                    creationDate = "2016-04-23T18:25:43.511Z",
-                                    dueDate = "2017-01-23T18:00:00.511Z",
-                                    encryptedDescription = "UHJvdG9uVlBOIGxhdW5jaA==",
-                                    encryptedTitle = "UHJvdG9uVlBO",
-                                    id = "1",
-                                    encryptedImage = "https://i.imgur.com/GTag1cl.png"
-                                ).toTask()
+                                Task(
+                                    id = "4",
+                                    creationDate = LocalDateTime.now(),
+                                    dueDate = LocalDateTime.now().plusDays(2),
+                                    description = "Description",
+                                    title = "Title",
+                                    image = "https://i.imgur.com/GTag1cl.png"
+                                )
                             ),
                         ), titleResId = R.string.main_screen_section_title_all
                     ),
                     TaskGroup(
                         tasks = listOf(
                             TaskSummaryItem.from(
-                                TaskDTO(
-                                    creationDate = "2016-04-23T18:25:43.511Z",
-                                    dueDate = "2017-01-23T18:00:00.511Z",
-                                    encryptedDescription = "UHJvdG9uVlBOIGxhdW5jaA==",
-                                    encryptedTitle = "UHJvdG9uVlBO",
-                                    id = "1",
-                                    encryptedImage = "https://i.imgur.com/GTag1cl.png"
-                                ).toTask()
+                                Task(
+                                    id = "11",
+                                    creationDate = LocalDateTime.now(),
+                                    dueDate = LocalDateTime.now().plusDays(2),
+                                    description = "Description",
+                                    title = "Title",
+                                    image = "https://i.imgur.com/GTag1cl.png"
+                                )
                             ),
                             TaskSummaryItem.from(
-                                TaskDTO(
-                                    creationDate = "2016-04-23T18:25:43.511Z",
-                                    dueDate = "2017-01-23T18:00:00.511Z",
-                                    encryptedDescription = "UHJvdG9uVlBOIGxhdW5jaA==",
-                                    encryptedTitle = "UHJvdG9uVlBO",
-                                    id = "1",
-                                    encryptedImage = "https://i.imgur.com/GTag1cl.png"
-                                ).toTask()
+                                Task(
+                                    id = "12",
+                                    creationDate = LocalDateTime.now(),
+                                    dueDate = LocalDateTime.now().plusDays(2),
+                                    description = "Description",
+                                    title = "Title",
+                                    image = "https://i.imgur.com/GTag1cl.png"
+                                )
                             ),
                         ), titleResId = R.string.main_screen_section_title_upcoming
                     )
