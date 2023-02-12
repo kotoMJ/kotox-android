@@ -6,7 +6,9 @@ plugins {
 
 
 dependencies {
-    //implementation(projects.kotoxI18nDataDomain)
+
+    implementation(projects.commonAndroid)
+    implementation(projects.i18nDomain)
 
     testImplementation(libs.junit)
 

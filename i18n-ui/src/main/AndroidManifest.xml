@@ -3,7 +3,9 @@
     package="cz.kotox.i18n.ui">
 
     <application>
-
+        <activity
+            android:name="cz.kotox.i18n.ui.country.PhoneCountryCodeActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
