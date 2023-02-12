@@ -12,9 +12,9 @@ rootProject.name = "KotoxAndroid"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(
-    ":kotox-task-mobile",
-    ":kotox-media-mobile",
-    ":kotox-playground-mobile",
+    ":kotox-mobile-task",
+    ":kotox-mobile-media",
+    ":kotox-mobile-playground",
     ":common",
     ":common-test",
     ":common-network",
