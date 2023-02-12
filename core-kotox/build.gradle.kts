@@ -13,3 +13,8 @@ dependencies {
 
     implementation(libs.timber)
 }
+
+dependencies {
+
+    implementation(libs.libphonenumber)
+}

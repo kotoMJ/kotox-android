@@ -89,7 +89,7 @@ google-firebase-config = "21.0.1"
 google-firebase-core = "20.0.2"
 google-firebase-crashlytics = "18.2.6"
 google-firebase-crashlytics-gradle = "2.9.2"
-
+google-libphonenumber = "8.13.5"
 
 coil = "2.1.0"
 detekt = "1.19.0"
@@ -98,6 +98,7 @@ junit = "4.13.2"
 kotlinx-coroutines = "1.4.1"
 ktlint = "10.3.0"
 leakcanary = "2.9.1"
+libphonenumber = "8.13.5"
 moshi = "1.13.0"
 okhttp = "4.9.3"
 retrofit = "2.9.0"
@@ -187,6 +188,7 @@ google-firebase-config = { module = "com.google.firebase:firebase-config", versi
 google-firebase-core = { module = "com.google.firebase:firebase-core", version.ref = "google-firebase-core" }
 google-firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx", version.ref = "google-firebase-crashlytics" }
 google-firebase-crashlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "google-firebase-crashlytics-gradle" }
+google-libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "google-libphonenumber"}
 
 kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
@@ -196,6 +198,8 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
+
+libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "libphonenumber"}
 
 moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
