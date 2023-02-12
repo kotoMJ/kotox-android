@@ -69,7 +69,7 @@ dependencies {
     implementation(projects.commonUi)
     implementation(projects.commonNetwork)
     implementation(projects.taskDomain)
-    implementation(projects.taskDetailUi)
+    implementation(projects.taskDetailFeature)
 
 
     implementation(libs.android.material)
