@@ -54,9 +54,8 @@ dependencies {
     implementation(projects.coreKotoxUi)
     implementation(projects.coreKotoxJvm)
 
-    implementation(projects.kotoxI18nDomain)
-    implementation(projects.kotoxI18nUi)
-
+    implementation(projects.i18nDomain)
+    implementation(projects.i18nUi)
 
     implementation(libs.android.material)
 

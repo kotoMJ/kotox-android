@@ -11,7 +11,7 @@ plugins {
 dependencies {
     implementation(projects.coreKotoxJvm)
 
-    implementation(projects.kotoxI18nData)
+    implementation(projects.i18nData)
 
     implementation(libs.androidx.hilt.android)
     kapt(libs.androidx.hilt.compiler)

@@ -23,8 +23,8 @@ include(
     ":data-domain-kotox-task",
     ":feature-kotox-task-detail",
     ":feature-kotox-camera-custom",
-    ":kotox-i18n-data",
-    ":kotox-i18n-domain",
-    ":kotox-i18n-ui",
+    ":i18n-data",
+    ":i18n-domain",
+    ":i18n-ui",
 
 )
