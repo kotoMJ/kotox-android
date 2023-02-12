@@ -51,8 +51,8 @@ android {
 
 dependencies {
 
-    implementation(projects.coreKotox)
     implementation(projects.coreKotoxUi)
+    implementation(projects.coreKotoxJvm)
 
     implementation(projects.kotoxI18nDomain)
     implementation(projects.kotoxI18nUi)

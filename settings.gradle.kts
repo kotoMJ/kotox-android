@@ -15,7 +15,6 @@ include(
     ":mobile-kotox-task",
     ":mobile-kotox-media",
     ":mobile-kotox-playground",
-    ":core-kotox",
     ":core-kotox-jvm",
     ":core-kotox-test",
     ":core-kotox-network",

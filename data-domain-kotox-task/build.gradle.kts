@@ -10,7 +10,6 @@ plugins {
 
 dependencies {
 
-    implementation(projects.coreKotox)
     implementation(projects.coreKotoxJvm)
     implementation(projects.coreKotoxNetwork)
     implementation(projects.coreKotoxCrypto)

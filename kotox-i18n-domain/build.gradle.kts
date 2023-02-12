@@ -9,7 +9,7 @@ plugins {
 
 
 dependencies {
-    implementation(projects.coreKotox)
+    implementation(projects.coreKotoxJvm)
 
     implementation(projects.kotoxI18nData)
 

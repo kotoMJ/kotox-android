@@ -9,5 +9,6 @@ java {
 
 dependencies {
 
+    implementation(libs.libphonenumber)
     //api(linkedMapOf("name" to "crypto", "ext" to "aar"))
 }

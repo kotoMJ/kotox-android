@@ -11,7 +11,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.coreKotox)
    implementation(projects.coreKotoxJvm)
 
     /**
