@@ -1,4 +1,4 @@
-package cz.kotox.i18n.ui.country
+package cz.kotox.i18n.ui.phone.screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

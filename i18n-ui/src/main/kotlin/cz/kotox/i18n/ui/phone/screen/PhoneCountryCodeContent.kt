@@ -1,4 +1,4 @@
-package cz.kotox.i18n.ui.country
+package cz.kotox.i18n.ui.phone.screen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,17 +12,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Divider
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import cz.kotox.core.ui.theme.LocalColors
-import cz.kotox.i18n.ui.phone.PhoneTextField
+import cz.kotox.i18n.ui.phone.component.PhoneTextField
 
 
 @Composable
