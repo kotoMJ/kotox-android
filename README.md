@@ -27,3 +27,9 @@ Simple master-detail demo app presenting different kind of test cases.
 * [UI Smoke Testing](https://github.com/kotoMJ/kotox-android/blob/main/kotox-mobile-task/src/androidTest/kotlin/cz/kotox/task/list/TaskMainScreenSmokeTest.kt)
 * tbd.
 
+### Kotox Task (kotox-playground)
+
+1. Phone number
+
+Simple screen with phone number input field with ability to recognize country code and provides hint sugguestion. The screen allows also choose the phone country code from the list.
+
