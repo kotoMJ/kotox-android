@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import cz.kotox.core.ui.theme.KotoxBasicTheme
-import cz.kotox.i18n.ui.country.PhoneCountryCodeActivityIntentUtil
+import cz.kotox.i18n.ui.phone.screen.PhoneCountryCodeActivityIntentUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

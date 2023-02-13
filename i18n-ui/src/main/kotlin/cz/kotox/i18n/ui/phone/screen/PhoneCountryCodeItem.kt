@@ -1,4 +1,4 @@
-package cz.kotox.i18n.ui.country
+package cz.kotox.i18n.ui.phone.screen
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background

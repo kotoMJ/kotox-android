@@ -1,4 +1,4 @@
-package cz.kotox.i18n.ui.phone
+package cz.kotox.i18n.ui.phone.component
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -27,11 +27,13 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.OffsetMapping
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Devices
@@ -86,13 +88,37 @@ fun PhoneTextField(
 
     val startFixedPart = "+"
 
+
     BasicTextField(
-        value = inputValue,
+        value = TextFieldValue(
+            text = inputValue.trimStart(),
+            selection = TextRange(inputValue.length)
+        ),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Phone,
             imeAction = ImeAction.Go,
         ),
-        onValueChange = { onValueChange(it) },
+        onValueChange = { textFieldValue ->
+            if (textFieldValue.text.filterNot {
+                    it.isDigit() || it.isWhitespace()
+                }.isEmpty()) {
+
+                val numberLengthLimit: Int? = if (countryUiModel is CountryUiModelValueItem) {
+                    if (countryUiModel.maxNumberLength == null) {
+                        null
+                    } else {
+                        (countryUiModel.maxNumberLength
+                            ?: 0) + (textFieldValue.text.filter { it.isWhitespace() }.length)
+                    }
+                } else null
+
+                if ((numberLengthLimit == null) ||
+                    (numberLengthLimit >= textFieldValue.text.length)
+                ) {
+                    onValueChange(textFieldValue.text)
+                }
+            }
+        },
         visualTransformation = PrefixTransformation(startFixedPart),
         textStyle = LocalTextStyle.current,
         cursorBrush = SolidColor(colors.cursorColor(isError).value),
@@ -111,11 +137,7 @@ fun PhoneTextField(
             ) {
                 if (countryUiModel is CountryUiModelValueItem) {
 
-                    if (inputValue.isEmpty() ||
-                        inputValue.equals(countryUiModel.countryCode.toString().take(1)) ||
-                        inputValue.equals(countryUiModel.countryCode.toString().take(2)) ||
-                        inputValue.equals(countryUiModel.countryCode.toString().take(3))
-                    ) {
+                    if (countryUiModel.countryCode.toString().contains(inputValue)) {
                         val hint = buildAnnotatedString {
                             val completePhoneNumberString =
                                 "${startFixedPart}${inputValue}${countryUiModel.numberHintWithoutCountryCode}"
@@ -165,7 +187,8 @@ fun PhoneTextField(
 fun PhoneTextFieldPreview() {
 
     val inputValue = "420"
-    val expectedPrefix = 420
+    val expectedCountryCode = 420
+    val hint = "601123456"
 
     KotoxBasicTheme() {
         Column() {
@@ -173,13 +196,14 @@ fun PhoneTextFieldPreview() {
                 inputValue = inputValue,
                 onValueChange = {},
                 onSubmit = { },
-                countryUiModel = if (inputValue.startsWith(expectedPrefix.toString())) {
+                countryUiModel = if (inputValue.startsWith(expectedCountryCode.toString())) {
                     CountryUiModel.CountryUiModelItem(
                         isoCode = "CZ",
                         name = "Czech Republic",
-                        countryCode = expectedPrefix,
+                        countryCode = expectedCountryCode,
                         flagEmoji = "🇨🇿",
-                        numberHintWithoutCountryCode = "601123456"
+                        numberHintWithoutCountryCode = hint,
+                        maxNumberLength = expectedCountryCode.toString().length + hint.length
                     )
                 } else {
                     CountryUiModel.CountryUiModelEmptyItem()

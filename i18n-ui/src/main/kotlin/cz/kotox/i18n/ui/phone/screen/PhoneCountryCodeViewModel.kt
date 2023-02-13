@@ -1,10 +1,12 @@
-package cz.kotox.i18n.ui.country
+package cz.kotox.i18n.ui.phone.screen
 
+import android.telephony.PhoneNumberUtils
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cz.kotox.domain.model.CountryUiModel
 import cz.kotox.domain.usecase.CountryCodeListUseCase
 import cz.kotox.domain.usecase.CountryCodeDetectUseCase
+import cz.kotox.domain.usecase.CountryCodeFormatUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,14 +18,15 @@ data class PhoneCountryCodeFeedState(
     val isInitialLoading: Boolean = true,
     val countries: List<CountryUiModel> = emptyList(),
     val phoneInput: String = "",
-    val countryCodeModel: CountryUiModel = CountryUiModel.CountryUiModelEmptyItem()
+    val countryCodeModel: CountryUiModel = CountryUiModel.CountryUiModelEmptyItem(),
 )
 
 
 @HiltViewModel
 class PhoneCountryCodeViewModel @Inject constructor(
     private val countryListUseCase: CountryCodeListUseCase,
-    private val countryCodeDetectUseCase: CountryCodeDetectUseCase
+    private val countryCodeDetectUseCase: CountryCodeDetectUseCase,
+    private val countryCodeFormatUseCase: CountryCodeFormatUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<PhoneCountryCodeFeedState>(PhoneCountryCodeFeedState())
@@ -41,18 +44,27 @@ class PhoneCountryCodeViewModel @Inject constructor(
     }
 
     fun onPhoneValueChange(value: String) {
-        val digitOnlyValue = value.filter { it.isDigit() }
         viewModelScope.launch {
-            val countryCodeDetection = countryCodeDetectUseCase.get(digitOnlyValue)
+            val countryCodeDetection = countryCodeDetectUseCase.get(value)
 
+
+            val digitOnlyFormattedValue =
+                if (countryCodeDetection is CountryUiModel.CountryUiModelItem) {
+                    countryCodeFormatUseCase.get(
+                        value,
+                        countryCodeDetection
+                    )
+                } else {
+                    value
+                }
             if (countryCodeDetection == _uiState.value.countryCodeModel) {
                 _uiState.update {
-                    it.copy(phoneInput = digitOnlyValue)
+                    it.copy(phoneInput = digitOnlyFormattedValue)
                 }
             } else {
                 _uiState.update {
                     it.copy(
-                        phoneInput = digitOnlyValue,
+                        phoneInput = digitOnlyFormattedValue,
                         countryCodeModel = countryCodeDetection
                     )
                 }

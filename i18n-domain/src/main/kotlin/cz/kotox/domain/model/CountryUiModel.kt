@@ -2,6 +2,7 @@ package cz.kotox.domain.model
 
 import cz.kotox.data.api.model.FALLBACK_COUNTRY_CODE
 import cz.kotox.data.api.model.FALLBACK_COUNTRY_NAME
+import cz.kotox.data.api.model.FALLBACK_EXAMPLE_MAX_NUMBER_LENGTH
 import cz.kotox.data.api.model.FALLBACK_EXAMPLE_NUMBER
 import cz.kotox.data.api.model.FALLBACK_FLAG_EMOJI
 import cz.kotox.data.api.model.FALLBACK_ISO_CODE
@@ -11,6 +12,7 @@ interface CountryUiModelValueItem {
     val name: String
     val countryCode: Int?
     val numberHintWithoutCountryCode: String
+    val maxNumberLength: Int?
 }
 
 sealed class CountryUiModel(
@@ -23,6 +25,7 @@ sealed class CountryUiModel(
         override val countryCode: Int?,
         override val flagEmoji: String,
         override val numberHintWithoutCountryCode: String,
+        override val maxNumberLength: Int?
     ) : CountryUiModelValueItem, CountryUiModel(flagEmoji)
 
     data class CountryUiModelFallbackItem(
@@ -31,7 +34,8 @@ sealed class CountryUiModel(
         override val countryCode: Int? = FALLBACK_COUNTRY_CODE,
         override val flagEmoji: String = FALLBACK_FLAG_EMOJI,
         override val numberHintWithoutCountryCode: String = FALLBACK_EXAMPLE_NUMBER,
-        ) : CountryUiModelValueItem, CountryUiModel(flagEmoji)
+        override val maxNumberLength: Int? = FALLBACK_EXAMPLE_MAX_NUMBER_LENGTH
+    ) : CountryUiModelValueItem, CountryUiModel(flagEmoji)
 
 
     data class CountryUiModelEmptyItem(

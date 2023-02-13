@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name="cz.kotox.i18n.ui.country.PhoneCountryCodeActivity"
+            android:name="cz.kotox.i18n.ui.phone.screen.PhoneCountryCodeActivity"
             android:exported="true"/>
     </application>
 
