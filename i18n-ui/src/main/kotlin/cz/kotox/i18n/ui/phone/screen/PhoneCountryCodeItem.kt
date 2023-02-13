@@ -43,7 +43,7 @@ fun PhoneNumberPrefixSearchItem(
                 color = LocalColors.current.textNorm,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                text = "${item.name} (+${item.countryCode})"
+                text = "${item.countryName} (+${item.countryCode})"
             )
         }
     }

@@ -9,7 +9,7 @@ import cz.kotox.data.api.model.FALLBACK_ISO_CODE
 
 interface CountryUiModelValueItem {
     val isoCode: String
-    val name: String
+    val countryName: String
     val countryCode: Int?
     val numberHintWithoutCountryCode: String
     val maxNumberLength: Int?
@@ -21,7 +21,7 @@ sealed class CountryUiModel(
 
     data class CountryUiModelItem(
         override val isoCode: String,
-        override val name: String,
+        override val countryName: String,
         override val countryCode: Int?,
         override val flagEmoji: String,
         override val numberHintWithoutCountryCode: String,
@@ -30,7 +30,7 @@ sealed class CountryUiModel(
 
     data class CountryUiModelFallbackItem(
         override val isoCode: String = FALLBACK_ISO_CODE,
-        override val name: String = FALLBACK_COUNTRY_NAME,
+        override val countryName: String = FALLBACK_COUNTRY_NAME,
         override val countryCode: Int? = FALLBACK_COUNTRY_CODE,
         override val flagEmoji: String = FALLBACK_FLAG_EMOJI,
         override val numberHintWithoutCountryCode: String = FALLBACK_EXAMPLE_NUMBER,

@@ -4,7 +4,6 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil
 import cz.kotox.core.domain.Mapper
 import cz.kotox.data.api.model.CountryModel
 import cz.kotox.domain.model.CountryUiModel
-import timber.log.Timber
 import java.util.Locale
 import javax.inject.Inject
 
@@ -50,7 +49,7 @@ class CountryModelMapper @Inject constructor(
         return CountryUiModel.CountryUiModelItem(
             isoCode = from.isoCode,
             countryCode = dialCode,
-            name = Locale("", from.isoCode).displayCountry,
+            countryName = Locale("", from.isoCode).displayCountry,
             flagEmoji = from.flagEmoji,
             numberHintWithoutCountryCode = exampleNumberFiltered ?: "",
             maxNumberLength = maxNumberLength

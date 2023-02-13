@@ -202,7 +202,7 @@ fun PhoneTextFieldPreview() {
                 countryUiModel = if (inputValue.startsWith(expectedCountryCode.toString())) {
                     CountryUiModel.CountryUiModelItem(
                         isoCode = "CZ",
-                        name = "Czech Republic",
+                        countryName = "Czech Republic",
                         countryCode = expectedCountryCode,
                         flagEmoji = "🇨🇿",
                         numberHintWithoutCountryCode = hint,
