@@ -42,7 +42,7 @@ class CountryModelMapper @Inject constructor(
         return CountryUiModel.CountryUiModelItem(
             isoCode = from.isoCode,
             countryCode = dialCode,
-            name = Locale("", from.countryCode).displayCountry,
+            name = Locale("", from.isoCode).displayCountry,
             flagEmoji = from.flagEmoji,
             numberHint = exampleNumberFiltered ?: ""
         )

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import cz.kotox.domain.model.CountryUiModel
 import cz.kotox.domain.usecase.CountryCodeListUseCase
 import cz.kotox.domain.usecase.CountryCodeLocalUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -15,6 +16,8 @@ data class PhoneCountryCodeFeedState(
     val countries: List<CountryUiModel> = emptyList(),
 )
 
+
+@HiltViewModel
 class PhoneCountryCodeViewModel @Inject constructor(
     private val countryListUseCase: CountryCodeListUseCase
 ) : ViewModel() {
