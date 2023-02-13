@@ -10,7 +10,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.Locale
 import javax.inject.Inject
 
-class CountryLocalUseCase @Inject constructor(
+class CountryCodeLocalUseCase @Inject constructor(
     private val countryRepository: CountryRepository,
     private val countryModelMapper: CountryModelMapper,
     @ApplicationContext private val context: Context,

@@ -16,6 +16,7 @@ include(
     ":kotox-mobile-media",
     ":kotox-mobile-playground",
     ":common",
+    ":common-android",
     ":common-test",
     ":common-network",
     ":common-ui",
