@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.LocalTextStyle
@@ -90,10 +91,12 @@ fun PhoneTextField(
 
 
     BasicTextField(
+        modifier = modifier,
         value = TextFieldValue(
             text = inputValue.trimStart(),
             selection = TextRange(inputValue.length)
         ),
+        keyboardActions = KeyboardActions(onSend = { onSubmit() }),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Phone,
             imeAction = ImeAction.Go,
