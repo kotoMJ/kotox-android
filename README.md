@@ -27,7 +27,7 @@ Simple master-detail demo app presenting different kind of test cases.
 * [UI Smoke Testing](https://github.com/kotoMJ/kotox-android/blob/main/kotox-mobile-task/src/androidTest/kotlin/cz/kotox/task/list/TaskMainScreenSmokeTest.kt)
 * tbd.
 
-### Kotox Task (kotox-playground)
+### Kotox Playground (kotox-playground)
 
 1. Phone number
 
