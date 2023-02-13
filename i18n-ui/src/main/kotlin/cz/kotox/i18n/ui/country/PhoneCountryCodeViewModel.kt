@@ -60,4 +60,14 @@ class PhoneCountryCodeViewModel @Inject constructor(
         }
     }
 
+    fun onPhoneCountryCodeSelected(value: CountryUiModel) {
+        _uiState.update {
+            it.copy(
+                phoneInput = if (value is CountryUiModel.CountryUiModelItem) value.countryCode?.toString()
+                    ?: "" else "",
+                countryCodeModel = value
+            )
+        }
+    }
+
 }

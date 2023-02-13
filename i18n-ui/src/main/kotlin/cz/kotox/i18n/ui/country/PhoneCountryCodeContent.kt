@@ -59,11 +59,11 @@ fun PhoneCountryCodeContent(
         ) {
             itemsIndexed(
                 items = state.value.countries,
-                itemContent = { index, searchItem ->
+                itemContent = { index, countrCodeItem ->
                     PhoneNumberPrefixSearchItem(
-                        item = searchItem,
+                        item = countrCodeItem,
                         modifier = Modifier.clickable {
-                            //TODO
+                           listener.onPhoneCountryCodeSelected(countrCodeItem)
                         }
                     )
                     if (index < state.value.countries.lastIndex) {

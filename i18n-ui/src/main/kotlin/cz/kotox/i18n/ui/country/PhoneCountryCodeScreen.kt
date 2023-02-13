@@ -8,10 +8,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import cz.kotox.core.android.extension.collectAsStateWithLifecycle
+import cz.kotox.domain.model.CountryUiModel
 
 @Immutable
 interface PhoneCountryCodeListener {
     fun onPhoneValueChange(value: String)
+    fun onPhoneCountryCodeSelected(value: CountryUiModel)
 }
 
 @Composable
@@ -26,6 +28,10 @@ fun PhoneCountryCodeScreen(
         object : PhoneCountryCodeListener {
             override fun onPhoneValueChange(value: String) {
                 viewModel.onPhoneValueChange(value)
+            }
+
+            override fun onPhoneCountryCodeSelected(value: CountryUiModel) {
+                viewModel.onPhoneCountryCodeSelected(value)
             }
         }
     }
