@@ -10,7 +10,7 @@ interface CountryUiModelValueItem {
     val isoCode: String
     val name: String
     val countryCode: Int?
-    val numberHint: String
+    val numberHintWithoutCountryCode: String
 }
 
 sealed class CountryUiModel(
@@ -22,7 +22,7 @@ sealed class CountryUiModel(
         override val name: String,
         override val countryCode: Int?,
         override val flagEmoji: String,
-        override val numberHint: String,
+        override val numberHintWithoutCountryCode: String,
     ) : CountryUiModelValueItem, CountryUiModel(flagEmoji)
 
     data class CountryUiModelFallbackItem(
@@ -30,11 +30,11 @@ sealed class CountryUiModel(
         override val name: String = FALLBACK_COUNTRY_NAME,
         override val countryCode: Int? = FALLBACK_COUNTRY_CODE,
         override val flagEmoji: String = FALLBACK_FLAG_EMOJI,
-        override val numberHint: String = FALLBACK_EXAMPLE_NUMBER,
+        override val numberHintWithoutCountryCode: String = FALLBACK_EXAMPLE_NUMBER,
         ) : CountryUiModelValueItem, CountryUiModel(flagEmoji)
 
 
     data class CountryUiModelEmptyItem(
-        override val flagEmoji: String
+        override val flagEmoji: String = "❌"
     ) : CountryUiModel(flagEmoji)
 }

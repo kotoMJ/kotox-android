@@ -4,6 +4,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil
 import cz.kotox.core.domain.Mapper
 import cz.kotox.data.api.model.CountryModel
 import cz.kotox.domain.model.CountryUiModel
+import timber.log.Timber
 import java.util.Locale
 import javax.inject.Inject
 
@@ -21,12 +22,12 @@ class CountryModelMapper @Inject constructor(
 
         // CZ 601123456, TT 8682911234, AQ null
         val exampleNumber: String? = phoneNumberUtil.getExampleNumberForType(
-            from.countryCode,
+            from.isoCode,
             PhoneNumberUtil.PhoneNumberType.MOBILE
         )?.nationalNumber?.toString()
 
         // CZ 420, TT1
-        val countryCodeForRegion = phoneNumberUtil.getCountryCodeForRegion(from.countryCode)
+        val countryCodeForRegion = phoneNumberUtil.getCountryCodeForRegion(from.isoCode)
 
         /**
          * Countries like TT have complex national prefix (countryCode+leadingDigits) which is part of exampleNumber.
@@ -39,12 +40,12 @@ class CountryModelMapper @Inject constructor(
             exampleNumber?.removePrefix(leadingDigits)
         }
 
-        return CountryUiModel.CountryUiModelItem(
+        return  CountryUiModel.CountryUiModelItem(
             isoCode = from.isoCode,
             countryCode = dialCode,
             name = Locale("", from.isoCode).displayCountry,
             flagEmoji = from.flagEmoji,
-            numberHint = exampleNumberFiltered ?: ""
+            numberHintWithoutCountryCode = exampleNumberFiltered ?: ""
         )
     }
 }

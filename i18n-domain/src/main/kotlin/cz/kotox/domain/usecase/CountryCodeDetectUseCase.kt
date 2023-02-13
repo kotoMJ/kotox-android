@@ -1,49 +1,38 @@
 package cz.kotox.domain.usecase
 
-import cz.kotox.data.api.model.CountryModel
 import cz.kotox.data.api.repository.CountryRepository
+import cz.kotox.domain.mapper.CountryModelMapper
+import cz.kotox.domain.model.CountryUiModel
+import timber.log.Timber
 import javax.inject.Inject
 
-data class PhoneNumberPrefixDetection(
-    val phoneNumberPrefixModel: CountryModel?,
-    val filteredPhoneNumberValue: String
-)
-
-class PhoneNumberPrefixDetectUseCase @Inject constructor(
-    private val countryRepository: CountryRepository
+class CountryCodeDetectUseCase @Inject constructor(
+    private val countryRepository: CountryRepository,
+    private val countryModelMapper: CountryModelMapper
 ) {
 
-    suspend fun get(phoneNumberValue: String): PhoneNumberPrefixDetection {
+    suspend fun get(phoneNumberValue: String): CountryUiModel {
 
         var countryCode: String? = null
-        var phoneNumberPrefix: Int? = null
+        var phoneCountrCode: Int? = null
         countryRepository.getPhoneNumberPrefixCountryMap().forEach() {
             if (phoneNumberValue.startsWith(it.value.toString())) {
                 countryCode = it.key
-                phoneNumberPrefix = it.value
+                phoneCountrCode = it.value
             }
         }
 
+        Timber.d(">>>_ countryCode=${countryCode}, phoneCountryCode=${phoneCountrCode}")
         return if (countryCode == null) {
-            PhoneNumberPrefixDetection(
-                phoneNumberPrefixModel = null,
-                filteredPhoneNumberValue = phoneNumberValue
-            )
+            CountryUiModel.CountryUiModelEmptyItem()
         } else {
-
             val phoneNumberPrefixModel = countryRepository.getPhoneNumberPrefixModels()
                 .firstOrNull { it.isoCode == countryCode }
 
             if (phoneNumberPrefixModel == null) {
-                PhoneNumberPrefixDetection(
-                    phoneNumberPrefixModel = null,
-                    filteredPhoneNumberValue = phoneNumberValue
-                )
+                CountryUiModel.CountryUiModelEmptyItem()
             } else {
-                PhoneNumberPrefixDetection(
-                    phoneNumberPrefixModel = phoneNumberPrefixModel,
-                    filteredPhoneNumberValue = phoneNumberValue.removePrefix(phoneNumberPrefix.toString())
-                )
+                countryModelMapper.map(phoneNumberPrefixModel)
             }
         }
     }
