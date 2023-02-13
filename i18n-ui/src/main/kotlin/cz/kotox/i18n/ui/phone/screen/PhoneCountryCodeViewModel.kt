@@ -44,19 +44,18 @@ class PhoneCountryCodeViewModel @Inject constructor(
     }
 
     fun onPhoneValueChange(value: String) {
-        val digitOnlyValue = value//.filter { it.isDigit() || it.isWhitespace() }
         viewModelScope.launch {
-            val countryCodeDetection = countryCodeDetectUseCase.get(digitOnlyValue)
+            val countryCodeDetection = countryCodeDetectUseCase.get(value)
 
 
             val digitOnlyFormattedValue =
                 if (countryCodeDetection is CountryUiModel.CountryUiModelItem) {
                     countryCodeFormatUseCase.get(
-                        digitOnlyValue,
+                        value,
                         countryCodeDetection
                     )
                 } else {
-                    digitOnlyValue
+                    value
                 }
             if (countryCodeDetection == _uiState.value.countryCodeModel) {
                 _uiState.update {

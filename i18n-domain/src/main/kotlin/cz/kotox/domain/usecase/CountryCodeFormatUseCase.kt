@@ -27,7 +27,8 @@ class CountryCodeFormatUseCase @Inject constructor(
                 }
 
                 Timber.d(">>>_ formatted $phoneNumberValue -> $formattedNumber")
-                formattedNumber
+                //Support formatting with whitespaces only. No special characters!!!
+                formattedNumber.filter { it.isDigit() || it.isWhitespace() }
             } catch (@Suppress("TooGenericExceptionCaught", "SwallowedException") npe: Exception) {
                 phoneNumberValue
             }

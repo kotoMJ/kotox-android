@@ -40,12 +40,20 @@ class CountryModelMapper @Inject constructor(
             exampleNumber?.removePrefix(leadingDigits)
         }
 
-        return  CountryUiModel.CountryUiModelItem(
+        val maxDialCodeLength: Int? = dialCode?.toString()?.length
+        val maxHintNumberLength: Int? = exampleNumberFiltered?.length
+        val maxNumberLength =
+            if (maxDialCodeLength != null && maxHintNumberLength != null) {
+                maxDialCodeLength + maxHintNumberLength
+            } else null
+
+        return CountryUiModel.CountryUiModelItem(
             isoCode = from.isoCode,
             countryCode = dialCode,
             name = Locale("", from.isoCode).displayCountry,
             flagEmoji = from.flagEmoji,
-            numberHintWithoutCountryCode = exampleNumberFiltered ?: ""
+            numberHintWithoutCountryCode = exampleNumberFiltered ?: "",
+            maxNumberLength = maxNumberLength
         )
     }
 }
