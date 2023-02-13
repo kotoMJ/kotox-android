@@ -27,11 +27,13 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.OffsetMapping
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Devices
@@ -87,12 +89,12 @@ fun PhoneTextField(
     val startFixedPart = "+"
 
     BasicTextField(
-        value = inputValue,
+        value = TextFieldValue(text = inputValue, selection = TextRange(inputValue.length)),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Phone,
             imeAction = ImeAction.Go,
         ),
-        onValueChange = { onValueChange(it) },
+        onValueChange = { onValueChange(it.text) },
         visualTransformation = PrefixTransformation(startFixedPart),
         textStyle = LocalTextStyle.current,
         cursorBrush = SolidColor(colors.cursorColor(isError).value),
