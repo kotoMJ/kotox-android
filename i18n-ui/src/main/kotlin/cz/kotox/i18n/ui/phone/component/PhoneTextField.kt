@@ -39,6 +39,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.text.isDigitsOnly
 import cz.kotox.core.ui.theme.KotoxBasicTheme
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.core.ui.theme.LocalTypography
@@ -89,12 +90,19 @@ fun PhoneTextField(
     val startFixedPart = "+"
 
     BasicTextField(
-        value = TextFieldValue(text = inputValue, selection = TextRange(inputValue.length)),
+        value = TextFieldValue(
+            text = inputValue.trimStart(),
+            selection = TextRange(inputValue.length)
+        ),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Phone,
             imeAction = ImeAction.Go,
         ),
-        onValueChange = { onValueChange(it.text) },
+        onValueChange = { textFieldValue ->
+            if (textFieldValue.text.filterNot {
+                    it.isDigit() || it.isWhitespace()
+                }.isEmpty()) onValueChange(textFieldValue.text)
+        },
         visualTransformation = PrefixTransformation(startFixedPart),
         textStyle = LocalTextStyle.current,
         cursorBrush = SolidColor(colors.cursorColor(isError).value),
@@ -113,11 +121,7 @@ fun PhoneTextField(
             ) {
                 if (countryUiModel is CountryUiModelValueItem) {
 
-                    if (inputValue.isEmpty() ||
-                        inputValue.equals(countryUiModel.countryCode.toString().take(1)) ||
-                        inputValue.equals(countryUiModel.countryCode.toString().take(2)) ||
-                        inputValue.equals(countryUiModel.countryCode.toString().take(3))
-                    ) {
+                    if (countryUiModel.countryCode.toString().contains(inputValue)) {
                         val hint = buildAnnotatedString {
                             val completePhoneNumberString =
                                 "${startFixedPart}${inputValue}${countryUiModel.numberHintWithoutCountryCode}"
