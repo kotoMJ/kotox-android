@@ -46,31 +46,6 @@ import cz.kotox.core.ui.theme.LocalTypography
 import cz.kotox.domain.model.CountryUiModel
 import cz.kotox.domain.model.CountryUiModelValueItem
 
-class PrefixTransformation(val prefix: String) : VisualTransformation {
-    override fun filter(text: AnnotatedString): TransformedText {
-        return PrefixFilter(text, prefix)
-    }
-}
-
-fun PrefixFilter(number: AnnotatedString, prefix: String): TransformedText {
-
-    var out = prefix + number.text
-    val prefixOffset = prefix.length
-
-    val numberOffsetTranslator = object : OffsetMapping {
-        override fun originalToTransformed(offset: Int): Int {
-            return offset + prefixOffset
-        }
-
-        override fun transformedToOriginal(offset: Int): Int {
-            if (offset < prefixOffset) return 0
-            return offset - prefixOffset
-        }
-    }
-
-    return TransformedText(AnnotatedString(out), numberOffsetTranslator)
-}
-
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PhoneTextField(
@@ -172,6 +147,31 @@ fun PhoneTextField(
             }
         }
     )
+}
+
+internal class PrefixTransformation(val prefix: String) : VisualTransformation {
+    override fun filter(text: AnnotatedString): TransformedText {
+        return prefixFilter(text, prefix)
+    }
+}
+
+internal fun prefixFilter(number: AnnotatedString, prefix: String): TransformedText {
+
+    val out = prefix + number.text
+    val prefixOffset = prefix.length
+
+    val numberOffsetTranslator = object : OffsetMapping {
+        override fun originalToTransformed(offset: Int): Int {
+            return offset + prefixOffset
+        }
+
+        override fun transformedToOriginal(offset: Int): Int {
+            if (offset < prefixOffset) return 0
+            return offset - prefixOffset
+        }
+    }
+
+    return TransformedText(AnnotatedString(out), numberOffsetTranslator)
 }
 
 @Preview(
