@@ -52,7 +52,7 @@ class CountryModelMapper @Inject constructor(
             countryName = Locale("", from.isoCode).displayCountry,
             flagEmoji = from.flagEmoji,
             numberHintWithoutCountryCode = exampleNumberFiltered ?: "",
-            maxNumberLength = maxNumberLength
+            expectedLength = maxNumberLength
         )
     }
 }

@@ -107,10 +107,10 @@ fun PhoneTextField(
                 }.isEmpty()) {
 
                 val numberLengthLimit: Int? = if (countryUiModel is CountryUiModelValueItem) {
-                    if (countryUiModel.maxNumberLength == null) {
+                    if (countryUiModel.expectedLength == null) {
                         null
                     } else {
-                        (countryUiModel.maxNumberLength
+                        (countryUiModel.expectedLength
                             ?: 0) + (textFieldValue.text.filter { it.isWhitespace() }.length)
                     }
                 } else null
@@ -206,7 +206,7 @@ fun PhoneTextFieldPreview() {
                         countryCode = expectedCountryCode,
                         flagEmoji = "🇨🇿",
                         numberHintWithoutCountryCode = hint,
-                        maxNumberLength = expectedCountryCode.toString().length + hint.length
+                        expectedLength = expectedCountryCode.toString().length + hint.length
                     )
                 } else {
                     CountryUiModel.CountryUiModelEmptyItem()

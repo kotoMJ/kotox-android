@@ -12,7 +12,7 @@ interface CountryUiModelValueItem {
     val countryName: String
     val countryCode: Int?
     val numberHintWithoutCountryCode: String
-    val maxNumberLength: Int?
+    val expectedLength: Int?
 }
 
 sealed class CountryUiModel(
@@ -25,7 +25,7 @@ sealed class CountryUiModel(
         override val countryCode: Int?,
         override val flagEmoji: String,
         override val numberHintWithoutCountryCode: String,
-        override val maxNumberLength: Int?
+        override val expectedLength: Int?
     ) : CountryUiModelValueItem, CountryUiModel(flagEmoji)
 
     data class CountryUiModelFallbackItem(
@@ -34,7 +34,7 @@ sealed class CountryUiModel(
         override val countryCode: Int? = FALLBACK_COUNTRY_CODE,
         override val flagEmoji: String = FALLBACK_FLAG_EMOJI,
         override val numberHintWithoutCountryCode: String = FALLBACK_EXAMPLE_NUMBER,
-        override val maxNumberLength: Int? = FALLBACK_EXAMPLE_MAX_NUMBER_LENGTH
+        override val expectedLength: Int? = FALLBACK_EXAMPLE_MAX_NUMBER_LENGTH
     ) : CountryUiModelValueItem, CountryUiModel(flagEmoji)
 
 
