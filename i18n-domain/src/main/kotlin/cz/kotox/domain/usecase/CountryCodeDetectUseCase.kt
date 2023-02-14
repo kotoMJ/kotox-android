@@ -13,21 +13,21 @@ class CountryCodeDetectUseCase @Inject constructor(
 
     suspend fun get(phoneNumberValue: String): CountryUiModel {
 
-        var countryCode: String? = null
-        var phoneCountrCode: Int? = null
+        var isoCode: String? = null
+        var countryCode: Int? = null
         countryRepository.getPhoneNumberPrefixCountryMap().forEach() {
             if (phoneNumberValue.startsWith(it.value.toString())) {
-                countryCode = it.key
-                phoneCountrCode = it.value
+                isoCode = it.key
+                countryCode = it.value
             }
         }
 
-        Timber.d(">>>_ countryCode=${countryCode}, phoneCountryCode=${phoneCountrCode}")
-        return if (countryCode == null) {
+        Timber.d(">>>_ countryCode=${isoCode}, phoneCountryCode=${countryCode}")
+        return if (isoCode == null) {
             CountryUiModel.CountryUiModelEmptyItem()
         } else {
             val phoneNumberPrefixModel = countryRepository.getPhoneNumberPrefixModels()
-                .firstOrNull { it.isoCode == countryCode }
+                .firstOrNull { it.isoCode == isoCode }
 
             if (phoneNumberPrefixModel == null) {
                 CountryUiModel.CountryUiModelEmptyItem()
