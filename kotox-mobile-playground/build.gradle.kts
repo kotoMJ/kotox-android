@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.compose.material3)//customize slider
 
     implementation(projects.commonUi)
     implementation(projects.common)
