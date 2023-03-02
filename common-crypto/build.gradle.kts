@@ -1,6 +1,13 @@
 plugins {
     id("cz.kotox.android.library")
+    id("com.hyperdevs.poeditor")
 }
+
+//poEditor {
+//    this.setApiToken("API_TOKEN")
+//    this.setProjectId(PROJECT_ID)
+//    this.setDefaultLang("en")
+//}
 
 android {
     repositories {
