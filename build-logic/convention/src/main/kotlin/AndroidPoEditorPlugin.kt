@@ -111,7 +111,7 @@ fun Project.poe() {
                 xmlWriter.saveXmlToFolder(
                     File(File("./"), "values"),
                     translationFile.toStringsXmlDocument(),
-                    "original_export"
+                    "strings_original"
                 )
             } catch (e: Exception) {
                 logger.error(e.message)

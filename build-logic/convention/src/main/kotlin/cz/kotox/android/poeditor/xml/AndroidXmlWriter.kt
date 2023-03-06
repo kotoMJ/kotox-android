@@ -39,7 +39,7 @@ class AndroidXmlWriter {
         postProcessedXmlDocumentMap.forEach { (moduleName, document) ->
             logger.lifecycle(">>>_ moduleName: $moduleName")
             val resFileName =
-                if (moduleName.trim().isEmpty()) "resources" else "resources_${moduleName}"
+                if (moduleName.trim().isEmpty()) "strings" else "strings_${moduleName}"
             saveXmlToFolder(baseValuesDir, document, resFileName)
         }
     }

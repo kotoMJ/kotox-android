@@ -1,5 +1,6 @@
 package cz.kotox.android.poeditor.xml
 
+import cz.kotox.android.poeditor.getModuleName
 import org.w3c.dom.CDATASection
 import org.w3c.dom.Document
 import org.w3c.dom.Element
@@ -174,7 +175,7 @@ class XmlPostProcessor {
                 textContent = processedContent
                 setAttribute("name", fixedNameAttribute)
             }
-            moduleName = if (fixedNameAttribute.startsWith("addWallet")) "wallet" else ""
+            moduleName = getModuleName(originalNameAttibute)
         }
 
         return Pair(moduleName, copiedNodeElement)
