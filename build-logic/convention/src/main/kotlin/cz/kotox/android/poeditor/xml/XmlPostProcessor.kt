@@ -165,9 +165,13 @@ class XmlPostProcessor {
             }
         } else {
             val content = nodeElement.textContent
+            val originalNameAttibute = nodeElement.getAttribute("name")
+            val fixedNameAttribute = originalNameAttibute.replace(".", "_")
             val processedContent = formatTranslationString(content)
+
             copiedNodeElement = (nodeElement.cloneNode(true) as Element).apply {
                 textContent = processedContent
+                setAttribute("name", fixedNameAttribute)
             }
         }
 
