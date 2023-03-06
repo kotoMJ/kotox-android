@@ -16,7 +16,6 @@ class AndroidXmlWriter {
     @Suppress("LongParameterList")
     fun saveXml(
         resDirPath: String,
-        resFileName: String,
         postProcessedXmlDocumentMap: Map<String, Document>,
         defaultLang: String,
         languageCode: String,
@@ -37,21 +36,15 @@ class AndroidXmlWriter {
             baseValuesDir = File(File(resDirPath), valuesFolderName)
         }
 
-        val folderToXmlMap = postProcessedXmlDocumentMap.mapKeys { (regexString, _) ->
-            // Compose values folder file for the given modifiers
-            //if (regexString == TABLET_REGEX_STRING) {
-            //File("${baseValuesDir.absolutePath}-$TABLET_RES_FOLDER_SUFFIX")
-            //} else {
-            baseValuesDir
-            //}
-        }
-
-        folderToXmlMap.forEach { (valuesFolderFile, document) ->
-            saveXmlToFolder(valuesFolderFile, document, resFileName)
+        postProcessedXmlDocumentMap.forEach { (moduleName, document) ->
+            logger.lifecycle(">>>_ moduleName: $moduleName")
+            val resFileName =
+                if (moduleName.trim().isEmpty()) "resources" else "resources_${moduleName}"
+            saveXmlToFolder(baseValuesDir, document, resFileName)
         }
     }
 
-    private fun saveXmlToFolder(stringsFolderFile: File, document: Document, resFileName: String) {
+    fun saveXmlToFolder(stringsFolderFile: File, document: Document, resFileName: String) {
         if (!stringsFolderFile.exists()) {
             logger.debug("Creating strings folder for new language")
             val folderCreated = stringsFolderFile.mkdirs()

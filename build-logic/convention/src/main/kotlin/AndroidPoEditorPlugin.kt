@@ -5,6 +5,7 @@ import cz.kotox.android.poeditor.api.PoEditorApiControllerImpl
 import cz.kotox.android.poeditor.api.downloadUrlToString
 import cz.kotox.android.poeditor.xml.AndroidXmlWriter
 import cz.kotox.android.poeditor.xml.XmlPostProcessor
+import cz.kotox.android.poeditor.xml.toStringsXmlDocument
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,6 +13,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -34,8 +36,11 @@ fun Project.poe() {
 
     tasks.register("downloadPoEditorStrings") {
 
-        val poEditorApiToken = System.getenv("POEDITOR_API_TOKEN") ?: project.property("POEDITOR_API_TOKEN") as String
-        val poEditorProjectId = System.getenv("POEDITOR_PROJECT_ID") ?: project.property("POEDITOR_PROJECT_ID") as String
+        val poEditorApiToken =
+            System.getenv("POEDITOR_API_TOKEN")
+                ?: project.property("POEDITOR_API_TOKEN") as String
+        val poEditorProjectId = System.getenv("POEDITOR_PROJECT_ID")
+            ?: project.property("POEDITOR_PROJECT_ID") as String
 
         doLast {
 
@@ -83,7 +88,6 @@ fun Project.poe() {
             logger.lifecycle("Downloading file from URL: $translationFileUrl")
             val translationFile = okHttpClient.downloadUrlToString(translationFileUrl)
 
-            //logger.lifecycle("Downloaded file: $translationFile")
 
             try {
                 val xmlPostProcessor = XmlPostProcessor()
@@ -94,17 +98,20 @@ fun Project.poe() {
                         translationFile
                     )
 
-                logger.lifecycle("postProcessedXmlDocumentMap : $postProcessedXmlDocumentMap")
-
                 val xmlWriter = AndroidXmlWriter()
 
                 xmlWriter.saveXml(
                     "./",
-                    "poeditor_us.xml",
                     postProcessedXmlDocumentMap,
                     "en_us",
                     "en_us",
                     emptyMap(),
+                )
+
+                xmlWriter.saveXmlToFolder(
+                    File(File("./"), "values"),
+                    translationFile.toStringsXmlDocument(),
+                    "original_export"
                 )
             } catch (e: Exception) {
                 logger.error(e.message)

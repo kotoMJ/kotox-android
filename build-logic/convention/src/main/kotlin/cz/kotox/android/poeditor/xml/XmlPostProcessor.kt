@@ -25,25 +25,30 @@ class XmlPostProcessor {
     }
 
 
-    fun postProcessTranslationXml(
-        translationFileXmlString: String
-    ): Map<String, Document> =
-
-        splitTranslationXml(
-            formatTranslationXml(translationFileXmlString)
-        )
-
-
-    fun formatTranslationXml(translationFileXmlString: String): String {
+    fun postProcessTranslationXml(translationFileXmlString: String): Map<String, Document> {
         // Parse line by line by traversing the original file using DOM
         val translationFileXmlDocument = translationFileXmlString.toStringsXmlDocument()
 
-        formatTranslationXmlDocument(
+        val elementMap = formatTranslationXmlDocument(
             translationFileXmlDocument,
             translationFileXmlDocument.childNodes
         )
 
-        return translationFileXmlDocument.toAndroidXmlString()
+
+        return elementMap.map { (key, value) ->
+
+            val moduleResourcesDocument = "".toStringsXmlDocument()
+            value.forEach {
+                logger.lifecycle(">>>_ node: ${it.textContent}")
+                // Transfer ownership of the new node into the destination document
+                moduleResourcesDocument.adoptNode(it)
+                // Make the new node an actual item in the target document
+                moduleResourcesDocument.documentElement.appendChild(it)
+            }
+
+            key to moduleResourcesDocument
+        }.toMap()
+
     }
 
     /**
@@ -78,81 +83,77 @@ class XmlPostProcessor {
     /**
      * Splits an Android XML file to multiple XML files depending on regex matching.
      */
-    fun splitTranslationXml(translationXmlString: String): Map<String, Document> {
-        val translationFileRecords = translationXmlString.toStringsXmlDocument()
-
-//        val ret =  fileSplitRegexStringList
-//            .map { regex ->
-//                // Extract strings matched by patterns to a separate strings XML
-//                regex to extractMatchingNodes(translationFileRecords.childNodes, regex)
-//            }
-//            .filter { (_, nodes) -> nodes.isNotEmpty() } // Only process suffixes with at least one coincidence
-//            .toMap()
-//            .mapValues { (regexString, nodes) ->
-//                val regex = Regex(regexString)
-//                val xmlString = "<resources></resources>"
-//                val xmlRecords = xmlString.toStringsXmlDocument()
-//                nodes.forEach { node ->
-//                    node.parentNode.removeChild(node)
-//                    val copiedNode = (node.cloneNode(true) as Element).apply {
-//                        val name = getAttribute(ATTR_NAME)
-//                        val nameWithoutRegex = regex.find(name)?.groups?.get(1)?.value ?: ""
-//                        setAttribute(ATTR_NAME, nameWithoutRegex)
-//                    }
-//                    xmlRecords.adoptNode(copiedNode)
-//                    xmlRecords.firstChild.appendChild(copiedNode)
-//                }
-//
-//                // Remove empty nodes from resulting XMLs
-//                sanitizeNodes(xmlRecords)
-//                xmlRecords
-//            }
-
-        val ret = mapOf<String, Document>()
-            .plus(ALL_REGEX_STRING to translationFileRecords)
-
-        logger.lifecycle(">>>_ map: ${ret}")
-        return ret
-    }
 
     private fun formatTranslationXmlDocument(
         document: Document,
         nodeList: NodeList,
-        rootNode: Node? = null
-    ) {
+    ): MutableMap<String, MutableList<Element>> {
+        val elemntMap: MutableMap<String, MutableList<Element>> = mutableMapOf()
         for (i in 0 until nodeList.length) {
             if (nodeList.item(i).nodeType == Node.ELEMENT_NODE) {
                 val nodeElement = nodeList.item(i) as Element
                 when (nodeElement.tagName) {
                     TAG_RESOURCES -> {
                         // Main node, traverse its children
-                        formatTranslationXmlDocument(document, nodeElement.childNodes, nodeElement)
+                        val innerMap = formatTranslationXmlDocument(
+                            document,
+                            nodeElement.childNodes,
+                        )
+
+                        innerMap.forEach { key, value ->
+                            if (!elemntMap.containsKey(key)) {
+                                elemntMap[key] = mutableListOf<Element>()
+                            }
+                            elemntMap[key]?.addAll(value)
+                        }
                     }
                     TAG_PLURALS -> {
                         // Plurals node, process its children
-                        formatTranslationXmlDocument(document, nodeElement.childNodes, nodeElement)
+                        val innerMap = formatTranslationXmlDocument(
+                            document,
+                            nodeElement.childNodes,
+                        )
+
+                        innerMap.forEach { key, value ->
+                            if (!elemntMap.containsKey(key)) {
+                                elemntMap[key] = mutableListOf<Element>()
+                            }
+                            elemntMap[key]?.addAll(value)
+                        }
                     }
                     TAG_STRING -> {
                         // String node, apply transformation to the content
-                        processTextAndReplaceNodeContent(document, nodeElement, rootNode)
+                        val element = transformElement(nodeElement)
+                        if (!elemntMap.containsKey(element.first)) {
+                            elemntMap[element.first] = mutableListOf<Element>()
+                        }
+
+                        elemntMap[element.first]?.add(element.second)
                     }
                     TAG_ITEM -> {
                         // Plurals item node, apply transformation to the content
-                        processTextAndReplaceNodeContent(document, nodeElement, rootNode)
+                        val element = transformElement(nodeElement)
+                        if (!elemntMap.containsKey(element.first)) {
+                            elemntMap[element.first] = mutableListOf<Element>()
+                        }
+                        elemntMap[element.first]?.add(element.second)
                     }
                 }
             }
         }
+
+        return elemntMap
     }
 
-    private fun processTextAndReplaceNodeContent(
-        document: Document,
+    private fun transformElement(
+        //document: Document,
         nodeElement: Element,
-        rootNode: Node?
-    ) {
+        //rootNode: Node?
+    ): Pair<String, Element> {
         // First check if we have a CDATA node as the a child of the element. If we have it, we have to
         // preserve the CDATA node but process the text. Else, we handle the node as a usual text node
         val copiedNodeElement: Element
+        var moduleName = ""
         val (cDataNode, cDataPosition) = getCDataChildForNode(nodeElement)
         if (cDataNode != null) {
             val cDataContent = cDataNode.textContent
@@ -173,10 +174,10 @@ class XmlPostProcessor {
                 textContent = processedContent
                 setAttribute("name", fixedNameAttribute)
             }
+            moduleName = if (fixedNameAttribute.startsWith("addWallet")) "wallet" else ""
         }
 
-        document.adoptNode(copiedNodeElement)
-        rootNode?.replaceChild(copiedNodeElement, nodeElement)
+        return Pair(moduleName, copiedNodeElement)
     }
 
     private fun getCDataChildForNode(nodeElement: Element): Pair<Node?, Int> {
