@@ -204,7 +204,10 @@ leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.re
 libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "libphonenumber"}
 
 moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
-moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
+moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi"}
+moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi"}
+moshi-adapters = { group = "com.squareup.moshi", name = "moshi-adapters", version.ref = "moshi"}
+
 
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttp-loggingInterceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
@@ -300,6 +303,8 @@ google-accompanist = [
     "accompanist-permissions",
     "accompanist-systemuicontroller",
 ]
+
+moshi = ["moshi", "moshi-kotlin", "moshi-adapters"]
 
 #squareup-moshi = ["squareup-moshi", "squareup-moshi-adapters"]
 #squareup-okhttp = ["squareup-okhttp", "squareup-okhttp-loggingInterceptor"]

@@ -7,6 +7,7 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
 
+
 @Suppress("unused")
 class AndroidApplicationConventionPlugin : Plugin<Project> {
 
@@ -14,6 +15,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         with(target) {
             configureBasePlugins()
             configureBaseAppModule()
+            poe()
         }
     }
 
@@ -21,6 +23,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         pluginManager.apply {
             apply("com.android.application")
             apply("org.jetbrains.kotlin.android")
+            apply("com.hyperdevs.poeditor")
         }
     }
 
@@ -29,6 +32,17 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         extensions.configure<BaseAppModuleExtension> {
             configureKotlinAndroid(this)
             defaultConfig.targetSdk = catalog.findVersion("sdk-target").get().toString().toInt()
+        }
+    }
+
+
+    private fun Project.poe(){
+
+        val downloadPoeStringsTask = tasks.register("downloadPoeStrings"){
+            //logger.info( "DOWNLOAD HERE...")
+            //error("poe fock")
+
+
         }
     }
 }
