@@ -1,20 +1,28 @@
 package cz.kotox.android.poeditor
 
-fun getModuleName(originalNameAttibute: String) = when {
-    originalNameAttibute.startsWith("addWallet") -> "connect_wallet"
-    originalNameAttibute.startsWith("welcome.") -> "connect_wallet"
-    originalNameAttibute.startsWith("intro.text") -> "connect_wallet"
-    originalNameAttibute.startsWith("desktopConnect.title") -> "connect_wallet"
-    originalNameAttibute.startsWith("emailConnect") -> "connect_wallet"
-    originalNameAttibute.startsWith("phoneWallet") -> "connect_wallet"
-    originalNameAttibute.startsWith("general.sendingCode") -> "connect_wallet"
-    originalNameAttibute.startsWith("cancelSetup") -> "connect_wallet"
+fun getModuleName(originalNameAttribute: String) = when {
 
-    originalNameAttibute.startsWith("login.title") -> "authentication"
-    originalNameAttibute.startsWith("pinEnter.") -> "authentication"
-    originalNameAttibute.startsWith("forgottenPasscode.") -> "authentication"
+    listOf(
+        "addWallet",
+        "welcome.",
+        "intro.text",
+        "desktopConnect.title",
+        "emailConnect",
+        "phoneWallet",
+        "general.sendingCode",
+        "cancelSetup"
+    ).any { originalNameAttribute.startsWith(it) } -> "connect_wallet"
 
-    originalNameAttibute.startsWith("verify.") -> "doorkeeper"
-    originalNameAttibute.startsWith("verification.") -> "doorkeeper"
+
+    listOf(
+        "login.title",
+        "pinEnter.",
+        "forgottenPasscode."
+    ).any { originalNameAttribute.startsWith(it) } -> "authentication"
+
+    listOf(
+        "verify.",
+        "verification."
+    ).any { originalNameAttribute.startsWith(it) } -> "doorkeeper"
     else -> ""
 }
