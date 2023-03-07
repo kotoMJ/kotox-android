@@ -23,6 +23,8 @@ class XmlPostProcessor {
         private const val TAG_ITEM = "item"
 
         private const val ATTR_NAME = "name"
+        private const val ATTR_NAME_IOS_DELIMITER = "."
+        private const val ATTR_NAME_ANDROID_DELIMITER = "."
     }
 
 
@@ -145,105 +147,37 @@ class XmlPostProcessor {
         return elemntMap
     }
 
+    /**
+     * DEV NOTE: transformation is simplified and thus does not supports CDATA processing!!!
+     */
     private fun transformElement(
-        //document: Document,
         nodeElement: Element,
-        //rootNode: Node?
     ): Pair<String, Element> {
-        // First check if we have a CDATA node as the a child of the element. If we have it, we have to
-        // preserve the CDATA node but process the text. Else, we handle the node as a usual text node
+
         val copiedNodeElement: Element
         var moduleName = ""
+
         val (cDataNode, cDataPosition) = getCDataChildForNode(nodeElement)
-        if (cDataNode != null) {
-            val cDataContent = cDataNode.textContent
-            val processedCDataContent = formatTranslationString(cDataContent)
-            val copiedCDataNode = (cDataNode.cloneNode(true) as CDATASection).apply {
-                this.data = processedCDataContent
-            }
-            copiedNodeElement = (nodeElement.cloneNode(true) as Element).apply {
-                replaceChild(copiedCDataNode, this.childNodes.item(cDataPosition))
-            }
-        } else {
+
+        if (cDataNode == null) {
             val content = nodeElement.textContent
-            val originalNameAttibute = nodeElement.getAttribute("name")
-            val fixedNameAttribute = originalNameAttibute.replace(".", "_")
+            val originalNameAttibute = nodeElement.getAttribute(ATTR_NAME)
+            val fixedNameAttribute =
+                originalNameAttibute.replace(ATTR_NAME_IOS_DELIMITER, ATTR_NAME_ANDROID_DELIMITER)
+
             val processedContent = formatTranslationString(content)
 
             copiedNodeElement = (nodeElement.cloneNode(true) as Element).apply {
                 textContent = processedContent
-                setAttribute("name", fixedNameAttribute)
+                setAttribute(ATTR_NAME, fixedNameAttribute)
             }
             moduleName = getModuleName(originalNameAttibute)
-        }
 
-        return Pair(moduleName, copiedNodeElement)
-    }
-
-    private fun getCDataChildForNode(nodeElement: Element): Pair<Node?, Int> {
-        val childrenList = nodeElement.childNodes
-        for (i in 0..childrenList.length) {
-            val childNode = childrenList.item(i)
-            if (childNode is CDATASection) {
-                return Pair(childNode, i)
-            }
-        }
-        return Pair(null, -1)
-    }
-
-    @Suppress("NestedBlockDepth")
-    private fun extractMatchingNodes(nodeList: NodeList, regexString: String): List<Node> {
-        val matchedNodes = mutableListOf<Node>()
-        val regex = Regex(regexString)
-
-        for (i in 0 until nodeList.length) {
-            if (nodeList.item(i).nodeType == Node.ELEMENT_NODE) {
-                val nodeElement = nodeList.item(i) as Element
-                when (nodeElement.tagName) {
-                    TAG_RESOURCES -> {
-                        // Main XML node, process children
-                        matchedNodes.addAll(
-                            extractMatchingNodes(
-                                nodeElement.childNodes,
-                                regexString
-                            )
-                        )
-                    }
-                    TAG_STRING -> {
-                        // String node, add node if name matches regex
-                        if (nodeElement.getAttribute(ATTR_NAME).matches(regex)) {
-                            matchedNodes.add(nodeElement)
-                        }
-                    }
-                    TAG_PLURALS -> {
-                        // Plurals node, add node and children if name matches regex
-                        if (nodeElement.getAttribute(ATTR_NAME).matches(regex)) {
-                            matchedNodes.add(nodeElement)
-                        }
-                    }
-                }
-            }
-        }
-        return matchedNodes
-    }
-
-    /**
-     * Removes empty nodes for better serialization
-     *
-     * Extracted from https://stackoverflow.com/a/31421664/9288365
-     */
-    private fun sanitizeNodes(node: Node) {
-        var child: Node? = node.firstChild
-        while (child != null) {
-            val sibling = child.nextSibling
-            if (child.nodeType == Node.TEXT_NODE) {
-                if (child.textContent.trim { it <= ' ' }.isEmpty()) {
-                    node.removeChild(child)
-                }
-            } else {
-                sanitizeNodes(child)
-            }
-            child = sibling
+            return Pair(moduleName, copiedNodeElement)
+        } else {
+            logger.warn("CDATA processing in string resources is not supported by this processor yet!")
+            //Check https://github.com/hyperdevs-team/poeditor-android-gradle-plugin how to process CDATA
+            return Pair(moduleName, nodeElement)
         }
     }
 }
