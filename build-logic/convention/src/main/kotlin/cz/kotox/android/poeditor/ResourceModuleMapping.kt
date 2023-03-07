@@ -7,9 +7,10 @@ data class TargetResource(
 )
 
 val defaultTargetResource = TargetResource(
-    "kotox-mobile-playground",
-    ""
+    moduleName = "kotox-mobile-playground",
+    resourceName = ""
 )
+
 fun getTargetResource(originalNameAttribute: String): TargetResource = when {
 
     listOf(
@@ -25,8 +26,8 @@ fun getTargetResource(originalNameAttribute: String): TargetResource = when {
         "cancelSetup",
         "desktopConnect."
     ).any { originalNameAttribute.startsWith(it) } -> TargetResource(
-        "kotox-mobile-media",
-        "connect_wallet"
+        moduleName = "kotox-mobile-media",
+        resourceName = "connect_wallet"
     )
 
 
@@ -35,8 +36,8 @@ fun getTargetResource(originalNameAttribute: String): TargetResource = when {
         "pinEnter.",
         "forgottenPasscode.",
     ).any { originalNameAttribute.startsWith(it) } -> TargetResource(
-        "kotox-mobile-playground",
-        "authentication"
+        moduleName = "kotox-mobile-playground",
+        resourceName = "authentication"
     )
 
     listOf(
@@ -46,8 +47,8 @@ fun getTargetResource(originalNameAttribute: String): TargetResource = when {
         "verificationStatus.title.",
         "organizer."
     ).any { originalNameAttribute.startsWith(it) } -> TargetResource(
-        "kotox-mobile-playground",
-        "doorkeeper"
+        moduleName = "kotox-mobile-playground",
+        resourceName = "doorkeeper"
     )
 
     listOf(
@@ -71,37 +72,37 @@ fun getTargetResource(originalNameAttribute: String): TargetResource = when {
         "myWallets.",
         "plural.ticketsCount",
     ).any { originalNameAttribute.startsWith(it) } -> TargetResource(
-        "kotox-mobile-playground",
-        "main"
+        moduleName = "kotox-mobile-playground",
+        resourceName = "main"
     )
 
     listOf(
         "verification.",
     ).any { originalNameAttribute.startsWith(it) } -> TargetResource(
-        "kotox-mobile-playground",
-        "core_verification"
+        moduleName = "kotox-mobile-playground",
+        resourceName = "core_verification"
     )
 
     listOf(
         "general.button.cancel",
         "general.button.close",
     ).any { originalNameAttribute.startsWith(it) } -> TargetResource(
-        "kotox-mobile-playground",
-        "core_ui"
+        moduleName = "kotox-mobile-playground",
+        resourceName = "core_ui"
     )
 
     listOf(
         "passes.title.permanent",
     ).any { originalNameAttribute.startsWith(it) } -> TargetResource(
-        "kotox-mobile-playground",
-        "core_ticket"
+        moduleName = "kotox-mobile-playground",
+        resourceName = "core_ticket"
     )
 
     listOf(
         "phoneWallet.c",
     ).any { originalNameAttribute.startsWith(it) } -> TargetResource(
-        "kotox-mobile-playground",
-        "core_phone"
+        moduleName = "kotox-mobile-playground",
+        resourceName = "core_phone"
     )
 
     listOf(
@@ -110,8 +111,8 @@ fun getTargetResource(originalNameAttribute: String): TargetResource = when {
         "general.button.",
         "deleteAccount.",
     ).any { originalNameAttribute.startsWith(it) } -> TargetResource(
-        "kotox-mobile-playground",
-        "core"
+        moduleName = "kotox-mobile-playground",
+        resourceName = "core"
     )
 
     listOf(
@@ -119,22 +120,22 @@ fun getTargetResource(originalNameAttribute: String): TargetResource = when {
         "appStatus.title.update",
         "appStatus.message.update",
     ).any { originalNameAttribute.startsWith(it) } -> TargetResource(
-        "kotox-mobile-playground",
-        "update"
+        moduleName = "kotox-mobile-playground",
+        resourceName = "update"
     )
 
     listOf(
         "appStatus.message.inMaintenance",
     ).any { originalNameAttribute.startsWith(it) } -> TargetResource(
-        "kotox-mobile-playground",
-        "maintenance"
+        moduleName = "kotox-mobile-playground",
+        resourceName = "maintenance"
     )
 
     listOf(
         "transfer.",
     ).any { originalNameAttribute.startsWith(it) } -> TargetResource(
-        "kotox-mobile-playground",
-        "transfer"
+        moduleName = "kotox-mobile-playground",
+        resourceName = "transfer"
     )
 
     else -> defaultTargetResource
