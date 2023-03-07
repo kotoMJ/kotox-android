@@ -45,6 +45,7 @@ fun getModuleName(originalNameAttribute: String) = when {
         "exportKey.",
         "events.eventDetail",
         "settings.",
+        "enterPass.",
     ).any { originalNameAttribute.startsWith(it) } -> "main"
 
     listOf(
