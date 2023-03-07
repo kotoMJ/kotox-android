@@ -6,7 +6,6 @@ fun getModuleName(originalNameAttribute: String) = when {
         "addWallet",
         "welcome.",
         "intro.text",
-        "desktopConnect.title",
         "emailConnect",
         "phoneWallet.b",
         "phoneWallet.e",
@@ -14,6 +13,7 @@ fun getModuleName(originalNameAttribute: String) = when {
         "phoneWallet.w",
         "general.sendingCode",
         "cancelSetup",
+        "desktopConnect."
     ).any { originalNameAttribute.startsWith(it) } -> "connect_wallet"
 
 
@@ -44,6 +44,7 @@ fun getModuleName(originalNameAttribute: String) = when {
         "passes.title.t",
         "exportKey.",
         "events.eventDetail",
+        "settings.",
     ).any { originalNameAttribute.startsWith(it) } -> "main"
 
     listOf(
@@ -78,6 +79,10 @@ fun getModuleName(originalNameAttribute: String) = when {
     listOf(
         "appStatus.message.inMaintenance",
     ).any { originalNameAttribute.startsWith(it) } -> "maintenance"
+
+    listOf(
+        "transfer.",
+    ).any { originalNameAttribute.startsWith(it) } -> "transfer"
 
     else -> ""
 }
