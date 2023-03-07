@@ -1,4 +1,4 @@
-import cz.kotox.android.poeditor.PoEditorExportController
+import cz.kotox.android.poeditor.PoEditorImportController
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import java.util.*
@@ -24,11 +24,11 @@ fun Project.poEditorPlugin() {
             ?: project.property("POEDITOR_PROJECT_ID") as String
 
         doLast {
-            PoEditorExportController(
+            PoEditorImportController(
                 poEditorApiUrl = "https://api.poeditor.com/v2/",
                 poEditorApiToken = poEditorApiToken,
                 poEditorProjectId = poEditorProjectId
-            ).executeExport()
+            ).executeImport()
 
         }
     }

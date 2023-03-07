@@ -21,14 +21,14 @@ private const val CONNECT_TIMEOUT_SECONDS = 30L
 private const val READ_TIMEOUT_SECONDS = 30L
 private const val WRITE_TIMEOUT_SECONDS = 30L
 
-class PoEditorExportController(
+class PoEditorImportController(
     val poEditorApiUrl: String,
     val poEditorApiToken: String,
     val poEditorProjectId: String,
 ) {
 
 
-    fun executeExport(){
+    fun executeImport(){
         val okHttpClient = OkHttpClient.Builder()
             .connectTimeout(CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT_SECONDS, TimeUnit.SECONDS)
