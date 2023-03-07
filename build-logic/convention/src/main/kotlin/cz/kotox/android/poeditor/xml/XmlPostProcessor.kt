@@ -12,8 +12,6 @@ import org.w3c.dom.NodeList
 @Suppress("StringLiteralDuplication")
 class XmlPostProcessor {
     companion object {
-        private val DEFAULT_ENCODING = Charsets.UTF_8
-
         private const val TAG_RESOURCES = "resources"
         private const val TAG_STRING = "string"
         private const val TAG_PLURALS = "plurals"
