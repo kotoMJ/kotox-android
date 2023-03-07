@@ -75,5 +75,9 @@ fun getModuleName(originalNameAttribute: String) = when {
         "appStatus.message.update",
     ).any { originalNameAttribute.startsWith(it) } -> "update"
 
+    listOf(
+        "appStatus.message.inMaintenance",
+    ).any { originalNameAttribute.startsWith(it) } -> "maintenance"
+
     else -> ""
 }
