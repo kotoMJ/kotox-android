@@ -59,7 +59,7 @@ internal fun sanitizePluralChildItemElement(
         val content = nodeElement.textContent
 
 
-        val processedContent = formatTranslationString(content)
+        val processedContent = formatTranslationIOsParameterString(content)
 
         copiedNodeElement = (nodeElement.cloneNode(true) as Element).apply {
             textContent = processedContent
