@@ -46,6 +46,7 @@ fun getModuleName(originalNameAttribute: String) = when {
         "events.eventDetail",
         "settings.",
         "enterPass.",
+        "myWallets.",
     ).any { originalNameAttribute.startsWith(it) } -> "main"
 
     listOf(
