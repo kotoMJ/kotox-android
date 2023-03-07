@@ -22,8 +22,6 @@ fun Project.poEditorPlugin(projectDir: String, moduleName: String) {
 
     tasks.register("downloadPoEditorStrings") {
 
-        cz.kotox.android.poeditor.xml.logger.lifecycle(">>>_ projectDir ${projectDir}, moduleName: ${moduleName}")
-
         val poEditorApiToken =
             System.getenv("POEDITOR_API_TOKEN")
                 ?: project.property("POEDITOR_API_TOKEN") as String
