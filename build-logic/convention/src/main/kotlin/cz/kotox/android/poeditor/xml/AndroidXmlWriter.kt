@@ -37,9 +37,8 @@ class AndroidXmlWriter {
         }
 
         postProcessedXmlDocumentMap.forEach { (moduleName, document) ->
-            logger.lifecycle(">>>_ moduleName: $moduleName")
             val resFileName =
-                if (moduleName.trim().isEmpty()) "strings2" else "strings_${moduleName}_2"
+                if (moduleName.trim().isEmpty()) "strings_not_sorted" else "strings_${moduleName}_2"
             saveXmlToFolder(baseValuesDir, document, resFileName)
         }
     }
@@ -52,7 +51,7 @@ class AndroidXmlWriter {
             check(folderCreated) { "Strings folder could not be created: ${stringsFolderFile.absolutePath}" }
         }
 
-        logger.lifecycle("Saving strings to ${stringsFolderFile.absolutePath}")
+        //logger.lifecycle("Saving strings to ${stringsFolderFile.absolutePath}")
         File(stringsFolderFile, "$resFileName.xml").writeText(document.toAndroidXmlString())
     }
 }

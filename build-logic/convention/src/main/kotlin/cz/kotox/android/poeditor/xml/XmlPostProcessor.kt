@@ -40,7 +40,6 @@ class XmlPostProcessor {
 
             val moduleResourcesDocument = "".toStringsXmlDocument()
             value.forEach {
-                logger.lifecycle(">>>_ node: ${it.textContent}")
                 // Transfer ownership of the new node into the destination document
                 moduleResourcesDocument.adoptNode(it)
                 // Make the new node an actual item in the target document

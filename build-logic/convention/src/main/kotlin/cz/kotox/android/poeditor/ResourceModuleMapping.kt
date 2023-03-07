@@ -27,11 +27,11 @@ fun getModuleName(originalNameAttribute: String) = when {
         "verify.",
         "verification.title.verification",
         "verificationStatus.button.",
-        "verificationStatus.title."
+        "verificationStatus.title.",
     ).any { originalNameAttribute.startsWith(it) } -> "doorkeeper"
 
     listOf(
-        "appStatus.",
+        "appStatus.title.noWallets",
         "passes.button",
         "passes.message",
         "passes.title.a",
@@ -64,9 +64,16 @@ fun getModuleName(originalNameAttribute: String) = when {
     ).any { originalNameAttribute.startsWith(it) } -> "core_phone"
 
     listOf(
+        "appStatus.title.inMaintenance",
         "general.error.invalid",
-        "general.button."
+        "general.button.",
     ).any { originalNameAttribute.startsWith(it) } -> "core"
+
+    listOf(
+        "appStatus.button.update",
+        "appStatus.title.update",
+        "appStatus.message.update",
+    ).any { originalNameAttribute.startsWith(it) } -> "update"
 
     else -> ""
 }
