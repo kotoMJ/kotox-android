@@ -68,6 +68,7 @@ fun getModuleName(originalNameAttribute: String) = when {
         "appStatus.title.inMaintenance",
         "general.error.invalid",
         "general.button.",
+        "deleteAccount.",
     ).any { originalNameAttribute.startsWith(it) } -> "core"
 
     listOf(
