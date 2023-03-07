@@ -6,14 +6,14 @@ import org.w3c.dom.Element
 private val VARIABLE_REGEX = Regex("""\{\d?\{(.*?)\}\}""")
 
 private const val ATTR_NAME = "name"
-private const val ATTR_NAME_IOS_DELIMITER = "."
-private const val ATTR_NAME_ANDROID_DELIMITER = "."
+internal const val ATTR_NAME_IOS_DELIMITER = "."
+internal const val ATTR_NAME_ANDROID_DELIMITER = "_"
 
 /**
  * Transform
  * DEV NOTE: transformation is simplified and thus does not supports CDATA processing!!!
  */
-internal fun sanitizeAndroidResourceElementAndRecognizeTargetModule(
+internal fun sanitizeSingleStringElementAndClassifyTargetModule(
     nodeElement: Element,
 ): Pair<String, Element> {
 
