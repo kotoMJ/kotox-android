@@ -10,19 +10,33 @@ fun getModuleName(originalNameAttribute: String) = when {
         "emailConnect",
         "phoneWallet",
         "general.sendingCode",
-        "cancelSetup"
+        "cancelSetup",
     ).any { originalNameAttribute.startsWith(it) } -> "connect_wallet"
 
 
     listOf(
         "login.title",
         "pinEnter.",
-        "forgottenPasscode."
+        "forgottenPasscode.",
     ).any { originalNameAttribute.startsWith(it) } -> "authentication"
 
     listOf(
         "verify.",
-        "verification."
+        "verification.title.verification",
+        "verificationStatus.button.",
+        "verificationStatus.title."
     ).any { originalNameAttribute.startsWith(it) } -> "doorkeeper"
+
+    listOf(
+        "appStatus.",
+        "passes.",
+        "exportKey.",
+        "events.eventDetail",
+    ).any { originalNameAttribute.startsWith(it) } -> "main"
+
+    listOf(
+        "verification.",
+    ).any { originalNameAttribute.startsWith(it) } -> "core_verification"
+
     else -> ""
 }
