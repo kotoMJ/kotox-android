@@ -50,7 +50,7 @@ fun getModuleName(originalNameAttribute: String) = when {
         "settings.",
         "enterPass.",
         "myWallets.",
-
+        "plural.ticketsCount",
     ).any { originalNameAttribute.startsWith(it) } -> "main"
 
     listOf(

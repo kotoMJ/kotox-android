@@ -24,7 +24,12 @@ internal fun sanitizePluralRootElementAndClassifyTargetModule(
             )
 
 
-        copiedNodeElement = (nodeElement.cloneNode(true) as Element).apply {
+        /**
+         * We need to sanitize child items via sanitizePluralChildItemElement() so DO NOT USE deep copy
+         * as it would copy also non-sanitized children.
+         */
+        val deepCopy = false
+        copiedNodeElement = (nodeElement.cloneNode(deepCopy) as Element).apply {
             setAttribute(ROOT_ATTR_NAME, fixedNameAttribute)
         }
         moduleName = getModuleName(originalNameAttibute)
@@ -36,4 +41,35 @@ internal fun sanitizePluralRootElementAndClassifyTargetModule(
         return Pair(moduleName, nodeElement)
     }
 }
+
+/**
+ * Transform
+ * DEV NOTE: transformation is simplified and thus does not supports CDATA processing!!!
+ */
+internal fun sanitizePluralChildItemElement(
+    nodeElement: Element,
+): Pair<String, Element> {
+
+    val copiedNodeElement: Element
+    val moduleName = ""
+
+    val (cDataNode, cDataPosition) = getCDataChildForNode(nodeElement)
+
+    if (cDataNode == null) {
+        val content = nodeElement.textContent
+
+
+        val processedContent = formatTranslationString(content)
+
+        copiedNodeElement = (nodeElement.cloneNode(true) as Element).apply {
+            textContent = processedContent
+        }
+        return Pair(moduleName, copiedNodeElement)
+    } else {
+        logger.warn("CDATA processing in string resources is not supported by this processor yet!")
+        //Check https://github.com/hyperdevs-team/poeditor-android-gradle-plugin how to process CDATA
+        return Pair(moduleName, nodeElement)
+    }
+}
+
 

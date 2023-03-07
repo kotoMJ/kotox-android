@@ -73,7 +73,8 @@ class XmlPostProcessor {
                         }
                     }
                     TAG_PLURALS -> {
-                        val pluralsRootElement = sanitizePluralRootElementAndClassifyTargetModule(nodeElement)
+                        val pluralsRootElement =
+                            sanitizePluralRootElementAndClassifyTargetModule(nodeElement)
 
                         // Plurals node, process its children
                         val pluralsChildItemsMap = processAndCategorizeXmlElements(
@@ -81,14 +82,14 @@ class XmlPostProcessor {
                             nodeElement.childNodes,
                         )
 
-                        pluralsChildItemsMap.values.forEach { (childItemNode) ->
-
-                            // Transfer ownership of the new node into the destination document
-                           // pluralsRootElement.second.adoptNode(it)
-                            // Make the new node an actual item in the target document
-                            pluralsRootElement.second.appendChild(childItemNode)
+                        pluralsChildItemsMap.values.forEach { oneChildItemMap ->
+                            oneChildItemMap.forEach { childItemNode ->
+                                // Transfer ownership of the new node into the destination document
+                                pluralsRootElement.second.ownerDocument.adoptNode(childItemNode)
+                                // Make the new node an actual item in the target document
+                                pluralsRootElement.second.appendChild(childItemNode)
+                            }
                         }
-
 
                         if (!elemntMap.containsKey(pluralsRootElement.first)) {
                             elemntMap[pluralsRootElement.first] = mutableListOf<Element>()
@@ -98,7 +99,8 @@ class XmlPostProcessor {
                     }
                     TAG_STRING -> {
                         // String node, apply transformation to the content
-                        val stringElement = sanitizeSingleStringElementAndClassifyTargetModule(nodeElement)
+                        val stringElement =
+                            sanitizeSingleStringElementAndClassifyTargetModule(nodeElement)
                         if (!elemntMap.containsKey(stringElement.first)) {
                             elemntMap[stringElement.first] = mutableListOf<Element>()
                         }
@@ -108,7 +110,7 @@ class XmlPostProcessor {
                     TAG_ITEM -> {
 
                         // Plurals item node, apply transformation to the content
-                        val element = sanitizePluralRootElementAndClassifyTargetModule(nodeElement)
+                        val element = sanitizePluralChildItemElement(nodeElement)
                         if (!elemntMap.containsKey(element.first)) {
                             elemntMap[element.first] = mutableListOf<Element>()
                         }
