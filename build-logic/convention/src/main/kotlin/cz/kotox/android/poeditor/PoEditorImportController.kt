@@ -28,7 +28,10 @@ class PoEditorImportController(
 ) {
 
 
-    fun executeImport(){
+    fun executeImport(
+        projectDirPath: String,
+        projectDirName: String
+    ) {
         val okHttpClient = OkHttpClient.Builder()
             .connectTimeout(CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
             .readTimeout(READ_TIMEOUT_SECONDS, TimeUnit.SECONDS)
@@ -85,18 +88,21 @@ class PoEditorImportController(
             val xmlWriter = AndroidXmlWriter()
 
             xmlWriter.saveXml(
-                "./",
+                projectDirName,
+                "${projectDirPath}/src/main/res",
                 postProcessedXmlDocumentMap,
                 "en_us",
                 "en_us",
                 emptyMap(),
             )
 
-            xmlWriter.saveXmlToFolder(
-                File(File("./"), "values"),
-                translationFile.toStringsXmlDocument(),
-                "strings_original"
-            )
+// DEV NOTE: uncomment this to save also original file for dev purpose
+//            xmlWriter.saveXmlToFolder(
+//                File(File("${projectDirPath}/src/main/res"), "values"),
+//                translationFile.toStringsXmlDocument(),
+//                "strings_original"
+//            )
+
         } catch (e: Exception) {
             logger.error(e.message)
         }

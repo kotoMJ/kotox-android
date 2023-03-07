@@ -1,6 +1,8 @@
 import cz.kotox.android.poeditor.PoEditorImportController
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.file.Directory
+import java.io.File
 import java.util.*
 
 @Suppress("unused")
@@ -8,14 +10,19 @@ class AndroidPoEditorPlugin : Plugin<Project> {
     override fun apply(target: Project) {
 
         with(target) {
-            poEditorPlugin()
+            poEditorPlugin(
+                projectDir.toString(),
+                projectDir.nameWithoutExtension
+            )
         }
     }
 }
 
-fun Project.poEditorPlugin() {
+fun Project.poEditorPlugin(projectDir: String, moduleName: String) {
 
     tasks.register("downloadPoEditorStrings") {
+
+        cz.kotox.android.poeditor.xml.logger.lifecycle(">>>_ projectDir ${projectDir}, moduleName: ${moduleName}")
 
         val poEditorApiToken =
             System.getenv("POEDITOR_API_TOKEN")
@@ -28,7 +35,10 @@ fun Project.poEditorPlugin() {
                 poEditorApiUrl = "https://api.poeditor.com/v2/",
                 poEditorApiToken = poEditorApiToken,
                 poEditorProjectId = poEditorProjectId
-            ).executeImport()
+            ).executeImport(
+                projectDir,
+                moduleName,
+            )
 
         }
     }

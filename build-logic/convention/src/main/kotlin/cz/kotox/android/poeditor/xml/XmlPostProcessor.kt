@@ -1,5 +1,6 @@
 package cz.kotox.android.poeditor.xml
 
+import cz.kotox.android.poeditor.TargetResource
 import org.w3c.dom.Document
 import org.w3c.dom.Element
 import org.w3c.dom.Node
@@ -20,7 +21,7 @@ class XmlPostProcessor {
     }
 
 
-    fun postProcessTranslationXml(translationFileXmlString: String): Map<String, Document> {
+    fun postProcessTranslationXml(translationFileXmlString: String): Map<TargetResource, Document> {
         // Parse line by line by traversing the original file using DOM
         val translationFileXmlDocument = translationFileXmlString.toStringsXmlDocument()
 
@@ -52,8 +53,8 @@ class XmlPostProcessor {
     private fun processAndCategorizeXmlElements(
         document: Document,
         nodeList: NodeList,
-    ): MutableMap<String, MutableList<Element>> {
-        val elemntMap: MutableMap<String, MutableList<Element>> = mutableMapOf()
+    ): MutableMap<TargetResource, MutableList<Element>> {
+        val elemntMap: MutableMap<TargetResource, MutableList<Element>> = mutableMapOf()
         for (i in 0 until nodeList.length) {
             if (nodeList.item(i).nodeType == Node.ELEMENT_NODE) {
                 val nodeElement = nodeList.item(i) as Element

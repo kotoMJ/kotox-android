@@ -51,9 +51,5 @@ internal fun formatTranslationIOsParameterString(translationString: String): Str
         .replace(IOS_VARIABLE_REGEX_FLOAT, "%f")
         .replace(IOS_VARIABLE_REGEX_STRING, "%s")
 
-    if (translationString.contains("%")) {
-        logger.lifecycle(">>>_ translationString[${translationString}]")
-        logger.lifecycle(">>>_  -> ret:${ret}")
-    }
     return ret
 }

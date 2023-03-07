@@ -1,6 +1,8 @@
 package cz.kotox.android.poeditor.xml
 
-import cz.kotox.android.poeditor.getModuleName
+import cz.kotox.android.poeditor.TargetResource
+import cz.kotox.android.poeditor.defaultTargetResource
+import cz.kotox.android.poeditor.getTargetResource
 import org.w3c.dom.Element
 
 private const val ATTR_NAME = "name"
@@ -13,10 +15,10 @@ internal const val ATTR_NAME_ANDROID_DELIMITER = "_"
  */
 internal fun sanitizeSingleStringElementAndClassifyTargetModule(
     nodeElement: Element,
-): Pair<String, Element> {
+): Pair<TargetResource, Element> {
 
     val copiedNodeElement: Element
-    var moduleName = ""
+    var targetResource = defaultTargetResource
 
     val (cDataNode, cDataPosition) = getCDataChildForNode(nodeElement)
 
@@ -35,12 +37,12 @@ internal fun sanitizeSingleStringElementAndClassifyTargetModule(
             textContent = processedContent
             setAttribute(ATTR_NAME, fixedNameAttribute)
         }
-        moduleName = getModuleName(originalNameAttibute)
+        targetResource = getTargetResource(originalNameAttibute)
 
-        return Pair(moduleName, copiedNodeElement)
+        return Pair(targetResource, copiedNodeElement)
     } else {
         logger.warn("CDATA processing in string resources is not supported by this processor yet!")
         //Check https://github.com/hyperdevs-team/poeditor-android-gradle-plugin how to process CDATA
-        return Pair(moduleName, nodeElement)
+        return Pair(targetResource, nodeElement)
     }
 }

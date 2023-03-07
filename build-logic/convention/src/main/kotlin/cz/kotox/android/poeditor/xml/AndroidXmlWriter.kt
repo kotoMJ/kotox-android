@@ -1,5 +1,6 @@
 package cz.kotox.android.poeditor.xml
 
+import cz.kotox.android.poeditor.TargetResource
 import cz.kotox.android.poeditor.createValuesModifierFromLangCode
 import org.w3c.dom.Document
 import java.io.File
@@ -15,8 +16,9 @@ class AndroidXmlWriter {
      */
     @Suppress("LongParameterList")
     fun saveXml(
+        projectDirName: String,
         resDirPath: String,
-        postProcessedXmlDocumentMap: Map<String, Document>,
+        postProcessedXmlDocumentMap: Map<TargetResource, Document>,
         defaultLang: String,
         languageCode: String,
         languageValuesOverridePathMap: Map<String, String>?
@@ -36,10 +38,15 @@ class AndroidXmlWriter {
             baseValuesDir = File(File(resDirPath), valuesFolderName)
         }
 
-        postProcessedXmlDocumentMap.forEach { (moduleName, document) ->
-            val resFileName =
-                if (moduleName.trim().isEmpty()) "strings_not_sorted" else "strings_${moduleName}_2"
-            saveXmlToFolder(baseValuesDir, document, resFileName)
+        postProcessedXmlDocumentMap.forEach { (targetResrouce, document) ->
+
+            if (targetResrouce.moduleName == projectDirName) {
+                val resFileName =
+                    if (targetResrouce.resourceName.trim()
+                            .isEmpty()
+                    ) "strings_not_sorted" else "strings_${targetResrouce.resourceName.trim()}_2"
+                saveXmlToFolder(baseValuesDir, document, resFileName)
+            }
         }
     }
 

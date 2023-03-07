@@ -1,16 +1,18 @@
 package cz.kotox.android.poeditor.xml
 
-import cz.kotox.android.poeditor.getModuleName
+import cz.kotox.android.poeditor.TargetResource
+import cz.kotox.android.poeditor.defaultTargetResource
+import cz.kotox.android.poeditor.getTargetResource
 import org.w3c.dom.Element
 
 private const val ROOT_ATTR_NAME = "name"
 
 internal fun sanitizePluralRootElementAndClassifyTargetModule(
     nodeElement: Element,
-): Pair<String, Element> {
+): Pair<TargetResource, Element> {
 
     val copiedNodeElement: Element
-    var moduleName = "plu"
+    var targetResrouce = defaultTargetResource
 
     val (cDataNode, cDataPosition) = getCDataChildForNode(nodeElement)
 
@@ -32,13 +34,13 @@ internal fun sanitizePluralRootElementAndClassifyTargetModule(
         copiedNodeElement = (nodeElement.cloneNode(deepCopy) as Element).apply {
             setAttribute(ROOT_ATTR_NAME, fixedNameAttribute)
         }
-        moduleName = getModuleName(originalNameAttibute)
+        targetResrouce = getTargetResource(originalNameAttibute)
 
-        return Pair(moduleName, copiedNodeElement)
+        return Pair(targetResrouce, copiedNodeElement)
     } else {
         logger.warn("CDATA processing in string resources is not supported by this processor yet!")
         //Check https://github.com/hyperdevs-team/poeditor-android-gradle-plugin how to process CDATA
-        return Pair(moduleName, nodeElement)
+        return Pair(targetResrouce, nodeElement)
     }
 }
 
@@ -48,10 +50,10 @@ internal fun sanitizePluralRootElementAndClassifyTargetModule(
  */
 internal fun sanitizePluralChildItemElement(
     nodeElement: Element,
-): Pair<String, Element> {
+): Pair<TargetResource, Element> {
 
     val copiedNodeElement: Element
-    val moduleName = ""
+    val moduleName = defaultTargetResource
 
     val (cDataNode, cDataPosition) = getCDataChildForNode(nodeElement)
 
