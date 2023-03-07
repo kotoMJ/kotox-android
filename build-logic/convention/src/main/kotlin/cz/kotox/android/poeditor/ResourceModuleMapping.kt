@@ -1,6 +1,6 @@
 package cz.kotox.android.poeditor
 
-fun getModuleName(originalNameAttribute: String) = when {
+fun getModuleName(originalNameAttribute: String): String = when {
 
     listOf(
         "addWallet",
