@@ -28,15 +28,18 @@ fun getModuleName(originalNameAttribute: String) = when {
         "verification.title.verification",
         "verificationStatus.button.",
         "verificationStatus.title.",
+        "organizer."
     ).any { originalNameAttribute.startsWith(it) } -> "doorkeeper"
 
     listOf(
         "appStatus.title.noWallets",
+        "appStatus.message.noWallets",
         "passes.button",
         "passes.message",
         "passes.title.a",
         "passes.title.b",
         "passes.title.c",
+        "passes.title.d",
         "passes.title.m",
         "passes.title.n",
         "passes.title.o",
@@ -47,6 +50,7 @@ fun getModuleName(originalNameAttribute: String) = when {
         "settings.",
         "enterPass.",
         "myWallets.",
+
     ).any { originalNameAttribute.startsWith(it) } -> "main"
 
     listOf(
