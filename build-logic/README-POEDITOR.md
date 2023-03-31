@@ -54,7 +54,7 @@ the module resources with `./gradlew importPoEditorStrings`
 
   
 
-## AndroidPoEditorPlugin implementation
+## How AndroidPoEditorPlugin works
 
 Let's take a closer look under the plugin hood.
 
