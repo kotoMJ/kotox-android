@@ -30,13 +30,7 @@ not be distributed to the Android resources.
 Mobile platform specific keys (`_android`,`_ios`) are removed by the plugin during import so they
 are not part of the final Android key in resources.
 
-## Import string resources
-
-Import of string resrouces is implemented via custom gradle plugin.
-
-Import is exectuted via gradle command: `./gradlew importPoEditorStrings`
-
-## Connect project module to use shared resources
+## How to connect project module to use shared resources
 
 In order to add module as a recipient of shared string resources do following steps:
 
@@ -46,6 +40,12 @@ In order to add module as a recipient of shared string resources do following st
 
 With above mentioned two steps fulfilled there will be proper `strings_*_shared.xml` generated in
 the module resources with `./gradlew importPoEditorStrings`
+
+## How to Import string resources to connected modules
+
+Import of string resrouces is implemented via custom gradle plugin.
+
+Import is exectuted via gradle command: `./gradlew importPoEditorStrings`
 
 ## AndroidPoEditorPlugin implementation
 
