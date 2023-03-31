@@ -2,7 +2,7 @@
 
 MJ's personal Android knowledge base and playground mono-repo
 
-## apps
+## Android apps
 
 Repository contains multiple applications presenting specific feature/core modules functionality.
 
@@ -31,5 +31,13 @@ Simple master-detail demo app presenting different kind of test cases.
 
 1. Phone number
 
-Simple screen with phone number input field with ability to recognize country code and provides hint sugguestion. The screen allows also choose the phone country code from the list.
+Simple screen with phone number input field with ability to recognize country code and provides hint sugguestion. The screen allows also choose the phone country code from the list.  
+
+
+## Convention plugins
+
+### PoEditor plugin  
+
+Custom plugin with the purpose to import shared strings to the app from the [PoEditor](https://poeditor.com/projects/) project.
+More about this custom plugin in [README-POEDITOR.md](./build-logic/README-POEDITOR.md)
 
