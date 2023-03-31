@@ -6,10 +6,10 @@ private val ANDROID_VARIABLE_REGEX = Regex("""\{\d?\{(.*?)\}\}""")
 /**
  * Formats a given string to conform to Android strings.xml format.
  */
-internal fun formatTranslationUniversalParameterString(translationString: String): String {
+internal fun String.replaceUniversalParameterString(): String {
     // We need to check for variables to see if we have to escape percent symbols: if we find variables, we have
     // to escape them
-    val containsVariables = translationString.contains(ANDROID_VARIABLE_REGEX)
+    val containsVariables = this.contains(ANDROID_VARIABLE_REGEX)
 
     val placeholderTransform: (MatchResult) -> CharSequence = { matchResult ->
         // Pending: if the string has multiple variables but any of them has no order number,
@@ -24,7 +24,7 @@ internal fun formatTranslationUniversalParameterString(translationString: String
         }
     }
 
-    return translationString
+    return this
         // Replace % with %% if variables are found
         .let { if (containsVariables) it.replace("%", "%%") else it }
         .unescapeHtmlTags()
@@ -41,15 +41,11 @@ private val IOS_VARIABLE_REGEX_INT2 = Regex("""(%i)""")
 /**
  * Formats a given string to conform to Android strings.xml format.
  */
-internal fun formatTranslationIOsParameterString(translationString: String): String {
-
-    val ret = translationString
+internal fun String.replaceIOsParameterString(): String =
+    this
         .unescapeHtmlTags()
         .replace(IOS_VARIABLE_REGEX_INT, "%d")
         .replace(IOS_VARIABLE_REGEX_INT2, "%d")
         .replace(IOS_VARIABLE_REGEX_LONG, "%d")
         .replace(IOS_VARIABLE_REGEX_FLOAT, "%f")
         .replace(IOS_VARIABLE_REGEX_STRING, "%s")
-
-    return ret
-}

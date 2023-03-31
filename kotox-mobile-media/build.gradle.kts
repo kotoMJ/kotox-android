@@ -4,7 +4,6 @@ import cz.kotox.android.FlavorDimension
 plugins {
     id("cz.kotox.android.application")
     id("cz.kotox.android.application.compose")
-    id("cz.kotox.android.poeditor")
     id("dagger.hilt.android.plugin")
     kotlin("kapt")
 }

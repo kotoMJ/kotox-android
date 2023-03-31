@@ -6,8 +6,6 @@ import cz.kotox.android.poeditor.getTargetResource
 import org.w3c.dom.Element
 
 private const val ATTR_NAME = "name"
-internal const val ATTR_NAME_IOS_DELIMITER = "."
-internal const val ATTR_NAME_ANDROID_DELIMITER = "_"
 
 /**
  * Transform
@@ -15,31 +13,33 @@ internal const val ATTR_NAME_ANDROID_DELIMITER = "_"
  */
 internal fun sanitizeSingleStringElementAndClassifyTargetModule(
     nodeElement: Element,
-): Pair<TargetResource, Element> {
+): Pair<TargetResource, Element>? {
 
     val copiedNodeElement: Element
     var targetResource = defaultTargetResource
 
-    val (cDataNode, cDataPosition) = getCDataChildForNode(nodeElement)
+    val (cDataNode, _) = getCDataChildForNode(nodeElement)
 
     if (cDataNode == null) {
         val content = nodeElement.textContent
         val originalNameAttibute = nodeElement.getAttribute(ATTR_NAME)
-        val fixedNameAttribute =
-            originalNameAttibute.replace(
+
+        if (originalNameAttibute.endsWith(ATTR_NAME_IOS_SUFFIX)) {
+            return null
+        } else {
+            val fixedNameAttribute = originalNameAttibute.removeSuffix(ATTR_NAME_ANDROID_SUFFIX).replace(
                 ATTR_NAME_IOS_DELIMITER,
                 ATTR_NAME_ANDROID_DELIMITER
             )
 
-        val processedContent = formatTranslationIOsParameterString(content)
+            copiedNodeElement = (nodeElement.cloneNode(true) as Element).apply {
+                textContent = content.replaceIOsParameterString()
+                setAttribute(ATTR_NAME, fixedNameAttribute)
+            }
+            targetResource = getTargetResource(originalNameAttibute)
 
-        copiedNodeElement = (nodeElement.cloneNode(true) as Element).apply {
-            textContent = processedContent
-            setAttribute(ATTR_NAME, fixedNameAttribute)
+            return Pair(targetResource, copiedNodeElement)
         }
-        targetResource = getTargetResource(originalNameAttibute)
-
-        return Pair(targetResource, copiedNodeElement)
     } else {
         logger.warn("CDATA processing in string resources is not supported by this processor yet!")
         //Check https://github.com/hyperdevs-team/poeditor-android-gradle-plugin how to process CDATA

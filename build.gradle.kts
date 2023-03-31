@@ -8,7 +8,6 @@ buildscript {
         classpath(libs.android.gradle)
         classpath(libs.kotlin.gradle)
         classpath(libs.androidx.hilt.gradle)
-        classpath("com.github.hyperdevs-team:poeditor-android-gradle-plugin:3.2.0") //POEDITOR
     }
 }
 

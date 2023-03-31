@@ -23,7 +23,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         pluginManager.apply {
             apply("com.android.application")
             apply("org.jetbrains.kotlin.android")
-            apply("com.hyperdevs.poeditor")
         }
     }
 

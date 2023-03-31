@@ -8,18 +8,17 @@ import cz.kotox.android.poeditor.api.downloadUrlToString
 import cz.kotox.android.poeditor.xml.AndroidXmlWriter
 import cz.kotox.android.poeditor.xml.XmlPostProcessor
 import cz.kotox.android.poeditor.xml.logger
-import cz.kotox.android.poeditor.xml.toStringsXmlDocument
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.io.File
 import java.util.concurrent.TimeUnit
 
 private const val CONNECT_TIMEOUT_SECONDS = 30L
 private const val READ_TIMEOUT_SECONDS = 30L
 private const val WRITE_TIMEOUT_SECONDS = 30L
+private const val LANGUAGE_CODE = "en-us"
 
 class PoEditorImportController(
     val poEditorApiUrl: String,
@@ -30,7 +29,6 @@ class PoEditorImportController(
 
     fun executeImport(
         projectDirPath: String,
-        projectDirName: String
     ) {
         val okHttpClient = OkHttpClient.Builder()
             .connectTimeout(CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
@@ -48,7 +46,6 @@ class PoEditorImportController(
 
         val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
-            //.add(Date::class.java, PoEditorDateJsonAdapter())
             .build()
 
         val retrofit = Retrofit.Builder()
@@ -68,7 +65,7 @@ class PoEditorImportController(
 
         val translationFileUrl = poEditorApiController.getTranslationFileUrl(
             projectId = poEditorProjectId.toInt(),
-            code = "en-us",
+            code = LANGUAGE_CODE,
             tags = emptyList(),
             unquoted = true
         )
@@ -88,17 +85,13 @@ class PoEditorImportController(
             val xmlWriter = AndroidXmlWriter()
 
             xmlWriter.saveXml(
-                projectDirName,
-                "${projectDirPath}/src/main/res",
+                projectDirPath,
                 postProcessedXmlDocumentMap,
-                "en_us",
-                "en_us",
-                emptyMap(),
             )
 
-// DEV NOTE: uncomment this to save also original file for dev purpose
+//            //DEV NOTE: uncomment this to save also original file for dev purpose
 //            xmlWriter.saveXmlToFolder(
-//                File(File("${projectDirPath}/src/main/res"), "values"),
+//                File(File("${projectDirPath}$RESOURCES_PATH"), RESOURCES_FOLDER),
 //                translationFile.toStringsXmlDocument(),
 //                "strings_original"
 //            )

@@ -1,5 +1,7 @@
 package cz.kotox.android.poeditor.api
 
+import cz.kotox.android.poeditor.api.ExportResponse
+import cz.kotox.android.poeditor.api.ListLanguagesResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

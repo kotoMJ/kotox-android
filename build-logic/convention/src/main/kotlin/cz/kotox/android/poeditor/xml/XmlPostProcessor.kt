@@ -33,12 +33,25 @@ class XmlPostProcessor {
         return elementMap.map { (key, value) ->
 
             val moduleResourcesDocument = "".toStringsXmlDocument()
+
+            val disclaimerCommentStart = moduleResourcesDocument.createComment(
+                RESOURCE_FILE_DISCLAIMER_COMMENT
+            )
+            moduleResourcesDocument.adoptNode(disclaimerCommentStart)
+            moduleResourcesDocument.documentElement.appendChild(disclaimerCommentStart)
+
             value.forEach {
                 // Transfer ownership of the new node into the destination document
                 moduleResourcesDocument.adoptNode(it)
                 // Make the new node an actual item in the target document
                 moduleResourcesDocument.documentElement.appendChild(it)
             }
+
+            val disclaimerCommentEnd = moduleResourcesDocument.createComment(
+                RESOURCE_FILE_DISCLAIMER_COMMENT
+            )
+            moduleResourcesDocument.adoptNode(disclaimerCommentEnd)
+            moduleResourcesDocument.documentElement.appendChild(disclaimerCommentEnd)
 
             key to moduleResourcesDocument
         }.toMap()
@@ -77,40 +90,43 @@ class XmlPostProcessor {
                         val pluralsRootElement =
                             sanitizePluralRootElementAndClassifyTargetModule(nodeElement)
 
-                        // Plurals node, process its children
-                        val pluralsChildItemsMap = processAndCategorizeXmlElements(
-                            document,
-                            nodeElement.childNodes,
-                        )
+                        if (pluralsRootElement != null) {
+                            // Plurals node, process its children
+                            val pluralsChildItemsMap = processAndCategorizeXmlElements(
+                                document,
+                                nodeElement.childNodes,
+                            )
 
-                        pluralsChildItemsMap.values.forEach { oneChildItemMap ->
-                            oneChildItemMap.forEach { childItemNode ->
-                                // Transfer ownership of the new node into the destination document
-                                pluralsRootElement.second.ownerDocument.adoptNode(childItemNode)
-                                // Make the new node an actual item in the target document
-                                pluralsRootElement.second.appendChild(childItemNode)
+                            pluralsChildItemsMap.values.forEach { oneChildItemMap ->
+                                oneChildItemMap.forEach { childItemNode ->
+                                    // Transfer ownership of the new node into the destination document
+                                    pluralsRootElement.second.ownerDocument.adoptNode(childItemNode)
+                                    // Make the new node an actual item in the target document
+                                    pluralsRootElement.second.appendChild(childItemNode)
+                                }
                             }
-                        }
 
-                        if (!elemntMap.containsKey(pluralsRootElement.first)) {
-                            elemntMap[pluralsRootElement.first] = mutableListOf<Element>()
+                            if (!elemntMap.containsKey(pluralsRootElement.first)) {
+                                elemntMap[pluralsRootElement.first] = mutableListOf<Element>()
+                            }
+                            elemntMap[pluralsRootElement.first]?.add(pluralsRootElement.second)
                         }
-                        elemntMap[pluralsRootElement.first]?.add(pluralsRootElement.second)
 
                     }
                     TAG_STRING -> {
-                        // String node, apply transformation to the content
                         val stringElement =
                             sanitizeSingleStringElementAndClassifyTargetModule(nodeElement)
-                        if (!elemntMap.containsKey(stringElement.first)) {
-                            elemntMap[stringElement.first] = mutableListOf<Element>()
-                        }
 
-                        elemntMap[stringElement.first]?.add(stringElement.second)
+                        if (stringElement != null) {
+                            if (!elemntMap.containsKey(stringElement.first)) {
+                                elemntMap[stringElement.first] = mutableListOf<Element>()
+                            }
+
+                            elemntMap[stringElement.first]?.add(stringElement.second)
+                        }
                     }
                     TAG_ITEM -> {
 
-                        // Plurals item node, apply transformation to the content
                         val element = sanitizePluralChildItemElement(nodeElement)
                         if (!elemntMap.containsKey(element.first)) {
                             elemntMap[element.first] = mutableListOf<Element>()
