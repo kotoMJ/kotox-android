@@ -12,6 +12,16 @@ java {
 dependencies {
     implementation(libs.android.gradle)
     implementation(libs.kotlin.gradle)
+
+    //PoEditor dependencies
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.moshi)
+    implementation(libs.moshi.adapters)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.retorofit)
+    implementation(libs.retorofit.moshi)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.loggingInterceptor)
 }
 
 gradlePlugin {
@@ -39,6 +49,11 @@ gradlePlugin {
         register("androidTest") {
             id = "cz.kotox.android.test"
             implementationClass = "AndroidTestConventionPlugin"
+        }
+
+        register("androidPoEditor") {
+            id = "cz.kotox.android.poeditor"
+            implementationClass = "AndroidPoEditorPlugin"
         }
     }
 }

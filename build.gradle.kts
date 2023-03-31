@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        maven("https://jitpack.io") //POEDITOR
         google()
         mavenCentral()
     }
