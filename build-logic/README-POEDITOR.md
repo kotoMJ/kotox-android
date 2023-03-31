@@ -43,9 +43,16 @@ the module resources with `./gradlew importPoEditorStrings`
 
 ## How to Import string resources to connected modules
 
-Import of string resrouces is implemented via custom gradle plugin.
+1) Ensure you have API_TOKEN and PROJECTID set in the environment variables.
+    1) On MacOs it might be in `~/.zshenv`
+    2) Add line: export `POEDITOR_API_TOKEN=`here_write_your_api_token
+    3) Add line: export `POEDITOR_PROJECT_ID=`here_write_your_project_id
+    4) Ensure those variables are loaded in to environment (e.g. restart your computer)
+2) Execute import via gradle command: `./gradlew importPoEditorStrings` in the root of the project
+3) Check for new files, there should be imported string resources after successful run of the gradle
+   command
 
-Import is exectuted via gradle command: `./gradlew importPoEditorStrings`
+  
 
 ## AndroidPoEditorPlugin implementation
 
