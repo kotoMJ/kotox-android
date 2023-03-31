@@ -18,7 +18,7 @@ to appropriates modules based on `cz.kotox.android.poeditor.ResourceModuleMappin
 
 Following conventions are given by the specific situation where all strings in PoEditor are imported
 from iOs app, so they have an iOs key format. Also there is not more projects separation to
-Android/iOs, but current AndroidPoEditorPlugin can convert iOs format to Android.  
+Android/iOs, but current AndroidPoEditorPlugin can convert iOs format to Android.
 
 If there is Android specific string, the resource key in the PoEditor should have `_android` suffix
 so it will not
@@ -36,11 +36,26 @@ Import of string resrouces is implemented via custom gradle plugin.
 
 Import is exectuted via gradle command: `./gradlew importPoEditorStrings`
 
+## Connect project module to use shared resources
+
+In order to add module as a recipient of shared string resources do following steps:
+
+1) Ensure `build.gradle.kts` of that module defines `id("enter-poeditor")` gradle plugin.
+2) Add proper mapping of specific resource key expression to the target
+   in `cz.kotox.android.poeditor.ResourceModuleMapping.kt`
+
+With above mentioned two steps fulfilled there will be proper `strings_*_shared.xml` generated in
+the module resources with `./gradlew importPoEditorStrings`
+
+## AndroidPoEditorPlugin implementation
+
+Let's take a closer look under the plugin hood.
+
 ### PoEditorPlugin gradle plugin
 
 PoEditorPlugin functional code is based in convention plugin in it's own
 package: `cz.kotox.android.poeditor.*`.
-PoEditorPlugin definition is then available in: `cz.kotox.android.PoEditorPlugin.kt`.
+PoEditorPlugin definition is then available in: `cz.kotox.android.AndroidPoEditorPlugin.kt`.
 
 Custom PoEditorPlugin works in two phases:
 
@@ -48,6 +63,9 @@ Custom PoEditorPlugin works in two phases:
 2) Post-process source file and distribute final strings.xml files to modules.
 
 #### PoEditorPlugin post-processing
+
+After android resource file type is downloaded from openapi, there needs to be done some
+post-processing since there is a lot of iOs specific which would not work on Android side.
 
 Post procesing of source file downloaded from openapi stands for several points:
 
@@ -61,13 +79,3 @@ Post procesing of source file downloaded from openapi stands for several points:
    Android [placeholders](https://poeditor.com/kb/placeholder-validation)
 6) Copy processed nodes to determined targets.
 
-## Adding module as a target for shared string resources
-
-In order to add module as a recipient of shared string resources do following steps:
-
-1) Ensure `build.gradle.kts` of that module defines `id("enter-poeditor")` gradle plugin.
-2) Add proper mapping of specific resource key expression to the target
-   in `cz.kotox.android.poeditor.ResourceModuleMapping.kt`
-
-With above mentioned two steps fulfilled there will be proper `strings_*_shared.xml` generated in
-the module resources with `./gradlew importPoEditorStrings`
