@@ -34,20 +34,27 @@ are not part of the final Android key in resources.
 
 In order to add module as a recipient of shared string resources do following steps:
 
-1) Ensure `build.gradle.kts` of that module defines `id("enter-poeditor")` gradle plugin.
-2) Add proper mapping of specific resource key expression to the target
-   in `cz.kotox.android.poeditor.ResourceModuleMapping.kt`
+1) Ensure `build.gradle.kts` of that module defines `id("cz.kotox.android.poeditor")` gradle plugin.
+2) Ensure proper mapping of specific resource key expression to the target module 
+   in the `cz.kotox.android.poeditor.ResourceModuleMapping.kt`
 
 With above mentioned two steps fulfilled there will be proper `strings_*_shared.xml` generated in
 the module resources with `./gradlew importPoEditorStrings`
 
 ## How to Import string resources to connected modules
 
-Import of string resrouces is implemented via custom gradle plugin.
+1) Ensure you have API_TOKEN and PROJECTID set in the environment variables.
+    1) On MacOs it might be in `~/.zshenv`
+    2) Add line: export `POEDITOR_API_TOKEN=`here_write_your_api_token
+    3) Add line: export `POEDITOR_PROJECT_ID=`here_write_your_project_id
+    4) Ensure those variables are loaded in to environment (e.g. restart your computer)
+2) Execute import via gradle command: `./gradlew importPoEditorStrings` in the root of the project
+3) Check for new files, there should be imported string resources after successful run of the gradle
+   command
 
-Import is exectuted via gradle command: `./gradlew importPoEditorStrings`
+  
 
-## AndroidPoEditorPlugin implementation
+## How AndroidPoEditorPlugin works
 
 Let's take a closer look under the plugin hood.
 
