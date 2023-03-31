@@ -1,9 +1,9 @@
 # String resources
 
-Convention plugin provides AndroidPoEditorPlugin which can import shared string resources
+Convention plugin provides completely custom AndroidPoEditorPlugin which can import shared string
+resources
 from [PoEditor](https://poeditor.com/), converts them accordingly and also copy appropriates strings
-to appropriates modules based on mapping file.
-
+to appropriates modules based on `cz.kotox.android.poeditor.ResourceModuleMapping` file.
 
 ## Naming conventions for shared resources in the project:
 
@@ -14,8 +14,11 @@ to appropriates modules based on mapping file.
    PoEditor.
    **Use such string resources temporarily just to speed up development only!**
 
-
 ## Naming conventions on the PoEditor side
+
+Following conventions are given by the specific situation where all strings in PoEditor are imported
+from iOs app, so they have an iOs key format. Also there is not more projects separation to
+Android/iOs, but current AndroidPoEditorPlugin can convert iOs format to Android.  
 
 If there is Android specific string, the resource key in the PoEditor should have `_android` suffix
 so it will not
