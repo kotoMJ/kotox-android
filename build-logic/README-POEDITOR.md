@@ -1,6 +1,6 @@
 # String resources
 
-Convention plugin provides completely custom AndroidPoEditorPlugin which can import shared string
+Convention plugin provides completely custom [AndroidPoEditorPlugin](./convention/src/main/kotlin/AndroidPoEditorPlugin.kt) which can import shared string
 resources
 from [PoEditor](https://poeditor.com/), converts them accordingly and also copy appropriates strings
 to appropriates modules based on `cz.kotox.android.poeditor.ResourceModuleMapping` file.
@@ -56,7 +56,7 @@ the module resources with `./gradlew importPoEditorStrings`
 
 ## How AndroidPoEditorPlugin works
 
-Let's take a closer look under the plugin hood.
+Let's take a closer look under the plugin hood. Everything starts in [PoEditorImportController](./convention/src/main/kotlin/cz/kotox/android/poeditor/PoEditorImportController.kt))
 
 ### PoEditorPlugin gradle plugin
 
