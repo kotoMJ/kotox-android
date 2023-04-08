@@ -1,11 +1,10 @@
-package cz.kotox.playground.ui
+package cz.kotox.starter.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import cz.kotox.core.ui.theme.KotoxBasicTheme
-import cz.kotox.playground.ui.bouncingbox.BouncingBoxActivityIntentUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,15 +22,8 @@ class MainActivity : ComponentActivity() {
                 MainScreen(
                     onEventHandler = { event ->
                         when (event) {
-                            MainScreenEvent.OpenBouncingBoxAnimation -> {
-                                startActivity(
-//                                    PhoneCountryCodeActivityIntentUtil.getPhoneCountryCodeStartIntent(
-//                                        context = this,
-//                                    )
-                                    BouncingBoxActivityIntentUtil.getPhoneCountryCodeStartIntent(
-                                        context = this,
-                                    )
-                                )
+                            MainScreenEvent.ClickMe -> {
+
                             }
 
                             else -> {
