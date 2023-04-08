@@ -1,4 +1,4 @@
-package cz.kotox.playground.ui
+package cz.kotox.starter.ui
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
@@ -30,7 +30,7 @@ import cz.kotox.core.ui.theme.KotoxBasicTheme
 import cz.kotox.core.ui.theme.LocalColors
 
 sealed class MainScreenEvent {
-    object OpenBouncingBoxAnimation : MainScreenEvent()
+    object ClickMe : MainScreenEvent()
 }
 
 data class MainScreenInput(
@@ -93,16 +93,16 @@ fun MainScreen(
                                 backgroundColor = LocalColors.current.background
                             ),
                             onClick = {
-                                onEventHandler.invoke(MainScreenEvent.OpenBouncingBoxAnimation)
+                                onEventHandler.invoke(MainScreenEvent.ClickMe)
                             }) {
 
                             Icon(
-                                painter = painterResource(id = R.drawable.ic_animation),
+                                painter = painterResource(id = R.drawable.ic_click),
                                 contentDescription = null,
                                 //tint = LocalColors.current.divider
                             )
                             Text(
-                                text = stringResource(id = R.string.main_screen_action_bouncing_box),
+                                text = stringResource(id = R.string.main_screen_action_click_me),
                                 color = LocalColors.current.onControlsPrimary
                             )
                         }

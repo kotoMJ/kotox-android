@@ -90,18 +90,8 @@ dependencies {
 
     debugImplementation(libs.leakcanary)
 
-    testImplementation(libs.junit)
-
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-
-    androidTestImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.core)
-    androidTestImplementation(libs.androidx.test.runner)
-    androidTestImplementation(libs.androidx.test.espresso.core)
-    androidTestImplementation(libs.androidx.test.rules)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.kotlinx.coroutines.test)
-    androidTestImplementation(libs.androidx.compose.ui.test)
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    androidTestImplementation(libs.androidx.hilt.android.testing)
+    androidTestImplementation(libs.bundles.test.android)
+    kaptAndroidTest(libs.androidx.hilt.compiler)
+    testImplementation(libs.bundles.test.unit)
 }
