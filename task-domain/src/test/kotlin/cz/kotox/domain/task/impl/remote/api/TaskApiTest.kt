@@ -22,7 +22,7 @@ import java.net.HttpURLConnection
 
 class TestAppNetworkingProperties(
     override val networkRequestTimeoutSec: Long = 30,
-    override val baseUrl: String = "",
+    override val baseUrl: String = "https://api.npoint.io/",
 ) : AppNetworkingProperties
 
 class TestAppProperties(

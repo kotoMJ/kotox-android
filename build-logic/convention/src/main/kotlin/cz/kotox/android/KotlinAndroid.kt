@@ -48,6 +48,17 @@ internal fun Project.configureKotlinAndroid(
 
             jvmTarget = JavaVersion.VERSION_11.toString()
         }
+
+        //TODO MJ - isolate this to some test related part.
+        packagingOptions {
+            //Following excludes are hot-fix in order to compile AndroidTest
+            resources {
+                excludes += listOf(
+                    "META-INF/LICENSE.md",
+                    "META-INF/LICENSE-notice.md"
+                )
+            }
+        }
     }
 
 
