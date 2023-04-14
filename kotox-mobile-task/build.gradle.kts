@@ -13,6 +13,13 @@ android {
 
     testOptions {
         unitTests.isReturnDefaultValues = true
+
+        //QuickFix mockk to be run in Android Tests, but it has more troubles
+        packagingOptions {
+            jniLibs {
+                useLegacyPackaging = true
+            }
+        }
     }
 
     defaultConfig {
@@ -49,16 +56,6 @@ android {
                     }
                 }
             }
-        }
-    }
-
-    packagingOptions {
-        //Following excludes are hot-fix in order to compile AndroidTest
-        resources {
-            excludes += listOf(
-                "META-INF/LICENSE.md",
-                "META-INF/LICENSE-notice.md"
-            )
         }
     }
 }
