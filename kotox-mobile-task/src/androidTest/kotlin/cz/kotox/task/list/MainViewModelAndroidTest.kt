@@ -9,7 +9,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import cz.kotox.task.list.ui.MainViewModel
-import org.junit.Ignore
+import dagger.hilt.android.testing.BindValue
+import io.mockk.mockk
 
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
@@ -18,7 +19,14 @@ class MainViewModelAndroidTest {
     @get: Rule
     var hiltRule = HiltAndroidRule(this)
 
-    private lateinit var mainViewModel: MainViewModel
+
+    @BindValue
+    @JvmField
+    val mainViewModel = MainViewModel(
+        getAllTasksUseCase = mockk(),
+        getOneTaskImageUseCase = mockk(),
+        remoteRefreshTasksUseCase = mockk()
+    )//mockk<MainViewModel>(relaxed = true)
 
 
     @Before
@@ -26,11 +34,12 @@ class MainViewModelAndroidTest {
         hiltRule.inject()
     }
 
-    @Ignore("TODO: Fix init of mainViewModel!")
     @Test
     fun basic() {
-
-        Assert.assertTrue(mainViewModel.uiState.value.taskGroups.isEmpty())
+        Assert.assertTrue(
+            "Expected size is 2, current is ${mainViewModel.uiState.value.taskGroups.size}",
+            mainViewModel.uiState.value.taskGroups.size == 2
+        )
     }
 
 }

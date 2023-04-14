@@ -13,6 +13,13 @@ android {
 
     testOptions {
         unitTests.isReturnDefaultValues = true
+
+        //QuickFix mockk to be run in Android Tests, but it has more troubles
+        packagingOptions {
+            jniLibs {
+                useLegacyPackaging = true
+            }
+        }
     }
 
     defaultConfig {

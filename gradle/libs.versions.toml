@@ -103,7 +103,7 @@ moshi = "1.13.0"
 okhttp = "4.9.3"
 retrofit = "2.9.0"
 timber = "5.0.1"
-mockk = "1.13.3"
+mockk = "1.13.5"
 
 
 
