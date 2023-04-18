@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -24,17 +25,11 @@ internal class MainScreenViewModel @Inject constructor(
     private val _state: MutableStateFlow<MainScreenViewState> = MutableStateFlow(MainScreenViewState())
     val state: StateFlow<MainScreenViewState> = _state.asStateFlow()
 
-//    private val latestPhotoUri: MutableState<Uri?> = mutableStateOf(null)
-//
-//    val latestPhotoUriPresenter = derivedStateOf { latestPhotoUri.value }
-//
-//    fun updateLatestPhotoUri(photoUri: Uri?) {
-//        latestPhotoUri.value = photoUri
-//    }
-
-    fun updatePhotoUri(photoUri: Uri?) =
+    fun updatePhotoUri(photoUri: Uri?) {
         _state.update { it.copy(latestPhotoUri = photoUri) }
-
-    private fun updateColors(rgbColors: List<Int>) =
+    }
+    fun updateColors(rgbColors: List<Int>) {
+        Timber.d(">>>_ Update colors to: $rgbColors")
         _state.update { it.copy(significantPhotoUriRgbColors = rgbColors) }
+    }
 }

@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.palette)
 
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicators)
