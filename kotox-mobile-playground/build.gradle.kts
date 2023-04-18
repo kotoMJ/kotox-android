@@ -9,7 +9,6 @@ plugins {
     kotlin("kapt")
 }
 
-
 android {
 
     defaultConfig {
@@ -51,7 +50,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.compose.material3)//customize slider
+    implementation(libs.androidx.compose.material3) // customize slider
 
     implementation(projects.commonUi)
     implementation(projects.common)

@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-
 dependencies {
     implementation(projects.common)
     implementation(projects.commonNetwork)
@@ -30,7 +29,7 @@ dependencies {
     implementation(libs.timber)
 
     implementation(libs.google.libphonenumber)
-    
+
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.test.ext.junit)

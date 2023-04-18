@@ -13,7 +13,6 @@ dependencies {
     implementation(projects.commonNetwork)
     implementation(projects.commonCrypto)
 
-
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
@@ -33,7 +32,6 @@ dependencies {
     implementation(libs.retorofit.moshi)
 
     implementation(libs.timber)
-
 
     testImplementation(projects.commonTest)
     testImplementation(libs.bundles.test.unit)

@@ -2,7 +2,6 @@ plugins {
     id("cz.kotox.android.library")
 }
 
-
 dependencies {
     implementation(projects.common)
     implementation(libs.androidx.appcompat)

@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        maven("https://jitpack.io") //POEDITOR
+        maven("https://jitpack.io") // POEDITOR
         google()
         mavenCentral()
     }

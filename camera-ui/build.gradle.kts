@@ -4,7 +4,6 @@ plugins {
     id("cz.kotox.android.feature")
 }
 
-
 dependencies {
 
     implementation(libs.androidx.camera.camera2)
@@ -14,7 +13,7 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.accompanist.permissions)
 
-    implementation(libs.androidx.compose.material3)//customize slider
+    implementation(libs.androidx.compose.material3) // customize slider
 
     testImplementation(libs.junit)
 

@@ -12,7 +12,7 @@ android {
 }
 
 dependencies {
-   implementation(projects.common)
+    implementation(projects.common)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
@@ -30,7 +30,6 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
 
     implementation(libs.timber)
-
 
     testImplementation(libs.junit)
 }
