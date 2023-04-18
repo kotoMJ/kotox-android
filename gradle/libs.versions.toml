@@ -61,6 +61,7 @@ androidx-fragment = "1.4.0"
 androidx-gridlayout = "1.0.0"
 androidx-lifecycle = "2.6.0-alpha01"
 androidx-navigation = "2.4.1"
+androidx-palette = "1.0.0"
 androidx-recyclerview = "1.2.1"
 androidx-room = "2.4.3"
 androidx-test-espresso = "3.5.0"
@@ -150,6 +151,7 @@ androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidx-lifecycle" }
 
+androidx-palette = {module = "androidx.palette:palette-ktx", version.ref="androidx-palette"}
 
 androidx-constraint-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "androidx-constraintlayout-compose" }
 
