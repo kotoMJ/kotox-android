@@ -14,7 +14,6 @@ data class Country(
     val flagEmoji: String
 )
 
-
 fun countries(): List<Country> {
     val phoneUtil = PhoneNumberUtil.getInstance()
 

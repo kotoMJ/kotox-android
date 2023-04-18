@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-
 dependencies {
 
     implementation(projects.common)
@@ -15,7 +14,6 @@ dependencies {
     implementation(projects.commonCrypto)
 
     implementation(projects.taskData)
-
 
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
@@ -36,7 +34,6 @@ dependencies {
     implementation(libs.retorofit.moshi)
 
     implementation(libs.timber)
-
 
     testImplementation(projects.commonTest)
     testImplementation(libs.bundles.test.unit)

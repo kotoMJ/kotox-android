@@ -1,4 +1,4 @@
-package cz.kotox.media.ui
+package cz.kotox.media.ui.main
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement

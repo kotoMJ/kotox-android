@@ -1,4 +1,4 @@
-package cz.kotox.media.ui
+package cz.kotox.media.ui.main
 
 import android.net.Uri
 import androidx.compose.runtime.Immutable

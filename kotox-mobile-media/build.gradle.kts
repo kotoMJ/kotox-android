@@ -8,7 +8,6 @@ plugins {
     kotlin("kapt")
 }
 
-
 android {
 
     defaultConfig {
@@ -54,7 +53,6 @@ dependencies {
     implementation(projects.commonAndroid)
     implementation(projects.commonUi)
     implementation(projects.cameraUi)
-
 
     implementation(libs.android.material)
 

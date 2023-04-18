@@ -11,17 +11,14 @@ android {
 }
 
 dependencies {
-   implementation(projects.common)
+    implementation(projects.common)
 
     /**
      * TODO Adding crypto library cause compilation problems when integrating this module into the app!
      */
-    //api(linkedMapOf("name" to "crypto", "ext" to "aar"))
+    // api(linkedMapOf("name" to "crypto", "ext" to "aar"))
 
     implementation(libs.timber)
 
-
     testImplementation(libs.junit)
 }
-
-

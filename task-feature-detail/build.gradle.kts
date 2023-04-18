@@ -4,7 +4,6 @@ plugins {
     id("cz.kotox.android.feature")
 }
 
-
 dependencies {
     implementation(projects.taskDomain)
     implementation(projects.taskUi)

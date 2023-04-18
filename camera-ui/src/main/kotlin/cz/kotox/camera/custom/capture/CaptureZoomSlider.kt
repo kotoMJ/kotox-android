@@ -50,7 +50,7 @@ data class CaptureZoomSliderInput(
 )
 
 @SuppressLint("UnrememberedMutableState")//FIXME MJ
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(
     device = Devices.PIXEL,
     uiMode = Configuration.UI_MODE_NIGHT_NO,

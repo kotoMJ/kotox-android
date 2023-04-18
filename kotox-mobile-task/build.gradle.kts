@@ -8,13 +8,12 @@ plugins {
     kotlin("kapt")
 }
 
-
 android {
 
     testOptions {
         unitTests.isReturnDefaultValues = true
 
-        //QuickFix mockk to be run in Android Tests, but it has more troubles
+        // QuickFix mockk to be run in Android Tests, but it has more troubles
         packagingOptions {
             jniLibs {
                 useLegacyPackaging = true
@@ -69,7 +68,6 @@ dependencies {
     implementation(projects.taskUi)
     implementation(projects.taskFeatureDetail)
     implementation(projects.taskFeatureDasboard)
-
 
     implementation(libs.android.material)
 
