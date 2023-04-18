@@ -36,30 +36,39 @@ fun Bitmap.getSignificantColors(): List<Int> {
  */
 fun Uri.getBitmap(
     context: Context,
-): Bitmap {
-    val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-        ImageDecoder.decodeBitmap(
-            ImageDecoder.createSource(
+): Bitmap? {
+    try {
+        val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            ImageDecoder.decodeBitmap(
+                ImageDecoder.createSource(
+                    context.contentResolver,
+                    this
+                )
+            )
+            /**
+             * java.lang.IllegalStateException: unable to getPixels(), pixel access is not supported on Config#HARDWARE bitmaps
+             *
+             * By default ImageDecoder.decodeBitmap() returns immutable bitmap.
+             * And default allocation for the pixel memory is HARDWARE but may switch
+             * to software in case there is a small image or when HARDWARE is incompatible.
+             */
+            { decoder, info, source ->
+                decoder.allocator = ImageDecoder.ALLOCATOR_SOFTWARE
+                decoder.isMutableRequired = true
+            }
+        } else {
+            MediaStore.Images.Media.getBitmap(
                 context.contentResolver,
                 this
             )
-        )
-        /**
-         * java.lang.IllegalStateException: unable to getPixels(), pixel access is not supported on Config#HARDWARE bitmaps
-         *
-         * By default ImageDecoder.decodeBitmap() returns immutable bitmap.
-         * And default allocation for the pixel memory is HARDWARE but may switch
-         * to software in case there is a small image or when HARDWARE is incompatible.
-         */
-        { decoder, info, source ->
-            decoder.allocator = ImageDecoder.ALLOCATOR_SOFTWARE
-            decoder.isMutableRequired = true
         }
-    } else {
-        MediaStore.Images.Media.getBitmap(
-            context.contentResolver,
-            this
-        )
+        return bitmap
+    } catch (se: SecurityException) {
+        /**
+         * There might be an issue during rotation with Permission Denial: opening provider com.android.providers.media.MediaDocumentsProvider
+         * when MediaDocumentProvider requires that you obtain access using ACTION_OPEN_DOCUMENT or related APIs.
+         */
+        Timber.w(se, "Problem with getting bitmap.")
+        return null
     }
-    return bitmap
 }

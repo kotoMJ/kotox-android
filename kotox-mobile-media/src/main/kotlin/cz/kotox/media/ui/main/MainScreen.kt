@@ -69,11 +69,9 @@ internal fun MainScreen(
     LaunchedEffect(viewModel, state.value.latestPhotoUri) {
         viewModel.updatePhotoUri(state.value.latestPhotoUri)
 
-        val uri = state.value.latestPhotoUri
+        val newColorList = state.value.latestPhotoUri?.getBitmap(context)?.getSignificantColors()
+        viewModel.updateColors(newColorList ?: emptyList())
 
-        if (uri != null) {
-            viewModel.updateColors(uri.getBitmap(context).getSignificantColors())
-        }
     }
 
 
