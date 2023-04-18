@@ -51,6 +51,7 @@ android {
 
 dependencies {
     implementation(projects.common)
+    implementation(projects.commonAndroid)
     implementation(projects.commonUi)
     implementation(projects.cameraUi)
 
