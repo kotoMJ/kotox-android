@@ -1,7 +1,12 @@
 package cz.kotox.playground.ui.scannerline
 
 import android.content.res.Configuration
-import androidx.compose.animation.core.*
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.VectorConverter
+import androidx.compose.animation.core.animateValue
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.keyframes
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -28,7 +33,7 @@ import cz.kotox.core.ui.theme.KotoxBasicTheme
  * https://stackoverflow.com/questions/76234960/cool-animated-line-over-an-image-with-jetpack-compose
  */
 @Composable
-fun ScannerLineByspacer(
+fun ScannerLineBySpacer(
     boxSize: Dp = 172.dp,
     verticalAnimationDuration: Int = 2000,
     color: Color = Color.Red,
@@ -127,6 +132,6 @@ fun ScannerLineByspacer(
 @Composable
 fun ScannerLinePreview() {
     KotoxBasicTheme() {
-        ScannerLineByspacer()
+        ScannerLineBySpacer()
     }
 }

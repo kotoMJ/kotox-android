@@ -19,7 +19,7 @@ class ScannerLineActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    ScannerLineByspacer()
+                    ScannerLineBySpacer()
                 }
             }
         }
