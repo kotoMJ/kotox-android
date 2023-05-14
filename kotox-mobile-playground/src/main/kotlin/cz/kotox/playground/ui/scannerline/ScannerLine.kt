@@ -14,6 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,7 +28,7 @@ import cz.kotox.core.ui.theme.KotoxBasicTheme
  * https://stackoverflow.com/questions/76234960/cool-animated-line-over-an-image-with-jetpack-compose
  */
 @Composable
-fun ScannerLine(
+fun ScannerLineByspacer(
     boxSize: Dp = 172.dp,
     verticalAnimationDuration: Int = 2000,
     color: Color = Color.Red,
@@ -89,7 +91,23 @@ fun ScannerLine(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(
-                modifier = Modifier.height(heightAnimation),
+                modifier = Modifier
+                    .height(heightAnimation)
+                    .drawWithCache {
+                                   onDrawBehind {
+                                       val brush = Brush.verticalGradient(
+                                           0f to color.copy(alpha = 0f),
+                                           1f to color.copy(alpha = 0.45f)
+                                       )
+                                       drawRect(
+                                           //size = Size(width = widthAnimation.toPx(), height = 24.dp.toPx()),
+                                           brush = brush,
+                                           alpha = if (widthAnimation.value == 0f) 0.0f else 0.45f
+                                       )
+                                   }
+
+                    }.fillMaxWidth().height(100.dp),
+
             )
             Divider(
                 thickness = thickness,
@@ -109,6 +127,6 @@ fun ScannerLine(
 @Composable
 fun ScannerLinePreview() {
     KotoxBasicTheme() {
-        ScannerLine()
+        ScannerLineByspacer()
     }
 }
