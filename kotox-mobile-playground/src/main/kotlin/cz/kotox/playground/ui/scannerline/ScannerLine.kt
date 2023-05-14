@@ -21,6 +21,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import cz.kotox.core.ui.theme.KotoxBasicTheme
 
+/*
+ * Thanks to starter sample: https://gist.github.com/cyril-tl/0320b754a31b733897877c4fd6f0bd0e
+ * https://stackoverflow.com/questions/76234960/cool-animated-line-over-an-image-with-jetpack-compose
+ */
 @Composable
 fun ScannerLine(
     boxSize: Dp = 172.dp,
@@ -84,7 +88,9 @@ fun ScannerLine(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(heightAnimation))
+            Spacer(
+                modifier = Modifier.height(heightAnimation),
+            )
             Divider(
                 thickness = thickness,
                 color = color,
