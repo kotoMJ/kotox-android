@@ -5,5 +5,6 @@
 
     <string name="main_screen_title">@string/app_name</string>
     <string name="main_screen_action_bouncing_box">Bouncing box</string>
+    <string name="main_screen_action_scanner_line">Scanner </string>
 
 </resources>

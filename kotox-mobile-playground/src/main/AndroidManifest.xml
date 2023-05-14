@@ -28,6 +28,10 @@
             android:name="cz.kotox.playground.ui.bouncingbox.BouncingBoxActivity"
             android:exported="true" />
 
+        <activity
+            android:name="cz.kotox.playground.ui.scannerline.ScannerLineActivity"
+            android:exported="true" />
+
 
     </application>
 
