@@ -8,6 +8,7 @@ import androidx.compose.animation.core.animateValue
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -278,6 +279,12 @@ private fun heightKeyFramesSpec(
 @Composable
 private fun ScannerLineByAxisPreview() {
     KotoxBasicTheme() {
-        ScannerLineBySpacer()
+        ScannerLineByAxis(modifier = Modifier) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = Color.LightGray),
+            )
+        }
     }
 }
