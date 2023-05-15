@@ -62,6 +62,7 @@ fun ScannerLineByAxis(
     lineOversizeTheSquareContentInPercent: Int = 39,
     lineBlurEffectHeight: Dp = 80.dp,
     lineBlurEffectAlpha: Float = 0.25f,
+    lineWidthBumpEffectDelta: Dp = 32.dp,
     showDebugFrame: Boolean = false,
     squareBoxContent: @Composable BoxScope.() -> Unit
 ) {
@@ -141,12 +142,14 @@ fun ScannerLineByAxis(
         )
     )
 
+    val lineWidthBumpEffectLengthInMillis = animationWaitingTimeOnTheEdgeInMillis - 50
     val lineMaxWidth: Dp =
-        squareContentBoxSize * (PERCENT_HUNDRED + lineOversizeTheSquareContentInPercent) / PERCENT_HUNDRED
+        (squareContentBoxSize * (PERCENT_HUNDRED + lineOversizeTheSquareContentInPercent) / PERCENT_HUNDRED) +
+                lineWidthBumpEffectDelta
 
     val widthAnimation: Dp by infiniteTransition.animateValue(
         initialValue = 0.dp,
-        targetValue = lineMaxWidth,
+        targetValue = lineMaxWidth - 8.dp,
         typeConverter = Dp.VectorConverter,
         animationSpec = infiniteRepeatable(
             animation = keyframes {
@@ -154,8 +157,14 @@ fun ScannerLineByAxis(
                 0.dp at 0 //ms
                 0.dp at halOfTheWaitingTimeOnTheEdgeInMillis //ms
                 0.dp at animationVerticalDuration - halOfTheWaitingTimeOnTheEdgeInMillis
-                lineMaxWidth at animationVerticalDuration
-                lineMaxWidth at animationVerticalDuration * 2 - halOfTheWaitingTimeOnTheEdgeInMillis
+                lineMaxWidth at
+                        animationVerticalDuration.minus(lineWidthBumpEffectLengthInMillis / 2) with
+                        FastOutSlowInEasing
+                lineMaxWidth.minus(lineWidthBumpEffectDelta) at animationVerticalDuration.plus(
+                    lineWidthBumpEffectLengthInMillis / 2
+                ) with FastOutSlowInEasing
+                lineMaxWidth.minus(lineWidthBumpEffectDelta) at
+                        animationVerticalDuration * 2 - halOfTheWaitingTimeOnTheEdgeInMillis
                 0.dp at animationVerticalDuration * 2
             }
         )
