@@ -6,12 +6,21 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.dp
 import cz.kotox.core.ui.theme.KotoxBasicTheme
+import timber.log.Timber
 
 class ScannerLineActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,16 +32,36 @@ class ScannerLineActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Box(modifier = Modifier.fillMaxSize()) {
+                    var size by remember { mutableStateOf(IntSize.Zero) }
 
-                        ScannerLineByAxis(
-                            modifier = Modifier.align(Alignment.Center),
+                    Box(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(40.dp)
+                                .align(Alignment.Center)
+                                .background(color = Color.Yellow)
+                                .onSizeChanged {
+                                    size = it
+                                }
                         ) {
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .background(color = Color.LightGray),
+                            Timber.d(
+                                ">>>_ size: ${size.component1().pxToDp()} Dp"
                             )
+                            ScannerLineByAxis(
+                                modifier = Modifier,
+                                squareContentBoxSize = size.component1().pxToDp().minus(80.dp),
+                                horizontalOverflow = 40.dp,
+                                showDebugFrame = true,
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(color = Color.LightGray),
+                                )
+                            }
                         }
                     }
                 }
