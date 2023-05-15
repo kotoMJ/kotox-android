@@ -52,8 +52,9 @@ class ScannerLineActivity : ComponentActivity() {
                             )
                             ScannerLineByAxis(
                                 modifier = Modifier,
-                                squareContentBoxSize = size.component1().pxToDp().minus(80.dp),
-                                horizontalOverflow = 40.dp,
+                                squareContentBoxSize = size.component1().pxToDp().minus(104.dp),
+                                horizontalOverflow = 80.dp,
+                                horizontalOverflowPeak = 104.dp,
                                 showDebugFrame = true,
                             ) {
                                 Box(

@@ -3,7 +3,6 @@ package cz.kotox.playground.ui.scannerline
 import android.content.res.Configuration
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateValue
@@ -63,6 +62,7 @@ fun Modifier.conditional(condition: Boolean, modifier: Modifier.() -> Modifier):
 fun ScannerLineByAxis(
     modifier: Modifier = Modifier,
     squareContentBoxSize: Dp = 172.dp,
+    horizontalOverflowPeak: Dp = 104.dp,
     horizontalOverflow: Dp = 80.dp,
     animationVerticalDuration: Int = 2000,
     animationWaitingTimeOnTheEdgeInMillis: Int = 350,
@@ -136,9 +136,9 @@ fun ScannerLineByAxis(
 
     val lineWidthBumpEffectLengthInMillis = animationWaitingTimeOnTheEdgeInMillis - 10
 
-    val lineMaxWidth: Dp = squareContentBoxSize.plus(horizontalOverflow)
+    val lineMaxWidth: Dp = squareContentBoxSize.plus(horizontalOverflowPeak)
 
-    val lineMaxWidthShrink: Dp = squareContentBoxSize
+    val lineMaxWidthShrink: Dp = squareContentBoxSize.plus(horizontalOverflow)
 
     val widthAnimation: Dp by infiniteTransition.animateValue(
         initialValue = 0.dp,
@@ -153,7 +153,7 @@ fun ScannerLineByAxis(
                 lineMaxWidth at
                         animationVerticalDuration.minus(
                             lineWidthBumpEffectLengthInMillis / 2
-                        ) with LinearEasing
+                        ) with FastOutSlowInEasing
 
                 lineMaxWidthShrink at
                         animationVerticalDuration.plus(
