@@ -130,7 +130,7 @@ fun ScannerLineBySpacer(
     name = "Dark Mode"
 )
 @Composable
-fun ScannerLinePreview() {
+private fun ScannerLinePreview() {
     KotoxBasicTheme() {
         ScannerLineBySpacer()
     }
