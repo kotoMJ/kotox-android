@@ -50,16 +50,17 @@ fun ScannerLineByAxis(
     animationWaitingTimeOnTheEdgeInMillis: Int = 300,
     lineColor: Color = Color.Red,
     lineThickness: Dp = 2.dp,
-    squareBoxSize: Dp = 172.dp,
-    squareBoxLineOversizeInPercent: Int = 39,
-    squareBoxBlurHeight: Dp = 24.dp,
+    squareContentBoxSize: Dp = 172.dp,
+    lineOversizeTheSquareContentInPercent: Int = 39,
+    lineBlurEffectHeight: Dp = 24.dp,
+    lineBlurEffectAlpha: Float = 0.25f,
     squareBoxContent: @Composable BoxScope.() -> Unit
 ) {
     val infiniteTransition = rememberInfiniteTransition()
     val halOfTheWaitingTimeOnTheEdgeInMillis = animationWaitingTimeOnTheEdgeInMillis / 2
 
-    val lineMinHeightAnimationPx = 0.dp.dpToPx() + squareBoxBlurHeight.dpToPx()
-    val lineMaxHeightAnimationPx = squareBoxSize.dpToPx()+ squareBoxBlurHeight.dpToPx()
+    val lineMinHeightAnimationPx = 0.dp.dpToPx() + lineBlurEffectHeight.dpToPx()
+    val lineMaxHeightAnimationPx = squareContentBoxSize.dpToPx() + lineBlurEffectHeight.dpToPx()
     val lineHeightAnimationFloat: Float by infiniteTransition.animateFloat(
         initialValue = lineMinHeightAnimationPx,
         targetValue = lineMaxHeightAnimationPx,
@@ -77,12 +78,11 @@ fun ScannerLineByAxis(
                         animationVerticalDuration - animationWaitingTimeOnTheEdgeInMillis with FastOutSlowInEasing
                 lineMinHeightAnimationPx at animationVerticalDuration
             }
-            // Use the default RepeatMode.Restart to start from 0.dp after each iteration
         )
     )
 
     val upperBlurMinHeightAnimationPx = 0.dp.dpToPx()
-    val upperBlurMaxHeightAnimationPx = squareBoxSize.dpToPx()
+    val upperBlurMaxHeightAnimationPx = squareContentBoxSize.dpToPx()
     val upperBlurHeightAnimationFloat: Float by infiniteTransition.animateFloat(
         initialValue = upperBlurMinHeightAnimationPx,
         targetValue = upperBlurMaxHeightAnimationPx,
@@ -103,9 +103,23 @@ fun ScannerLineByAxis(
             // Use the default RepeatMode.Restart to start from 0.dp after each iteration
         )
     )
+    val upperBlurAlphaFloat: Float by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = keyframes {
+                durationMillis = animationVerticalDuration
+                0f at 0 //ms
+                0f at 0 + animationWaitingTimeOnTheEdgeInMillis //ms
+                1f at (animationVerticalDuration / 2) - halOfTheWaitingTimeOnTheEdgeInMillis with FastOutSlowInEasing
+                0f at (animationVerticalDuration / 2) + halOfTheWaitingTimeOnTheEdgeInMillis
+                0f at animationVerticalDuration
+            }
+        )
+    )
 
-    val lowerBlurMinHeightAnimationPx = 0.dp.dpToPx() + squareBoxBlurHeight.dpToPx()
-    val lowerBlurMaxHeightAnimationPx = squareBoxSize.dpToPx() + squareBoxBlurHeight.dpToPx()
+    val lowerBlurMinHeightAnimationPx = 0.dp.dpToPx() + lineBlurEffectHeight.dpToPx()
+    val lowerBlurMaxHeightAnimationPx = squareContentBoxSize.dpToPx() + lineBlurEffectHeight.dpToPx()
     val lowerBlurHeightAnimationFloat: Float by infiniteTransition.animateFloat(
         initialValue = lowerBlurMinHeightAnimationPx,
         targetValue = lowerBlurMaxHeightAnimationPx,
@@ -123,13 +137,24 @@ fun ScannerLineByAxis(
                         animationVerticalDuration - animationWaitingTimeOnTheEdgeInMillis with FastOutSlowInEasing
                 lowerBlurMinHeightAnimationPx at animationVerticalDuration
             }
-            // Use the default RepeatMode.Restart to start from 0.dp after each iteration
+        )
+    )
+    val lowerBlurAlphaFloat: Float by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = keyframes {
+                durationMillis = animationVerticalDuration
+                0f at 0 //ms
+                0f at (animationVerticalDuration / 2) + (halOfTheWaitingTimeOnTheEdgeInMillis)
+                1f at (animationVerticalDuration) - (animationWaitingTimeOnTheEdgeInMillis) with FastOutSlowInEasing
+                0f at animationVerticalDuration with FastOutSlowInEasing
+            }
         )
     )
 
-
     val lineMaxWidth: Dp =
-        squareBoxSize * (PERCENT_HUNDRED + squareBoxLineOversizeInPercent) / PERCENT_HUNDRED
+        squareContentBoxSize * (PERCENT_HUNDRED + lineOversizeTheSquareContentInPercent) / PERCENT_HUNDRED
 
     val widthAnimation: Dp by infiniteTransition.animateValue(
         initialValue = 0.dp,
@@ -148,10 +173,8 @@ fun ScannerLineByAxis(
         )
     )
 
-    val squareBoxSizeWithBlur: Dp = squareBoxSize.plus(squareBoxBlurHeight.times(2))
-    /**
-     * DEV NOTE: place the graphic to be behind the line here.
-     */
+    val squareBoxSizeWithBlur: Dp = squareContentBoxSize.plus(lineBlurEffectHeight.times(2))
+
     Box(
         modifier = modifier
             .size(width = lineMaxWidth, height = squareBoxSizeWithBlur)
@@ -160,7 +183,7 @@ fun ScannerLineByAxis(
         ) {
         Box(
             modifier = Modifier
-                .size(squareBoxSize)
+                .size(squareContentBoxSize)
                 .align(Alignment.Center),
             content = squareBoxContent
         )
@@ -177,12 +200,11 @@ fun ScannerLineByAxis(
                     onDrawBehind {
                         val brush = Brush.verticalGradient(
                             0f to lineColor.copy(alpha = 0f),
-                            1f to lineColor.copy(alpha = 0.45f)
+                            1f to lineColor.copy(alpha = lineBlurEffectAlpha)
                         )
                         drawRect(
-                            //size = Size(width = widthAnimation.toPx(), height = 24.dp.toPx()),
                             brush = brush,
-                            alpha = if (widthAnimation.value == 0f) 0.0f else 0.45f
+                            alpha = upperBlurAlphaFloat
                         )
                     }
 
@@ -200,13 +222,12 @@ fun ScannerLineByAxis(
                 .drawWithCache {
                     onDrawBehind {
                         val brush = Brush.verticalGradient(
-                            0f to lineColor.copy(alpha = 0.45f),
+                            0f to lineColor.copy(alpha = lineBlurEffectAlpha),
                             1f to lineColor.copy(alpha = 0f)
                         )
                         drawRect(
-                            //size = Size(width = widthAnimation.toPx(), height = 24.dp.toPx()),
                             brush = brush,
-                            alpha = if (widthAnimation.value == 0f) 0.0f else 0.45f
+                            alpha = lowerBlurAlphaFloat
                         )
                     }
 
