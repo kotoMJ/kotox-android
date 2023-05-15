@@ -41,6 +41,14 @@ fun Dp.dpToPx() = with(LocalDensity.current) { this@dpToPx.toPx() }
 @Composable
 fun Int.pxToDp() = with(LocalDensity.current) { this@pxToDp.toDp() }
 
+fun Modifier.conditional(condition : Boolean, modifier : Modifier.() -> Modifier) : Modifier {
+    return if (condition) {
+        then(modifier(Modifier))
+    } else {
+        this
+    }
+}
+
 private const val PERCENT_HUNDRED = 100
 
 @Composable
@@ -52,8 +60,9 @@ fun ScannerLineByAxis(
     lineThickness: Dp = 2.dp,
     squareContentBoxSize: Dp = 172.dp,
     lineOversizeTheSquareContentInPercent: Int = 39,
-    lineBlurEffectHeight: Dp = 24.dp,
+    lineBlurEffectHeight: Dp = 80.dp,
     lineBlurEffectAlpha: Float = 0.25f,
+    showDebugFrame: Boolean = false,
     squareBoxContent: @Composable BoxScope.() -> Unit
 ) {
     val infiniteTransition = rememberInfiniteTransition()
@@ -119,7 +128,8 @@ fun ScannerLineByAxis(
     )
 
     val lowerBlurMinHeightAnimationPx = 0.dp.dpToPx() + lineBlurEffectHeight.dpToPx()
-    val lowerBlurMaxHeightAnimationPx = squareContentBoxSize.dpToPx() + lineBlurEffectHeight.dpToPx()
+    val lowerBlurMaxHeightAnimationPx =
+        squareContentBoxSize.dpToPx() + lineBlurEffectHeight.dpToPx()
     val lowerBlurHeightAnimationFloat: Float by infiniteTransition.animateFloat(
         initialValue = lowerBlurMinHeightAnimationPx,
         targetValue = lowerBlurMaxHeightAnimationPx,
@@ -178,8 +188,9 @@ fun ScannerLineByAxis(
     Box(
         modifier = modifier
             .size(width = lineMaxWidth, height = squareBoxSizeWithBlur)
-            .border(1.dp, Color.Gray, RoundedCornerShape(2.dp)),
-
+            .conditional(showDebugFrame){
+                border(1.dp, Color.Gray, RoundedCornerShape(2.dp))
+            }
         ) {
         Box(
             modifier = Modifier
@@ -193,7 +204,7 @@ fun ScannerLineByAxis(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier
-                .height(24.dp)
+                .height(lineBlurEffectHeight)
                 .width(widthAnimation)
                 .graphicsLayer(translationY = upperBlurHeightAnimationFloat)
                 .drawWithCache {
@@ -216,7 +227,7 @@ fun ScannerLineByAxis(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier
-                .height(24.dp)
+                .height(lineBlurEffectHeight)
                 .width(widthAnimation)
                 .graphicsLayer(translationY = lowerBlurHeightAnimationFloat)
                 .drawWithCache {

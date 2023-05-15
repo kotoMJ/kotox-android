@@ -26,7 +26,7 @@ class ScannerLineActivity : ComponentActivity() {
                     Box(modifier = Modifier.fillMaxSize()) {
 
                         ScannerLineByAxis(
-                            modifier = Modifier.align(Alignment.Center)
+                            modifier = Modifier.align(Alignment.Center),
                         ) {
                             Box(
                                 modifier = Modifier
