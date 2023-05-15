@@ -41,7 +41,7 @@ fun Dp.dpToPx() = with(LocalDensity.current) { this@dpToPx.toPx() }
 @Composable
 fun Int.pxToDp() = with(LocalDensity.current) { this@pxToDp.toDp() }
 
-fun Modifier.conditional(condition : Boolean, modifier : Modifier.() -> Modifier) : Modifier {
+fun Modifier.conditional(condition: Boolean, modifier: Modifier.() -> Modifier): Modifier {
     return if (condition) {
         then(modifier(Modifier))
     } else {
@@ -74,19 +74,12 @@ fun ScannerLineByAxis(
         initialValue = lineMinHeightAnimationPx,
         targetValue = lineMaxHeightAnimationPx,
         animationSpec = infiniteRepeatable(
-            animation = keyframes {
-                durationMillis = animationVerticalDuration
-                lineMinHeightAnimationPx at 0 // ms
-                lineMinHeightAnimationPx at 0 + animationWaitingTimeOnTheEdgeInMillis // ms
-
-                lineMaxHeightAnimationPx at
-                        (animationVerticalDuration / 2) - halOfTheWaitingTimeOnTheEdgeInMillis with FastOutSlowInEasing
-                lineMaxHeightAnimationPx at (animationVerticalDuration / 2) + halOfTheWaitingTimeOnTheEdgeInMillis
-
-                lineMinHeightAnimationPx at
-                        animationVerticalDuration - animationWaitingTimeOnTheEdgeInMillis with FastOutSlowInEasing
-                lineMinHeightAnimationPx at animationVerticalDuration
-            }
+            animation = heightKeyFramesSpec(
+                animationVerticalDuration,
+                lineMinHeightAnimationPx,
+                animationWaitingTimeOnTheEdgeInMillis,
+                lineMaxHeightAnimationPx,
+            )
         )
     )
 
@@ -96,20 +89,12 @@ fun ScannerLineByAxis(
         initialValue = upperBlurMinHeightAnimationPx,
         targetValue = upperBlurMaxHeightAnimationPx,
         animationSpec = infiniteRepeatable(
-            animation = keyframes {
-                durationMillis = animationVerticalDuration
-                upperBlurMinHeightAnimationPx at 0 // ms
-                upperBlurMinHeightAnimationPx at 0 + animationWaitingTimeOnTheEdgeInMillis // ms
-
-                upperBlurMaxHeightAnimationPx at
-                        (animationVerticalDuration / 2) - halOfTheWaitingTimeOnTheEdgeInMillis with FastOutSlowInEasing
-                upperBlurMaxHeightAnimationPx at (animationVerticalDuration / 2) + halOfTheWaitingTimeOnTheEdgeInMillis
-
-                upperBlurMinHeightAnimationPx at
-                        animationVerticalDuration - animationWaitingTimeOnTheEdgeInMillis with FastOutSlowInEasing
-                upperBlurMinHeightAnimationPx at animationVerticalDuration
-            }
-            // Use the default RepeatMode.Restart to start from 0.dp after each iteration
+            animation = (heightKeyFramesSpec(
+                animationVerticalDuration,
+                upperBlurMinHeightAnimationPx,
+                animationWaitingTimeOnTheEdgeInMillis,
+                upperBlurMaxHeightAnimationPx,
+            ))
         )
     )
     val upperBlurAlphaFloat: Float by infiniteTransition.animateFloat(
@@ -134,19 +119,12 @@ fun ScannerLineByAxis(
         initialValue = lowerBlurMinHeightAnimationPx,
         targetValue = lowerBlurMaxHeightAnimationPx,
         animationSpec = infiniteRepeatable(
-            animation = keyframes {
-                durationMillis = animationVerticalDuration
-                lowerBlurMinHeightAnimationPx at 0 // ms
-                lowerBlurMinHeightAnimationPx at 0 + animationWaitingTimeOnTheEdgeInMillis // ms
-
-                lowerBlurMaxHeightAnimationPx at
-                        (animationVerticalDuration / 2) - halOfTheWaitingTimeOnTheEdgeInMillis with FastOutSlowInEasing
-                lowerBlurMaxHeightAnimationPx at (animationVerticalDuration / 2) + halOfTheWaitingTimeOnTheEdgeInMillis
-
-                lowerBlurMinHeightAnimationPx at
-                        animationVerticalDuration - animationWaitingTimeOnTheEdgeInMillis with FastOutSlowInEasing
-                lowerBlurMinHeightAnimationPx at animationVerticalDuration
-            }
+            animation = (heightKeyFramesSpec(
+                animationVerticalDuration,
+                lowerBlurMinHeightAnimationPx,
+                animationWaitingTimeOnTheEdgeInMillis,
+                lowerBlurMaxHeightAnimationPx,
+            ))
         )
     )
     val lowerBlurAlphaFloat: Float by infiniteTransition.animateFloat(
@@ -188,10 +166,10 @@ fun ScannerLineByAxis(
     Box(
         modifier = modifier
             .size(width = lineMaxWidth, height = squareBoxSizeWithBlur)
-            .conditional(showDebugFrame){
+            .conditional(showDebugFrame) {
                 border(1.dp, Color.Gray, RoundedCornerShape(2.dp))
             }
-        ) {
+    ) {
         Box(
             modifier = Modifier
                 .size(squareContentBoxSize)
@@ -258,6 +236,26 @@ fun ScannerLineByAxis(
             )
         }
     }
+}
+
+@Composable
+private fun heightKeyFramesSpec(
+    animationVerticalDuration: Int,
+    minHeightAnimationPx: Float,
+    animationWaitingTimeOnTheEdgeInMillis: Int,
+    maxHeightAnimationPx: Float,
+) = keyframes {
+    durationMillis = animationVerticalDuration
+    minHeightAnimationPx at 0 // ms
+    minHeightAnimationPx at 0 + animationWaitingTimeOnTheEdgeInMillis // ms
+
+    maxHeightAnimationPx at
+            (animationVerticalDuration / 2) - (animationWaitingTimeOnTheEdgeInMillis / 2) with FastOutSlowInEasing
+    maxHeightAnimationPx at (animationVerticalDuration / 2) + (animationWaitingTimeOnTheEdgeInMillis / 2)
+
+    minHeightAnimationPx at
+            animationVerticalDuration - animationWaitingTimeOnTheEdgeInMillis with FastOutSlowInEasing
+    minHeightAnimationPx at animationVerticalDuration
 }
 
 
