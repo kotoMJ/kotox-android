@@ -68,7 +68,6 @@ fun ScannerLineByAxis(
     animationWaitingTimeOnTheEdgeInMillis: Int = 350,
     lineColor: Color = Color.Red,
     lineThickness: Dp = 2.dp,
-    lineBlurEffectHeight: Dp = 80.dp,
     lineBlurEffectAlpha: Float = 0.25f,
     showDebugFrame: Boolean = false,
     squareBoxContent: @Composable BoxScope.() -> Unit
@@ -76,35 +75,21 @@ fun ScannerLineByAxis(
     val infiniteTransition = rememberInfiniteTransition()
     val halOfTheWaitingTimeOnTheEdgeInMillis = animationWaitingTimeOnTheEdgeInMillis / 2
 
-    val lineMinHeightAnimationPx = 0.dp.dpToPx() + lineBlurEffectHeight.dpToPx()
-    val lineMaxHeightAnimationPx = squareContentBoxSize.dpToPx() + lineBlurEffectHeight.dpToPx()
+    val lineMinHeightAnimationPx = 0.dp.dpToPx()
+    val lineMaxHeightAnimationPx = squareContentBoxSize.dpToPx()
     val lineHeightAnimationFloat: Float by infiniteTransition.animateFloat(
         initialValue = lineMinHeightAnimationPx,
         targetValue = lineMaxHeightAnimationPx,
         animationSpec = infiniteRepeatable(
             animation = heightKeyFramesSpec(
-                animationVerticalDuration,
-                lineMinHeightAnimationPx,
-                animationWaitingTimeOnTheEdgeInMillis,
-                lineMaxHeightAnimationPx,
+                animationVerticalDuration = animationVerticalDuration,
+                minHeightAnimationPx = lineMinHeightAnimationPx,
+                animationWaitingTimeOnTheEdgeInMillis = animationWaitingTimeOnTheEdgeInMillis,
+                maxHeightAnimationPx = lineMaxHeightAnimationPx,
             )
         )
     )
 
-    val upperBlurMinHeightAnimationPx = 0.dp.dpToPx()
-    val upperBlurMaxHeightAnimationPx = squareContentBoxSize.dpToPx()
-    val upperBlurHeightAnimationFloat: Float by infiniteTransition.animateFloat(
-        initialValue = upperBlurMinHeightAnimationPx,
-        targetValue = upperBlurMaxHeightAnimationPx,
-        animationSpec = infiniteRepeatable(
-            animation = (heightKeyFramesSpec(
-                animationVerticalDuration,
-                upperBlurMinHeightAnimationPx,
-                animationWaitingTimeOnTheEdgeInMillis,
-                upperBlurMaxHeightAnimationPx,
-            ))
-        )
-    )
     val upperBlurAlphaFloat: Float by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 1f,
@@ -120,18 +105,18 @@ fun ScannerLineByAxis(
         )
     )
 
-    val lowerBlurMinHeightAnimationPx = 0.dp.dpToPx() + lineBlurEffectHeight.dpToPx()
+    val lowerBlurMinHeightAnimationPx = 0.dp.dpToPx()
     val lowerBlurMaxHeightAnimationPx =
-        squareContentBoxSize.dpToPx() + lineBlurEffectHeight.dpToPx()
+        squareContentBoxSize.dpToPx()
     val lowerBlurHeightAnimationFloat: Float by infiniteTransition.animateFloat(
         initialValue = lowerBlurMinHeightAnimationPx,
         targetValue = lowerBlurMaxHeightAnimationPx,
         animationSpec = infiniteRepeatable(
             animation = (heightKeyFramesSpec(
-                animationVerticalDuration,
-                lowerBlurMinHeightAnimationPx,
-                animationWaitingTimeOnTheEdgeInMillis,
-                lowerBlurMaxHeightAnimationPx,
+                animationVerticalDuration = animationVerticalDuration,
+                minHeightAnimationPx = lowerBlurMinHeightAnimationPx,
+                animationWaitingTimeOnTheEdgeInMillis = animationWaitingTimeOnTheEdgeInMillis,
+                maxHeightAnimationPx = lowerBlurMaxHeightAnimationPx,
             ))
         )
     )
@@ -163,7 +148,7 @@ fun ScannerLineByAxis(
             animation = keyframes {
                 durationMillis = 2 * animationVerticalDuration
                 0.dp at 0 //ms
-                0.dp at animationVerticalDuration - 2* halOfTheWaitingTimeOnTheEdgeInMillis
+                0.dp at animationVerticalDuration - 2 * halOfTheWaitingTimeOnTheEdgeInMillis
 
                 lineMaxWidth at
                         animationVerticalDuration.minus(
@@ -182,7 +167,7 @@ fun ScannerLineByAxis(
         )
     )
 
-    val squareBoxSizeWithBlur: Dp = squareContentBoxSize.plus(lineBlurEffectHeight.times(2))
+    val squareBoxSizeWithBlur: Dp = squareContentBoxSize
 
     Box(
         modifier = modifier
@@ -203,9 +188,12 @@ fun ScannerLineByAxis(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier
-                .height(lineBlurEffectHeight)
+                .height(
+                    lineHeightAnimationFloat
+                        .toInt()
+                        .pxToDp()
+                )
                 .width(widthAnimation)
-                .graphicsLayer(translationY = upperBlurHeightAnimationFloat)
                 .drawWithCache {
                     onDrawBehind {
                         val brush = Brush.verticalGradient(
@@ -226,7 +214,11 @@ fun ScannerLineByAxis(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier
-                .height(lineBlurEffectHeight)
+                .height(
+                    squareContentBoxSize - lineHeightAnimationFloat
+                        .toInt()
+                        .pxToDp()
+                )
                 .width(widthAnimation)
                 .graphicsLayer(translationY = lowerBlurHeightAnimationFloat)
                 .drawWithCache {
@@ -304,7 +296,6 @@ private fun ScannerLineByAxisPreview() {
             ) {
                 ScannerLineByAxis(
                     modifier = Modifier,
-                    //squareContentBoxSize = size.component1().pxToDp().minus(24.dp),
                     showDebugFrame = true,
                 ) {
                     Box(
