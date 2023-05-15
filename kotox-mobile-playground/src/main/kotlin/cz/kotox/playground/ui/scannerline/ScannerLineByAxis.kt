@@ -51,6 +51,7 @@ fun Modifier.conditional(condition: Boolean, modifier: Modifier.() -> Modifier):
 
 private const val PERCENT_HUNDRED = 100
 
+@Suppress("LongMethod", "LongParameterList")
 @Composable
 fun ScannerLineByAxis(
     modifier: Modifier = Modifier,
