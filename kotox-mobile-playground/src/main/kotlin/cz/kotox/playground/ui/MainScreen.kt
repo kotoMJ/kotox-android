@@ -31,6 +31,7 @@ import cz.kotox.core.ui.theme.LocalColors
 
 sealed class MainScreenEvent {
     object OpenBouncingBoxAnimation : MainScreenEvent()
+    object OpenScannerLineAnimation : MainScreenEvent()
 }
 
 data class MainScreenInput(
@@ -103,6 +104,36 @@ fun MainScreen(
                             )
                             Text(
                                 text = stringResource(id = R.string.main_screen_action_bouncing_box),
+                                color = LocalColors.current.onControlsPrimary
+                            )
+                        }
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp)
+                            .weight(0.1f),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+
+                        OutlinedButton(
+                            border = BorderStroke(1.dp, LocalColors.current.onControlsPrimary),
+                            contentPadding = PaddingValues(8.dp),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                contentColor = LocalColors.current.onControlsPrimary,
+                                backgroundColor = LocalColors.current.background
+                            ),
+                            onClick = {
+                                onEventHandler.invoke(MainScreenEvent.OpenScannerLineAnimation)
+                            }) {
+
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_animation),
+                                contentDescription = null,
+                                //tint = LocalColors.current.divider
+                            )
+                            Text(
+                                text = stringResource(id = R.string.main_screen_action_scanner_line),
                                 color = LocalColors.current.onControlsPrimary
                             )
                         }

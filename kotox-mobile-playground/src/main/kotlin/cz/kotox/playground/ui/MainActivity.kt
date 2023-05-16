@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import cz.kotox.core.ui.theme.KotoxBasicTheme
 import cz.kotox.playground.ui.bouncingbox.BouncingBoxActivityIntentUtil
+import cz.kotox.playground.ui.scannerline.ScannerLineActivityIntentUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,6 +30,14 @@ class MainActivity : ComponentActivity() {
 //                                        context = this,
 //                                    )
                                     BouncingBoxActivityIntentUtil.getPhoneCountryCodeStartIntent(
+                                        context = this,
+                                    )
+                                )
+                            }
+
+                            MainScreenEvent.OpenScannerLineAnimation -> {
+                                startActivity(
+                                    ScannerLineActivityIntentUtil.getScannerLineStartIntent(
                                         context = this,
                                     )
                                 )

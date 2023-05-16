@@ -29,10 +29,8 @@ Simple master-detail demo app presenting different kind of test cases.
 
 ### Kotox Playground (kotox-playground)
 
-1. Phone number
-
-Simple screen with phone number input field with ability to recognize country code and provides hint sugguestion. The screen allows also choose the phone country code from the list.  
-
+Playground related to different (Compose UI mainly) code samples.
+For more info check [README-PLAYGROUND.md](./kotox-mobile-playground/README-PLAYGROUND.md)
 
 ## Convention plugins
 
