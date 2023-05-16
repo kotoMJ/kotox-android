@@ -50,12 +50,12 @@ class ScannerLineActivity : ComponentActivity() {
                             Timber.d(
                                 ">>>_ size: ${size.component1().pxToDp()} Dp"
                             )
-                            ScannerLineByAxis(
+                            ScannerAnimatedLine(
                                 modifier = Modifier,
                                 squareContentBoxSize = size.component1().pxToDp().minus(104.dp),
                                 horizontalOverflow = 80.dp,
                                 horizontalOverflowPeak = 104.dp,
-                                showDebugFrame = true,
+                                //showDebugFrame = true,
                             ) {
                                 Box(
                                     modifier = Modifier

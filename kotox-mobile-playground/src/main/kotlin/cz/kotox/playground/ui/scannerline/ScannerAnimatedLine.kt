@@ -2,7 +2,6 @@ package cz.kotox.playground.ui.scannerline
 
 import android.content.res.Configuration
 import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.VectorConverter
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateValue
@@ -59,7 +58,7 @@ fun Modifier.conditional(condition: Boolean, modifier: Modifier.() -> Modifier):
 
 @Suppress("LongMethod", "LongParameterList")
 @Composable
-fun ScannerLineByAxis(
+fun ScannerAnimatedLine(
     modifier: Modifier = Modifier,
     squareContentBoxSize: Dp = 172.dp,
     horizontalOverflowPeak: Dp = 104.dp,
@@ -279,7 +278,7 @@ private fun heightKeyFramesSpec(
     name = "Dark Mode"
 )
 @Composable
-private fun ScannerLineByAxisPreview() {
+private fun ScannerAnimatedLinePreview() {
     KotoxBasicTheme() {
 
         var size by remember { mutableStateOf(IntSize.Zero) }
@@ -294,7 +293,7 @@ private fun ScannerLineByAxisPreview() {
                     .background(color = Color.Yellow)
                     .onSizeChanged { size = it }
             ) {
-                ScannerLineByAxis(
+                ScannerAnimatedLine(
                     modifier = Modifier,
                     showDebugFrame = true,
                 ) {

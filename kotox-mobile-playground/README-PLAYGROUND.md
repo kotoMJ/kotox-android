@@ -13,3 +13,4 @@ The screen allows also choose the phone country code from the list.
 
 ## 3. Compose UI Animation: QR SCANNER LINE
 
+![QR SCANNER LINE](./extras/doc/scanner_line.gif)
