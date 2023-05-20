@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Kotox Starter</string>
+    <string name="generic_back_description">Go to the previous screen</string>
+    <string name="generic_click_to_refresh">Click to refresh</string>
+
+    <string name="main_screen_title">@string/app_name</string>
+    <string name="main_screen_action_click_me">Click me</string>
+
+</resources>

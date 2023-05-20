@@ -16,6 +16,7 @@ include(
     //    ":kotox-mobile-memo",
     ":kotox-mobile-playground",
     ":kotox-mobile-starter",
+    ":kotox-mobile-strings",
     ":kotox-mobile-task",
     ":common",
     ":common-android",

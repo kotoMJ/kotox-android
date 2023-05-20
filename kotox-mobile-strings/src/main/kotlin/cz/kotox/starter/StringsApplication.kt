@@ -1,13 +1,13 @@
 package cz.kotox.starter
 
 import android.app.Application
-import cz.kotox.android.starter.BuildConfig
+import cz.kotox.android.strings.BuildConfig
 import cz.kotox.core.ui.ThemeUtils
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 @HiltAndroidApp
-class StarterApplication : Application() {
+class StringsApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -22,7 +22,7 @@ class StarterApplication : Application() {
     }
 
     companion object {
-        lateinit var application: StarterApplication
+        lateinit var application: StringsApplication
             private set
     }
 
