@@ -1,4 +1,4 @@
-package cz.kotox.starter.ui
+package cz.kotox.strings.ui
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement

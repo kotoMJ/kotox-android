@@ -1,9 +1,9 @@
-package cz.kotox.starter.config
+package cz.kotox.strings.config
 
 import android.content.res.Configuration
 import cz.kotox.android.core.config.AppProperties
 import cz.kotox.android.strings.BuildConfig
-import cz.kotox.starter.StringsApplication
+import cz.kotox.strings.StringsApplication
 
 private enum class BuildType(val buildTypeName: String) {
     Debug("debug"),

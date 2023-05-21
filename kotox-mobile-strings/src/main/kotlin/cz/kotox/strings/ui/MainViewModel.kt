@@ -1,4 +1,4 @@
-package cz.kotox.starter.ui
+package cz.kotox.strings.ui
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

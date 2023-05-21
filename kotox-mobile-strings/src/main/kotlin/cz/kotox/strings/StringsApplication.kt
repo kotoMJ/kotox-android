@@ -1,4 +1,4 @@
-package cz.kotox.starter
+package cz.kotox.strings
 
 import android.app.Application
 import cz.kotox.android.strings.BuildConfig
