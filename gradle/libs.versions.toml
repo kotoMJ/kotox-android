@@ -93,6 +93,7 @@ google-firebase-crashlytics-gradle = "2.9.2"
 google-libphonenumber = "8.13.5"
 
 coil = "2.1.0"
+commonmark = "0.21.0"
 detekt = "1.19.0"
 gradleDependencyUpdate = "0.46.0"
 junit = "4.13.2"
@@ -151,7 +152,7 @@ androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidx-lifecycle" }
 
-androidx-palette = {module = "androidx.palette:palette-ktx", version.ref="androidx-palette"}
+androidx-palette = { module = "androidx.palette:palette-ktx", version.ref = "androidx-palette" }
 
 androidx-constraint-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "androidx-constraintlayout-compose" }
 
@@ -185,13 +186,16 @@ accompanist-permissions = { module = "com.google.accompanist:accompanist-permiss
 
 coil-kt = { module = "io.coil-kt:coil", version.ref = "coil" }
 coil-kt-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+coil-kt-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
+
+commonmark = { module = "org.commonmark:commonmark", version.ref = "commonmark" }
 
 google-firebase-appdistribution-gradle = { module = "com.google.firebase:firebase-appdistribution-gradle", version.ref = "google-firebase-appdistribution-gradle" }
 google-firebase-config = { module = "com.google.firebase:firebase-config", version.ref = "google-firebase-config" }
 google-firebase-core = { module = "com.google.firebase:firebase-core", version.ref = "google-firebase-core" }
 google-firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx", version.ref = "google-firebase-crashlytics" }
 google-firebase-crashlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "google-firebase-crashlytics-gradle" }
-google-libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "google-libphonenumber"}
+google-libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "google-libphonenumber" }
 
 kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
@@ -202,12 +206,12 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 
-libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "libphonenumber"}
+libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "libphonenumber" }
 
 moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
-moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi"}
-moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi"}
-moshi-adapters = { group = "com.squareup.moshi", name = "moshi-adapters", version.ref = "moshi"}
+moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
+moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
+moshi-adapters = { group = "com.squareup.moshi", name = "moshi-adapters", version.ref = "moshi" }
 
 
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
@@ -270,6 +274,7 @@ androidx-lifecycle = [
 
 androidx-room = ["androidx-room-ktx", "androidx-room-runtime"]
 
+coil = ["coil-kt", "coil-kt-compose", "coil-kt-svg"]
 
 test-android = [
     "androidx-test-core",

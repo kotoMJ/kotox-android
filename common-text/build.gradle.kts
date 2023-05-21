@@ -7,6 +7,9 @@ plugins {
 dependencies {
     implementation(projects.common)
 
+    implementation(libs.commonmark)
+    implementation(libs.bundles.coil)
+
     implementation(libs.androidx.hilt.android)
     kapt(libs.androidx.hilt.compiler)
 
