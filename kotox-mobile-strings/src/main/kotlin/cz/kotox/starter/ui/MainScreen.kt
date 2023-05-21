@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import cz.kotox.android.media.R
+import cz.kotox.android.strings.R
 import cz.kotox.core.ui.theme.KotoxBasicTheme
 import cz.kotox.core.ui.theme.LocalColors
 

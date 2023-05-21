@@ -1,4 +1,4 @@
-package com.aisense.otter.ui.markdown.components
+package cz.kotox.common.text.markdown.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

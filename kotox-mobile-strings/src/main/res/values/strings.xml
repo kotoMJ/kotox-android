@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Kotox Starter</string>
+    <string name="app_name">Rich String Resources for Compose</string>
     <string name="generic_back_description">Go to the previous screen</string>
     <string name="generic_click_to_refresh">Click to refresh</string>
 

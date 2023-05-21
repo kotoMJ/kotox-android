@@ -1,4 +1,4 @@
-package com.aisense.otter.ui.markdown.components
+package cz.kotox.common.text.markdown.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -6,6 +6,8 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import cz.kotox.common.text.markdown.MarkdownTheme
 import cz.kotox.common.text.markdown.appendMarkdownChildren
+import cz.kotox.common.text.markdown.components.MDListItems
+import cz.kotox.common.text.markdown.components.MarkdownText
 import org.commonmark.node.BulletList
 
 @Composable

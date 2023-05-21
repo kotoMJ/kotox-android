@@ -1,4 +1,4 @@
-package com.aisense.otter.ui.markdown.components
+package cz.kotox.common.text.markdown.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding

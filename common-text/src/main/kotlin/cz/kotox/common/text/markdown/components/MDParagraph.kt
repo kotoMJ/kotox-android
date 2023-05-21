@@ -1,4 +1,4 @@
-package com.aisense.otter.ui.markdown.components
+package cz.kotox.common.text.markdown.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -9,6 +9,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import cz.kotox.common.text.markdown.MarkdownTheme
 import cz.kotox.common.text.markdown.appendMarkdownChildren
+import cz.kotox.common.text.markdown.components.MDImage
+import cz.kotox.common.text.markdown.components.MarkdownText
 import org.commonmark.node.Document
 import org.commonmark.node.Image
 import org.commonmark.node.Paragraph
