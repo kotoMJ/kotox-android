@@ -4,4 +4,4 @@
 
 Sample app showcasing different approaches of displaying RICH TEXT in COMPOSE.
 
-![QR SCANNER LINE](./extras/doc/scanner_line.gif)
+![STRINGS](./extras/doc/strings_main_screen.png)
