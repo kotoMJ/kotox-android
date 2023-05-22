@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="sample_text_markdown1">Use your **work email** to collaborate on meeting notes with your teammates.  [Change](change)</string>
-    <string name="sample_text_markdown">This is a rich text with **one bold part**, *one italic part*, and finally with [the link](https://jenicek.dev) at the end.</string>
-
+    <string name="sample_text_markdown">This is a rich text with **one bold part**, *one italic part*, and finally with [the link](https://jenicek.dev) at the end.</string>=
 </resources>
