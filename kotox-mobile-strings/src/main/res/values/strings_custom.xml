@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="sample_text_custom">This is a rich text with **one bold part**, and **another bold part**.</string>
+
+</resources>
