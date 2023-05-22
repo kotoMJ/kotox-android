@@ -20,6 +20,7 @@ import cz.kotox.android.strings.R
 import cz.kotox.core.ui.theme.KotoxBasicTheme
 import cz.kotox.strings.ui.components.CustomResourceCard
 import cz.kotox.strings.ui.components.DuplicatedResourceCard
+import cz.kotox.strings.ui.components.MarkdownResourceCard
 import cz.kotox.strings.ui.components.SplitResourceCard
 
 sealed class MainScreenEvent {
@@ -74,6 +75,9 @@ fun MainScreen() {
                     }
                     item {
                         CustomResourceCard()
+                    }
+                    item {
+                        MarkdownResourceCard()
                     }
                 }
 
