@@ -49,30 +49,31 @@ private fun DuplicatedResourceText() {
 
         val boldPart = stringResource(id = R.string.sample_text_plain_bold)
         addStyle(
-            SpanStyle(fontWeight = FontWeight.Bold),
-            plainText.indexOf(boldPart),
-            plainText.indexOf(boldPart) + boldPart.length
+            style = SpanStyle(fontWeight = FontWeight.Bold),
+            start = plainText.indexOf(boldPart),
+            end = plainText.indexOf(boldPart) + boldPart.length
         )
 
         val italicPart = stringResource(id = R.string.sample_text_plain_italic)
         addStyle(
-            SpanStyle(fontStyle = FontStyle.Italic),
-            plainText.indexOf(italicPart),
-            plainText.indexOf(italicPart) + italicPart.length
+            style = SpanStyle(fontStyle = FontStyle.Italic),
+            start = plainText.indexOf(italicPart),
+            end = plainText.indexOf(italicPart) + italicPart.length
         )
 
         val linkPart = stringResource(id = R.string.sample_text_plain_link)
         addStringAnnotation(
-            WEB_LINK_TAG, WEB_LINK, plainText.indexOf(linkPart),
-            plainText.indexOf(linkPart) + linkPart.length
+            tag = WEB_LINK_TAG, WEB_LINK,
+            start = plainText.indexOf(linkPart),
+            end = plainText.indexOf(linkPart) + linkPart.length
         )
         addStyle(
-            SpanStyle(
+            style = SpanStyle(
                 color = Color.Red,
                 textDecoration = TextDecoration.Underline,
             ),
-            plainText.indexOf(linkPart),
-            plainText.indexOf(linkPart) + linkPart.length
+            start = plainText.indexOf(linkPart),
+            end = plainText.indexOf(linkPart) + linkPart.length
         )
     }
 
