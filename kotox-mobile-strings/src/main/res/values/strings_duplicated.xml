@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="sample_text_plain">This is a rich text with one bold part,
-        one italic part, and finally with the link at the end.</string>
+    <string name="sample_text_plain">This is a rich text with one bold part, one italic part, and finally with the link at the end.</string>
     <string name="sample_text_plain_bold">one bold part</string>
     <string name="sample_text_plain_italic">one italic part</string>
     <string name="sample_text_plain_link">the link</string>

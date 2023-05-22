@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sample_text_html">
+        <![CDATA[
+        This is a rich text with one <b>bold part</b>,
+        one <i>italic part</i>,
+        and finally with the <a href="sample_link">link at the end.</a>
+        ]]>
+        </string>
+
+</resources>
