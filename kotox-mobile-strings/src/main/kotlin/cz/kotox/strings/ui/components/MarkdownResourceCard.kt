@@ -27,12 +27,12 @@ import cz.kotox.core.android.navigation.navigateToWeb
 @Composable
 fun MarkdownResourceCard() {
     ResourceCard(titleRes = R.string.main_screen_card_markdown) {
-        MarkdownResourceTextDefaultTheme()
+        MarkdownResourceTextWithDefaultTheme()
     }
 }
 
 @Composable
-private fun MarkdownResourceTextDefaultTheme() {
+private fun MarkdownResourceTextWithDefaultTheme() {
     val context = LocalContext.current
     MDDocument(
         stringResId = R.string.sample_text_markdown,
@@ -43,7 +43,7 @@ private fun MarkdownResourceTextDefaultTheme() {
 }
 
 @Composable
-private fun MarkdownResourceTextCustomTheme() {
+private fun MarkdownResourceTextWithCustomTheme() {
     val context = LocalContext.current
     MDDocument(
         stringResId = R.string.sample_text_markdown,
@@ -56,7 +56,7 @@ private fun MarkdownResourceTextCustomTheme() {
 
 
 @Composable
-private fun MarkdownResourceTextCustomThemeExtra() {
+private fun MarkdownResourceTextWithCustomThemeExtra() {
     val context = LocalContext.current
     MDDocument(
         stringResId = R.string.sample_text_markdown,
