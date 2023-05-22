@@ -9,6 +9,7 @@ import androidx.compose.ui.text.withStyle
 fun String.bold() = buildAnnotatedString {
     pushStyle(SpanStyle(fontWeight = FontWeight.Bold))
     append(this@bold)
+    pop()
 }
 
 fun String.bold(text: String): AnnotatedString {

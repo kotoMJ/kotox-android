@@ -7,4 +7,7 @@
     <string name="main_screen_title">@string/app_name</string>
     <string name="main_screen_action_click_me">Click me</string>
 
+    <string name="main_screen_card_split">SPLIT RESOURCE</string>
+    <string name="main_screen_card_duplicated">"DUPLICATED RESOURCE"</string>
+
 </resources>

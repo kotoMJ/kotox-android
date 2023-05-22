@@ -47,9 +47,8 @@ data class MainScreenAppBarInput constructor(
 )
 @Composable
 fun MainScreenAppBarView(
+    modifier: Modifier = Modifier,
     @PreviewParameter(MainScreenAppBarPreviewProvider::class) input: MainScreenAppBarInput,
-    backButtonModifier: Modifier = Modifier,
-    onEventHandler: (MeetingNoteAppBarEvent) -> Unit = {}
 ) {
     KotoxBasicTheme {
 
@@ -61,26 +60,6 @@ fun MainScreenAppBarView(
         ) {
 
             Row(verticalAlignment = Alignment.CenterVertically) {
-//                Column() {
-//                    IconButton(
-//                        onClick = { onEventHandler.invoke(MeetingNoteAppBarEvent.AppBarHomeEvent) },
-//                    ) {
-//                        Icon(
-//                            modifier = Modifier.onGloballyPositioned { coordinates ->
-//                                //pagerPosition = coordinates.positionInRoot()
-//                                onEventHandler.invoke(
-//                                    MeetingNoteAppBarEvent.BackButtonOffset(
-//                                        coordinates.positionInWindow(),
-//                                        coordinates.size
-//                                    )
-//                                )
-//                            },
-//                            painter = painterResource(R.drawable.ic_arrow_left),
-//                            contentDescription = stringResource(R.string.general_back_description),
-//                            tint = LocalColors.current.textNorm,
-//                        )
-//                    }
-//                }
                 Column(verticalArrangement = Arrangement.Center) {
                     Box(modifier = Modifier.sizeIn(minHeight = 56.dp)) {
                         Text(
