@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="sample_text_plain_1">This is a rich text with&#160;</string>
+    <string name="sample_text_plain_2">one bold part,&#160;</string>
+    <string name="sample_text_plain_3">one italic part,&#160;</string>
+    <string name="sample_text_plain_4">and finally with&#160;</string>
+    <string name="sample_text_plain_5">the link</string>
+    <string name="sample_text_plain_6">&#160;at the end.</string>
+
+</resources>

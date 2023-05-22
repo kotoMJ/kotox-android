@@ -11,6 +11,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import cz.kotox.android.strings.R
@@ -30,9 +31,9 @@ import cz.kotox.core.android.navigation.navigateToWeb
     name = "Dark Mode"
 )
 @Composable
-fun DuplicatedResourceCard() {
-    ResourceCard(titleRes = R.string.main_screen_card_duplicated) {
-        DuplicatedResourceText()
+fun SplitResourceCard() {
+    ResourceCard(titleRes = R.string.main_screen_card_split) {
+        SplitResourceText()
     }
 }
 
@@ -40,40 +41,36 @@ private const val WEB_LINK_TAG = "web-link"
 private const val WEB_LINK = "https://jenicek.dev"
 
 @Composable
-private fun DuplicatedResourceText() {
+private fun SplitResourceText() {
     val context = LocalContext.current
 
-    val plainText = stringResource(id = R.string.sample_text_plain)
     val richText = buildAnnotatedString {
-        append(plainText)
 
-        val boldPart = stringResource(id = R.string.sample_text_plain_bold)
-        addStyle(
-            SpanStyle(fontWeight = FontWeight.Bold),
-            plainText.indexOf(boldPart),
-            plainText.indexOf(boldPart) + boldPart.length
-        )
+        append(stringResource(id = R.string.sample_text_plain_1))
 
-        val italicPart = stringResource(id = R.string.sample_text_plain_italic)
-        addStyle(
-            SpanStyle(fontStyle = FontStyle.Italic),
-            plainText.indexOf(italicPart),
-            plainText.indexOf(italicPart) + italicPart.length
-        )
+        withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+            append(stringResource(id = R.string.sample_text_plain_2))
+        }
 
-        val linkPart = stringResource(id = R.string.sample_text_plain_link)
-        addStringAnnotation(
-            WEB_LINK_TAG, WEB_LINK, plainText.indexOf(linkPart),
-            plainText.indexOf(linkPart) + linkPart.length
-        )
-        addStyle(
-            SpanStyle(
+        withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) {
+            append(stringResource(id = R.string.sample_text_plain_3))
+        }
+
+        append(stringResource(id = R.string.sample_text_plain_4))
+
+        pushStringAnnotation(WEB_LINK_TAG, WEB_LINK)
+        withStyle(
+            style = SpanStyle(
                 color = Color.Red,
                 textDecoration = TextDecoration.Underline,
-            ),
-            plainText.indexOf(linkPart),
-            plainText.indexOf(linkPart) + linkPart.length
-        )
+            )
+        ) {
+            append(stringResource(id = R.string.sample_text_plain_5))
+        }
+        pop()
+
+        append(stringResource(id = R.string.sample_text_plain_6))
+
     }
 
     ClickableText(text = richText) { offset ->

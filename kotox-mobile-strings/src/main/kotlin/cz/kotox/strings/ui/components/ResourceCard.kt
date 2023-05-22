@@ -41,7 +41,7 @@ fun ResourceCard(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = stringResource(id = R.string.main_screen_card_duplicated),
+                    text = stringResource(id = titleRes),
                     style = LocalTypography.current.body1Medium,
                     color = LocalColors.current.textNorm
                 )
