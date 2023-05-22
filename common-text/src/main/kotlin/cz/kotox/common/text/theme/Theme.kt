@@ -33,7 +33,9 @@ val KotoxMarkdownTheme: MarkdownTheme
         ),
         paragraphTextStyle = TextStyle(
             fontWeight = FontWeight.Normal,
-            fontFamily = FontFamily.Default
+            fontFamily = FontFamily.Default,
+            fontSize = 14.sp,
+            lineHeight = 20.sp,
         ),
         strongEmphasisTextStyle = TextStyle(
             fontWeight = FontWeight.Bold,
