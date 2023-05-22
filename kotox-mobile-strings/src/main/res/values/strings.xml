@@ -9,5 +9,6 @@
 
     <string name="main_screen_card_split">SPLIT RESOURCE</string>
     <string name="main_screen_card_duplicated">"DUPLICATED RESOURCE"</string>
+    <string name="main_screen_card_custom">"CUSTOM RESOURCE"</string>
 
 </resources>

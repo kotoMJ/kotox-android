@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import cz.kotox.android.strings.R
 import cz.kotox.core.ui.theme.KotoxBasicTheme
+import cz.kotox.strings.ui.components.CustomResourceCard
 import cz.kotox.strings.ui.components.DuplicatedResourceCard
 import cz.kotox.strings.ui.components.SplitResourceCard
 
@@ -70,6 +71,9 @@ fun MainScreen() {
                     }
                     item {
                         DuplicatedResourceCard()
+                    }
+                    item {
+                        CustomResourceCard()
                     }
                 }
 

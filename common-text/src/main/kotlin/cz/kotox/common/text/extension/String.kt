@@ -26,8 +26,10 @@ fun String.bold(text: String): AnnotatedString {
     }
 }
 
-fun String.withBoldParts(delimiter: String = "**"): AnnotatedString {
-    val parts = this.split(delimiter)
+fun String.withBoldParts(
+    boldDelimiter: String = "**",
+): AnnotatedString {
+    val parts = this.split(boldDelimiter)
     return buildAnnotatedString {
         parts.forEachIndexed { index, part ->
             if (index % 2 != 0) {
