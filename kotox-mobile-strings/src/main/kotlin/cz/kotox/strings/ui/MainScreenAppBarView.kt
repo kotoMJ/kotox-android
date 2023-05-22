@@ -86,7 +86,7 @@ fun MainScreenAppBarView(
                         Text(
                             modifier = Modifier.align(Alignment.Center),
                             text = input.title,
-                            style = LocalTypography.current.body1Medium,
+                            style = LocalTypography.current.headline,
                             color = LocalColors.current.textNorm,
                         )
                     }
