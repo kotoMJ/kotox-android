@@ -5,3 +5,5 @@
 Sample app showcasing different approaches of displaying RICH TEXT in COMPOSE.
 
 ![STRINGS](./extras/doc/strings_main_screen.png)
+
+[Android Talks 2023/5 slides](../extras/documents/StringResrouces-slides.pdf)

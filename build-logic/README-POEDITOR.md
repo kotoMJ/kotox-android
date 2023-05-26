@@ -86,3 +86,8 @@ Post procesing of source file downloaded from openapi stands for several points:
    Android [placeholders](https://poeditor.com/kb/placeholder-validation)
 6) Copy processed nodes to determined targets.
 
+
+## PoEditor slides
+
+In the second part of slides from [Android Talks 2023/5 slides](../extras/documents/StringResrouces-slides.pdf) there is a section about this PoEditor plugin.
+
