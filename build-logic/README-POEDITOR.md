@@ -87,7 +87,9 @@ Post procesing of source file downloaded from openapi stands for several points:
 6) Copy processed nodes to determined targets.
 
 
-## PoEditor slides
+## Shared Strings slides
+
+Slides from Android Talks in Prague 2023/5.  
 
 [![Android Talks 2023/5 slides](../extras/documents/strings/scr_shared_strings.png)](../extras/documents/strings/StringResrouces-slides.pdf)
 
