@@ -110,7 +110,7 @@ dependencies {
 
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    androidTestImplementation(projects.taskData)
+    androidTestImplementation(projects.common.task)
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.androidx.test.runner)

@@ -13,7 +13,7 @@ dependencies {
     implementation(projects.common.network)
     implementation(projects.common.crypto)
 
-    implementation(projects.taskData)
+    implementation(projects.common.task)
 
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)

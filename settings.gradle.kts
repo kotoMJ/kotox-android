@@ -26,7 +26,7 @@ include(
     ":common-text",
     ":common:ui",
     ":task-domain",
-    ":task-data",
+    ":common:task",
     ":task-ui",
     ":task-feature-detail",
     ":task-feature-dasboard",
