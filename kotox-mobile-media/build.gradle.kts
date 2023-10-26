@@ -51,7 +51,7 @@ android {
 dependencies {
     implementation(projects.common.core)
     implementation(projects.common.coreAndroid)
-    implementation(projects.commonUi)
+    implementation(projects.common.ui)
     implementation(projects.cameraUi)
 
     implementation(libs.android.material)

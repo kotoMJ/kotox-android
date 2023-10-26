@@ -24,7 +24,7 @@ include(
     ":common-network",
     ":common-test",
     ":common-text",
-    ":common-ui",
+    ":common:ui",
     ":task-domain",
     ":task-data",
     ":task-ui",
