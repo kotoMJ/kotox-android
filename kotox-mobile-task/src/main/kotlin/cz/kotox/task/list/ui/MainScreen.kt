@@ -30,8 +30,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.layoutId
 import cz.kotox.core.ui.theme.LocalColors
-import cz.kotox.task.domain.api.factory.toTask
-import cz.kotox.task.detail.ui.TaskDetailActivityIntentUtil
+import cz.kotox.feature.task.detail.ui.TaskDetailActivityIntentUtil
 import cz.kotox.task.detail.ui.component.TaskSummaryComponentInput
 import cz.kotox.task.detail.ui.component.TaskSummaryItem
 import cz.kotox.android.task.R

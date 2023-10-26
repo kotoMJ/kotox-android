@@ -1,8 +1,8 @@
 package cz.kotox.task.domain.api.usecase
 
 import android.content.Context
-import cz.kotox.task.data.api.respository.TaskRepository
-import cz.kotox.task.data.impl.remote.image.ImageDownloader
+import cz.kotox.common.task.data.api.respository.TaskRepository
+import cz.kotox.common.task.data.impl.remote.image.ImageDownloader
 import cz.kotox.task.domain.api.factory.toTask
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

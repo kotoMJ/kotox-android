@@ -1,6 +1,6 @@
 package cz.kotox.task.domain.api.usecase
 
-import cz.kotox.task.data.api.respository.TaskRepository
+import cz.kotox.common.task.data.api.respository.TaskRepository
 import javax.inject.Inject
 
 class GetOneTaskImageUseCase @Inject constructor(
