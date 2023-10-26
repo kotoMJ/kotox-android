@@ -29,7 +29,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
         dependencies {
 
-            add("implementation", project(":common"))
+            add("implementation", project(":common2"))
             add("implementation", project(":common-network"))
             add("implementation", project(":common-ui"))
 

@@ -11,7 +11,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.common)
+    implementation(projects.common2)
 
     /**
      * TODO Adding crypto library cause compilation problems when integrating this module into the app!

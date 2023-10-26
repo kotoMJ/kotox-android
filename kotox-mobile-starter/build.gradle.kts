@@ -53,7 +53,7 @@ dependencies {
     implementation(libs.androidx.compose.material3) // customize slider
 
     implementation(projects.commonUi)
-    implementation(projects.common)
+    implementation(projects.common2)
 
     implementation(projects.i18nDomain)
     implementation(projects.i18nUi)
