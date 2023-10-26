@@ -1,4 +1,4 @@
-package cz.kotox.task.domain.api.usecase
+package cz.kotox.common.task.poc.domain.usecase
 
 import android.content.Context
 import cz.kotox.common.task.poc.data.api.respository.TaskRepository

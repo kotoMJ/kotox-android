@@ -25,7 +25,6 @@ include(
     ":common-test",
     ":common-text",
     ":common:ui",
-    ":task-domain",
     ":common:task-poc",
     ":task-ui",
     ":feature:task-poc",

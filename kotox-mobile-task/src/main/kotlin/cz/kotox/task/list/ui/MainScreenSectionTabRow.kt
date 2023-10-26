@@ -29,7 +29,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import cz.kotox.android.task.R
 import cz.kotox.task.detail.ui.component.TaskSummaryItem
-import cz.kotox.task.domain.api.model.Task
+import cz.kotox.common.task.poc.domain.model.Task
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -120,7 +120,7 @@ class MainScreenTypeTabPreviewProvider : PreviewParameterProvider<MainScreenType
                 TaskGroup(
                     tasks = listOf(
                         TaskSummaryItem.from(
-                            Task(
+                            cz.kotox.common.task.poc.domain.model.Task(
                                 id = "1",
                                 creationDate = LocalDateTime.now(),
                                 dueDate = LocalDateTime.now().plusDays(2),
@@ -130,27 +130,27 @@ class MainScreenTypeTabPreviewProvider : PreviewParameterProvider<MainScreenType
                             )
                         ),
                         TaskSummaryItem.from(
-                            Task(
+                            cz.kotox.common.task.poc.domain.model.Task(
                                 id = "2",
                                 creationDate = LocalDateTime.now(),
                                 dueDate = LocalDateTime.now().plusDays(2),
                                 description = "Description",
                                 title = "Title",
-                                image ="https://i.imgur.com/GTag1cl.png"
+                                image = "https://i.imgur.com/GTag1cl.png"
                             )
                         ),
                         TaskSummaryItem.from(
-                            Task(
+                            cz.kotox.common.task.poc.domain.model.Task(
                                 id = "3",
                                 creationDate = LocalDateTime.now(),
                                 dueDate = LocalDateTime.now().plusDays(2),
                                 description = "Description",
                                 title = "Title",
-                                image ="https://i.imgur.com/GTag1cl.png"
+                                image = "https://i.imgur.com/GTag1cl.png"
                             )
                         ),
                         TaskSummaryItem.from(
-                            Task(
+                            cz.kotox.common.task.poc.domain.model.Task(
                                 id = "4",
                                 creationDate = LocalDateTime.now(),
                                 dueDate = LocalDateTime.now().plusDays(2),
@@ -164,7 +164,7 @@ class MainScreenTypeTabPreviewProvider : PreviewParameterProvider<MainScreenType
                 TaskGroup(
                     tasks = listOf(
                         TaskSummaryItem.from(
-                            Task(
+                            cz.kotox.common.task.poc.domain.model.Task(
                                 id = "14",
                                 creationDate = LocalDateTime.now(),
                                 dueDate = LocalDateTime.now().plusDays(2),
@@ -174,7 +174,7 @@ class MainScreenTypeTabPreviewProvider : PreviewParameterProvider<MainScreenType
                             )
                         ),
                         TaskSummaryItem.from(
-                            Task(
+                            cz.kotox.common.task.poc.domain.model.Task(
                                 id = "24",
                                 creationDate = LocalDateTime.now(),
                                 dueDate = LocalDateTime.now().plusDays(2),

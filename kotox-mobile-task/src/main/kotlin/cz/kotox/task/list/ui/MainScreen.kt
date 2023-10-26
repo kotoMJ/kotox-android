@@ -39,7 +39,7 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import cz.kotox.task.domain.api.model.Task
+import cz.kotox.common.task.poc.domain.model.Task
 import java.time.LocalDateTime
 
 const val UI_TEST_MAIN_LIST_TAG = "MainListTag"
@@ -177,7 +177,7 @@ class MainScreenPreviewProvider : PreviewParameterProvider<MainScreenInput> {
                     TaskGroup(
                         tasks = listOf(
                             TaskSummaryItem.from(
-                                Task(
+                                cz.kotox.common.task.poc.domain.model.Task(
                                     id = "1",
                                     creationDate = LocalDateTime.now(),
                                     dueDate = LocalDateTime.now().plusDays(2),
@@ -187,7 +187,7 @@ class MainScreenPreviewProvider : PreviewParameterProvider<MainScreenInput> {
                                 )
                             ),
                             TaskSummaryItem.from(
-                                Task(
+                                cz.kotox.common.task.poc.domain.model.Task(
                                     id = "2",
                                     creationDate = LocalDateTime.now(),
                                     dueDate = LocalDateTime.now().plusDays(2),
@@ -197,7 +197,7 @@ class MainScreenPreviewProvider : PreviewParameterProvider<MainScreenInput> {
                                 )
                             ),
                             TaskSummaryItem.from(
-                                Task(
+                                cz.kotox.common.task.poc.domain.model.Task(
                                     id = "3",
                                     creationDate = LocalDateTime.now(),
                                     dueDate = LocalDateTime.now().plusDays(2),
@@ -207,7 +207,7 @@ class MainScreenPreviewProvider : PreviewParameterProvider<MainScreenInput> {
                                 )
                             ),
                             TaskSummaryItem.from(
-                                Task(
+                                cz.kotox.common.task.poc.domain.model.Task(
                                     id = "4",
                                     creationDate = LocalDateTime.now(),
                                     dueDate = LocalDateTime.now().plusDays(2),
@@ -221,7 +221,7 @@ class MainScreenPreviewProvider : PreviewParameterProvider<MainScreenInput> {
                     TaskGroup(
                         tasks = listOf(
                             TaskSummaryItem.from(
-                                Task(
+                                cz.kotox.common.task.poc.domain.model.Task(
                                     id = "11",
                                     creationDate = LocalDateTime.now(),
                                     dueDate = LocalDateTime.now().plusDays(2),
@@ -231,7 +231,7 @@ class MainScreenPreviewProvider : PreviewParameterProvider<MainScreenInput> {
                                 )
                             ),
                             TaskSummaryItem.from(
-                                Task(
+                                cz.kotox.common.task.poc.domain.model.Task(
                                     id = "12",
                                     creationDate = LocalDateTime.now(),
                                     dueDate = LocalDateTime.now().plusDays(2),

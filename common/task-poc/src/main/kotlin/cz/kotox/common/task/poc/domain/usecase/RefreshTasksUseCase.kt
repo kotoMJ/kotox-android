@@ -1,4 +1,4 @@
-package cz.kotox.task.domain.api.usecase
+package cz.kotox.common.task.poc.domain.usecase
 
 import cz.kotox.android.core.error.BasicError
 import cz.kotox.core.network.apicall.apiCall

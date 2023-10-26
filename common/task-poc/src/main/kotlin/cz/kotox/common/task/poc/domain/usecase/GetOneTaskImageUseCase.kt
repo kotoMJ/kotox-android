@@ -1,4 +1,4 @@
-package cz.kotox.task.domain.api.usecase
+package cz.kotox.common.task.poc.domain.usecase
 
 import cz.kotox.common.task.poc.data.api.respository.TaskRepository
 import javax.inject.Inject

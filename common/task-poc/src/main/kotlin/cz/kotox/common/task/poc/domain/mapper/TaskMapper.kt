@@ -1,7 +1,7 @@
 package cz.kotox.task.domain.api.factory
 
 import cz.kotox.core.crypto.CryptoHelper
-import cz.kotox.task.domain.api.model.Task
+import cz.kotox.common.task.poc.domain.model.Task
 import cz.kotox.common.task.poc.data.impl.local.room.TaskEntity
 import cz.kotox.common.task.poc.data.impl.remote.dto.TASK_DATE_TIME_PATTERN
 import cz.kotox.common.task.poc.data.impl.remote.dto.TaskDTO

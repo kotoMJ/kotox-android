@@ -1,9 +1,9 @@
 package cz.kotox.task.list.ui
 
-import cz.kotox.task.domain.api.model.Task
-import cz.kotox.task.domain.api.usecase.GetAllTasksUseCase
-import cz.kotox.task.domain.api.usecase.GetOneTaskImageUseCase
-import cz.kotox.task.domain.api.usecase.RefreshTasksUseCase
+import cz.kotox.common.task.poc.domain.model.Task
+import cz.kotox.common.task.poc.domain.usecase.GetAllTasksUseCase
+import cz.kotox.common.task.poc.domain.usecase.GetOneTaskImageUseCase
+import cz.kotox.common.task.poc.domain.usecase.RefreshTasksUseCase
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -21,9 +21,9 @@ class MainViewModelUnitTest {
 
 
     private lateinit var mainViewModel: MainViewModel
-    private lateinit var getAllTasksUseCase: GetAllTasksUseCase
-    private lateinit var getOneTaskImageUseCase: GetOneTaskImageUseCase
-    private lateinit var remoteRefreshTasksUseCase: RefreshTasksUseCase
+    private lateinit var getAllTasksUseCase: cz.kotox.common.task.poc.domain.usecase.GetAllTasksUseCase
+    private lateinit var getOneTaskImageUseCase: cz.kotox.common.task.poc.domain.usecase.GetOneTaskImageUseCase
+    private lateinit var remoteRefreshTasksUseCase: cz.kotox.common.task.poc.domain.usecase.RefreshTasksUseCase
 
     @Before
     fun init() {
@@ -67,7 +67,7 @@ class MainViewModelUnitTest {
         coEvery { getAllTasksUseCase.execute() } returns flow {
             emit(
                 listOf(
-                    Task(
+                    cz.kotox.common.task.poc.domain.model.Task(
                         creationDate = LocalDateTime.now().minusDays(10),
                         dueDate = LocalDateTime.now().minusDays(9),
                         description = "desc1",
@@ -75,7 +75,7 @@ class MainViewModelUnitTest {
                         id = "1",
                         image = "fake_image_path_1"
                     ),
-                    Task(
+                    cz.kotox.common.task.poc.domain.model.Task(
                         creationDate = LocalDateTime.now().minusDays(8),
                         dueDate = LocalDateTime.now().plusDays(1),
                         description = "desc1",

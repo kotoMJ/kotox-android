@@ -9,7 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.viewModelScope
 import cz.kotox.android.feature.task.detail.R
 import cz.kotox.core.ui.theme.KotoxBasicTheme
-import cz.kotox.task.domain.api.usecase.DownloadTaskPhotoUseCase
+import cz.kotox.common.task.poc.domain.usecase.DownloadTaskPhotoUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,7 +20,7 @@ class TaskDetailActivity : ComponentActivity() {
     private val viewModel: TaskDetailViewModel by viewModels()
 
     @Inject
-    lateinit var taskPhotoUseCase: DownloadTaskPhotoUseCase
+    lateinit var taskPhotoUseCase: cz.kotox.common.task.poc.domain.usecase.DownloadTaskPhotoUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

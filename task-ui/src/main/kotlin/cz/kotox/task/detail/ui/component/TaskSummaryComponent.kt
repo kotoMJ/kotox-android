@@ -22,7 +22,7 @@ import androidx.constraintlayout.compose.layoutId
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.core.ui.theme.LocalTypography
 import cz.kotox.core.ui.theme.KotoxBasicTheme
-import cz.kotox.task.domain.api.model.Task
+import cz.kotox.common.task.poc.domain.model.Task
 import cz.kotox.task.ui.R
 import java.time.LocalDateTime
 
@@ -193,7 +193,7 @@ class TaskSummaryComponentPreviewProvider : PreviewParameterProvider<TaskSummary
     override val values: Sequence<TaskSummaryComponentInput> = sequenceOf(
         TaskSummaryComponentInput(
             item = TaskSummaryItem.from(
-                Task(
+                cz.kotox.common.task.poc.domain.model.Task(
                     creationDate = LocalDateTime.now(),
                     dueDate = LocalDateTime.now().plusDays(2),
                     id = "1",
@@ -206,7 +206,7 @@ class TaskSummaryComponentPreviewProvider : PreviewParameterProvider<TaskSummary
         ),
         TaskSummaryComponentInput(
             item = TaskSummaryItem.from(
-                Task(
+                cz.kotox.common.task.poc.domain.model.Task(
                     creationDate = LocalDateTime.now(),
                     dueDate = LocalDateTime.now().plusDays(3),
                     id = "2",

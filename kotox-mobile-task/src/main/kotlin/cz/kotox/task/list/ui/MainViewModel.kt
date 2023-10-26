@@ -3,9 +3,9 @@ package cz.kotox.task.list.ui
 import androidx.lifecycle.ViewModel
 import cz.kotox.android.core.error.BasicError
 import cz.kotox.android.task.R
-import cz.kotox.task.domain.api.usecase.GetAllTasksUseCase
-import cz.kotox.task.domain.api.usecase.GetOneTaskImageUseCase
-import cz.kotox.task.domain.api.usecase.RefreshTasksUseCase
+import cz.kotox.common.task.poc.domain.usecase.GetAllTasksUseCase
+import cz.kotox.common.task.poc.domain.usecase.GetOneTaskImageUseCase
+import cz.kotox.common.task.poc.domain.usecase.RefreshTasksUseCase
 
 import cz.kotox.task.detail.ui.component.TaskSummaryItem
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,9 +28,9 @@ data class MainFeedState(
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getAllTasksUseCase: GetAllTasksUseCase,
-    private val getOneTaskImageUseCase: GetOneTaskImageUseCase,
-    private val remoteRefreshTasksUseCase: RefreshTasksUseCase
+    private val getAllTasksUseCase: cz.kotox.common.task.poc.domain.usecase.GetAllTasksUseCase,
+    private val getOneTaskImageUseCase: cz.kotox.common.task.poc.domain.usecase.GetOneTaskImageUseCase,
+    private val remoteRefreshTasksUseCase: cz.kotox.common.task.poc.domain.usecase.RefreshTasksUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MainFeedState())

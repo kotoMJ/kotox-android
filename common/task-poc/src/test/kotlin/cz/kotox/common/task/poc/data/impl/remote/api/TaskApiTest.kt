@@ -1,4 +1,4 @@
-package cz.kotox.domain.task.impl.remote.api
+package cz.kotox.common.task.poc.data.impl.remote.api
 
 import cz.kotox.android.core.config.AppProperties
 import cz.kotox.core.network.config.AppNetworkingProperties

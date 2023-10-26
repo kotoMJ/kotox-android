@@ -64,7 +64,7 @@ dependencies {
     implementation(projects.common.core)
     implementation(projects.common.ui)
     implementation(projects.common.network)
-    implementation(projects.taskDomain)
+    implementation(projects.common.taskPoc)
     implementation(projects.taskUi)
     implementation(projects.feature.taskPoc)
     implementation(projects.taskFeatureDasboard)

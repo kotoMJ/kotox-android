@@ -38,7 +38,7 @@ import cz.kotox.task.detail.ui.component.TaskSummaryComponentInput
 import coil.compose.AsyncImage
 import cz.kotox.android.feature.task.detail.R
 import cz.kotox.task.detail.ui.component.TaskSummaryItem
-import cz.kotox.task.domain.api.model.Task
+import cz.kotox.common.task.poc.domain.model.Task
 import java.time.LocalDateTime
 
 const val UI_TEST_DOWNLOAD_BUTTON_TAG = "TestTagDownloadButton"
@@ -231,7 +231,7 @@ class MainScreenPreviewProvider : PreviewParameterProvider<TaskDetailScreenInput
         TaskDetailScreenInput(
             taskItem =
             TaskSummaryItem.from(
-                Task(
+                cz.kotox.common.task.poc.domain.model.Task(
                     creationDate = LocalDateTime.now(),
                     dueDate = LocalDateTime.now().plusDays(2),
                     id = "1",

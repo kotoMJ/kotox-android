@@ -1,6 +1,6 @@
 package cz.kotox.task.detail.ui.component
 
-import cz.kotox.task.domain.api.model.Task
+import cz.kotox.common.task.poc.domain.model.Task
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -13,7 +13,7 @@ data class TaskSummaryItem(
     val localImageUrl: String?,
 ) {
     companion object {
-        fun from(task: Task) = TaskSummaryItem(
+        fun from(task: cz.kotox.common.task.poc.domain.model.Task) = TaskSummaryItem(
             creationDate = task.creationDate,
             dueDate = task.dueDate,
             description = task.description,

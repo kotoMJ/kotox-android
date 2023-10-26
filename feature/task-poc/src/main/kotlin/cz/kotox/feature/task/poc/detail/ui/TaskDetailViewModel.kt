@@ -3,8 +3,8 @@ package cz.kotox.feature.task.poc.detail.ui
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cz.kotox.task.domain.api.usecase.GetOneTaskImageUseCase
-import cz.kotox.task.domain.api.usecase.GetOneTaskUseCase
+import cz.kotox.common.task.poc.domain.usecase.GetOneTaskImageUseCase
+import cz.kotox.common.task.poc.domain.usecase.GetOneTaskUseCase
 import cz.kotox.task.detail.ui.component.TaskSummaryItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +17,8 @@ const val ARG_TASK_ID = "arg_task_id"
 
 @HiltViewModel
 class TaskDetailViewModel @Inject constructor(
-    private val getOneTasksUseCase: GetOneTaskUseCase,
-    private val getOneTaskImageUseCase: GetOneTaskImageUseCase,
+    private val getOneTasksUseCase: cz.kotox.common.task.poc.domain.usecase.GetOneTaskUseCase,
+    private val getOneTaskImageUseCase: cz.kotox.common.task.poc.domain.usecase.GetOneTaskImageUseCase,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
