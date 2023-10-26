@@ -17,7 +17,7 @@ include(
     ":kotox-mobile-playground",
     ":kotox-mobile-starter",
     ":kotox-mobile-strings",
-    ":kotox-mobile-task",
+    ":mobile:kotox-poc-task",
     ":common:core",
     ":common:core-android",
     ":common:crypto",
