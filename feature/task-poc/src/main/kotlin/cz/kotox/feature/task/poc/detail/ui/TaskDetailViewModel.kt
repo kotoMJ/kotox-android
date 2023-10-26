@@ -3,9 +3,7 @@ package cz.kotox.feature.task.poc.detail.ui
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cz.kotox.common.task.poc.domain.usecase.GetOneTaskImageUseCase
-import cz.kotox.common.task.poc.domain.usecase.GetOneTaskUseCase
-import cz.kotox.task.detail.ui.component.TaskSummaryItem
+import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

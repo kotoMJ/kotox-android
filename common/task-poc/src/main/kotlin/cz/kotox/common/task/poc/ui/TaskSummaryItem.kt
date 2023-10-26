@@ -1,4 +1,4 @@
-package cz.kotox.task.detail.ui.component
+package cz.kotox.common.task.poc.ui
 
 import cz.kotox.common.task.poc.domain.model.Task
 import java.time.LocalDateTime

@@ -21,10 +21,10 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.core.ui.theme.KotoxBasicTheme
-import cz.kotox.task.detail.ui.component.TaskSummaryComponent
-import cz.kotox.task.detail.ui.component.TaskSummaryComponentInput
-import cz.kotox.task.detail.ui.component.TaskSummaryComponentPreviewProvider
 import coil.compose.AsyncImage
+import cz.kotox.common.task.poc.ui.TaskSummaryComponent
+import cz.kotox.common.task.poc.ui.TaskSummaryComponentInput
+import cz.kotox.common.task.poc.ui.TaskSummaryComponentPreviewProvider
 
 @Preview(
     device = Devices.PIXEL,

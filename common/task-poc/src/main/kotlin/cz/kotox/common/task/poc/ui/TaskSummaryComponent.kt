@@ -1,4 +1,4 @@
-package cz.kotox.task.detail.ui.component
+package cz.kotox.common.task.poc.ui
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,8 +22,7 @@ import androidx.constraintlayout.compose.layoutId
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.core.ui.theme.LocalTypography
 import cz.kotox.core.ui.theme.KotoxBasicTheme
-import cz.kotox.common.task.poc.domain.model.Task
-import cz.kotox.task.ui.R
+import cz.kotox.task.data.R
 import java.time.LocalDateTime
 
 data class TaskSummaryComponentInput(

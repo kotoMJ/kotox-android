@@ -28,8 +28,7 @@ import cz.kotox.task.domain.api.factory.toTask
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import cz.kotox.android.task.R
-import cz.kotox.task.detail.ui.component.TaskSummaryItem
-import cz.kotox.common.task.poc.domain.model.Task
+import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 

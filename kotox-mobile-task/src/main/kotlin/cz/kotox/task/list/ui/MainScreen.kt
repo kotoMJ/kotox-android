@@ -31,8 +31,6 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.layoutId
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.feature.task.poc.detail.ui.TaskDetailActivityIntentUtil
-import cz.kotox.task.detail.ui.component.TaskSummaryComponentInput
-import cz.kotox.task.detail.ui.component.TaskSummaryItem
 import cz.kotox.android.task.R
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -40,6 +38,8 @@ import com.google.accompanist.pager.rememberPagerState
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import cz.kotox.common.task.poc.domain.model.Task
+import cz.kotox.common.task.poc.ui.TaskSummaryComponentInput
+import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import java.time.LocalDateTime
 
 const val UI_TEST_MAIN_LIST_TAG = "MainListTag"

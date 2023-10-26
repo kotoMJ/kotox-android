@@ -2,6 +2,8 @@
 
 plugins {
     id("cz.kotox.android.library")
+    id("cz.kotox.android.library.compose")
+    id("cz.kotox.android.feature")
     id("dagger.hilt.android.plugin")
     kotlin("kapt")
     alias(libs.plugins.ksp)
@@ -10,6 +12,7 @@ plugins {
 dependencies {
 
     implementation(projects.common.core)
+    implementation(projects.common.ui)
     implementation(projects.common.network)
     implementation(projects.common.crypto)
 

@@ -3,18 +3,13 @@ package cz.kotox.task.list.ui
 import androidx.lifecycle.ViewModel
 import cz.kotox.android.core.error.BasicError
 import cz.kotox.android.task.R
-import cz.kotox.common.task.poc.domain.usecase.GetAllTasksUseCase
-import cz.kotox.common.task.poc.domain.usecase.GetOneTaskImageUseCase
-import cz.kotox.common.task.poc.domain.usecase.RefreshTasksUseCase
-
-import cz.kotox.task.detail.ui.component.TaskSummaryItem
+import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import java.time.LocalDateTime
 import javax.inject.Inject
-
 
 data class TaskGroup(
     val tasks: List<TaskSummaryItem> = emptyList(),
