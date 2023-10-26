@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.common.common2)
+    implementation(projects.common.core)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core)
 

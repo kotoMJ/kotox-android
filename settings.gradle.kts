@@ -18,7 +18,7 @@ include(
     ":kotox-mobile-starter",
     ":kotox-mobile-strings",
     ":kotox-mobile-task",
-    ":common:common2",
+    ":common:core",
     ":common-android",
     ":common-crypto",
     ":common-network",

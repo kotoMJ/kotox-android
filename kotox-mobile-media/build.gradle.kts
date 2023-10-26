@@ -49,7 +49,7 @@ android {
 }
 
 dependencies {
-    implementation(projects.common.common2)
+    implementation(projects.common.core)
     implementation(projects.commonAndroid)
     implementation(projects.commonUi)
     implementation(projects.cameraUi)
