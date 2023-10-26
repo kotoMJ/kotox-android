@@ -28,7 +28,7 @@ include(
     ":task-domain",
     ":common:task",
     ":task-ui",
-    ":task-feature-detail",
+    ":feature:task",
     ":task-feature-dasboard",
     ":camera",
     ":i18n-data",
