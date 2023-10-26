@@ -9,7 +9,7 @@ plugins {
 
 dependencies {
     implementation(projects.common.core)
-    implementation(projects.commonNetwork)
+    implementation(projects.common.network)
     implementation(projects.common.crypto)
 
     implementation(libs.androidx.hilt.android)

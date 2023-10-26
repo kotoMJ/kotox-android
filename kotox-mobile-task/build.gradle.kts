@@ -63,7 +63,7 @@ dependencies {
 
     implementation(projects.common.core)
     implementation(projects.common.ui)
-    implementation(projects.commonNetwork)
+    implementation(projects.common.network)
     implementation(projects.taskDomain)
     implementation(projects.taskUi)
     implementation(projects.taskFeatureDetail)
