@@ -66,7 +66,7 @@ dependencies {
     implementation(projects.common.network)
     implementation(projects.taskDomain)
     implementation(projects.taskUi)
-    implementation(projects.feature.task)
+    implementation(projects.feature.taskPoc)
     implementation(projects.taskFeatureDasboard)
 
     implementation(libs.android.material)
@@ -110,7 +110,7 @@ dependencies {
 
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    androidTestImplementation(projects.common.task)
+    androidTestImplementation(projects.common.taskPoc)
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.androidx.test.runner)
