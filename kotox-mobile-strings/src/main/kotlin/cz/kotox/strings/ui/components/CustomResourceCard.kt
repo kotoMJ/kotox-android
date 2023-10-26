@@ -1,22 +1,13 @@
 package cz.kotox.strings.ui.components
 
 import android.content.res.Configuration
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import cz.kotox.android.strings.R
 import cz.kotox.common.text.extension.withBoldParts
-import cz.kotox.core.android.navigation.navigateToWeb
 
 @Preview(
     device = Devices.PIXEL,

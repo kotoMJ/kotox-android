@@ -19,7 +19,7 @@ include(
     ":kotox-mobile-strings",
     ":kotox-mobile-task",
     ":common:core",
-    ":core-android",
+    ":common:core-android",
     ":common-crypto",
     ":common-network",
     ":common-test",

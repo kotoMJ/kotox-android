@@ -50,7 +50,7 @@ android {
 
 dependencies {
     implementation(projects.common.core)
-    implementation(projects.coreAndroid)
+    implementation(projects.common.coreAndroid)
     implementation(projects.commonUi)
     implementation(projects.cameraUi)
 
