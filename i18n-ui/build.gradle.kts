@@ -6,7 +6,7 @@ plugins {
 
 dependencies {
 
-    implementation(projects.commonAndroid)
+    implementation(projects.coreAndroid)
     implementation(projects.i18nDomain)
 
     testImplementation(libs.junit)
