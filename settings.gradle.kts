@@ -30,7 +30,7 @@ include(
     ":task-ui",
     ":task-feature-detail",
     ":task-feature-dasboard",
-    ":camera-ui",
+    ":camera",
     ":i18n-data",
     ":i18n-domain",
     ":i18n-ui",
