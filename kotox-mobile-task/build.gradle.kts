@@ -61,7 +61,7 @@ android {
 
 dependencies {
 
-    implementation(projects.common2)
+    implementation(projects.common.common2)
     implementation(projects.commonUi)
     implementation(projects.commonNetwork)
     implementation(projects.taskDomain)
