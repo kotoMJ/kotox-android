@@ -10,7 +10,7 @@ plugins {
 dependencies {
     implementation(projects.common.core)
     implementation(projects.commonNetwork)
-    implementation(projects.commonCrypto)
+    implementation(projects.common.crypto)
 
     implementation(libs.androidx.hilt.android)
     kapt(libs.androidx.hilt.compiler)

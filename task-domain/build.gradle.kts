@@ -11,7 +11,7 @@ dependencies {
 
     implementation(projects.common.core)
     implementation(projects.commonNetwork)
-    implementation(projects.commonCrypto)
+    implementation(projects.common.crypto)
 
     implementation(projects.taskData)
 

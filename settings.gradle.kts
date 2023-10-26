@@ -20,7 +20,7 @@ include(
     ":kotox-mobile-task",
     ":common:core",
     ":common:core-android",
-    ":common-crypto",
+    ":common:crypto",
     ":common-network",
     ":common-test",
     ":common-text",
