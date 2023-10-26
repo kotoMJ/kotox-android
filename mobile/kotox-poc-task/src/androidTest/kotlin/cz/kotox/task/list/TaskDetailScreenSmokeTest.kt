@@ -8,8 +8,8 @@ import cz.kotox.feature.task.poc.detail.ui.TaskDetailActivity
 import cz.kotox.feature.task.poc.detail.ui.TaskDetailScreen
 import cz.kotox.feature.task.poc.detail.ui.TaskDetailScreenInput
 import cz.kotox.feature.task.poc.detail.ui.UI_TEST_DOWNLOAD_BUTTON_TAG
-import cz.kotox.task.detail.ui.component.TaskSummaryItem
 import cz.kotox.common.task.poc.domain.model.Task
+import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
