@@ -33,11 +33,11 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import cz.kotox.android.feature.task.detail.R
 import cz.kotox.common.task.poc.ui.TaskSummaryComponentInput
 import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.core.ui.theme.LocalTypography
+import cz.kotox.feature.task.poc.detail.R
 import java.time.LocalDateTime
 
 const val UI_TEST_DOWNLOAD_BUTTON_TAG = "TestTagDownloadButton"

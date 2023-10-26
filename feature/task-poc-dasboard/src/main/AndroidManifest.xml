@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cz.kotox.android.feature.task.dashboard">
+    package="cz.kotox.feature.task.poc.dashboard">
 
     <application>
 

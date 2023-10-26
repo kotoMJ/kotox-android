@@ -116,7 +116,7 @@ fun MainScreen(
                                 Icon(
                                     modifier = Modifier.layoutId("createdIcon"),
                                     painter = painterResource(
-                                        id = cz.kotox.android.feature.task.detail.R.drawable.ic_refresh
+                                        id = R.drawable.ic_refresh
                                     ),
                                     contentDescription = stringResource(id = R.string.generic_click_to_refresh),
                                     tint = LocalColors.current.primary,
