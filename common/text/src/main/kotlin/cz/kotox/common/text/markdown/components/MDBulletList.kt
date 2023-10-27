@@ -6,8 +6,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import cz.kotox.common.text.markdown.MarkdownTheme
 import cz.kotox.common.text.markdown.appendMarkdownChildren
-import cz.kotox.common.text.markdown.components.MDListItems
-import cz.kotox.common.text.markdown.components.MarkdownText
 import org.commonmark.node.BulletList
 
 @Composable

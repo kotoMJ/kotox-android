@@ -55,7 +55,7 @@ dependencies {
     implementation(projects.common.ui)
     implementation(projects.common.core)
     implementation(projects.common.coreAndroid)
-    implementation(projects.commonText)
+    implementation(projects.common.text)
 
     implementation(projects.i18nDomain)
     implementation(projects.i18nUi)

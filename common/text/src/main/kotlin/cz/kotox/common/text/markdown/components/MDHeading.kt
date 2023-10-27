@@ -11,7 +11,6 @@ import androidx.compose.ui.unit.dp
 import cz.kotox.common.text.markdown.MDBlockChildren
 import cz.kotox.common.text.markdown.MarkdownTheme
 import cz.kotox.common.text.markdown.appendMarkdownChildren
-import cz.kotox.common.text.markdown.components.MarkdownText
 import org.commonmark.node.Document
 import org.commonmark.node.Heading
 
