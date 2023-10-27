@@ -28,7 +28,7 @@ include(
     ":common:task-poc",
     ":feature:task-poc-detail",
     ":feature:task-poc-dasboard",
-    ":camera",
+    ":common:camera",
     ":i18n-data",
     ":i18n-domain",
     ":i18n-ui",
