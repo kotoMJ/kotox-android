@@ -4,11 +4,10 @@ Android monorepo playground and knowledge base built by MJ.
   
   
 Role of this repository is:  
-- keep useful ideas
-- keep useful features to be reused
+- realize and store useful code/ideas
 - try new things in the non trivial, but safe place
   
-
+ 
 ## Module structure
 
 **mobile** - aggregates application modules  
