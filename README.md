@@ -10,11 +10,11 @@ Role of this repository is:
  
 ## Module structure
 
-**mobile** - aggregates application modules  
+**MOBILE** - aggregates application modules  
 
-**feature** - aggregates feature modules where feature means user related feature (such as screen or multiple screens)  
+**FEATURE** - aggregates feature modules where feature means user related feature (such as screen or multiple screens)  
 
-**common** - aggregates common modules where common module means module reusable across feature or mobile modules. Common module can depends on other common
+**COMMON** - aggregates common modules where common module means module reusable across feature or mobile modules. Common module can depends on other common
 module but there is a hierarchy though.  
 
 
