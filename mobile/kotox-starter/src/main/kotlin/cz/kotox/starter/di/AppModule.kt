@@ -1,6 +1,6 @@
 package cz.kotox.starter.di
 
-import cz.kotox.android.core.config.AppProperties
+import cz.kotox.common.core.config.AppProperties
 import cz.kotox.starter.config.KotoxStarterAppProperties
 import dagger.Module
 import dagger.Provides

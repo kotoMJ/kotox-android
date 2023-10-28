@@ -1,6 +1,6 @@
 package cz.kotox.common.task.poc.data.impl.remote.api
 
-import cz.kotox.android.core.config.AppProperties
+import cz.kotox.common.core.config.AppProperties
 import cz.kotox.common.network.config.AppNetworkingProperties
 import cz.kotox.common.network.di.NetworkModuleProvider
 import cz.kotox.common.test.MockResponseFileReader

@@ -23,6 +23,9 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.ui.tooling)
 
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.accompanist.permissions)
+
     implementation(libs.accompanist.systemuicontroller)
 
     implementation(libs.kotlin.stdlib)

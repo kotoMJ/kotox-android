@@ -1,6 +1,6 @@
 package cz.kotox.common.network.apicall
 
-import cz.kotox.android.core.result.Result
+import cz.kotox.common.core.result.Result
 import com.squareup.moshi.JsonDataException
 import retrofit2.HttpException
 import timber.log.Timber

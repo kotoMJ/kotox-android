@@ -1,6 +1,6 @@
 package cz.kotox.strings.di
 
-import cz.kotox.android.core.config.AppProperties
+import cz.kotox.common.core.config.AppProperties
 import cz.kotox.strings.config.KotoxStringsAppProperties
 import dagger.Module
 import dagger.Provides

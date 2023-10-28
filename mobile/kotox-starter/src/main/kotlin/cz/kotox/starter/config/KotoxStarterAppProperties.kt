@@ -1,7 +1,7 @@
 package cz.kotox.starter.config
 
 import android.content.res.Configuration
-import cz.kotox.android.core.config.AppProperties
+import cz.kotox.common.core.config.AppProperties
 import cz.kotox.android.starter.BuildConfig
 import cz.kotox.starter.StarterApplication
 

@@ -1,6 +1,6 @@
 package cz.kotox.playground.di
 
-import cz.kotox.android.core.config.AppProperties
+import cz.kotox.common.core.config.AppProperties
 import cz.kotox.playground.config.KotoxPlaygroundAppProperties
 import dagger.Module
 import dagger.Provides

@@ -1,7 +1,7 @@
 package cz.kotox.playground.config
 
 import android.content.res.Configuration
-import cz.kotox.android.core.config.AppProperties
+import cz.kotox.common.core.config.AppProperties
 import cz.kotox.android.playground.BuildConfig
 import cz.kotox.playground.PlaygroundApplication
 

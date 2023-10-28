@@ -7,8 +7,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.viewModelScope
-import cz.kotox.android.core.error.BasicError
-import cz.kotox.android.core.error.OfflineError
+import cz.kotox.common.core.error.BasicError
+import cz.kotox.common.core.error.OfflineError
 import cz.kotox.common.ui.theme.KotoxBasicTheme
 import cz.kotox.android.task.R
 import dagger.hilt.android.AndroidEntryPoint

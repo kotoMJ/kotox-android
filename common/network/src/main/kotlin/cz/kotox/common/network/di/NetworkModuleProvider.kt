@@ -2,7 +2,7 @@ package cz.kotox.common.network.di
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import cz.kotox.android.core.config.AppProperties
+import cz.kotox.common.core.config.AppProperties
 import cz.kotox.common.network.config.AppNetworkingProperties
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

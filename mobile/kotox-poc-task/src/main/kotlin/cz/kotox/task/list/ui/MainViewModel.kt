@@ -1,7 +1,7 @@
 package cz.kotox.task.list.ui
 
 import androidx.lifecycle.ViewModel
-import cz.kotox.android.core.error.BasicError
+import cz.kotox.common.core.error.BasicError
 import cz.kotox.android.task.R
 import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,10 +1,10 @@
 package cz.kotox.common.network.apicall
 
-import cz.kotox.android.core.error.BasicError
-import cz.kotox.android.core.error.OfflineError
-import cz.kotox.android.core.error.UnknownError
-import cz.kotox.android.core.result.Result
-import cz.kotox.android.core.result.mapError
+import cz.kotox.common.core.error.BasicError
+import cz.kotox.common.core.error.OfflineError
+import cz.kotox.common.core.error.UnknownError
+import cz.kotox.common.core.result.Result
+import cz.kotox.common.core.result.mapError
 
 /**
  * Error returned by API call

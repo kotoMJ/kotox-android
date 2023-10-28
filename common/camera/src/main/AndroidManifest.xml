@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cz.kotox.android.camera.custom">
+    package="cz.kotox.common.camera.custom">
 
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application>
         <activity
-            android:name="cz.kotox.camera.custom.CameraCustomActivity"
+            android:name="cz.kotox.common.camera.custom.CameraCustomActivity"
             android:exported="true">
         </activity>
     </application>

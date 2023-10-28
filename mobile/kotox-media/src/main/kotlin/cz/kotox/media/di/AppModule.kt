@@ -1,6 +1,6 @@
 package cz.kotox.media.di
 
-import cz.kotox.android.core.config.AppProperties
+import cz.kotox.common.core.config.AppProperties
 import cz.kotox.media.config.KotoxMediaAppProperties
 import dagger.Module
 import dagger.Provides
