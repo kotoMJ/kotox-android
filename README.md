@@ -1,7 +1,13 @@
 # kotox-android
 
-Android knowledge base and playground built by MJ as monorepo
-
+Android monorepo playground and knowledge base built by MJ.   
+  
+  
+Role of this repository is:  
+- keep useful ideas
+- keep useful features to be reused
+- try new things in the non trivial, but safe place
+  
 
 ## Module structure
 
