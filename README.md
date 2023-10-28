@@ -8,10 +8,10 @@ Repository contains multiple applications which are re-using feature and common 
 
 ### Module structure
 
-**mobile** - aggregates application modules
-**feature** - aggregates feature modules where feature means user related feature (such as screen or multiple screens)
+**mobile** - aggregates application modules  
+**feature** - aggregates feature modules where feature means user related feature (such as screen or multiple screens)  
 **common** - aggregates common modules where common module means module reusable across feature or mobile modules. Common module can depends on other common
-module but there is a hierarchy though.
+module but there is a hierarchy though.  
   
 ### Kotox Media (kotox-media)
 
