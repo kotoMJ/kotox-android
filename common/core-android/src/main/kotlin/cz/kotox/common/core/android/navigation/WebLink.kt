@@ -1,4 +1,4 @@
-package cz.kotox.common.android.navigation
+package cz.kotox.common.core.android.navigation
 
 import android.content.Context
 import android.content.Intent

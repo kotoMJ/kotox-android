@@ -1,4 +1,4 @@
-package cz.kotox.common.android.permission
+package cz.kotox.common.core.android.permission
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect

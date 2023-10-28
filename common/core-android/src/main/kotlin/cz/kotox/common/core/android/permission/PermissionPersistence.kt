@@ -1,4 +1,4 @@
-package cz.kotox.common.android.permission
+package cz.kotox.common.core.android.permission
 
 import android.content.Context
 import androidx.datastore.core.DataStore

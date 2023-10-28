@@ -1,4 +1,4 @@
-package cz.kotox.common.android.extension
+package cz.kotox.common.core.android.extension
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable

@@ -43,7 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import cz.kotox.common.android.permission.Permission
+import cz.kotox.common.core.android.permission.Permission
 import cz.kotox.common.camera.custom.R
 import cz.kotox.common.camera.custom.LensFacing
 import cz.kotox.common.camera.custom.utils.AppSettingsIntentUtils.getAppSettingsIntent
