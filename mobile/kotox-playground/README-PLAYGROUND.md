@@ -1,5 +1,6 @@
 # Kotox Playground (kotox-playground)
 
+Playground related to different (Compose UI mainly) code samples.
 
 ## 1. Compose UI: Phone number
 

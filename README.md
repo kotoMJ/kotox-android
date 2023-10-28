@@ -1,49 +1,35 @@
 # kotox-android
 
-Android knowledge base and playground built by MJ as monorepo
-
-## Android apps
-
-Repository contains multiple applications which are re-using feature and common modules.
-
-### Module structure
-
-**mobile** - aggregates application modules  
-**feature** - aggregates feature modules where feature means user related feature (such as screen or multiple screens)  
-**common** - aggregates common modules where common module means module reusable across feature or mobile modules. Common module can depends on other common
-module but there is a hierarchy though.  
+Android monorepo playground and knowledge base built by MJ.   
   
-### Kotox Media (kotox-media)
+  
+Role of this repository is:  
+- realize and store useful code/ideas
+- try new things in the non trivial, but safe place
+  
+ 
+## Module structure
 
-App presenting different media related features:
+**MOBILE** - aggregates application modules  
 
-* [Advanced custom camera (including zoom feature via pinch to zoom, toggle & slider)](https://github.com/kotoMJ/kotox-android/tree/main/camera-ui/)
-* tbd.
+**FEATURE** - aggregates feature modules where feature means user related feature (such as screen or multiple screens)  
 
-### Kotox PocTask (kotox-poc-task)
+**COMMON** - aggregates common modules where common module means module reusable across feature or mobile modules. Common module can depends on other common
+module but there is a hierarchy though.  
 
-Simple proof of concept of master-detail app __presenting different kind of test cases__.
+**TEST** - aggregates common test code  
 
-1. Unit testing
+**BUILD-LOGIC** - aggregates convention plugins
+  
 
-* [Hilt ViewModelTesting](https://github.com/kotoMJ/kotox-android/blob/main/kotox-mobile-task/src/test/kotlin/cz/kotox/task/list/ui/MainViewModelUnitTest.kt)
-* tbd.
+## Apps
 
-2. Integration Testing
-
-* [UI Smoke Testing](https://github.com/kotoMJ/kotox-android/blob/main/kotox-mobile-task/src/androidTest/kotlin/cz/kotox/task/list/TaskMainScreenSmokeTest.kt)
-* tbd.
-
-### Kotox Playground (kotox-playground)
-
-Playground related to different (Compose UI mainly) code samples.
-For more info check [README-PLAYGROUND.md](./mobile/kotox-playground/README-PLAYGROUND.md)
-
-## Convention plugins
-
-
-### PoEditor plugin
-
-Custom plugin with the purpose to import shared strings to the app from the [PoEditor](https://poeditor.com/projects/) project.
-More about this custom plugin in [README-POEDITOR.md](./build-logic/README-POEDITOR.md)
-
+* [TaskPoc - testing related proof of concept app](./mobile/kotox-poc-task/README.md)  
+* [KotoxMedia - several media concepts](./mobile/kotox-media/README.md)  
+* [KotoxPlayground - playground with various concepts](./mobile/kotox-playground/README-PLAYGROUND.md)  
+* [KotoxStrings - different approaches of displaying RICH TEXT in COMPOSE](./mobile/kotox-strings/README.md)  
+* [KotoxStarter - simple template for starting new app in this monorepo](./mobile/kotox-starter/README.md)  
+  
+## Convention Plugins
+  
+* [PoEditor - customized string resources download/distribution plugin](./build-logic/README-POEDITOR.md)  
