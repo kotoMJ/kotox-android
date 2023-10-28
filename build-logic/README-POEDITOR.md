@@ -1,4 +1,5 @@
 # String resources
+Custom plugin with the purpose to import shared strings to the app from the [PoEditor](https://poeditor.com/projects/) project.
 
 Convention plugin provides completely custom [AndroidPoEditorPlugin](./convention/src/main/kotlin/AndroidPoEditorPlugin.kt) which can import shared string
 resources
