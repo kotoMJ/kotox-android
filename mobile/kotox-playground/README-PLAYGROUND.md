@@ -3,7 +3,7 @@
 
 ## 1. Compose UI: Phone number
 
-Simple screen with phone number input field with ability to recognize country code and provides hint sugguestion. 
+Simple screen with phone number input field with ability to recognize country code and provides hint suggestion. 
 The screen allows also choose the phone country code from the list.  
 
 

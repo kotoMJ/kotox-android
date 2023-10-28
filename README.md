@@ -1,21 +1,28 @@
 # kotox-android
 
-MJ's personal Android knowledge base and playground mono-repo
+Android knowledge base and playground built by MJ as monorepo
 
 ## Android apps
 
-Repository contains multiple applications presenting specific feature/core modules functionality.
+Repository contains multiple applications which are re-using feature and common modules.
 
-### Kotox Media (kotox-mobile-media)
+### Module structure
 
-App presenting different media related modules:
+**mobile** - aggregates application modules
+**feature** - aggregates feature modules where feature means user related feature (such as screen or multiple screens)
+**common** - aggregates common modules where common module means module reusable across feature or mobile modules. Common module can depends on other common
+module but there is a hierarchy though.
+  
+### Kotox Media (kotox-media)
+
+App presenting different media related features:
 
 * [Advanced custom camera (including zoom feature via pinch to zoom, toggle & slider)](https://github.com/kotoMJ/kotox-android/tree/main/camera-ui/)
 * tbd.
 
-### Kotox Task (kotox-mobile-task)
+### Kotox PocTask (kotox-poc-task)
 
-Simple master-detail demo app presenting different kind of test cases.
+Simple proof of concept of master-detail app __presenting different kind of test cases__.
 
 1. Unit testing
 
@@ -30,11 +37,12 @@ Simple master-detail demo app presenting different kind of test cases.
 ### Kotox Playground (kotox-playground)
 
 Playground related to different (Compose UI mainly) code samples.
-For more info check [README-PLAYGROUND.md](./kotox-mobile-playground/README-PLAYGROUND.md)
+For more info check [README-PLAYGROUND.md](./mobile/kotox-playground/README-PLAYGROUND.md)
 
 ## Convention plugins
 
-### PoEditor plugin  
+
+### PoEditor plugin
 
 Custom plugin with the purpose to import shared strings to the app from the [PoEditor](https://poeditor.com/projects/) project.
 More about this custom plugin in [README-POEDITOR.md](./build-logic/README-POEDITOR.md)
