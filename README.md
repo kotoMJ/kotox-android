@@ -17,6 +17,10 @@ Role of this repository is:
 **COMMON** - aggregates common modules where common module means module reusable across feature or mobile modules. Common module can depends on other common
 module but there is a hierarchy though.  
 
+**TEST** - aggregates common test code  
+
+**BUILD-LOGIC** - aggregates convention plugins
+  
 
 ## Apps
 
