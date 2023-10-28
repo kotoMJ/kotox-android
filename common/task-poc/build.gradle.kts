@@ -36,7 +36,7 @@ dependencies {
 
     implementation(libs.timber)
 
-    testImplementation(projects.commonTest)
+    testImplementation(projects.test)
     testImplementation(libs.bundles.test.unit)
     androidTestImplementation(libs.bundles.test.android)
 

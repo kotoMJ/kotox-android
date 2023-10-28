@@ -66,7 +66,7 @@ dependencies {
     implementation(projects.common.network)
     implementation(projects.common.taskPoc)
     implementation(projects.feature.taskPoc.detail)
-    implementation(projects.feature.taskPoc.dasboard)
+    implementation(projects.feature.taskPoc.dashboard)
 
     implementation(libs.android.material)
 

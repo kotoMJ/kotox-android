@@ -12,24 +12,26 @@ rootProject.name = "KotoxAndroid"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(
-    ":kotox-mobile-media",
-    //    ":kotox-mobile-memo",
-    ":kotox-mobile-playground",
-    ":kotox-mobile-starter",
-    ":mobile:kotox-strings",
-    ":mobile:kotox-poc-task",
+    ":common:camera",
     ":common:core",
     ":common:core-android",
     ":common:crypto",
+    ":common:i18n",
     ":common:network",
-    ":common-test",
+    ":common:task-poc",
     ":common:text",
     ":common:ui",
-    ":common:task-poc",
     ":feature:task-poc:detail",
-    ":feature:task-poc:dasboard",
-    ":common:camera",
-    ":common:i18n",
+    ":feature:task-poc:dashboard",
+    ":mobile:kotox-media",
+    ":mobile:kotox-playground",
+    ":mobile:kotox-starter",
+    ":mobile:kotox-strings",
+    ":mobile:kotox-poc-task",
+    ":test",
+
+
+
 
 
 )
