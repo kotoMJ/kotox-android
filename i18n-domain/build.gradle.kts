@@ -10,7 +10,7 @@ plugins {
 dependencies {
     implementation(projects.common.core)
 
-    implementation(projects.i18nData)
+    implementation(projects.common.i18n)
 
     implementation(libs.androidx.hilt.android)
     kapt(libs.androidx.hilt.compiler)

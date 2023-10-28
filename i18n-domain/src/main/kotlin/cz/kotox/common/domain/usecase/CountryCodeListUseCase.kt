@@ -1,8 +1,8 @@
-package cz.kotox.domain.usecase
+package cz.kotox.common.domain.usecase
 
-import cz.kotox.data.api.repository.CountryRepository
-import cz.kotox.domain.mapper.CountryModelMapper
-import cz.kotox.domain.model.CountryUiModel
+import cz.kotox.common.i18n.data.api.repository.CountryRepository
+import cz.kotox.common.domain.mapper.CountryModelMapper
+import cz.kotox.common.domain.model.CountryUiModel
 import javax.inject.Inject
 
 class CountryCodeListUseCase @Inject constructor(

@@ -1,11 +1,11 @@
-package cz.kotox.domain.model
+package cz.kotox.common.domain.model
 
-import cz.kotox.data.api.model.FALLBACK_COUNTRY_CODE
-import cz.kotox.data.api.model.FALLBACK_COUNTRY_NAME
-import cz.kotox.data.api.model.FALLBACK_EXAMPLE_MAX_NUMBER_LENGTH
-import cz.kotox.data.api.model.FALLBACK_EXAMPLE_NUMBER
-import cz.kotox.data.api.model.FALLBACK_FLAG_EMOJI
-import cz.kotox.data.api.model.FALLBACK_ISO_CODE
+import cz.kotox.common.i18n.data.api.model.FALLBACK_COUNTRY_CODE
+import cz.kotox.common.i18n.data.api.model.FALLBACK_COUNTRY_NAME
+import cz.kotox.common.i18n.data.api.model.FALLBACK_EXAMPLE_MAX_NUMBER_LENGTH
+import cz.kotox.common.i18n.data.api.model.FALLBACK_EXAMPLE_NUMBER
+import cz.kotox.common.i18n.data.api.model.FALLBACK_FLAG_EMOJI
+import cz.kotox.common.i18n.data.api.model.FALLBACK_ISO_CODE
 
 interface CountryUiModelValueItem {
     val isoCode: String

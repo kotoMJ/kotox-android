@@ -29,7 +29,7 @@ include(
     ":feature:task-poc-detail",
     ":feature:task-poc-dasboard",
     ":common:camera",
-    ":i18n-data",
+    ":common:i18n",
     ":i18n-domain",
     ":i18n-ui",
 

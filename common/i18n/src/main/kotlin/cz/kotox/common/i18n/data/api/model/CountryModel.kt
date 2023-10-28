@@ -1,4 +1,4 @@
-package cz.kotox.data.api.model
+package cz.kotox.common.i18n.data.api.model
 
 import com.squareup.moshi.Json
 

@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import cz.kotox.core.android.extension.collectAsStateWithLifecycle
-import cz.kotox.domain.model.CountryUiModel
+import cz.kotox.common.domain.model.CountryUiModel
 
 @Immutable
 interface PhoneCountryCodeListener {

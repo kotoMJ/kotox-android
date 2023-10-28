@@ -1,9 +1,9 @@
-package cz.kotox.domain.mapper
+package cz.kotox.common.domain.mapper
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import cz.kotox.core.domain.Mapper
-import cz.kotox.data.api.model.CountryModel
-import cz.kotox.domain.model.CountryUiModel
+import cz.kotox.common.i18n.data.api.model.CountryModel
+import cz.kotox.common.domain.model.CountryUiModel
 import java.util.Locale
 import javax.inject.Inject
 

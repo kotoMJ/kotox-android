@@ -1,6 +1,6 @@
-package cz.kotox.data.api.repository
+package cz.kotox.common.i18n.data.api.repository
 
-import cz.kotox.data.api.model.CountryModel
+import cz.kotox.common.i18n.data.api.model.CountryModel
 
 
 interface CountryRepository {

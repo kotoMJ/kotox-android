@@ -1,11 +1,11 @@
-package cz.kotox.data.impl.repository
+package cz.kotox.common.i18n.data.impl.repository
 
 import android.content.Context
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
-import cz.kotox.data.api.model.CountryModel
-import cz.kotox.data.api.repository.CountryRepository
+import cz.kotox.common.i18n.data.api.model.CountryModel
+import cz.kotox.common.i18n.data.api.repository.CountryRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton

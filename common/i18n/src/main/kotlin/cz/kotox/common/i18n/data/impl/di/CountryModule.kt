@@ -1,8 +1,8 @@
-package cz.kotox.data.impl.di
+package cz.kotox.common.i18n.data.impl.di
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil
-import cz.kotox.data.api.repository.CountryRepository
-import cz.kotox.data.impl.repository.CountryRepositoryImpl
+import cz.kotox.common.i18n.data.api.repository.CountryRepository
+import cz.kotox.common.i18n.data.impl.repository.CountryRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

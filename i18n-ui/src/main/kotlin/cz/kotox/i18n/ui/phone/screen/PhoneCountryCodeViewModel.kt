@@ -3,10 +3,10 @@ package cz.kotox.i18n.ui.phone.screen
 import android.telephony.PhoneNumberUtils
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cz.kotox.domain.model.CountryUiModel
-import cz.kotox.domain.usecase.CountryCodeListUseCase
-import cz.kotox.domain.usecase.CountryCodeDetectUseCase
-import cz.kotox.domain.usecase.CountryCodeFormatUseCase
+import cz.kotox.common.domain.model.CountryUiModel
+import cz.kotox.common.domain.usecase.CountryCodeListUseCase
+import cz.kotox.common.domain.usecase.CountryCodeDetectUseCase
+import cz.kotox.common.domain.usecase.CountryCodeFormatUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

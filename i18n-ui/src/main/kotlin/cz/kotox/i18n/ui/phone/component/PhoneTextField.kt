@@ -43,8 +43,8 @@ import androidx.compose.ui.unit.dp
 import cz.kotox.core.ui.theme.KotoxBasicTheme
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.core.ui.theme.LocalTypography
-import cz.kotox.domain.model.CountryUiModel
-import cz.kotox.domain.model.CountryUiModelValueItem
+import cz.kotox.common.domain.model.CountryUiModel
+import cz.kotox.common.domain.model.CountryUiModelValueItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
