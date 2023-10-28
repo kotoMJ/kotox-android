@@ -9,8 +9,8 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
 import androidx.compose.runtime.remember
 import cz.kotox.camera.custom.CameraCustomActivityLauncher
-import cz.kotox.core.android.extension.collectAsStateWithLifecycle
-import cz.kotox.core.ui.theme.KotoxBasicTheme
+import cz.kotox.common.android.extension.collectAsStateWithLifecycle
+import cz.kotox.common.ui.theme.KotoxBasicTheme
 import cz.kotox.media.ui.main.MainScreen
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber

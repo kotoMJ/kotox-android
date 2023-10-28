@@ -21,7 +21,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import cz.kotox.camera.custom.LensFacing
-import cz.kotox.core.ui.theme.KotoxBasicTheme
+import cz.kotox.common.ui.theme.KotoxBasicTheme
 
 data class CaptureZoomToggleInput(
     val modifier: Modifier = Modifier,

@@ -3,7 +3,7 @@ package cz.kotox.task.list.config
 import android.content.res.Configuration
 import cz.kotox.android.core.config.AppProperties
 import cz.kotox.android.task.BuildConfig
-import cz.kotox.core.network.config.AppNetworkingProperties
+import cz.kotox.common.network.config.AppNetworkingProperties
 import cz.kotox.task.list.TaskApplication
 
 private enum class BuildType(val buildTypeName: String) {

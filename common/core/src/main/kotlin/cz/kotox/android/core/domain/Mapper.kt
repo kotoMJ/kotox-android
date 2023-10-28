@@ -1,4 +1,4 @@
-package cz.kotox.core.domain
+package cz.kotox.common.domain
 
 interface Mapper<I, O> {
     fun map(from: I): O

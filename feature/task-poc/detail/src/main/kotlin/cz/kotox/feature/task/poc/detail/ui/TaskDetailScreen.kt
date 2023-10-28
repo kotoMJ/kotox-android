@@ -35,8 +35,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import cz.kotox.common.task.poc.ui.TaskSummaryComponentInput
 import cz.kotox.common.task.poc.ui.TaskSummaryItem
-import cz.kotox.core.ui.theme.LocalColors
-import cz.kotox.core.ui.theme.LocalTypography
+import cz.kotox.common.ui.theme.LocalColors
+import cz.kotox.common.ui.theme.LocalTypography
 import cz.kotox.feature.task.poc.detail.R
 import java.time.LocalDateTime
 

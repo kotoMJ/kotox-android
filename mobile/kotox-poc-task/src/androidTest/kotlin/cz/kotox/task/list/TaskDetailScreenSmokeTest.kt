@@ -3,7 +3,7 @@ package cz.kotox.task.list
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import cz.kotox.core.ui.theme.KotoxBasicTheme
+import cz.kotox.common.ui.theme.KotoxBasicTheme
 import cz.kotox.feature.task.poc.detail.ui.TaskDetailActivity
 import cz.kotox.feature.task.poc.detail.ui.TaskDetailScreen
 import cz.kotox.feature.task.poc.detail.ui.TaskDetailScreenInput

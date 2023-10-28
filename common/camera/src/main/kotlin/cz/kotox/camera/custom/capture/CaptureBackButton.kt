@@ -22,7 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cz.kotox.android.camera.custom.R
-import cz.kotox.core.ui.theme.KotoxBasicTheme
+import cz.kotox.common.ui.theme.KotoxBasicTheme
 
 @Composable
 fun CaptureBackButton(

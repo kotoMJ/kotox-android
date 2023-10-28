@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import cz.kotox.common.task.poc.ui.TaskSummaryComponent
 import cz.kotox.common.task.poc.ui.TaskSummaryComponentInput
 import cz.kotox.common.task.poc.ui.TaskSummaryComponentPreviewProvider
-import cz.kotox.core.ui.theme.KotoxBasicTheme
+import cz.kotox.common.ui.theme.KotoxBasicTheme
 
 @Preview(
     device = Devices.PIXEL,

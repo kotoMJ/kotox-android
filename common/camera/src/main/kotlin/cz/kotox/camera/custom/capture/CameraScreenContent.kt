@@ -33,7 +33,7 @@ import cz.kotox.camera.custom.LensFacing
 import cz.kotox.camera.custom.gallery.GallerySelect
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import cz.kotox.android.camera.custom.R
-import cz.kotox.core.ui.theme.LocalColors
+import cz.kotox.common.ui.theme.LocalColors
 import java.io.File
 
 data class CameraScreenInput(

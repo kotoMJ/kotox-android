@@ -2,7 +2,7 @@ package cz.kotox.playground
 
 import android.app.Application
 import cz.kotox.android.playground.BuildConfig
-import cz.kotox.core.ui.ThemeUtils
+import cz.kotox.common.ui.ThemeUtils
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 

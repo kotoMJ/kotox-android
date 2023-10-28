@@ -9,7 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.viewModelScope
 import cz.kotox.android.core.error.BasicError
 import cz.kotox.android.core.error.OfflineError
-import cz.kotox.core.ui.theme.KotoxBasicTheme
+import cz.kotox.common.ui.theme.KotoxBasicTheme
 import cz.kotox.android.task.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

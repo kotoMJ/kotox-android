@@ -1,7 +1,7 @@
 package cz.kotox.task.list.di
 
 import cz.kotox.android.core.config.AppProperties
-import cz.kotox.core.network.config.AppNetworkingProperties
+import cz.kotox.common.network.config.AppNetworkingProperties
 import cz.kotox.task.list.config.KotoxTaskAppNetworkingProperties
 import cz.kotox.task.list.config.KotoxTaskAppProperties
 import dagger.Module

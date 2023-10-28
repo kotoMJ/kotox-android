@@ -1,8 +1,8 @@
 package cz.kotox.common.task.poc.domain.usecase
 
 import cz.kotox.android.core.error.BasicError
-import cz.kotox.core.network.apicall.apiCall
-import cz.kotox.core.network.apicall.mapErrorBasic
+import cz.kotox.common.network.apicall.apiCall
+import cz.kotox.common.network.apicall.mapErrorBasic
 import cz.kotox.android.core.result.fold
 import cz.kotox.common.task.poc.data.api.respository.TaskRepository
 import cz.kotox.task.domain.api.factory.toTaskEntity

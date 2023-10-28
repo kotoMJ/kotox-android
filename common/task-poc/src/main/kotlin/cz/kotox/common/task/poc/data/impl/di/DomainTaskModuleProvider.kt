@@ -2,7 +2,7 @@ package cz.kotox.common.task.poc.data.impl.di
 
 import android.content.Context
 import androidx.room.Room
-import cz.kotox.core.network.di.CommonRetrofit
+import cz.kotox.common.network.di.CommonRetrofit
 import cz.kotox.common.task.poc.data.impl.local.room.DomainTaskDatabase
 import cz.kotox.common.task.poc.data.impl.remote.api.TaskApi
 import dagger.hilt.android.qualifiers.ApplicationContext

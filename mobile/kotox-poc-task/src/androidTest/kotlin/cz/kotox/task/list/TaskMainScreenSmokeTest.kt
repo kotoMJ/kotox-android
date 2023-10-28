@@ -2,7 +2,7 @@ package cz.kotox.task.list
 
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import cz.kotox.core.ui.theme.KotoxBasicTheme
+import cz.kotox.common.ui.theme.KotoxBasicTheme
 import cz.kotox.task.domain.api.factory.toTask
 import cz.kotox.common.task.poc.data.impl.remote.dto.TaskDTO
 import cz.kotox.task.list.ui.MainFeedState

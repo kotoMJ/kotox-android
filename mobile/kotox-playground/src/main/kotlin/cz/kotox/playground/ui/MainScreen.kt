@@ -26,8 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import cz.kotox.android.playground.R
-import cz.kotox.core.ui.theme.KotoxBasicTheme
-import cz.kotox.core.ui.theme.LocalColors
+import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.ui.theme.LocalColors
 
 sealed class MainScreenEvent {
     object OpenBouncingBoxAnimation : MainScreenEvent()

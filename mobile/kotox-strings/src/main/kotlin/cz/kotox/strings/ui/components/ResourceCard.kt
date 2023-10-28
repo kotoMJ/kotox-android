@@ -14,9 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import cz.kotox.android.strings.R
-import cz.kotox.core.ui.theme.LocalColors
-import cz.kotox.core.ui.theme.LocalTypography
+import cz.kotox.common.ui.theme.LocalColors
+import cz.kotox.common.ui.theme.LocalTypography
 
 @Composable
 fun ResourceCard(

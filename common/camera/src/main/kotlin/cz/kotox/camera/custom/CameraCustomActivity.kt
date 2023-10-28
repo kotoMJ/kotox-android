@@ -17,7 +17,7 @@ import cz.kotox.camera.custom.capture.CameraScreenInput
 import com.google.common.util.concurrent.ListenableFuture
 import cz.kotox.android.core.extension.exhaustive
 import cz.kotox.camera.custom.capture.EMPTY_IMAGE_FILE_PATH_NAME
-import cz.kotox.core.ui.theme.KotoxBasicTheme
+import cz.kotox.common.ui.theme.KotoxBasicTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import timber.log.Timber

@@ -18,7 +18,7 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import cz.kotox.core.ui.theme.LocalColors
+import cz.kotox.common.ui.theme.LocalColors
 import cz.kotox.common.i18n.ui.phone.component.PhoneTextField
 
 

@@ -1,12 +1,11 @@
 package cz.kotox.common.task.poc.data.impl.remote.api
 
 import cz.kotox.android.core.config.AppProperties
-import cz.kotox.core.network.config.AppNetworkingProperties
-import cz.kotox.core.network.di.NetworkModuleProvider
-import cz.kotox.core.test.MockResponseFileReader
+import cz.kotox.common.network.config.AppNetworkingProperties
+import cz.kotox.common.network.di.NetworkModuleProvider
+import cz.kotox.common.test.MockResponseFileReader
 import cz.kotox.common.task.poc.data.impl.di.DomainTaskModuleProvider
 import cz.kotox.common.task.poc.data.impl.remote.dto.TaskDTO
-import cz.kotox.common.task.poc.data.impl.remote.api.TaskApi
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockResponse

@@ -19,8 +19,8 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import cz.kotox.core.ui.theme.LocalColors
-import cz.kotox.core.ui.theme.KotoxBasicTheme
+import cz.kotox.common.ui.theme.LocalColors
+import cz.kotox.common.ui.theme.KotoxBasicTheme
 import coil.compose.AsyncImage
 import cz.kotox.common.task.poc.ui.TaskSummaryComponent
 import cz.kotox.common.task.poc.ui.TaskSummaryComponentInput

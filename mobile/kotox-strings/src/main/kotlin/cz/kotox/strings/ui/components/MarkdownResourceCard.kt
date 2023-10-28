@@ -9,7 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import cz.kotox.android.strings.R
 import cz.kotox.common.text.markdown.MDDocument
 import cz.kotox.common.text.theme.KotoxMarkdownTheme
-import cz.kotox.core.android.navigation.navigateToWeb
+import cz.kotox.common.android.navigation.navigateToWeb
 
 @Preview(
     device = Devices.PIXEL,
