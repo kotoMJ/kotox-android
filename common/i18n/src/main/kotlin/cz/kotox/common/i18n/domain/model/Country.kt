@@ -1,4 +1,4 @@
-package cz.kotox.android.core.i18n
+package cz.kotox.common.i18n.domain.model
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import java.util.Locale

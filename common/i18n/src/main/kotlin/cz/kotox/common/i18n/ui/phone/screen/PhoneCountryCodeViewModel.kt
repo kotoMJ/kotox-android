@@ -1,12 +1,12 @@
-package cz.kotox.i18n.ui.phone.screen
+package cz.kotox.common.i18n.ui.phone.screen
 
 import android.telephony.PhoneNumberUtils
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import cz.kotox.common.domain.model.CountryUiModel
-import cz.kotox.common.domain.usecase.CountryCodeListUseCase
-import cz.kotox.common.domain.usecase.CountryCodeDetectUseCase
-import cz.kotox.common.domain.usecase.CountryCodeFormatUseCase
+import cz.kotox.common.i18n.domain.model.CountryUiModel
+import cz.kotox.common.i18n.domain.usecase.CountryCodeListUseCase
+import cz.kotox.common.i18n.domain.usecase.CountryCodeDetectUseCase
+import cz.kotox.common.i18n.domain.usecase.CountryCodeFormatUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,17 +16,17 @@ import javax.inject.Inject
 
 data class PhoneCountryCodeFeedState(
     val isInitialLoading: Boolean = true,
-    val countries: List<CountryUiModel> = emptyList(),
+    val countries: List<cz.kotox.common.i18n.domain.model.CountryUiModel> = emptyList(),
     val phoneInput: String = "",
-    val countryCodeModel: CountryUiModel = CountryUiModel.CountryUiModelEmptyItem(),
+    val countryCodeModel: cz.kotox.common.i18n.domain.model.CountryUiModel = cz.kotox.common.i18n.domain.model.CountryUiModel.CountryUiModelEmptyItem(),
 )
 
 
 @HiltViewModel
 class PhoneCountryCodeViewModel @Inject constructor(
-    private val countryListUseCase: CountryCodeListUseCase,
-    private val countryCodeDetectUseCase: CountryCodeDetectUseCase,
-    private val countryCodeFormatUseCase: CountryCodeFormatUseCase
+    private val countryListUseCase: cz.kotox.common.i18n.domain.usecase.CountryCodeListUseCase,
+    private val countryCodeDetectUseCase: cz.kotox.common.i18n.domain.usecase.CountryCodeDetectUseCase,
+    private val countryCodeFormatUseCase: cz.kotox.common.i18n.domain.usecase.CountryCodeFormatUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<PhoneCountryCodeFeedState>(PhoneCountryCodeFeedState())
@@ -49,7 +49,7 @@ class PhoneCountryCodeViewModel @Inject constructor(
 
 
             val digitOnlyFormattedValue =
-                if (countryCodeDetection is CountryUiModel.CountryUiModelItem) {
+                if (countryCodeDetection is cz.kotox.common.i18n.domain.model.CountryUiModel.CountryUiModelItem) {
                     countryCodeFormatUseCase.get(
                         value,
                         countryCodeDetection
@@ -72,10 +72,10 @@ class PhoneCountryCodeViewModel @Inject constructor(
         }
     }
 
-    fun onPhoneCountryCodeSelected(value: CountryUiModel) {
+    fun onPhoneCountryCodeSelected(value: cz.kotox.common.i18n.domain.model.CountryUiModel) {
         _uiState.update {
             it.copy(
-                phoneInput = if (value is CountryUiModel.CountryUiModelItem) value.countryCode?.toString()
+                phoneInput = if (value is cz.kotox.common.i18n.domain.model.CountryUiModel.CountryUiModelItem) value.countryCode?.toString()
                     ?: "" else "",
                 countryCodeModel = value
             )

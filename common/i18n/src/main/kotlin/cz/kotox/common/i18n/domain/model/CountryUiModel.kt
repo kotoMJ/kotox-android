@@ -1,4 +1,4 @@
-package cz.kotox.common.domain.model
+package cz.kotox.common.i18n.domain.model
 
 import cz.kotox.common.i18n.data.api.model.FALLBACK_COUNTRY_CODE
 import cz.kotox.common.i18n.data.api.model.FALLBACK_COUNTRY_NAME

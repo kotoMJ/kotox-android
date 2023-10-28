@@ -1,4 +1,4 @@
-package cz.kotox.i18n.ui.phone.screen
+package cz.kotox.common.i18n.ui.phone.screen
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
@@ -8,12 +8,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import cz.kotox.core.android.extension.collectAsStateWithLifecycle
-import cz.kotox.common.domain.model.CountryUiModel
+import cz.kotox.common.i18n.domain.model.CountryUiModel
 
 @Immutable
 interface PhoneCountryCodeListener {
     fun onPhoneValueChange(value: String)
-    fun onPhoneCountryCodeSelected(value: CountryUiModel)
+    fun onPhoneCountryCodeSelected(value: cz.kotox.common.i18n.domain.model.CountryUiModel)
 }
 
 @Composable
@@ -30,7 +30,7 @@ fun PhoneCountryCodeScreen(
                 viewModel.onPhoneValueChange(value)
             }
 
-            override fun onPhoneCountryCodeSelected(value: CountryUiModel) {
+            override fun onPhoneCountryCodeSelected(value: cz.kotox.common.i18n.domain.model.CountryUiModel) {
                 viewModel.onPhoneCountryCodeSelected(value)
             }
         }

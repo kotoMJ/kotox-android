@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="cz.kotox.common.i18n" />
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cz.kotox.common.i18n">
+
+    <application>
+        <activity
+            android:name=".ui.phone.screen.PhoneCountryCodeActivity"
+            android:exported="true" />
+    </application>
+
+</manifest>

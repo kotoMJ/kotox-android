@@ -1,4 +1,4 @@
-package cz.kotox.i18n.ui.phone.screen
+package cz.kotox.common.i18n.ui.phone.screen
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -16,12 +16,12 @@ import androidx.compose.ui.unit.dp
 import cz.kotox.core.ui.theme.KotoxBasicTheme
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.core.ui.theme.LocalTypography
-import cz.kotox.common.domain.model.CountryUiModel
-import cz.kotox.common.domain.model.CountryUiModelValueItem
+import cz.kotox.common.i18n.domain.model.CountryUiModel
+import cz.kotox.common.i18n.domain.model.CountryUiModelValueItem
 
 @Composable
 fun PhoneNumberPrefixSearchItem(
-    item: CountryUiModel,
+    item: cz.kotox.common.i18n.domain.model.CountryUiModel,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -34,7 +34,7 @@ fun PhoneNumberPrefixSearchItem(
         Text(
             text = item.flagEmoji
         )
-        if (item is CountryUiModelValueItem) {
+        if (item is cz.kotox.common.i18n.domain.model.CountryUiModelValueItem) {
             Text(
                 modifier = Modifier
                     .weight(1f, true)

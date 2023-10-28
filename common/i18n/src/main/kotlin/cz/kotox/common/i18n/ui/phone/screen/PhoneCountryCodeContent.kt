@@ -1,4 +1,4 @@
-package cz.kotox.i18n.ui.phone.screen
+package cz.kotox.common.i18n.ui.phone.screen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,7 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cz.kotox.core.ui.theme.LocalColors
-import cz.kotox.i18n.ui.phone.component.PhoneTextField
+import cz.kotox.common.i18n.ui.phone.component.PhoneTextField
 
 
 @Composable

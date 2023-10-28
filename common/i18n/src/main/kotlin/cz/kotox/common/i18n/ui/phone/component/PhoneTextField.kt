@@ -1,4 +1,4 @@
-package cz.kotox.i18n.ui.phone.component
+package cz.kotox.common.i18n.ui.phone.component
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -43,8 +43,8 @@ import androidx.compose.ui.unit.dp
 import cz.kotox.core.ui.theme.KotoxBasicTheme
 import cz.kotox.core.ui.theme.LocalColors
 import cz.kotox.core.ui.theme.LocalTypography
-import cz.kotox.common.domain.model.CountryUiModel
-import cz.kotox.common.domain.model.CountryUiModelValueItem
+import cz.kotox.common.i18n.domain.model.CountryUiModel
+import cz.kotox.common.i18n.domain.model.CountryUiModelValueItem
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -54,7 +54,7 @@ fun PhoneTextField(
     onValueChange: (String) -> Unit,
     onSubmit: () -> Unit,
     enabled: Boolean = true,
-    countryUiModel: CountryUiModel,
+    countryUiModel: cz.kotox.common.i18n.domain.model.CountryUiModel,
 ) {
     val colors: TextFieldColors = TextFieldDefaults.textFieldColors()
     val shape: Shape =
@@ -81,7 +81,7 @@ fun PhoneTextField(
                     it.isDigit() || it.isWhitespace()
                 }.isEmpty()) {
 
-                val numberLengthLimit: Int? = if (countryUiModel is CountryUiModelValueItem) {
+                val numberLengthLimit: Int? = if (countryUiModel is cz.kotox.common.i18n.domain.model.CountryUiModelValueItem) {
                     if (countryUiModel.expectedLength == null) {
                         null
                     } else {
@@ -113,7 +113,7 @@ fun PhoneTextField(
                     .padding(horizontal = 16.dp, vertical = 12.dp), // inner padding
 
             ) {
-                if (countryUiModel is CountryUiModelValueItem) {
+                if (countryUiModel is cz.kotox.common.i18n.domain.model.CountryUiModelValueItem) {
 
                     if (countryUiModel.countryCode.toString().contains(inputValue)) {
                         val hint = buildAnnotatedString {

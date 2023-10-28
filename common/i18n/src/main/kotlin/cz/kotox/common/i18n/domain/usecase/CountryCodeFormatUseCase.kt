@@ -1,8 +1,8 @@
-package cz.kotox.common.domain.usecase
+package cz.kotox.common.i18n.domain.usecase
 
 import com.google.i18n.phonenumbers.AsYouTypeFormatter
 import com.google.i18n.phonenumbers.PhoneNumberUtil
-import cz.kotox.common.domain.model.CountryUiModel
+import cz.kotox.common.i18n.domain.model.CountryUiModel
 import timber.log.Timber
 import javax.inject.Inject
 

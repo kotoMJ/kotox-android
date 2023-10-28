@@ -1,4 +1,4 @@
-package cz.kotox.i18n.ui.phone.screen
+package cz.kotox.common.i18n.ui.phone.screen
 
 import android.content.Context
 import android.content.Intent

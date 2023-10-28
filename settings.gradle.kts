@@ -30,7 +30,6 @@ include(
     ":feature:task-poc-dasboard",
     ":common:camera",
     ":common:i18n",
-    ":i18n-domain",
-    ":i18n-ui",
+
 
 )
