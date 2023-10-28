@@ -29,9 +29,9 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
         dependencies {
 
-            add("implementation", project(":common"))
-            add("implementation", project(":common-network"))
-            add("implementation", project(":common-ui"))
+            add("implementation", project(":common:core"))
+            add("implementation", project(":common:network"))
+            add("implementation", project(":common:ui"))
 
             add("implementation", libs.findLibrary("androidx.activity.compose").get())
             add("implementation", libs.findLibrary("androidx.appcompat").get())

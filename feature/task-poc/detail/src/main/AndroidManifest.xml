@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cz.kotox.feature.task.poc.detail">
+
+    <application>
+        <activity
+            android:name=".ui.TaskDetailActivity"
+            android:exported="true">
+        </activity>
+    </application>
+
+</manifest>
