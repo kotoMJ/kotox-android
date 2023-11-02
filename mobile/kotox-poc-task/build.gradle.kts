@@ -10,17 +10,6 @@ plugins {
 
 android {
 
-    testOptions {
-        unitTests.isReturnDefaultValues = true
-
-        // QuickFix mockk to be run in Android Tests, but it has more troubles
-        packagingOptions {
-            jniLibs {
-                useLegacyPackaging = true
-            }
-        }
-    }
-
     defaultConfig {
         applicationId = "cz.kotox.android.task"
 
@@ -31,6 +20,8 @@ android {
 
         testInstrumentationRunner = "cz.kotox.task.list.TaskTestRunner"
     }
+
+
     buildTypes {
         val release by getting {
             isMinifyEnabled = true
@@ -57,6 +48,8 @@ android {
             }
         }
     }
+
+    namespace = "cz.kotox.android.task"
 }
 
 dependencies {

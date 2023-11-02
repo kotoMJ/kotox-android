@@ -4,31 +4,29 @@ import com.android.build.api.dsl.CommonExtension
 import cz.kotox.android.extensions.catalog
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
-import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 
 /**
  * Configure base Kotlin with Android options
  */
 internal fun Project.configureKotlinAndroid(
-    commonExtension: CommonExtension<*, *, *, *>,
+    commonExtension: CommonExtension<*, *, *, *, *>,
 ) {
 
     val libs = catalog
 
     commonExtension.apply {
-        compileSdk = libs.findVersion("sdk-compile").get().toString().toInt()
+        compileSdk = 33//libs.findVersion("sdk-compile").get().toString().toInt()
 
         defaultConfig {
-            minSdk = libs.findVersion("sdk-min").get().toString().toInt()
+            minSdk = 26//libs.findVersion("sdk-min").get().toString().toInt()
         }
 
         compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
+            sourceCompatibility = JavaVersion.VERSION_11
+            targetCompatibility = JavaVersion.VERSION_11
             isCoreLibraryDesugaringEnabled = true
         }
 
@@ -46,18 +44,7 @@ internal fun Project.configureKotlinAndroid(
                 "-opt-in=kotlinx.serialization.ExperimentalSerializationApi"
             )
 
-            jvmTarget = JavaVersion.VERSION_17.toString()
-        }
-
-        //TODO MJ - isolate this to some test related part.
-        packagingOptions {
-            //Following excludes are hot-fix in order to compile AndroidTest
-            resources {
-                excludes += listOf(
-                    "META-INF/LICENSE.md",
-                    "META-INF/LICENSE-notice.md"
-                )
-            }
+            jvmTarget = JavaVersion.VERSION_11.toString()
         }
     }
 
@@ -67,6 +54,6 @@ internal fun Project.configureKotlinAndroid(
     }
 }
 
-fun CommonExtension<*, *, *, *>.kotlinOptions(block: KotlinJvmOptions.() -> Unit) {
+fun CommonExtension<*, *, *, *, *>.kotlinOptions(block: KotlinJvmOptions.() -> Unit) {
     (this as ExtensionAware).extensions.configure("kotlinOptions", block)
 }

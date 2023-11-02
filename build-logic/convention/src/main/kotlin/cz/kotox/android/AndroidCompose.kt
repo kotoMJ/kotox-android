@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.getByType
  * Configure Compose-specific options
  */
 internal fun Project.configureAndroidCompose(
-    commonExtension: CommonExtension<*, *, *, *>,
+    commonExtension: CommonExtension<*, *, *, *, *>,
 ) {
 
     commonExtension.apply {

@@ -13,7 +13,7 @@ sdk-min = "23"
 # https://developer.android.com/studio/releases/gradle-plugin#updating-gradle
 # https://developer.android.com/studio/releases/gradle-plugin#min-kotlin-version
 # ==================================================================================================
-android-gradle = "7.4.0-rc03"
+android-gradle = "8.1.2"
 
 # ==================================================================================================
 # Compose compiler / Kotlin
