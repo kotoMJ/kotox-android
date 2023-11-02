@@ -5,6 +5,7 @@ plugins {
 
 dependencies {
     implementation(projects.common.core)
+    implementation(projects.common.coreAndroid)
 
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
@@ -17,6 +18,7 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.accompanist.permissions)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.android)
