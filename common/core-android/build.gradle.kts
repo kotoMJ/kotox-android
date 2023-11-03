@@ -4,6 +4,9 @@ plugins {
 }
 
 android {
+
+    namespace = "cz.kotox.common.core.android"
+
     repositories {
         flatDir {
             dirs("libs")

@@ -4,9 +4,12 @@ plugins {
     id("cz.kotox.android.library")
     id("cz.kotox.android.library.compose")
     id("cz.kotox.android.feature")
-    id("dagger.hilt.android.plugin")
-    kotlin("kapt")
+    alias(libs.plugins.cz.kotox.android.hilt)
     alias(libs.plugins.ksp)
+}
+
+android {
+    namespace = "cz.kotox.common.task.poc"
 }
 
 dependencies {
@@ -19,9 +22,6 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
-
-    implementation(libs.androidx.hilt.android)
-    kapt(libs.androidx.hilt.compiler)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)

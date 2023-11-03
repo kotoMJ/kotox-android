@@ -5,19 +5,25 @@ plugins {
     id("cz.kotox.android.application")
     id("cz.kotox.android.application.compose")
     id("cz.kotox.android.poeditor")
-    id("dagger.hilt.android.plugin")
-    kotlin("kapt")
+    alias(libs.plugins.cz.kotox.android.hilt)
 }
 
 android {
 
+    namespace = "cz.kotox.android.strings"
+
     defaultConfig {
-        applicationId = "cz.kotox.android.playground"
 
-        val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
+        buildFeatures {
+            buildConfig = true
+        }
 
-        versionCode = version.versionCode
-        versionName = version.versionName
+        applicationId = "cz.kotox.android.strings"
+
+        //val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
+
+        versionCode = 1000//version.versionCode
+        versionName = "1.0.0.0"//version.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -69,16 +75,13 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.hilt.navigation.compose)
 
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicators)
     implementation(libs.accompanist.swiperefresh)
 
     implementation(libs.androidx.constraint.compose)
-
-    implementation(libs.androidx.hilt.android)
-    kapt(libs.androidx.hilt.compiler)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.android)
@@ -96,6 +99,6 @@ dependencies {
 
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     androidTestImplementation(libs.bundles.test.android)
-    kaptAndroidTest(libs.androidx.hilt.compiler)
+    kaptAndroidTest(libs.hilt.compiler)
     testImplementation(libs.bundles.test.unit)
 }

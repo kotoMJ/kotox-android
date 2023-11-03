@@ -5,12 +5,14 @@ import cz.kotox.android.extensions.catalog
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 /**
  * Configure Compose-specific options
  */
 internal fun Project.configureAndroidCompose(
-    commonExtension: CommonExtension<*, *, *, *>,
+    commonExtension: CommonExtension<*, *, *, *, *>,
 ) {
 
     commonExtension.apply {
@@ -19,10 +21,12 @@ internal fun Project.configureAndroidCompose(
         }
 
         composeOptions {
-            kotlinCompilerExtensionVersion = catalog.findVersion("androidx-compose-compiler").get().toString()
+            kotlinCompilerExtensionVersion = catalog.findVersion("androidxComposeCompiler").get().toString()
             //libs.versions.androidx.compose.compiler.get()
         }
+    }
 
+    tasks.withType<KotlinCompile>().configureEach {
         kotlinOptions {
             freeCompilerArgs = freeCompilerArgs
         }

@@ -4,33 +4,29 @@ import cz.kotox.android.FlavorDimension
 plugins {
     id("cz.kotox.android.application")
     id("cz.kotox.android.application.compose")
-    id("dagger.hilt.android.plugin")
-    kotlin("kapt")
+    alias(libs.plugins.cz.kotox.android.hilt)
 }
 
 android {
 
-    testOptions {
-        unitTests.isReturnDefaultValues = true
+    namespace = "cz.kotox.android.task"
 
-        // QuickFix mockk to be run in Android Tests, but it has more troubles
-        packagingOptions {
-            jniLibs {
-                useLegacyPackaging = true
-            }
-        }
+    buildFeatures {
+        buildConfig = true
     }
 
     defaultConfig {
         applicationId = "cz.kotox.android.task"
 
-        val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
+        //val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
 
-        versionCode = version.versionCode
-        versionName = version.versionName
+        versionCode = 1000//version.versionCode
+        versionName = "1.0.0.0"//version.versionName
 
         testInstrumentationRunner = "cz.kotox.task.list.TaskTestRunner"
     }
+
+
     buildTypes {
         val release by getting {
             isMinifyEnabled = true
@@ -57,6 +53,8 @@ android {
             }
         }
     }
+
+    namespace = "cz.kotox.android.task"
 }
 
 dependencies {
@@ -78,16 +76,13 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.hilt.navigation.compose)
 
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicators)
     implementation(libs.accompanist.swiperefresh)
 
     implementation(libs.androidx.constraint.compose)
-
-    implementation(libs.androidx.hilt.android)
-    kapt(libs.androidx.hilt.compiler)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.android)
@@ -119,7 +114,7 @@ dependencies {
     androidTestImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    androidTestImplementation(libs.androidx.hilt.android.testing)
+    androidTestImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.mockk.instrumented)
-    kaptAndroidTest(libs.androidx.hilt.compiler)
+    kaptAndroidTest(libs.hilt.compiler)
 }

@@ -1,14 +1,16 @@
+import cz.kotox.android.kotlinOptions
+
 plugins {
     id("cz.kotox.android.library")
-    id("dagger.hilt.android.plugin")
-    kotlin("kapt")
+    alias(libs.plugins.cz.kotox.android.hilt)
+}
+
+android {
+    namespace = "cz.kotox.common.network"
 }
 
 dependencies {
     implementation(projects.common.core)
-
-    implementation(libs.androidx.hilt.android)
-    kapt(libs.androidx.hilt.compiler)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)

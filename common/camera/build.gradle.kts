@@ -4,6 +4,10 @@ plugins {
     id("cz.kotox.android.feature")
 }
 
+android {
+    namespace = "cz.kotox.common.camera.custom"
+}
+
 dependencies {
 
     implementation(projects.common.coreAndroid) //prefs,enhanced permissions

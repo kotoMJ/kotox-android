@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import cz.kotox.common.ui.theme.LocalColors
 import cz.kotox.common.ui.theme.LocalTypography
 import cz.kotox.common.ui.theme.KotoxBasicTheme
-import cz.kotox.feature.task.poc.detail.R
+import cz.kotox.common.task.poc.R as CTPR
 
 sealed class TaskDetailAppBarEvent {
     object AppBarHomeEvent : TaskDetailAppBarEvent()
@@ -67,8 +67,8 @@ fun MainScreenAppBarView(
                         onClick = { onEventHandler.invoke(TaskDetailAppBarEvent.AppBarHomeEvent) },
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.ic_arrow_left),
-                            contentDescription = stringResource(R.string.generic_back_description),
+                            painter = painterResource(CTPR.drawable.ic_arrow_left),
+                            contentDescription = stringResource(CTPR.string.generic_back_description),
                             tint = LocalColors.current.textNorm,
                         )
                     }

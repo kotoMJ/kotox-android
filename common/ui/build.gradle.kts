@@ -3,6 +3,11 @@ plugins {
     id("cz.kotox.android.library.compose")
 }
 
+android {
+    namespace = "cz.kotox.common.ui"
+}
+
+
 dependencies {
     implementation(projects.common.core)
     implementation(projects.common.coreAndroid)
@@ -15,7 +20,7 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.hilt.navigation.compose)
 
     implementation(libs.accompanist.systemuicontroller)
     implementation(libs.accompanist.permissions)

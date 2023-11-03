@@ -1,8 +1,11 @@
 plugins {
     id("cz.kotox.android.library")
     id("cz.kotox.android.library.compose")
-    id("dagger.hilt.android.plugin")
-    kotlin("kapt")
+    alias(libs.plugins.cz.kotox.android.hilt)
+}
+
+android {
+    namespace = "cz.kotox.common.text"
 }
 
 dependencies {
@@ -16,10 +19,7 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.hilt.navigation.compose)
-
-    implementation(libs.androidx.hilt.android)
-    kapt(libs.androidx.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)
