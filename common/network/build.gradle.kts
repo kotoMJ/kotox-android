@@ -2,8 +2,7 @@ import cz.kotox.android.kotlinOptions
 
 plugins {
     id("cz.kotox.android.library")
-    id("dagger.hilt.android.plugin")
-    kotlin("kapt")
+    alias(libs.plugins.cz.kotox.android.hilt)
 }
 
 android {
@@ -12,9 +11,6 @@ android {
 
 dependencies {
     implementation(projects.common.core)
-
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)

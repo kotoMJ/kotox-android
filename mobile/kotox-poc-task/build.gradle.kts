@@ -4,8 +4,7 @@ import cz.kotox.android.FlavorDimension
 plugins {
     id("cz.kotox.android.application")
     id("cz.kotox.android.application.compose")
-    id("dagger.hilt.android.plugin")
-    kotlin("kapt")
+    alias(libs.plugins.cz.kotox.android.hilt)
 }
 
 android {
@@ -84,9 +83,6 @@ dependencies {
     implementation(libs.accompanist.swiperefresh)
 
     implementation(libs.androidx.constraint.compose)
-
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.android)
