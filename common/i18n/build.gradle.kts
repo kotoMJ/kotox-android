@@ -6,7 +6,10 @@ plugins {
     id("cz.kotox.android.feature")
     id("dagger.hilt.android.plugin")
     kotlin("kapt")
-    alias(libs.plugins.ksp)
+}
+
+android {
+    namespace = "cz.kotox.common.i18n"
 }
 
 dependencies {

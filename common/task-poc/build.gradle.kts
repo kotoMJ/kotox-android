@@ -9,6 +9,10 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
+android {
+    namespace = "cz.kotox.common.task.poc"
+}
+
 dependencies {
 
     implementation(projects.common.core)

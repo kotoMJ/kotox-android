@@ -1,7 +1,13 @@
+import cz.kotox.android.kotlinOptions
+
 plugins {
     id("cz.kotox.android.library")
     id("dagger.hilt.android.plugin")
     kotlin("kapt")
+}
+
+android {
+    namespace = "cz.kotox.common.network"
 }
 
 dependencies {

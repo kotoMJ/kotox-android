@@ -3,6 +3,9 @@ plugins {
 }
 
 android {
+
+    namespace = "cz.kotox.common.crypto"
+
     repositories {
         flatDir {
             dirs("libs")

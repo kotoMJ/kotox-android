@@ -11,13 +11,19 @@ plugins {
 
 android {
 
+    namespace = "cz.kotox.android.starter"
+
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
-        applicationId = "cz.kotox.android.playground"
+        applicationId = "cz.kotox.android.starter"
 
-        val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
+        //val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
 
-        versionCode = version.versionCode
-        versionName = version.versionName
+        versionCode = 1000//version.versionCode
+        versionName = "1.0.0.0"//version.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

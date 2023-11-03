@@ -5,6 +5,10 @@ plugins {
     kotlin("kapt")
 }
 
+android {
+    namespace = "cz.kotox.common.text"
+}
+
 dependencies {
     implementation(projects.common.core)
 

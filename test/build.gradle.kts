@@ -2,6 +2,10 @@ plugins {
     id("cz.kotox.android.library")
 }
 
+android {
+    namespace = "cz.kotox.common.test"
+}
+
 dependencies {
     implementation(projects.common.core)
     implementation(libs.androidx.appcompat)

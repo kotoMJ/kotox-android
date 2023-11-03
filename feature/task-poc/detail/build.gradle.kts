@@ -4,6 +4,10 @@ plugins {
     id("cz.kotox.android.feature")
 }
 
+android {
+    namespace = "cz.kotox.feature.task.poc.detail"
+}
+
 dependencies {
     implementation(projects.common.taskPoc)
 

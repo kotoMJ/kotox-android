@@ -15,6 +15,7 @@ buildscript {
 plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.ksp) apply false
     alias(libs.plugins.gradleDependencyUpdate)
 }
 
@@ -34,13 +35,13 @@ allprojects {
         mavenCentral()
     }
 
-    // https://github.com/ben-manes/gradle-versions-plugin
-    tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
-        // disallow release candidates as upgradable versions from stable versions
-        rejectVersionIf {
-            isNonStable(candidate.version) && !isNonStable(currentVersion)
-        }
-    }
+//    // https://github.com/ben-manes/gradle-versions-plugin
+//    tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
+//        // disallow release candidates as upgradable versions from stable versions
+//        rejectVersionIf {
+//            isNonStable(candidate.version) && !isNonStable(currentVersion)
+//        }
+//    }
 }
 
 tasks.register<Delete>("clean") {

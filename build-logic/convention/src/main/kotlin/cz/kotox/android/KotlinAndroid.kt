@@ -18,15 +18,15 @@ internal fun Project.configureKotlinAndroid(
     val libs = catalog
 
     commonExtension.apply {
-        compileSdk = 33//libs.findVersion("sdk-compile").get().toString().toInt()
+        compileSdk = libs.findVersion("sdk-compile").get().toString().toInt()
 
         defaultConfig {
-            minSdk = 26//libs.findVersion("sdk-min").get().toString().toInt()
+            minSdk = libs.findVersion("sdk-min").get().toString().toInt()
         }
 
         compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_11
-            targetCompatibility = JavaVersion.VERSION_11
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
             isCoreLibraryDesugaringEnabled = true
         }
 
@@ -44,7 +44,7 @@ internal fun Project.configureKotlinAndroid(
                 "-opt-in=kotlinx.serialization.ExperimentalSerializationApi"
             )
 
-            jvmTarget = JavaVersion.VERSION_11.toString()
+            jvmTarget = JavaVersion.VERSION_17.toString()
         }
     }
 

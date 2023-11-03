@@ -3,6 +3,11 @@ plugins {
     id("cz.kotox.android.library.compose")
 }
 
+android {
+    namespace = "cz.kotox.common.ui"
+}
+
+
 dependencies {
     implementation(projects.common.core)
     implementation(projects.common.coreAndroid)

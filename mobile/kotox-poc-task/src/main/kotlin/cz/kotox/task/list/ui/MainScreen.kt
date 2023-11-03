@@ -32,6 +32,7 @@ import androidx.constraintlayout.compose.layoutId
 import cz.kotox.common.ui.theme.LocalColors
 import cz.kotox.feature.task.poc.detail.ui.TaskDetailActivityIntentUtil
 import cz.kotox.android.task.R
+import cz.kotox.common.task.poc.R as CTPR
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
@@ -115,7 +116,7 @@ fun MainScreen(
                                 Icon(
                                     modifier = Modifier.layoutId("createdIcon"),
                                     painter = painterResource(
-                                        id = R.drawable.ic_refresh
+                                        id = CTPR.drawable.ic_refresh
                                     ),
                                     contentDescription = stringResource(id = R.string.generic_click_to_refresh),
                                     tint = LocalColors.current.primary,
