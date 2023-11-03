@@ -19,8 +19,8 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         pluginManager.apply {
             apply("com.android.library")
             apply("org.jetbrains.kotlin.android")
-            apply("org.jetbrains.kotlin.kapt")
-            apply("dagger.hilt.android.plugin")
+            apply("cz.kotox.android.hilt")
+//            apply("org.jetbrains.kotlin.kapt")
         }
     }
 
@@ -52,9 +52,9 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
             add("implementation", libs.findLibrary("timber").get())
 
-            add("implementation", libs.findLibrary("androidx.hilt.navigation.compose").get())
-            add("implementation", libs.findLibrary("androidx.hilt.android").get())
-            add("kapt", libs.findLibrary("androidx.hilt.compiler").get())
+            add("implementation", libs.findLibrary("hilt.navigation.compose").get())
+            add("implementation", libs.findLibrary("hilt.android").get())
+            add("kapt", libs.findLibrary("hilt.compiler").get())
         }
     }
 }

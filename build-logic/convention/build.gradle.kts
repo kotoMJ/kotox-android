@@ -66,5 +66,10 @@ gradlePlugin {
             id = "cz.kotox.android.poeditor"
             implementationClass = "AndroidPoEditorPlugin"
         }
+
+        register("androidHilt") {
+            id = "cz.kotox.android.hilt"
+            implementationClass = "AndroidHiltConventionPlugin"
+        }
     }
 }

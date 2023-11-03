@@ -19,8 +19,8 @@ dependencies {
     implementation(projects.common.network)
     implementation(projects.common.crypto)
 
-    implementation(libs.androidx.hilt.android)
-    kapt(libs.androidx.hilt.compiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)

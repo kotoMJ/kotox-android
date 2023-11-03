@@ -4,8 +4,7 @@ import cz.kotox.android.FlavorDimension
 plugins {
     id("cz.kotox.android.application")
     id("cz.kotox.android.application.compose")
-    id("dagger.hilt.android.plugin")
-    kotlin("kapt")
+    alias(libs.plugins.cz.kotox.android.hilt)
 }
 
 android {
@@ -68,7 +67,7 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.hilt.navigation.compose)
     implementation(libs.androidx.palette)
 
     implementation(libs.accompanist.pager)
@@ -76,9 +75,6 @@ dependencies {
     implementation(libs.accompanist.swiperefresh)
 
     implementation(libs.androidx.constraint.compose)
-
-    implementation(libs.androidx.hilt.android)
-    kapt(libs.androidx.hilt.compiler)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.android)
@@ -96,6 +92,5 @@ dependencies {
 
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     androidTestImplementation(libs.bundles.test.android)
-    kaptAndroidTest(libs.androidx.hilt.compiler)
     testImplementation(libs.bundles.test.unit)
 }
