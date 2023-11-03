@@ -20,8 +20,9 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 
 
 dependencies {
-    implementation(libs.android.gradle)
-    implementation(libs.kotlin.gradle)
+    compileOnly(libs.android.gradlePlugin)
+    compileOnly(libs.kotlin.gradlePlugin)
+    compileOnly(libs.ksp.gradlePlugin)
 
     //PoEditor dependencies
     implementation(libs.kotlin.stdlib)
