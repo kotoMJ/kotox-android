@@ -1,5 +1,5 @@
 plugins {
-    id("cz.kotox.android.library")
+    alias(libs.plugins.cz.kotox.android.library)
 }
 
 android {
