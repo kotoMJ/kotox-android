@@ -249,6 +249,7 @@ cz-kotox-android-feature = { id = "cz.kotox.android.feature", version = "unspeci
 cz-kotox-android-hilt = { id = "cz.kotox.android.hilt", version = "unspecified" }
 cz-kotox-android-library = { id = "cz.kotox.android.library", version = "unspecified" }
 cz-kotox-android-library-compose = { id = "cz.kotox.android.library.compose", version = "unspecified" }
+cz-kotox-android-poeditor = { id = "cz.kotox.android.poeditor", version = "unspecified" }
 
 [bundles]
 

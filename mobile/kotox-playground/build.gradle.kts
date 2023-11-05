@@ -4,7 +4,7 @@ import cz.kotox.android.FlavorDimension
 plugins {
     alias(libs.plugins.cz.kotox.android.application)
     alias(libs.plugins.cz.kotox.android.application.compose)
-    id("cz.kotox.android.poeditor")
+    alias(libs.plugins.cz.kotox.android.poeditor)
     alias(libs.plugins.cz.kotox.android.hilt)
 }
 
