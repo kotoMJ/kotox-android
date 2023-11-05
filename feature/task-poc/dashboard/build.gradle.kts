@@ -1,7 +1,7 @@
 plugins {
-    id("cz.kotox.android.library")
-    id("cz.kotox.android.library.compose")
-    id("cz.kotox.android.feature")
+    alias(libs.plugins.cz.kotox.android.library)
+    alias(libs.plugins.cz.kotox.android.library.compose)
+    alias(libs.plugins.cz.kotox.android.feature)
 }
 
 android {

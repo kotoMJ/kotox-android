@@ -2,8 +2,8 @@ import cz.kotox.android.Flavor
 import cz.kotox.android.FlavorDimension
 
 plugins {
-    id("cz.kotox.android.application")
-    id("cz.kotox.android.application.compose")
+    alias(libs.plugins.cz.kotox.android.application)
+    alias(libs.plugins.cz.kotox.android.application.compose)
     alias(libs.plugins.cz.kotox.android.hilt)
 }
 

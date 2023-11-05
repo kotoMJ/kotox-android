@@ -128,11 +128,6 @@ androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "androidx-datastore" }
 
-#androidx-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-#androidx-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
-#androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidx-hilt-navigation-compose" }
-#androidx-hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
-
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
@@ -248,7 +243,13 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 
 # Plugins defined by this project
+cz-kotox-android-application = { id = "cz.kotox.android.application", version = "unspecified" }
+cz-kotox-android-application-compose = { id = "cz.kotox.android.application.compose", version = "unspecified" }
+cz-kotox-android-feature = { id = "cz.kotox.android.feature", version = "unspecified" }
 cz-kotox-android-hilt = { id = "cz.kotox.android.hilt", version = "unspecified" }
+cz-kotox-android-library = { id = "cz.kotox.android.library", version = "unspecified" }
+cz-kotox-android-library-compose = { id = "cz.kotox.android.library.compose", version = "unspecified" }
+cz-kotox-android-poeditor = { id = "cz.kotox.android.poeditor", version = "unspecified" }
 
 [bundles]
 

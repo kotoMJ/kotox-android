@@ -35,7 +35,7 @@ are not part of the final Android key in resources.
 
 In order to add module as a recipient of shared string resources do following steps:
 
-1) Ensure `build.gradle.kts` of that module defines `id("cz.kotox.android.poeditor")` gradle plugin.
+1) Ensure `build.gradle.kts` of that module defines `alias(libs.plugins.cz.kotox.android.poeditor)` gradle plugin.
 2) Ensure proper mapping of specific resource key expression to the target module 
    in the `cz.kotox.android.poeditor.ResourceModuleMapping.kt`
 
