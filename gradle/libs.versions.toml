@@ -250,6 +250,7 @@ android-application = { id = "com.android.application", version.ref = "androidGr
 # Plugins defined by this project
 cz-kotox-android-hilt = { id = "cz.kotox.android.hilt", version = "unspecified" }
 cz-kotox-android-library = { id = "cz.kotox.android.library", version = "unspecified" }
+cz-kotox-android-library-compose = { id = "cz.kotox.android.library.compose", version = "unspecified" }
 
 [bundles]
 
