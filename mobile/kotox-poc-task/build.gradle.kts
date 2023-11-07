@@ -73,7 +73,7 @@ dependencies {
     implementation(libs.androidx.core)
 
     implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.compose.ui)
+//    implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.hilt.navigation.compose)
@@ -113,7 +113,7 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.compose.ui.test)
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+//    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.mockk.instrumented)
     kaptAndroidTest(libs.hilt.compiler)

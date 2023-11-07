@@ -4,6 +4,7 @@ import com.android.build.api.dsl.CommonExtension
 import cz.kotox.android.extensions.catalog
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -24,6 +25,15 @@ internal fun Project.configureAndroidCompose(
             kotlinCompilerExtensionVersion = catalog.findVersion("androidxComposeCompiler").get().toString()
             //libs.versions.androidx.compose.compiler.get()
         }
+
+        dependencies {
+            val bom = catalog.findLibrary("androidx-compose-bom").get()
+            add("implementation", platform(bom))
+            add("androidTestImplementation", platform(bom))
+            // Add ComponentActivity to debug manifest
+            add("debugImplementation", catalog.findLibrary("androidx.compose.ui.test-manifest").get())
+        }
+
     }
 
     tasks.withType<KotlinCompile>().configureEach {

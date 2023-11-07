@@ -72,7 +72,7 @@ dependencies {
     implementation(libs.androidx.core)
 
     implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.compose.ui)
+//    implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.hilt.navigation.compose)

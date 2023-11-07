@@ -36,10 +36,10 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             add("implementation", libs.findLibrary("androidx.activity.compose").get())
             add("implementation", libs.findLibrary("androidx.appcompat").get())
 
-            add("implementation", libs.findLibrary("androidx.compose.material").get())
-            add("implementation", libs.findLibrary("androidx.compose.ui").get())
-            add("implementation", libs.findLibrary("androidx.compose.ui.tooling.preview").get())
-            add("implementation", libs.findLibrary("androidx.compose.ui.tooling").get())
+//            add("implementation", libs.findLibrary("androidx.compose.material").get())
+//            add("implementation", libs.findLibrary("androidx.compose.ui").get())
+//            add("implementation", libs.findLibrary("androidx.compose.ui.tooling.preview").get())
+//            add("implementation", libs.findLibrary("androidx.compose.ui.tooling").get())
 
             add("implementation", libs.findLibrary("androidx.constraint.compose").get())
 
