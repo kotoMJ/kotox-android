@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.cz.kotox.android.library)
+    alias(libs.plugins.cz.kotox.android.library.compose)
 }
 
 android {
@@ -7,6 +8,9 @@ android {
 }
 
 dependencies {
+
+    api(libs.androidx.compose.runtime)
+
     implementation(projects.common.core)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core)
