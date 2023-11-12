@@ -1,4 +1,5 @@
 plugins {
+    //alias(libs.plugins.cz.kotox.linters)
     alias(libs.plugins.cz.kotox.android.library)
     alias(libs.plugins.cz.kotox.android.library.compose)
     alias(libs.plugins.cz.kotox.android.feature)

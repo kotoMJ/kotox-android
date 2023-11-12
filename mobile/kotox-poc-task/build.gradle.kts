@@ -2,6 +2,7 @@ import cz.kotox.android.Flavor
 import cz.kotox.android.FlavorDimension
 
 plugins {
+    //alias(libs.plugins.cz.kotox.linters)
     alias(libs.plugins.cz.kotox.android.application)
     alias(libs.plugins.cz.kotox.android.application.compose)
     alias(libs.plugins.cz.kotox.android.hilt)
@@ -18,14 +19,13 @@ android {
     defaultConfig {
         applicationId = "cz.kotox.android.task"
 
-        //val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
+        // val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
 
-        versionCode = 1000//version.versionCode
-        versionName = "1.0.0.0"//version.versionName
+        versionCode = 1000 // version.versionCode
+        versionName = "1.0.0.0" // version.versionName
 
         testInstrumentationRunner = "cz.kotox.task.list.TaskTestRunner"
     }
-
 
     buildTypes {
         val release by getting {

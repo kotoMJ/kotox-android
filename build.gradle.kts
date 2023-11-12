@@ -11,23 +11,25 @@ buildscript {
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.jvm) apply false
-    alias(libs.plugins.detekt)
-    alias(libs.plugins.ktlint)
+    alias(libs.plugins.detekt) // apply false
+    alias(libs.plugins.ktlint) // apply false
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.gradleDependencyUpdate)
 }
 
 allprojects {
-    apply(plugin = "io.gitlab.arturbosch.detekt")
-    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+    // apply(plugin = "io.gitlab.arturbosch.detekt")
+    // apply(plugin = "org.jlleitschuh.gradle.ktlint")
     apply(plugin = "com.github.ben-manes.versions")
 
-    detekt {
-        buildUponDefaultConfig = true
-        config = files("${project.rootDir}/extras/detekt.yml")
-        parallel = true
-    }
+    // apply(plugin = "cz.kotox.android.linters")
+
+//    detekt {
+//        buildUponDefaultConfig = true
+//        config = files("${project.rootDir}/extras/detekt.yml")
+//        parallel = true
+//    }
 
     repositories {
         google()

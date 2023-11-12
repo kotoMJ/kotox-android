@@ -1,4 +1,5 @@
 plugins {
+    //alias(libs.plugins.cz.kotox.linters)
     alias(libs.plugins.cz.kotox.android.library)
     alias(libs.plugins.cz.kotox.android.library.compose)
 }
@@ -6,7 +7,6 @@ plugins {
 android {
     namespace = "cz.kotox.common.ui"
 }
-
 
 dependencies {
 
