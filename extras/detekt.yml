@@ -128,7 +128,9 @@ complexity:
     threshold: 600
   LongMethod:
     active: true
-    threshold: 60
+    threshold: 100
+    ignoreAnnotated:
+      - androidx.compose.runtime.Composable
   LongParameterList:
     active: true
     functionThreshold: 6
@@ -136,6 +138,8 @@ complexity:
     ignoreDefaultParameters: false
     ignoreDataClasses: true
     ignoreAnnotatedParameter: [ ]
+    ignoreAnnotated:
+      - androidx.compose.runtime.Composable
   MethodOverloading:
     active: false
     threshold: 6
