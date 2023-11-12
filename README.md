@@ -4,8 +4,8 @@ Android monorepo playground and knowledge base built by MJ.
   
   
 Role of this repository is:  
-- realize and store useful code/ideas
-- try new things in the non trivial, but safe place
+- realize and store useful code/ideas.
+- try new things in the non trivial, but safe place.
   
  
 ## Module structure
