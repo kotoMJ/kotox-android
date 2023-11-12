@@ -10,6 +10,8 @@ Therefore with every push to the repository don't forget execute local file `sh 
 
 
 ## Detekt
+
+[Detekt definition] is placed in extras folder
 ... TBD
 
 
@@ -18,3 +20,4 @@ Therefore with every push to the repository don't forget execute local file `sh 
 
 
 [linters]: ./build-logic/convention/src/main/kotlin/LintersConventionPlugin.kt
+[Detekt definition]: ./extras/detekt.yml
