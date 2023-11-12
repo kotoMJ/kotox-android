@@ -43,6 +43,7 @@ data class CaptureZoomToggleInput(
     showBackground = true,
     name = "Dark Mode"
 )
+@SuppressWarnings("MagicNumber")
 @Composable
 fun CaptureZoomToggle(
     @PreviewParameter(ZoomTogglePreviewProvider::class) input: CaptureZoomToggleInput,

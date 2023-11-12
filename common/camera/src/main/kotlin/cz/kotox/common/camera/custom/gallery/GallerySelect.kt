@@ -12,7 +12,6 @@ import cz.kotox.common.camera.custom.EMPTY_IMAGE_URI
 @ExperimentalPermissionsApi
 @Composable
 fun GallerySelect(
-    modifier: Modifier = Modifier,
     onImageUri: (Uri) -> Unit = { }
 ) {
     val launcher = rememberLauncherForActivityResult(
