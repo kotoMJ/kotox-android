@@ -33,3 +33,8 @@ module but there is a hierarchy though.
 ## Convention Plugins
   
 * [PoEditor - customized string resources download/distribution plugin](./build-logic/README-POEDITOR.md)  
+
+
+## Linters  
+More about linters used in this project is in [README-LINTERS.md](./README-LINTERS.md)  
+
