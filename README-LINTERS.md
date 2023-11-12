@@ -17,4 +17,4 @@ Therefore with every push to the repository don't forget execute local file `sh 
 
 
 
-[linters](./build-logic/convention/src/main/kotlin/LintersConventionPlugin.kt)
+[linters]: ./build-logic/convention/src/main/kotlin/LintersConventionPlugin.kt
