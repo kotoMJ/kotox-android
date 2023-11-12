@@ -1,0 +1,126 @@
+name: Android - Code check
+
+on:
+  issue_comment:
+    types: [ created ]
+
+concurrency:
+  group: env-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  code-check:
+    name: Android Code check
+    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/codecheck'}}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: get pr sha
+        id: sha
+        uses: actions/github-script@v4
+        with:
+          result-encoding: string
+          script: |
+            const { owner, repo, number } = context.issue;
+            const pr = await github.pulls.get({
+              owner,
+              repo,
+              pull_number: number,
+            });
+            return pr.data.head.sha
+
+      - name: set pending status
+        uses: actions/github-script@v4
+        with:
+          script: |
+            github.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: '${{ steps.sha.outputs.result }}',
+              state: 'pending',
+              context: 'Android Code check',
+              description: 'Running ktlin & detekt tasks',
+            });
+
+      - name: checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ steps.sha.outputs.result }}
+
+      - name: Validate gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: setup java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          check-latest: true
+
+      - name: setup gradle cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: run ktlint
+        run: ./gradlew ktlintCheck
+
+      - name: run detekt
+        run: ./gradlew detekt
+
+      - name: failure comment
+        if: ${{ failure() }}
+        uses: actions/github-script@v4
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Code check failed! ❌',
+            });
+
+      - name: failure status report
+        if: ${{ failure() }}
+        uses: actions/github-script@v4
+        with:
+          script: |
+            github.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: '${{ steps.sha.outputs.result }}',
+              state: 'failure',
+              context: 'Android Code check',
+              description: 'ktlint & detekt tasks failed ❌',
+            });
+
+      - name: success comment
+        if: ${{ success() }}
+        uses: actions/github-script@v4
+        with:
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Code check success! ✅',
+            });
+
+      - name: success status report
+        if: ${{ success() }}
+        uses: actions/github-script@v4
+        with:
+          script: |
+            github.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: '${{ steps.sha.outputs.result }}',
+              state: 'success',
+              context: 'Android Code check',
+              description: 'ktlint & detekt tasks succeeded ✅',
+            });
