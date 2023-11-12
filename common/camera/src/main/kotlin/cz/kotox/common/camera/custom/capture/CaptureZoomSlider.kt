@@ -160,6 +160,7 @@ fun CaptureZoomSlider(
 }
 
 @Composable
+@SuppressWarnings("MagicNumber")//FIXME MJ
 private fun captureZoomSliderColors(): androidx.compose.material3.SliderColors = androidx.compose.material3.SliderDefaults.colors(
     activeTickColor = Color.Transparent,
     inactiveTickColor = Color.Transparent,

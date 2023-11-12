@@ -1,6 +1,7 @@
-import cz.kotox.android.kotlinOptions
+
 
 plugins {
+    //alias(libs.plugins.cz.kotox.linters)
     alias(libs.plugins.cz.kotox.android.library)
     alias(libs.plugins.cz.kotox.android.hilt)
 }

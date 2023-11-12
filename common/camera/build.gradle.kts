@@ -1,4 +1,5 @@
 plugins {
+    alias(libs.plugins.cz.kotox.linters)
     alias(libs.plugins.cz.kotox.android.library)
     alias(libs.plugins.cz.kotox.android.library.compose)
     alias(libs.plugins.cz.kotox.android.feature)
@@ -10,7 +11,7 @@ android {
 
 dependencies {
 
-    implementation(projects.common.coreAndroid) //prefs,enhanced permissions
+    implementation(projects.common.coreAndroid) // prefs,enhanced permissions
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)

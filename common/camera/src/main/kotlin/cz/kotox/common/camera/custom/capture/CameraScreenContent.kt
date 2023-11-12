@@ -89,7 +89,6 @@ fun CameraScreenContent(
         var showGallerySelect by remember { mutableStateOf(false) }
         if (showGallerySelect) {
             GallerySelect(
-                modifier = modifier,
                 onImageUri = { uri ->
                     showGallerySelect = false
                     imageUri = uri

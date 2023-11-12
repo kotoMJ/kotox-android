@@ -9,3 +9,6 @@ internal val Project.catalog
 
 internal val Project.libs
     get() = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
+internal val Project.isAndroid: Boolean
+    get() = extensions.findByName("android") != null

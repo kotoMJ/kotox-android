@@ -28,8 +28,7 @@ import cz.kotox.common.camera.custom.LensFacing
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-private const val SHOW_SLIDER_COUNTDOWN_IN_SECONDS = 3
-
+@SuppressWarnings("MagicNumber", "UnusedParameter")
 @Composable
 fun CameraCaptureLandscape(
     modifier: Modifier = Modifier,
@@ -123,7 +122,7 @@ fun CameraCaptureLandscape(
 
         when (currentSelector) {
             LensFacing.BACK -> {
-                launchCameraUseCase(
+                LaunchCameraUseCase(
                     previewUseCase,
                     context,
                     lifecycleOwner,
@@ -134,7 +133,7 @@ fun CameraCaptureLandscape(
             }
 
             LensFacing.FRONT -> {
-                launchCameraUseCase(
+                LaunchCameraUseCase(
                     previewUseCase,
                     context,
                     lifecycleOwner,

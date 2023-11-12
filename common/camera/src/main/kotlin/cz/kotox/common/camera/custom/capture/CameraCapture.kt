@@ -251,8 +251,9 @@ fun CameraCapture(
 
 }
 
+@SuppressWarnings("TooGenericExceptionCaught")
 @Composable
-internal fun launchCameraUseCase(
+internal fun LaunchCameraUseCase(
     previewUseCase: UseCase,
     context: Context,
     lifecycleOwner: LifecycleOwner,

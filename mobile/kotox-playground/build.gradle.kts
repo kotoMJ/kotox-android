@@ -2,6 +2,7 @@ import cz.kotox.android.Flavor
 import cz.kotox.android.FlavorDimension
 
 plugins {
+    //alias(libs.plugins.cz.kotox.linters)
     alias(libs.plugins.cz.kotox.android.application)
     alias(libs.plugins.cz.kotox.android.application.compose)
     alias(libs.plugins.cz.kotox.android.poeditor)
@@ -18,10 +19,10 @@ android {
     defaultConfig {
         applicationId = "cz.kotox.android.playground"
 
-        //val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
+        // val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
 
-        versionCode = 1000//version.versionCode
-        versionName = "1.0.0.0"//version.versionName
+        versionCode = 1000 // version.versionCode
+        versionName = "1.0.0.0" // version.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -23,6 +23,8 @@ dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
+    compileOnly(libs.detekt.gradlePlugin)
+    compileOnly(libs.ktint.gradlePlugin)
 
     //PoEditor dependencies
     implementation(libs.kotlin.stdlib)
@@ -70,6 +72,11 @@ gradlePlugin {
         register("androidHilt") {
             id = "cz.kotox.android.hilt"
             implementationClass = "AndroidHiltConventionPlugin"
+        }
+
+        register("linters") {
+            id = "cz.kotox.linters"
+            implementationClass = "LintersConventionPlugin"
         }
     }
 }

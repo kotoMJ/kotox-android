@@ -1,6 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION") // Fixes a known IntelliJ IDEA bug: https://youtrack.jetbrains.com/issue/KTIJ-19369
 
 plugins {
+    //alias(libs.plugins.cz.kotox.linters)
     alias(libs.plugins.cz.kotox.android.library)
     alias(libs.plugins.cz.kotox.android.library.compose)
     alias(libs.plugins.cz.kotox.android.feature)

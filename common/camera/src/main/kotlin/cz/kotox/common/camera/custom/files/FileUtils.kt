@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import androidx.core.content.FileProvider
+import timber.log.Timber
 import java.io.File
 
 object FileUtils {
@@ -15,6 +16,7 @@ object FileUtils {
      * @param context used to access Android APIs, like content resolve, it is your
      * activity/fragment/widget.
      */
+    @SuppressWarnings("TooGenericExceptionCaught")
     fun getCameraImageOutputUri(context: Context): Uri? {
         val outputFileUri: Uri?
         val getImage: File?
@@ -29,6 +31,7 @@ object FileUtils {
                     File.createTempFile("pickImageResult", ".jpeg", getImage)
                 )
             } catch (e: Exception) {
+                Timber.w(e, "Fallback for image uri")
                 Uri.fromFile(File(getImage!!.path, "pickImageResult.jpeg"))
             }
         } else {

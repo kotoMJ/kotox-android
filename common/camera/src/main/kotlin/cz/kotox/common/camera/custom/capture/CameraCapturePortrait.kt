@@ -152,7 +152,7 @@ fun CameraCapturePortrait(
 
         when (currentSelector) {
             LensFacing.BACK -> {
-                launchCameraUseCase(
+                LaunchCameraUseCase(
                     previewUseCase,
                     context,
                     lifecycleOwner,
@@ -163,7 +163,7 @@ fun CameraCapturePortrait(
             }
 
             LensFacing.FRONT -> {
-                launchCameraUseCase(
+                LaunchCameraUseCase(
                     previewUseCase,
                     context,
                     lifecycleOwner,
