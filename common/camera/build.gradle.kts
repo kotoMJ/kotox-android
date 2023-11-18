@@ -10,6 +10,7 @@ android {
 }
 
 dependencies {
+    lintChecks(projects.lint)
 
     implementation(projects.common.coreAndroid) // prefs,enhanced permissions
     implementation(libs.androidx.camera.camera2)

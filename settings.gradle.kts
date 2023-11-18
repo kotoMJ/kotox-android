@@ -28,6 +28,7 @@ include(
     ":mobile:kotox-starter",
     ":mobile:kotox-strings",
     ":mobile:kotox-poc-task",
-    ":test"
+    ":test",
+    ":lint"
 
 )

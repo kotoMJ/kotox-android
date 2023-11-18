@@ -9,13 +9,13 @@ plugins {
 }
 
 android {
-    namespace = "cz.kotox.android.media"
+    namespace = "cz.kotox.media"
 
     buildFeatures {
         buildConfig = true
     }
     defaultConfig {
-        applicationId = "cz.kotox.android.media"
+        applicationId = "cz.kotox.media"
 
         // val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
 
@@ -53,6 +53,8 @@ android {
 }
 
 dependencies {
+    lintChecks(projects.lint)
+
     implementation(projects.common.core)
     implementation(projects.common.coreAndroid)
     implementation(projects.common.ui)

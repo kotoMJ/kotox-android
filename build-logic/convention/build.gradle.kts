@@ -78,5 +78,10 @@ gradlePlugin {
             id = "cz.kotox.linters"
             implementationClass = "LintersConventionPlugin"
         }
+
+        register("kotlinLibrary") {
+            id = "cz.kotox.kotlin.library"
+            implementationClass = "KotlinLibraryConventionPlugin"
+        }
     }
 }
