@@ -27,7 +27,7 @@ object FileUtils {
             outputFileUri = try {
                 FileProvider.getUriForFile(
                     context,
-                    /*BuildConfig.FILE_PROVIDER_AUTHORITY*/"cz.kotox.android.camera.custom", //FIXME MJ - add file provider authority
+                    /*BuildConfig.FILE_PROVIDER_AUTHORITY*/"cz.kotox.camera.custom", //FIXME MJ - add file provider authority
                     File.createTempFile("pickImageResult", ".jpeg", getImage)
                 )
             } catch (e: Exception) {

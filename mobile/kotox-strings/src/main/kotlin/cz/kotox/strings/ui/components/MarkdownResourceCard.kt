@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import cz.kotox.android.strings.R
+import cz.kotox.strings.R
 import cz.kotox.common.text.markdown.MDDocument
 import cz.kotox.common.text.theme.KotoxMarkdownTheme
 import cz.kotox.common.core.android.navigation.navigateToWeb

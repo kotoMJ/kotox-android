@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.layoutId
 import cz.kotox.common.ui.theme.LocalColors
 import cz.kotox.feature.task.poc.detail.ui.TaskDetailActivityIntentUtil
-import cz.kotox.android.task.R
+import cz.kotox.task.R
 import cz.kotox.common.task.poc.R as CTPR
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager

@@ -10,6 +10,7 @@ buildscript {
 @Suppress("DSL_SCOPE_VIOLATION") // Fixes a known IntelliJ IDEA bug: https://youtrack.jetbrains.com/issue/KTIJ-19369
 plugins {
     alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.lint) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.detekt) // apply false
     alias(libs.plugins.ktlint) // apply false
@@ -19,17 +20,7 @@ plugins {
 }
 
 allprojects {
-    // apply(plugin = "io.gitlab.arturbosch.detekt")
-    // apply(plugin = "org.jlleitschuh.gradle.ktlint")
     apply(plugin = "com.github.ben-manes.versions")
-
-    // apply(plugin = "cz.kotox.android.linters")
-
-//    detekt {
-//        buildUponDefaultConfig = true
-//        config = files("${project.rootDir}/extras/detekt.yml")
-//        parallel = true
-//    }
 
     repositories {
         google()

@@ -1,7 +1,7 @@
 package cz.kotox.starter
 
 import android.app.Application
-import cz.kotox.android.starter.BuildConfig
+import cz.kotox.starter.BuildConfig
 import cz.kotox.common.ui.ThemeUtils
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber

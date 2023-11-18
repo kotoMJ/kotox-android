@@ -1,9 +1,11 @@
 package cz.kotox.common.task.poc.domain.usecase
 
 import android.content.Context
+import cz.kotox.common.core.android.di.IoDispatcher
 import cz.kotox.common.task.poc.data.api.respository.TaskRepository
 import cz.kotox.common.task.poc.data.impl.remote.image.ImageDownloader
 import cz.kotox.task.domain.api.factory.toTask
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -11,10 +13,11 @@ import javax.inject.Inject
 
 class DownloadTaskPhotoUseCase @Inject constructor(
     private val taskRepository: TaskRepository,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
 ) {
     suspend fun execute(context: Context, taskId: String): Boolean {
 
-        return withContext(Dispatchers.IO) {
+        return withContext(ioDispatcher) {
             val imageUrl = taskRepository
                 .getOne(taskId)
                 .toTask().image

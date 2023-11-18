@@ -12,6 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -26,7 +27,7 @@ import cz.kotox.common.ui.theme.LocalTypography
 import cz.kotox.common.ui.theme.KotoxBasicTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
-import cz.kotox.android.task.R
+import cz.kotox.task.R
 import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
@@ -63,7 +64,7 @@ fun MainScreenSectionTabRow(
 
     KotoxBasicTheme {
 
-        val selectedTabIndex by derivedStateOf { input.pagerState.currentPage }
+        val selectedTabIndex by remember {derivedStateOf { input.pagerState.currentPage }}
 
 
         TabRow(

@@ -12,6 +12,11 @@ sdk-min = "26"
 # https://developer.android.com/studio/releases/gradle-plugin#android_gradle_plugin_and_android_studio_compatibility
 # https://developer.android.com/studio/releases/gradle-plugin#updating-gradle
 # https://developer.android.com/studio/releases/gradle-plugin#min-kotlin-version
+
+# Android studio release notes: https://androidstudio.googleblog.com/
+# AGP releases: https://developer.android.com/reference/tools/gradle-api
+# AGP x Gradle Compatibility https://developer.android.com/build/releases/gradle-plugin#updating-gradle
+# AGP x AS Compatibility: https://developer.android.com/studio/releases#android_gradle_plugin_and_android_studio_compatibility
 # ==================================================================================================
 androidGradlePlugin = "8.1.2"
 
@@ -22,6 +27,7 @@ androidGradlePlugin = "8.1.2"
 # increments when upgrading. Prefer to upgrade before other compose libs (speculation: more stable).
 # https://developer.android.com/jetpack/androidx/releases/compose-kotlin#pre-release_kotlin_compatibility
 
+# Compose x Kotlin Compatibility: https://developer.android.com/jetpack/androidx/releases/compose-kotlin
 # KSP - https://github.com/google/ksp/releases
 # ==================================================================================================
 androidxComposeCompiler = "1.5.3"
@@ -80,6 +86,7 @@ google-accompanist = "0.28.0"
 # ==================================================================================================
 detekt = "1.23.1"
 ktlint = "11.5.1"
+lint = "31.1.2"
 
 # ==================================================================================================
 # Other libs
@@ -201,6 +208,8 @@ leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.re
 
 libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "libphonenumber" }
 
+lint-api = { module = "com.android.tools.lint:lint-api", version.ref = "lint" }
+
 moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
 moshi-kotlin = { group = "com.squareup.moshi", name = "moshi-kotlin", version.ref = "moshi" }
@@ -245,6 +254,9 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 
+#buildLogic-kotlin-library = { id = "androidtemplate.kotlin.library", version = "+" }
+android-lint = { id = "com.android.lint", version.ref = "androidGradlePlugin" }
+
 # Plugins defined by this project
 cz-kotox-android-application = { id = "cz.kotox.android.application", version = "unspecified" }
 cz-kotox-android-application-compose = { id = "cz.kotox.android.application.compose", version = "unspecified" }
@@ -254,6 +266,7 @@ cz-kotox-android-library = { id = "cz.kotox.android.library", version = "unspeci
 cz-kotox-android-library-compose = { id = "cz.kotox.android.library.compose", version = "unspecified" }
 cz-kotox-android-poeditor = { id = "cz.kotox.android.poeditor", version = "unspecified" }
 cz-kotox-linters = { id = "cz.kotox.linters", version = "unspecified" }
+cz-kotox-kotlin-library = { id = "cz.kotox.kotlin.library", version = "unspecified"}
 
 [bundles]
 

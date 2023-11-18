@@ -13,7 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import cz.kotox.android.strings.R
+import cz.kotox.strings.R
 import cz.kotox.common.core.android.navigation.navigateToWeb
 
 @Preview(
