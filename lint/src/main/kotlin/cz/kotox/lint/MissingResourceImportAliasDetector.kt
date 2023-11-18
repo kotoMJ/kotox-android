@@ -38,7 +38,7 @@ class MissingResourceImportAliasDetector : Detector(), SourceCodeScanner {
                       """,
             category = Category.CORRECTNESS,
             priority = 6,
-            severity = Severity.ERROR,
+            severity = Severity.FATAL,
             implementation = SCOPES,
         )
     }

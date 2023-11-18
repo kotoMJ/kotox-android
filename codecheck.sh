@@ -1,1 +1,1 @@
-./gradlew ktlintFormat detekt
+./gradlew ktlintFormat detekt lint

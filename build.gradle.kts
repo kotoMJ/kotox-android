@@ -22,7 +22,6 @@ plugins {
 allprojects {
     apply(plugin = "com.github.ben-manes.versions")
 
-
     repositories {
         google()
         mavenCentral()

@@ -73,6 +73,9 @@ jobs:
       - name: run detekt
         run: ./gradlew detekt
 
+      - name: run lint
+        run: ./gradlew lint
+
       - name: failure comment
         if: ${{ failure() }}
         uses: actions/github-script@v4

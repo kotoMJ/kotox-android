@@ -1,5 +1,6 @@
 package cz.kotox.common.camera.custom.capture
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.util.Log
@@ -31,6 +32,7 @@ suspend fun Context.getCameraProvider(): ProcessCameraProvider = suspendCoroutin
 val Context.executor: Executor
     get() = ContextCompat.getMainExecutor(this)
 
+@SuppressLint("RawDispatchersUse")
 suspend fun ImageCapture.takePicture(executor: Executor): File? {
 
     try {
