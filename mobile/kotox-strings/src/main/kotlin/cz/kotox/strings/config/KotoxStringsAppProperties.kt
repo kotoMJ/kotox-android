@@ -2,7 +2,7 @@ package cz.kotox.strings.config
 
 import android.content.res.Configuration
 import cz.kotox.common.core.config.AppProperties
-import cz.kotox.android.strings.BuildConfig
+import cz.kotox.strings.BuildConfig
 import cz.kotox.strings.StringsApplication
 
 private enum class BuildType(val buildTypeName: String) {

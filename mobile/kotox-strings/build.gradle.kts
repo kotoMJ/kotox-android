@@ -11,7 +11,7 @@ plugins {
 
 android {
 
-    namespace = "cz.kotox.android.strings"
+    namespace = "cz.kotox.strings"
 
     defaultConfig {
 
@@ -19,7 +19,7 @@ android {
             buildConfig = true
         }
 
-        applicationId = "cz.kotox.android.strings"
+        applicationId = "cz.kotox.strings"
 
         // val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
 
@@ -54,9 +54,20 @@ android {
             }
         }
     }
+
+    packaging {
+        resources {
+            excludes.add("META-INF/LICENSE.md")
+        }
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
 }
 
 dependencies {
+    lintChecks(projects.lint)
+
     implementation(libs.androidx.compose.material3) // customize slider
 
     implementation(projects.common.ui)

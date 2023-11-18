@@ -9,7 +9,7 @@ import cz.kotox.task.list.ui.MainFeedState
 import cz.kotox.task.list.ui.MainScreen
 import cz.kotox.task.list.ui.MainScreenInput
 import cz.kotox.task.list.ui.TaskGroup
-import cz.kotox.android.task.R
+import cz.kotox.task.R
 import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import cz.kotox.task.list.ui.UI_TEST_MAIN_LIST_TAG
 import org.junit.Rule

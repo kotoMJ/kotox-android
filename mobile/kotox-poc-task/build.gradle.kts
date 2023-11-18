@@ -10,14 +10,14 @@ plugins {
 
 android {
 
-    namespace = "cz.kotox.android.task"
+    namespace = "cz.kotox.task"
 
     buildFeatures {
         buildConfig = true
     }
 
     defaultConfig {
-        applicationId = "cz.kotox.android.task"
+        applicationId = "cz.kotox.task"
 
         // val version = Versions(major = 1, minor = 0, patch = 0, build = 0)
 
@@ -64,10 +64,10 @@ android {
         }
     }
 
-    namespace = "cz.kotox.android.task"
 }
 
 dependencies {
+    lintChecks(projects.lint)
 
     implementation(projects.common.core)
     implementation(projects.common.ui)

@@ -26,7 +26,7 @@ import cz.kotox.common.ui.theme.LocalTypography
 import cz.kotox.common.ui.theme.KotoxBasicTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
-import cz.kotox.android.task.R
+import cz.kotox.task.R
 import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime

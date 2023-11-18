@@ -20,17 +20,8 @@ plugins {
 }
 
 allprojects {
-    // apply(plugin = "io.gitlab.arturbosch.detekt")
-    // apply(plugin = "org.jlleitschuh.gradle.ktlint")
     apply(plugin = "com.github.ben-manes.versions")
 
-    // apply(plugin = "cz.kotox.android.linters")
-
-//    detekt {
-//        buildUponDefaultConfig = true
-//        config = files("${project.rootDir}/extras/detekt.yml")
-//        parallel = true
-//    }
 
     repositories {
         google()

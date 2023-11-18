@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import cz.kotox.common.core.error.BasicError
 import cz.kotox.common.core.error.OfflineError
 import cz.kotox.common.ui.theme.KotoxBasicTheme
-import cz.kotox.android.task.R
+import cz.kotox.task.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
