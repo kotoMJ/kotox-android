@@ -29,6 +29,7 @@ include(
     ":mobile:kotox-strings",
     ":mobile:kotox-poc-task",
     ":test",
-    ":lint"
+    ":lint",
+    ":konsist_test"
 
 )

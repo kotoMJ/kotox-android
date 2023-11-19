@@ -85,6 +85,7 @@ google-accompanist = "0.28.0"
 # Linters
 # ==================================================================================================
 detekt = "1.23.1"
+konsist = "0.13.0"
 ktlint = "11.5.1"
 lint = "31.1.2"
 
@@ -161,7 +162,6 @@ androidx-palette = { module = "androidx.palette:palette-ktx", version.ref = "and
 
 androidx-constraint-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "androidx-constraintlayout-compose" }
 
-junit = { module = "junit:junit", version.ref = "junit" }
 androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-ext-junit" }
 androidx-test-ext-truth = { module = "androidx.test.ext:truth", version.ref = "androidx-test-ext-truth" }
 
@@ -198,11 +198,15 @@ google-firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crash
 google-firebase-crashlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "google-firebase-crashlytics-gradle" }
 google-libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "google-libphonenumber" }
 
+junit = { module = "junit:junit", version.ref = "junit" }
+
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+
+konsist = {module = "com.lemonappdev: konsist", version.ref = "konsist"}
 
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 
