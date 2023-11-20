@@ -4,9 +4,8 @@ import android.content.Context
 import cz.kotox.common.core.android.di.IoDispatcher
 import cz.kotox.common.task.poc.data.api.respository.TaskRepository
 import cz.kotox.common.task.poc.data.impl.remote.image.ImageDownloader
-import cz.kotox.task.domain.api.factory.toTask
+import cz.kotox.common.task.poc.domain.mapper.toTask
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject

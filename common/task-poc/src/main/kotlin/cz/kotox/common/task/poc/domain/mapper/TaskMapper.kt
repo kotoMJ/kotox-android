@@ -1,4 +1,4 @@
-package cz.kotox.task.domain.api.factory
+package cz.kotox.common.task.poc.domain.mapper
 
 import cz.kotox.common.crypto.CryptoHelper
 import cz.kotox.common.task.poc.domain.model.Task

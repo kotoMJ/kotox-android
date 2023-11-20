@@ -2,8 +2,6 @@ package cz.kotox.common.camera.custom.capture
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.net.Uri
-import android.util.Log
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.lifecycle.ProcessCameraProvider

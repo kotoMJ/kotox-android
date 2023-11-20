@@ -7,7 +7,7 @@ import cz.kotox.common.network.apicall.apiCall
 import cz.kotox.common.network.apicall.mapErrorBasic
 import cz.kotox.common.core.result.fold
 import cz.kotox.common.task.poc.data.api.respository.TaskRepository
-import cz.kotox.task.domain.api.factory.toTaskEntity
+import cz.kotox.common.task.poc.domain.mapper.toTaskEntity
 import cz.kotox.common.task.poc.data.impl.remote.api.TaskApi
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
