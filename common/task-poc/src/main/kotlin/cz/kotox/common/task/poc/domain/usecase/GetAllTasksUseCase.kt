@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetAllTasksUseCase @Inject constructor(
-    private val taskRepository: TaskRepository,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
+    private val taskRepository: TaskRepository,
 ) {
     suspend fun execute(): Flow<List<Task>> =
         taskRepository

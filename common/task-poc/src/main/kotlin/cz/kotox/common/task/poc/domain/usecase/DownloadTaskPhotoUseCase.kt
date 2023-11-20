@@ -12,8 +12,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class DownloadTaskPhotoUseCase @Inject constructor(
-    private val taskRepository: TaskRepository,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
+    private val taskRepository: TaskRepository
 ) {
     suspend fun execute(context: Context, taskId: String): Boolean {
 

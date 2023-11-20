@@ -15,9 +15,9 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class RefreshTasksUseCase @Inject constructor(
-    private val taskApi: TaskApi,
-    private val taskRepository: TaskRepository,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
+    private val taskApi: TaskApi,
+    private val taskRepository: TaskRepository
 ) {
 
     suspend fun execute(onError: (error: BasicError) -> Unit, onSuccess: () -> Unit) {

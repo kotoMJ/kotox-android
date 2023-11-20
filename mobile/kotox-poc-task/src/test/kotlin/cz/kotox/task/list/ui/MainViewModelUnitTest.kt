@@ -1,9 +1,6 @@
 package cz.kotox.task.list.ui
 
-import cz.kotox.common.task.poc.domain.model.Task
 import cz.kotox.common.task.poc.domain.usecase.GetAllTasksUseCase
-import cz.kotox.common.task.poc.domain.usecase.GetOneTaskImageUseCase
-import cz.kotox.common.task.poc.domain.usecase.RefreshTasksUseCase
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -21,7 +18,7 @@ class MainViewModelUnitTest {
 
 
     private lateinit var mainViewModel: MainViewModel
-    private lateinit var getAllTasksUseCase: cz.kotox.common.task.poc.domain.usecase.GetAllTasksUseCase
+    private lateinit var getAllTasksUseCase: GetAllTasksUseCase
     private lateinit var getOneTaskImageUseCase: cz.kotox.common.task.poc.domain.usecase.GetOneTaskImageUseCase
     private lateinit var remoteRefreshTasksUseCase: cz.kotox.common.task.poc.domain.usecase.RefreshTasksUseCase
 
