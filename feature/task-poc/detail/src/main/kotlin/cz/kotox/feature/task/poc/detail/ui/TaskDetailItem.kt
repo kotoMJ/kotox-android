@@ -27,6 +27,7 @@ import cz.kotox.common.ui.theme.KotoxBasicTheme
     showBackground = true,
     name = "Dark Mode"
 )
+@Suppress("All JetPack Compose previews contain 'Preview' in method name")
 @Composable
 fun TaskDetailItem(
     @PreviewParameter(TaskSummaryComponentPreviewProvider::class) input: TaskSummaryComponentInput

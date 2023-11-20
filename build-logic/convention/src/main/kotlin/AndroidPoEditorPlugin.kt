@@ -1,7 +1,6 @@
 import cz.kotox.android.poeditor.PoEditorImportController
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import java.util.*
 
 @Suppress("unused")
 class AndroidPoEditorPlugin : Plugin<Project> {

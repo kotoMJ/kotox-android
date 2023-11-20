@@ -22,6 +22,7 @@ import cz.kotox.common.text.extension.withBoldParts
     showBackground = true,
     name = "Dark Mode"
 )
+@Suppress("All JetPack Compose previews contain 'Preview' in method name")
 @Composable
 fun CustomResourceCard() {
     ResourceCard(titleRes = R.string.main_screen_card_custom) {

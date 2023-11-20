@@ -44,6 +44,7 @@ data class CaptureZoomToggleInput(
     name = "Dark Mode"
 )
 @SuppressWarnings("MagicNumber")
+@Suppress("All JetPack Compose previews contain 'Preview' in method name")
 @Composable
 fun CaptureZoomToggle(
     @PreviewParameter(ZoomTogglePreviewProvider::class) input: CaptureZoomToggleInput,

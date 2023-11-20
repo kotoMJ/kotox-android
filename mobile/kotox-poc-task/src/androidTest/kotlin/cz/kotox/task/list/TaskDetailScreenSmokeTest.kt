@@ -26,13 +26,14 @@ class TaskDetailScreenSmokeTest {
     @get: Rule
     var hiltRule = HiltAndroidRule(this)
 
+    @get:Rule(order = 1)
+    val detailTaskActivityTestRule = createAndroidComposeRule<TaskDetailActivity>()
+
+
     @Before
     fun init() {
         hiltRule.inject()
     }
-
-    @get:Rule(order = 1)
-    val detailTaskActivityTestRule = createAndroidComposeRule<TaskDetailActivity>()
 
 
     @Ignore("TODO, Fix: Task ID NOT set! Run activity with extra ARG_TASK_ID")

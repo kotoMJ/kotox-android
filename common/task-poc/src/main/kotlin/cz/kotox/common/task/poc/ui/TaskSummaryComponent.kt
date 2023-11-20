@@ -44,6 +44,7 @@ data class TaskSummaryComponentInput(
     name = "Light Mode"
 )
 @Composable
+@Suppress("All JetPack Compose previews contain 'Preview' in method name")
 fun TaskSummaryComponent(
     @PreviewParameter(TaskSummaryComponentPreviewProvider::class) input: TaskSummaryComponentInput
 ) {

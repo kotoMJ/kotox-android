@@ -38,6 +38,7 @@ import cz.kotox.common.task.poc.ui.TaskSummaryComponentPreviewProvider
     showBackground = true,
     name = "Dark Mode"
 )
+@Suppress("All JetPack Compose previews contain 'Preview' in method name")
 @Composable
 fun MainScreenTaskItem(
     modifier: Modifier = Modifier,
