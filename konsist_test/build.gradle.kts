@@ -5,21 +5,8 @@ plugins {
 
 android {
     namespace = "cz.kotox.konsist"
-
-    packaging {
-        resources {
-            excludes.add("META-INF/LICENSE.md")
-            excludes.add("META-INF/LICENSE-notice.md")
-        }
-        jniLibs {
-            useLegacyPackaging = true
-        }
-    }
-
-    defaultConfig {
-        testInstrumentationRunner = "cz.kotox.task.list.TaskTestRunner"
-    }
 }
+
 dependencies {
 
     testImplementation(libs.androidx.appcompat)
