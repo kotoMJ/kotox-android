@@ -6,7 +6,9 @@ import com.lemonappdev.konsist.api.ext.list.withAllParentsOf
 import com.lemonappdev.konsist.api.verify.assertTrue
 import org.junit.Test
 
-// Check Android specific coding rules.
+/**
+ * Check Android specific coding rules.
+ */
 class AndroidKonsistTest {
     @Test
     fun `classes extending 'ViewModel' should have 'ViewModel' suffix`() {

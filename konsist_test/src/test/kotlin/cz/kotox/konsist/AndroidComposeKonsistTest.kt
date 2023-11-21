@@ -6,7 +6,9 @@ import com.lemonappdev.konsist.api.verify.assertTrue
 import org.junit.Test
 import androidx.compose.ui.tooling.preview.Preview
 
-// Check Android specific coding rules.
+/**
+ * Check Android specific coding rules.
+ */
 class AndroidComposeKonsistTest {
     //FIXME MJ - All occurrences suppressed by @Suppress("All JetPack Compose previews contain 'Preview' in method name") temporarily
     @Test
