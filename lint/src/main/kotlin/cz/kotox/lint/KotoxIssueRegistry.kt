@@ -16,8 +16,8 @@ class KotoxIssueRegistry : IssueRegistry() {
     override val minApi: Int = 12
 
     override val vendor = Vendor(
-        feedbackUrl = "https://strv.com",
-        identifier = "com.strv",
-        vendorName = "STRV",
+        feedbackUrl = "https://kotox.cz",
+        identifier = "kotox.cz",
+        vendorName = "KOTOX",
     )
 }
