@@ -46,6 +46,7 @@ data class MainScreenAppBarInput constructor(
     name = "Dark Mode"
 )
 @Composable
+@Suppress("All JetPack Compose previews contain 'Preview' in method name")
 fun MainScreenAppBarView(
     @PreviewParameter(MainScreenAppBarPreviewProvider::class) input: MainScreenAppBarInput,
     backButtonModifier: Modifier = Modifier,

@@ -7,7 +7,7 @@ import cz.kotox.common.network.apicall.apiCall
 import cz.kotox.common.network.apicall.mapErrorBasic
 import cz.kotox.common.core.result.fold
 import cz.kotox.common.task.poc.data.api.respository.TaskRepository
-import cz.kotox.task.domain.api.factory.toTaskEntity
+import cz.kotox.common.task.poc.domain.mapper.toTaskEntity
 import cz.kotox.common.task.poc.data.impl.remote.api.TaskApi
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -15,9 +15,9 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class RefreshTasksUseCase @Inject constructor(
-    private val taskApi: TaskApi,
-    private val taskRepository: TaskRepository,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
+    private val taskApi: TaskApi,
+    private val taskRepository: TaskRepository
 ) {
 
     suspend fun execute(onError: (error: BasicError) -> Unit, onSuccess: () -> Unit) {

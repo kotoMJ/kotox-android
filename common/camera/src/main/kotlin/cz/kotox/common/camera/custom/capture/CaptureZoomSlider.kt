@@ -63,6 +63,8 @@ data class CaptureZoomSliderInput(
     showBackground = true,
     name = "Dark Mode"
 )
+
+@Suppress("All JetPack Compose previews contain 'Preview' in method name")
 @Composable
 fun CaptureZoomSlider(
     @PreviewParameter(ZoomSliderPreviewProvider::class) input: CaptureZoomSliderInput,

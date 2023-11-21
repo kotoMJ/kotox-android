@@ -7,8 +7,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class CountryCodeDetectUseCase @Inject constructor(
-    private val countryRepository: CountryRepository,
-    private val countryModelMapper: CountryModelMapper
+    private val countryModelMapper: CountryModelMapper,
+    private val countryRepository: CountryRepository
 ) {
 
     suspend fun get(phoneNumberValue: String): CountryUiModel {

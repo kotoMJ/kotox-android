@@ -68,6 +68,7 @@ data class TaskDetailScreenInput(
     name = "Light Mode",
 
     )
+@Suppress("All JetPack Compose previews contain 'Preview' in method name")
 @Composable
 fun TaskDetailScreen(
     @PreviewParameter(MainScreenPreviewProvider::class) input: TaskDetailScreenInput,

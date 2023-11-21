@@ -6,8 +6,8 @@ import cz.kotox.common.i18n.domain.model.CountryUiModel
 import javax.inject.Inject
 
 class CountryCodeListUseCase @Inject constructor(
-    private val countryRepository: CountryRepository,
     private val countryModelMapper: CountryModelMapper,
+    private val countryRepository: CountryRepository,
 ) {
 
     suspend fun get(): List<CountryUiModel> =

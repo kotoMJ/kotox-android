@@ -54,6 +54,7 @@ data class MainScreenInput(
     showBackground = true,
     name = "Dark Mode"
 )
+@Suppress("All JetPack Compose previews contain 'Preview' in method name")
 @Composable
 fun MainScreen(
     //@PreviewParameter(MainScreenPreviewProvider::class) input: MainScreenInput,

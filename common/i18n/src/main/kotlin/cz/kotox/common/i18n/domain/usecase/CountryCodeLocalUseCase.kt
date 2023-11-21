@@ -11,9 +11,9 @@ import java.util.Locale
 import javax.inject.Inject
 
 class CountryCodeLocalUseCase @Inject constructor(
-    private val countryRepository: CountryRepository,
-    private val countryModelMapper: CountryModelMapper,
     @ApplicationContext private val context: Context,
+    private val countryModelMapper: CountryModelMapper,
+    private val countryRepository: CountryRepository,
 ) {
 
     suspend fun get(locale: Locale = Locale.getDefault()): CountryUiModel {

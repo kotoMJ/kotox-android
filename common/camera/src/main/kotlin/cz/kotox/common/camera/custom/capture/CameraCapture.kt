@@ -3,7 +3,6 @@ package cz.kotox.common.camera.custom.capture
 import android.Manifest
 import android.content.Context
 import android.content.res.Configuration
-import android.util.Log
 import android.view.ScaleGestureDetector
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
@@ -273,7 +272,7 @@ internal fun LaunchCameraUseCase(
             )
             onCameraBind.invoke(camera)
         } catch (ex: Exception) {
-            Log.e("CameraCapture", "Failed to bind camera use cases", ex)
+            Timber.e(ex, "Failed to bind camera use cases")
         }
     }
 }

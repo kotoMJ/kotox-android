@@ -57,6 +57,7 @@ data class MainScreenTypeTabInput @ExperimentalPagerApi constructor(
 )
 @ExperimentalPagerApi
 @Composable
+@Suppress("All JetPack Compose previews contain 'Preview' in method name")
 fun MainScreenSectionTabRow(
     @PreviewParameter(MainScreenTypeTabPreviewProvider::class) input: MainScreenTypeTabInput,
     onEventHandler: (MainScreenSectionTabEvent) -> Unit = {},
