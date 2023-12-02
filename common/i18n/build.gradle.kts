@@ -12,11 +12,12 @@ android {
 }
 
 dependencies {
-    implementation(projects.common.ui)
     implementation(projects.common.core)
     implementation(projects.common.coreAndroid)
-    implementation(projects.common.network)
     implementation(projects.common.crypto)
+    implementation(projects.common.designSystem)
+    implementation(projects.common.network)
+    implementation(projects.common.ui)
 
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)

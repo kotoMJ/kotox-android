@@ -15,9 +15,9 @@ import com.google.common.util.concurrent.ListenableFuture
 import cz.kotox.common.core.extension.exhaustive
 import cz.kotox.common.camera.custom.capture.CameraScreenContent
 import cz.kotox.common.camera.custom.capture.CameraScreenEvent
-import cz.kotox.common.camera.custom.capture.CameraScreenInput
+import cz.kotox.common.camera.custom.capture.CameraScreenViewState
 import cz.kotox.common.camera.custom.capture.EMPTY_IMAGE_FILE_PATH_NAME
-import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import timber.log.Timber
@@ -50,9 +50,9 @@ class CameraCustomActivity : ComponentActivity() {
         cameraProviderFuture.get()
 
         setContent {
-            KotoxBasicTheme() {
+            cz.kotox.common.designsystem.theme.KotoxBasicTheme() {
                 CameraScreenContent(
-                    input = CameraScreenInput(
+                    input = CameraScreenViewState(
                         currentCameraSelector = viewModel.currentCameraSelectorPresenter.value,
                         currentZoomValues = viewModel.currentZoomValuesPresenter.value,
                         zoomStateObserver = viewModel.zoomStateObserver

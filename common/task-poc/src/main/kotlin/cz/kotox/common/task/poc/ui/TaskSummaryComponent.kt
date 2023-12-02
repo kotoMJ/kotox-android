@@ -20,9 +20,9 @@ import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import androidx.constraintlayout.compose.layoutId
 import cz.kotox.common.task.poc.R
-import cz.kotox.common.ui.theme.LocalColors
-import cz.kotox.common.ui.theme.LocalTypography
-import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.LocalTypography
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import java.time.LocalDateTime
 
 data class TaskSummaryComponentInput(
@@ -48,7 +48,7 @@ data class TaskSummaryComponentInput(
 fun TaskSummaryComponent(
     @PreviewParameter(TaskSummaryComponentPreviewProvider::class) input: TaskSummaryComponentInput
 ) {
-    KotoxBasicTheme {
+    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
 
         ConstraintLayout(
             modifier = Modifier
@@ -121,11 +121,11 @@ fun TaskSummaryComponent(
                 modifier = Modifier.layoutId("title"),
                 text = input.item.title,
                 style = if (input.useHeadlineTitle) {
-                    LocalTypography.current.headline
+                    cz.kotox.common.designsystem.theme.LocalTypography.current.headline
                 } else {
-                    LocalTypography.current.body1Medium
+                    cz.kotox.common.designsystem.theme.LocalTypography.current.body1Medium
                 },
-                color = LocalColors.current.textNorm,
+                color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
                 textAlign = TextAlign.Center,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -134,8 +134,8 @@ fun TaskSummaryComponent(
             Text(
                 modifier = Modifier.layoutId("description"),
                 text = input.item.description,
-                style = LocalTypography.current.body2Regular,
-                color = LocalColors.current.textWeak,
+                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body2Regular,
+                color = cz.kotox.common.designsystem.theme.LocalColors.current.textWeak,
                 textAlign = TextAlign.Center,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -145,22 +145,22 @@ fun TaskSummaryComponent(
                 modifier = Modifier.layoutId("createdIcon"),
                 painter = painterResource(id = R.drawable.ic_calendar),
                 contentDescription = null,
-                tint = LocalColors.current.primary,
+                tint = cz.kotox.common.designsystem.theme.LocalColors.current.primary,
             )
 
             Text(
                 modifier = Modifier.layoutId("createdLabel"),
                 text = stringResource(id = R.string.task_summary_component_label_created),
-                style = LocalTypography.current.body2Medium,
-                color = LocalColors.current.textNorm,
+                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body2Medium,
+                color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
                 textAlign = TextAlign.Center,
             )
 
             Text(
                 modifier = Modifier.layoutId("createdDateTime"),
                 text = input.item.creationDate.toDateTimeTaskString(),
-                style = LocalTypography.current.body2Regular,
-                color = LocalColors.current.textNorm,
+                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body2Regular,
+                color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
                 textAlign = TextAlign.Center,
             )
 
@@ -168,21 +168,21 @@ fun TaskSummaryComponent(
                 modifier = Modifier.layoutId("dueIcon"),
                 painter = painterResource(id = R.drawable.ic_bell),
                 contentDescription = null,
-                tint = LocalColors.current.primary,
+                tint = cz.kotox.common.designsystem.theme.LocalColors.current.primary,
             )
             Text(
                 modifier = Modifier.layoutId("dueLabel"),
                 text = stringResource(id = R.string.task_summary_component_label_due),
-                style = LocalTypography.current.body2Medium,
-                color = LocalColors.current.textNorm,
+                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body2Medium,
+                color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
                 textAlign = TextAlign.Center,
             )
 
             Text(
                 modifier = Modifier.layoutId("dueDateTime"),
                 text = input.item.dueDate.toDateTimeTaskString(),
-                style = LocalTypography.current.body2Regular,
-                color = LocalColors.current.textNorm,
+                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body2Regular,
+                color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
                 textAlign = TextAlign.Center,
             )
         }

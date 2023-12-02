@@ -16,8 +16,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import cz.kotox.common.ui.R
-import cz.kotox.common.ui.theme.LocalColors
-import cz.kotox.common.ui.theme.LocalTypography
+import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.LocalTypography
 
 @Composable
 private fun TextMoreLess(description: String) {
@@ -39,20 +39,20 @@ private fun TextMoreLess(description: String) {
         if (showMore.value) {
             Text(
                 text = description,
-                style = LocalTypography.current.body1Medium,
-                color = LocalColors.current.textNorm,
+                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Medium,
+                color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
             )
             Spacer(modifier = Modifier.size(8.dp))
             Text(
                 text = stringResource(id = R.string.general_button_showLess),
-                style = LocalTypography.current.body1Medium,
-                color = LocalColors.current.onControlsPrimary,
+                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Medium,
+                color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary,
             )
         } else {
             Text(
                 text = description,
-                style = LocalTypography.current.body1Medium,
-                color = LocalColors.current.primary,
+                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Medium,
+                color = cz.kotox.common.designsystem.theme.LocalColors.current.primary,
                 maxLines = 3,
                 overflow = TextOverflow.Ellipsis,
                 onTextLayout = { textLayoutResult ->
@@ -63,8 +63,8 @@ private fun TextMoreLess(description: String) {
                 Spacer(modifier = Modifier.size(8.dp))
                 Text(
                     text = stringResource(id = R.string.general_button_showMore),
-                    style = LocalTypography.current.body1Medium,
-                    color = LocalColors.current.onControlsPrimary,
+                    style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Medium,
+                    color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary,
                 )
             }
         }

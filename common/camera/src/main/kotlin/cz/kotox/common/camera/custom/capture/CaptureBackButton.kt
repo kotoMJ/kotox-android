@@ -22,7 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cz.kotox.common.camera.custom.R
-import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 
 @Composable
 fun CaptureBackButton(
@@ -33,7 +33,7 @@ fun CaptureBackButton(
     val isPressed by interactionSource.collectIsPressedAsState()
     val contentPadding = PaddingValues(if (isPressed) 8.dp else 12.dp)
 
-    KotoxBasicTheme() {
+    cz.kotox.common.designsystem.theme.KotoxBasicTheme() {
         OutlinedButton(
             modifier = modifier,
             shape = CircleShape,
@@ -43,7 +43,7 @@ fun CaptureBackButton(
                 contentColor = Color.White,
                 backgroundColor = Color.Black
             ),
-            onClick = { /*GNDN*/ },
+            onClick = { /*Event is handled in the content of this component*/ },
             enabled = false
         ) {
 
@@ -62,7 +62,7 @@ fun CaptureBackButton(
 
 @Preview
 @Composable
-fun PreviewCaptureBackButton() {
+fun CaptureBackButtonPreview() {
     Scaffold(
         modifier = Modifier
             .size(125.dp)

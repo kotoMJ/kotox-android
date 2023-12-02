@@ -13,6 +13,8 @@ dependencies {
     lintChecks(projects.lint)
 
     implementation(projects.common.coreAndroid) // prefs,enhanced permissions
+    implementation(projects.common.designSystem)
+
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)

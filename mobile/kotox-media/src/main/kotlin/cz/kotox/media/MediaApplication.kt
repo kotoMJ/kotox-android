@@ -1,8 +1,7 @@
 package cz.kotox.media
 
 import android.app.Application
-import cz.kotox.media.BuildConfig
-import cz.kotox.common.ui.ThemeUtils
+import cz.kotox.common.designsystem.ThemeUtils
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 

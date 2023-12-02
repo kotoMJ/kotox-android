@@ -39,7 +39,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 
 @Composable
 fun Dp.dpToPx() = with(LocalDensity.current) { this@dpToPx.toPx() }
@@ -279,7 +279,7 @@ private fun heightKeyFramesSpec(
 )
 @Composable
 private fun ScannerAnimatedLinePreview() {
-    KotoxBasicTheme() {
+    cz.kotox.common.designsystem.theme.KotoxBasicTheme() {
 
         var size by remember { mutableStateOf(IntSize.Zero) }
 

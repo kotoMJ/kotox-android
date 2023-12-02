@@ -48,8 +48,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import cz.kotox.media.R
 import cz.kotox.common.core.android.extension.collectAsStateWithLifecycle
-import cz.kotox.common.ui.theme.KotoxBasicTheme
-import cz.kotox.common.ui.theme.LocalColors
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.LocalColors
 import cz.kotox.media.ui.MainActivityListener
 import cz.kotox.media.ui.MainActivityViewState
 import getBitmap
@@ -203,11 +203,11 @@ private fun LandscapeMainScreen(
 @Composable
 private fun StartCustomCameraButton(onClick: () -> Unit) {
     OutlinedButton(
-        border = BorderStroke(1.dp, LocalColors.current.onControlsPrimary),
+        border = BorderStroke(1.dp, cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary),
         contentPadding = PaddingValues(8.dp),
         colors = ButtonDefaults.outlinedButtonColors(
-            contentColor = LocalColors.current.onControlsPrimary,
-            backgroundColor = LocalColors.current.background
+            contentColor = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary,
+            backgroundColor = cz.kotox.common.designsystem.theme.LocalColors.current.background
         ),
         onClick = onClick
     ) {
@@ -219,7 +219,7 @@ private fun StartCustomCameraButton(onClick: () -> Unit) {
         )
         Text(
             text = stringResource(id = R.string.main_screen_action_camera_custom),
-            color = LocalColors.current.onControlsPrimary
+            color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary
         )
     }
 }
@@ -242,11 +242,11 @@ private fun CapturedImageView(state: State<MainScreenViewState>) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_image),
                         contentDescription = null,
-                        tint = LocalColors.current.onControlsSecondary
+                        tint = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsSecondary
                     )
                     Text(
                         text = stringResource(id = R.string.main_screen_image_placeholder),
-                        color = LocalColors.current.onControlsSecondary
+                        color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsSecondary
                     )
                 }
             }
@@ -271,7 +271,7 @@ fun SignificantColorsView(colors: List<Int>, isPortrait: Boolean) {
                     ) {
                         Text(
                             text = stringResource(id = R.string.main_screen_significant_colors_title),
-                            color = LocalColors.current.onControlsSecondary
+                            color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsSecondary
                         )
                         Spacer(modifier = Modifier.size(8.dp))
                         colors.forEach { rgbColorInt ->
@@ -295,7 +295,7 @@ fun SignificantColorsView(colors: List<Int>, isPortrait: Boolean) {
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.End,
                             text = stringResource(id = R.string.main_screen_significant_colors_title),
-                            color = LocalColors.current.onControlsSecondary
+                            color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsSecondary
                         )
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -360,7 +360,7 @@ private val mainActivityListenerPreview = object : MainActivityListener {
 )
 @Composable
 private fun EnterPassContentPreview() {
-    KotoxBasicTheme {
+    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
         MainScreenScaffold(
             state = remember {
                 mutableStateOf(

@@ -33,10 +33,10 @@ import cz.kotox.common.camera.custom.R
 import cz.kotox.common.camera.custom.EMPTY_IMAGE_URI
 import cz.kotox.common.camera.custom.LensFacing
 import cz.kotox.common.camera.custom.gallery.GallerySelect
-import cz.kotox.common.ui.theme.LocalColors
+import cz.kotox.common.designsystem.theme.LocalColors
 import java.io.File
 
-data class CameraScreenInput(
+data class CameraScreenViewState(
     val currentCameraSelector: LensFacing?,
     val currentZoomValues: ZoomValues?,
     val zoomStateObserver: Observer<ZoomState>,
@@ -51,7 +51,7 @@ sealed class CameraScreenEvent {
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun CameraScreenContent(
-    @PreviewParameter(CameraScreenPreviewProvider::class) input: CameraScreenInput,
+    input: CameraScreenViewState,
     modifier: Modifier = Modifier,
     onEventHandler: (CameraScreenEvent) -> Unit = {}
 ) {
@@ -133,7 +133,7 @@ fun CameraScreenContent(
                     Icon(
                         painter = painterResource(id = R.drawable.ic_close),
                         contentDescription = null,
-                        tint = LocalColors.current.divider //FIXME MJ, update proper color
+                        tint = cz.kotox.common.designsystem.theme.LocalColors.current.divider //FIXME MJ, update proper color
                     )
                 }
 
@@ -142,9 +142,9 @@ fun CameraScreenContent(
     }
 }
 
-class CameraScreenPreviewProvider : PreviewParameterProvider<CameraScreenInput> {
-    override val values: Sequence<CameraScreenInput> = sequenceOf(
-        CameraScreenInput(LensFacing.BACK, currentZoomValues = null, Observer { }),
-        CameraScreenInput(LensFacing.FRONT, currentZoomValues = null, Observer { })
-    )
-}
+//class CameraScreenPreviewProvider : PreviewParameterProvider<CameraScreenViewState> {
+//    override val values: Sequence<CameraScreenViewState> = sequenceOf(
+//        CameraScreenViewState(LensFacing.BACK, currentZoomValues = null, Observer { }),
+//        CameraScreenViewState(LensFacing.FRONT, currentZoomValues = null, Observer { })
+//    )
+//}

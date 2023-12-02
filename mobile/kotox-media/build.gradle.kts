@@ -65,10 +65,11 @@ android {
 dependencies {
     lintChecks(projects.lint)
 
+    implementation(projects.common.camera)
     implementation(projects.common.core)
     implementation(projects.common.coreAndroid)
+    implementation(projects.common.designSystem)
     implementation(projects.common.ui)
-    implementation(projects.common.camera)
 
     implementation(libs.android.material)
 

@@ -40,9 +40,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import cz.kotox.common.ui.theme.KotoxBasicTheme
-import cz.kotox.common.ui.theme.LocalColors
-import cz.kotox.common.ui.theme.LocalTypography
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.LocalTypography
 import cz.kotox.common.i18n.domain.model.CountryUiModel
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -121,7 +121,7 @@ fun PhoneTextField(
                             append(completePhoneNumberString)
                             addStyle(
                                 style = SpanStyle(
-                                    fontStyle = LocalTypography.current.body1Regular.fontStyle,
+                                    fontStyle = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Regular.fontStyle,
                                     color = Color.Red
                                 ),
                                 start = 0,
@@ -130,7 +130,7 @@ fun PhoneTextField(
                             addStyle(
                                 style = SpanStyle(
                                     fontWeight = FontWeight.Thin,
-                                    color = LocalColors.current.textWeak
+                                    color = cz.kotox.common.designsystem.theme.LocalColors.current.textWeak
                                 ),
                                 start = startFixedPart.length + inputValue.length,
                                 end = completePhoneNumberString.length
@@ -192,7 +192,7 @@ fun PhoneTextFieldPreview() {
     val expectedCountryCode = 420
     val hint = "601123456"
 
-    KotoxBasicTheme() {
+    cz.kotox.common.designsystem.theme.KotoxBasicTheme() {
         Column() {
             PhoneTextField(
                 inputValue = inputValue,
@@ -237,8 +237,8 @@ fun PhoneTextFieldComparisonForPreview(
         placeholder = {
             Text(
                 text = hint,
-                style = LocalTypography.current.body1Regular,
-                color = LocalColors.current.textWeak,
+                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Regular,
+                color = cz.kotox.common.designsystem.theme.LocalColors.current.textWeak,
             )
         },
     )

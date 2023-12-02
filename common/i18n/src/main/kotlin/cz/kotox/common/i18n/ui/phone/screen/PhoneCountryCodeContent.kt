@@ -18,7 +18,7 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import cz.kotox.common.ui.theme.LocalColors
+import cz.kotox.common.designsystem.theme.LocalColors
 import cz.kotox.common.i18n.ui.phone.component.PhoneTextField
 
 
@@ -65,7 +65,7 @@ fun PhoneCountryCodeContent(
                     )
                     if (index < state.value.countries.lastIndex) {
                         Divider(
-                            color = LocalColors.current.divider,
+                            color = cz.kotox.common.designsystem.theme.LocalColors.current.divider,
                             thickness = 0.5.dp
                         )
                     }

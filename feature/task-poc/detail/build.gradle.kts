@@ -10,6 +10,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.common.designSystem)
     implementation(projects.common.taskPoc)
 
     testImplementation(libs.junit)

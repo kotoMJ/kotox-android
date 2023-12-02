@@ -1,4 +1,4 @@
-package cz.kotox.common.ui
+package cz.kotox.common.designsystem
 
 import android.content.res.Configuration
 import android.content.res.Resources

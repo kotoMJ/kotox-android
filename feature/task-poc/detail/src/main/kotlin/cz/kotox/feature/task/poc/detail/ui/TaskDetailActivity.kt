@@ -7,7 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.viewModelScope
-import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import cz.kotox.feature.task.poc.detail.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -24,7 +24,7 @@ class TaskDetailActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            KotoxBasicTheme {
+            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
                 TaskDetailScreen(
                     input = TaskDetailScreenInput(
                         viewModel.uiState.collectAsState().value,
