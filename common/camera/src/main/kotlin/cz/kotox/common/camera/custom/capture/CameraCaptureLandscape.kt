@@ -25,6 +25,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import cz.kotox.common.camera.custom.LensFacing
+import cz.kotox.common.camera.custom.capture.button.CaptureFlipCameraButton
+import cz.kotox.common.camera.custom.capture.button.CapturePictureButton
 import kotlinx.coroutines.launch
 import timber.log.Timber
 

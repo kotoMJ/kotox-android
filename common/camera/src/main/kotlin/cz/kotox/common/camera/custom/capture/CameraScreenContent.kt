@@ -22,8 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.lifecycle.Observer
@@ -32,8 +30,10 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import cz.kotox.common.camera.custom.R
 import cz.kotox.common.camera.custom.EMPTY_IMAGE_URI
 import cz.kotox.common.camera.custom.LensFacing
+import cz.kotox.common.camera.custom.capture.button.CaptureBackButton
+import cz.kotox.common.camera.custom.capture.button.CaptureConfirmButton
+import cz.kotox.common.camera.custom.capture.button.CapturePhotoLibraryButton
 import cz.kotox.common.camera.custom.gallery.GallerySelect
-import cz.kotox.common.designsystem.theme.LocalColors
 import java.io.File
 
 data class CameraScreenViewState(
