@@ -1,13 +1,15 @@
-package cz.kotox.common.camera.custom.capture.button
+package cz.kotox.common.camera.custom.capture.actionbutton
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,42 +23,48 @@ import cz.kotox.common.designsystem.preview.KotoxBasicThemeWidgetPreview
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
 
 @Composable
-fun CaptureFlipCameraButton(
+fun CaptureConfirmButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = { },
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     val contentPadding = PaddingValues(if (isPressed) 8.dp else 12.dp)
-
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme() {
-        OutlinedButton(
-            modifier = modifier,
+    OutlinedButton(
+        modifier = modifier,
+        shape = CircleShape,
+        border = BorderStroke(2.dp, Color.White),
+        contentPadding = contentPadding,
+        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White, backgroundColor = Color.Black),
+        onClick = { /* GNDN */ },
+        enabled = false
+    ) {
+        Button(
+            modifier = Modifier
+                .fillMaxSize(),
             shape = CircleShape,
-            border = BorderStroke(2.dp, Color.White),
-            contentPadding = contentPadding,
-            colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White, backgroundColor = Color.Black),
-            onClick = { /*GNDN*/ },
-            enabled = false
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color.White
+            ),
+            interactionSource = interactionSource,
+            onClick = onClick
         ) {
-
-            IconButton(onClick = { onClick.invoke() }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_camera_flip),
-                    contentDescription = null,
-                    tint = Color.White
-                )
-
-            }
-
+            Icon(
+                painter = painterResource(id = R.drawable.ic_check_bold),
+                contentDescription = null,
+                tint = Color.Black
+            )
         }
     }
 }
 
 @PreviewMobileLarge
 @Composable
-internal fun CaptureFlipCameraButtonPreview(){
+internal fun CaptureConfirmButtonPreview(){
     KotoxBasicThemeWidgetPreview {
-        CaptureFlipCameraButton()
+        CaptureConfirmButton(
+            modifier = Modifier
+                .size(100.dp)
+        )
     }
 }

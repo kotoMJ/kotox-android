@@ -1,11 +1,9 @@
-package cz.kotox.common.camera.custom.capture.button
+package cz.kotox.common.camera.custom.capture.actionbutton
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
@@ -23,7 +21,7 @@ import cz.kotox.common.designsystem.preview.KotoxBasicThemeWidgetPreview
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
 
 @Composable
-fun CaptureBackButton(
+fun CapturePhotoLibraryButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = { },
 ) {
@@ -37,19 +35,16 @@ fun CaptureBackButton(
             shape = CircleShape,
             border = BorderStroke(2.dp, Color.White),
             contentPadding = contentPadding,
-            colors = ButtonDefaults.outlinedButtonColors(
-                contentColor = Color.White,
-                backgroundColor = Color.Black
-            ),
-            onClick = { /*Event is handled in the content of this component*/ },
+            colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White, backgroundColor = Color.Black),
+            onClick = { /*GNDN*/ },
             enabled = false
         ) {
 
             IconButton(onClick = { onClick.invoke() }) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_undo),
+                    painter = painterResource(id = R.drawable.ic_photo_library),
                     contentDescription = null,
-                    tint = Color.White
+                    tint = cz.kotox.common.designsystem.theme.LocalColors.current.divider
                 )
 
             }
@@ -60,8 +55,8 @@ fun CaptureBackButton(
 
 @PreviewMobileLarge
 @Composable
-internal fun CaptureBackButtonPreview(){
+internal fun CapturePhotoLibraryButtonPreview(){
     KotoxBasicThemeWidgetPreview {
-        CaptureBackButton()
+        CapturePhotoLibraryButton()
     }
 }

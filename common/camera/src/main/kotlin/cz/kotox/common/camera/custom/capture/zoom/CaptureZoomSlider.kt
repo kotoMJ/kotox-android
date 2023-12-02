@@ -1,9 +1,6 @@
-package cz.kotox.common.camera.custom.capture
+package cz.kotox.common.camera.custom.capture.zoom
 
-import android.annotation.SuppressLint
-import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.indication
@@ -35,39 +32,18 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cz.kotox.common.camera.custom.capture.ZoomValues
+import cz.kotox.common.designsystem.preview.KotoxBasicThemeWidgetPreview
+import cz.kotox.common.designsystem.preview.PreviewMobileLarge
 import timber.log.Timber
 
-data class CaptureZoomSliderInput(
-    val zoomValues: ZoomValues,
-    val showVertical: Boolean = false,
-)
-
-@SuppressLint("UnrememberedMutableState")//FIXME MJ
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(
-    device = Devices.PIXEL,
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-    showBackground = true,
-    name = "Light Mode"
-)
-@Preview(
-    device = Devices.PIXEL,
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true,
-    name = "Dark Mode"
-)
-
-@Suppress("All JetPack Compose previews contain 'Preview' in method name")
 @Composable
 fun CaptureZoomSlider(
-    @PreviewParameter(ZoomSliderPreviewProvider::class) input: CaptureZoomSliderInput,
+    input: CaptureZoomSliderViewState,
     onValueChange: (value: Float) -> Unit = {}
 ) {
 
@@ -76,15 +52,16 @@ fun CaptureZoomSlider(
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     val isDragged by interactionSource.collectIsDraggedAsState()
-    val isInteracting by derivedStateOf { isPressed || isDragged }
+    val isInteracting by remember { derivedStateOf { isPressed || isDragged } }
 
-    val sliderValue by derivedStateOf {
-        if (isInteracting) {
-            timeLineSliderValueLocal
-        } else {
-            input.zoomValues.currentLinearZoom
+    val sliderValue by remember {
+        derivedStateOf {
+            if (isInteracting) {
+                timeLineSliderValueLocal
+            } else {
+                input.zoomValues.currentLinearZoom
+            }
         }
-
     }
 
     if (input.showVertical) {
@@ -161,6 +138,11 @@ fun CaptureZoomSlider(
     }
 }
 
+data class CaptureZoomSliderViewState(
+    val zoomValues: ZoomValues,
+    val showVertical: Boolean = false,
+)
+
 @Composable
 @SuppressWarnings("MagicNumber")//FIXME MJ
 private fun captureZoomSliderColors(): androidx.compose.material3.SliderColors = androidx.compose.material3.SliderDefaults.colors(
@@ -171,17 +153,21 @@ private fun captureZoomSliderColors(): androidx.compose.material3.SliderColors =
     thumbColor = Color.White
 )
 
-class ZoomSliderPreviewProvider : PreviewParameterProvider<CaptureZoomSliderInput> {
-    override val values: Sequence<CaptureZoomSliderInput> = sequenceOf(
-        CaptureZoomSliderInput(
-            zoomValues = ZoomValues(
-                minRatio = 0.7f,
-                defaultRatio = 1f,
-                maxRatio = 7f,
-                currentRatio = 1f,
-                currentLinearZoom = 0.36446497f
-            ),
-            showVertical = false
+@PreviewMobileLarge
+@Composable
+internal fun CaptureZoomSliderPreview() {
+    KotoxBasicThemeWidgetPreview {
+        CaptureZoomSlider(
+            input = CaptureZoomSliderViewState(
+                zoomValues = ZoomValues(
+                    minRatio = 0.7f,
+                    defaultRatio = 1f,
+                    maxRatio = 7f,
+                    currentRatio = 1f,
+                    currentLinearZoom = 0.36446497f
+                ),
+                showVertical = false
+            )
         )
-    )
+    }
 }

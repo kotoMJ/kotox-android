@@ -30,9 +30,9 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import cz.kotox.common.camera.custom.R
 import cz.kotox.common.camera.custom.EMPTY_IMAGE_URI
 import cz.kotox.common.camera.custom.LensFacing
-import cz.kotox.common.camera.custom.capture.button.CaptureBackButton
-import cz.kotox.common.camera.custom.capture.button.CaptureConfirmButton
-import cz.kotox.common.camera.custom.capture.button.CapturePhotoLibraryButton
+import cz.kotox.common.camera.custom.capture.actionbutton.CaptureBackButton
+import cz.kotox.common.camera.custom.capture.actionbutton.CaptureConfirmButton
+import cz.kotox.common.camera.custom.capture.actionbutton.CapturePhotoLibraryButton
 import cz.kotox.common.camera.custom.gallery.GallerySelect
 import java.io.File
 

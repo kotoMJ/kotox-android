@@ -25,8 +25,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import cz.kotox.common.camera.custom.LensFacing
-import cz.kotox.common.camera.custom.capture.button.CaptureFlipCameraButton
-import cz.kotox.common.camera.custom.capture.button.CapturePictureButton
+import cz.kotox.common.camera.custom.capture.actionbutton.CaptureFlipCameraButton
+import cz.kotox.common.camera.custom.capture.actionbutton.CapturePictureButton
+import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggle
+import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggleViewState
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -96,7 +98,7 @@ fun CameraCaptureLandscape(
                     onChange = { zoomRatio ->
                         onUpdateZoomRatio.invoke(zoomRatio)
                     },
-                    input = CaptureZoomToggleInput(
+                    input = CaptureZoomToggleViewState(
                         modifier = Modifier
                             .padding(end = 16.dp),
                         zoomValues = currentZoomValues,
