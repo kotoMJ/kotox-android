@@ -22,7 +22,6 @@ internal fun CameraNotDetectedScreenContent(backgroundColor: Color) {
             .fillMaxSize()
             .background(color = backgroundColor)
     ) {
-
         Text(
             modifier = Modifier
                 .align(Alignment.Center),

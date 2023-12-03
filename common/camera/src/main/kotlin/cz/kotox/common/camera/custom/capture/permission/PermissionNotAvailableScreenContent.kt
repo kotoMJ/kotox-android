@@ -5,11 +5,9 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -33,7 +31,6 @@ internal fun PermissionNotAvailableScreenContent(backgroundColor: Color, context
             .fillMaxSize()
             .background(color = backgroundColor)
     ) {
-
         Box(
             modifier = Modifier
                 .wrapContentSize()
@@ -51,12 +48,12 @@ internal fun PermissionNotAvailableScreenContent(backgroundColor: Color, context
                     border = BorderStroke(2.dp, LocalColors.current.textNorm),
                     onClick = {
                         context.startActivity(AppSettingsIntentUtils.getAppSettingsIntent(context))
-                    }) {
+                    }
+                ) {
                     Text(text = "Permission settings", color = LocalColors.current.textNorm)
                 }
             }
         }
-
     }
 }
 
@@ -65,7 +62,8 @@ internal fun PermissionNotAvailableScreenContent(backgroundColor: Color, context
 internal fun PermissionNotAvailableScreenContentPreview() {
     KotoxBasicThemeFullSizePreview {
         PermissionNotAvailableScreenContent(
-            backgroundColor = LocalColors.current.background, LocalContext.current
+            backgroundColor = LocalColors.current.background,
+            LocalContext.current
         )
     }
 }
