@@ -21,6 +21,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -47,22 +48,12 @@ fun CaptureZoomSlider(
     onValueChange: (value: Float) -> Unit = {}
 ) {
 
-    val (timeLineSliderValueLocal, setTimeLineSliderValue) = remember { mutableStateOf(input.zoomValues.currentLinearZoom) }
+    val (timeLineSliderValueLocal, setTimeLineSliderValue) = remember { mutableFloatStateOf(input.zoomValues.currentLinearZoom) }
 
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     val isDragged by interactionSource.collectIsDraggedAsState()
     val isInteracting by remember { derivedStateOf { isPressed || isDragged } }
-
-    val sliderValue by remember {
-        derivedStateOf {
-            if (isInteracting) {
-                timeLineSliderValueLocal
-            } else {
-                input.zoomValues.currentLinearZoom
-            }
-        }
-    }
 
     if (input.showVertical) {
         /**
@@ -91,7 +82,7 @@ fun CaptureZoomSlider(
             val thumbSize: Dp = if (isInteracting) 16.dp else 32.dp
             androidx.compose.material3.Slider(
                 modifier = Modifier.semantics { contentDescription = "Localized Description" },
-                value = sliderValue,
+                value =  input.zoomValues.currentLinearZoom,
                 colors = captureZoomSliderColors(),
                 onValueChange = {
 //            Timber.d(">>>_ seek in progress: $it")
