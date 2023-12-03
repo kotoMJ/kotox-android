@@ -1,4 +1,4 @@
-package cz.kotox.common.ui.theme
+package cz.kotox.common.designsystem.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

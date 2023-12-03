@@ -36,7 +36,6 @@ class CameraActivityViewModel @Inject constructor() : ViewModel() {
     val currentZoomValuesPresenter = derivedStateOf { currentZoomValues.value }
 
     val zoomStateObserver: Observer<ZoomState> = Observer { state: ZoomState ->
-
         currentZoomValues.value = ZoomValues(
             minRatio = state.minZoomRatio.roundOneDecimal(),
             maxRatio = state.maxZoomRatio.roundOneDecimal(),
@@ -44,6 +43,10 @@ class CameraActivityViewModel @Inject constructor() : ViewModel() {
             currentLinearZoom = state.linearZoom
         )
         Timber.d(">>>_ ZOOM state change! ${currentZoomValues.value}")
+    }
+
+    init {
+        Timber.d("create CameraActivityViewModel")
     }
 
     fun setAvailableCameraSelectors(cameraProvider: ProcessCameraProvider) {

@@ -22,8 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.lifecycle.Observer
@@ -32,11 +30,13 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import cz.kotox.common.camera.custom.R
 import cz.kotox.common.camera.custom.EMPTY_IMAGE_URI
 import cz.kotox.common.camera.custom.LensFacing
+import cz.kotox.common.camera.custom.capture.actionbutton.CaptureBackButton
+import cz.kotox.common.camera.custom.capture.actionbutton.CaptureConfirmButton
+import cz.kotox.common.camera.custom.capture.actionbutton.CapturePhotoLibraryButton
 import cz.kotox.common.camera.custom.gallery.GallerySelect
-import cz.kotox.common.ui.theme.LocalColors
 import java.io.File
 
-data class CameraScreenInput(
+data class CameraScreenViewState(
     val currentCameraSelector: LensFacing?,
     val currentZoomValues: ZoomValues?,
     val zoomStateObserver: Observer<ZoomState>,
@@ -51,7 +51,7 @@ sealed class CameraScreenEvent {
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun CameraScreenContent(
-    @PreviewParameter(CameraScreenPreviewProvider::class) input: CameraScreenInput,
+    input: CameraScreenViewState,
     modifier: Modifier = Modifier,
     onEventHandler: (CameraScreenEvent) -> Unit = {}
 ) {
@@ -133,7 +133,7 @@ fun CameraScreenContent(
                     Icon(
                         painter = painterResource(id = R.drawable.ic_close),
                         contentDescription = null,
-                        tint = LocalColors.current.divider //FIXME MJ, update proper color
+                        tint = cz.kotox.common.designsystem.theme.LocalColors.current.divider //FIXME MJ, update proper color
                     )
                 }
 
@@ -142,9 +142,9 @@ fun CameraScreenContent(
     }
 }
 
-class CameraScreenPreviewProvider : PreviewParameterProvider<CameraScreenInput> {
-    override val values: Sequence<CameraScreenInput> = sequenceOf(
-        CameraScreenInput(LensFacing.BACK, currentZoomValues = null, Observer { }),
-        CameraScreenInput(LensFacing.FRONT, currentZoomValues = null, Observer { })
-    )
-}
+//class CameraScreenPreviewProvider : PreviewParameterProvider<CameraScreenViewState> {
+//    override val values: Sequence<CameraScreenViewState> = sequenceOf(
+//        CameraScreenViewState(LensFacing.BACK, currentZoomValues = null, Observer { }),
+//        CameraScreenViewState(LensFacing.FRONT, currentZoomValues = null, Observer { })
+//    )
+//}

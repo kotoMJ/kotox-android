@@ -22,9 +22,9 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import cz.kotox.common.ui.theme.LocalColors
-import cz.kotox.common.ui.theme.LocalTypography
-import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.LocalTypography
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import cz.kotox.task.R
@@ -63,9 +63,9 @@ fun MainScreenSectionTabRow(
     onEventHandler: (MainScreenSectionTabEvent) -> Unit = {},
 ) {
 
-    KotoxBasicTheme {
+    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
 
-        val selectedTabIndex by remember {derivedStateOf { input.pagerState.currentPage }}
+        val selectedTabIndex by remember { derivedStateOf { input.pagerState.currentPage } }
 
 
         TabRow(
@@ -94,15 +94,15 @@ fun MainScreenSectionTabRow(
                             )
                         )
                     },
-                    selectedContentColor = LocalColors.current.onControlsPrimary,
-                    unselectedContentColor = LocalColors.current.onControlsSecondary,
+                    selectedContentColor = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary,
+                    unselectedContentColor = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsSecondary,
                 ) {
 
                     Box(modifier = Modifier.padding(vertical = 4.dp)) {
                         Text(
                             modifier = Modifier.padding(12.dp).testTag(UI_TEST_MAIN_TAB_TAG),
                             text = taskGroup.getTitleString(),
-                            style = LocalTypography.current.body2Medium,
+                            style = cz.kotox.common.designsystem.theme.LocalTypography.current.body2Medium,
                         )
                     }
                 }

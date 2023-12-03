@@ -27,6 +27,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import cz.kotox.common.camera.custom.LensFacing
+import cz.kotox.common.camera.custom.capture.actionbutton.CaptureFlipCameraButton
+import cz.kotox.common.camera.custom.capture.actionbutton.CapturePictureButton
+import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomSlider
+import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomSliderViewState
+import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggle
+import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggleViewState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -108,7 +114,7 @@ fun CameraCapturePortrait(
                         onChange = { zoomRatio ->
                             onUpdateZoomRatio.invoke(zoomRatio)
                         },
-                        input = CaptureZoomToggleInput(
+                        input = CaptureZoomToggleViewState(
                             modifier = Modifier
                                 .padding(bottom = 16.dp),
                             zoomValues = currentZoomValues,
@@ -120,7 +126,7 @@ fun CameraCapturePortrait(
                 AnimatedVisibility(visible = showSlider || gestureDetected) {
                     Timber.d(">>>_ SLIDER CaptureZoomSlider")
                     CaptureZoomSlider(
-                        input = CaptureZoomSliderInput(
+                        input = CaptureZoomSliderViewState(
                             zoomValues = currentZoomValues,
                             showVertical = false
                         ),

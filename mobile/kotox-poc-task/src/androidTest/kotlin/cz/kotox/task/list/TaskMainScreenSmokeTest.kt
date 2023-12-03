@@ -2,7 +2,7 @@ package cz.kotox.task.list
 
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import cz.kotox.common.task.poc.domain.mapper.toTask
 import cz.kotox.common.task.poc.data.impl.remote.dto.TaskDTO
 import cz.kotox.task.list.ui.MainFeedState
@@ -27,7 +27,7 @@ class TaskMainScreenSmokeTest {
     fun mainScreenListDisplayedSmokeTest() {
 
         composeTestRule.setContent {
-            KotoxBasicTheme {
+            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
                 MainScreen(
                     input = MainScreenInput(
                         mainFeedState = MainFeedState(
@@ -117,7 +117,7 @@ class TaskMainScreenSmokeTest {
     fun mainScreenListEmptySmokeTest() {
 
         composeTestRule.setContent {
-            KotoxBasicTheme {
+            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
                 MainScreen(
                     input = MainScreenInput(
                         mainFeedState = MainFeedState(

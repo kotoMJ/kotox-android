@@ -21,9 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import cz.kotox.common.ui.theme.LocalColors
-import cz.kotox.common.ui.theme.LocalTypography
-import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.LocalTypography
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import cz.kotox.common.task.poc.R as CTPR
 
 sealed class TaskDetailAppBarEvent {
@@ -53,7 +53,7 @@ fun MainScreenAppBarView(
     backButtonModifier: Modifier = Modifier,
     onEventHandler: (TaskDetailAppBarEvent) -> Unit = {}
 ) {
-    KotoxBasicTheme {
+    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
 
         Box(
             modifier = Modifier
@@ -70,7 +70,7 @@ fun MainScreenAppBarView(
                         Icon(
                             painter = painterResource(CTPR.drawable.ic_arrow_left),
                             contentDescription = stringResource(CTPR.string.generic_back_description),
-                            tint = LocalColors.current.textNorm,
+                            tint = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
                         )
                     }
                 }
@@ -79,8 +79,8 @@ fun MainScreenAppBarView(
                         Text(
                             modifier = Modifier.align(Alignment.Center),
                             text = input.title,
-                            style = LocalTypography.current.body1Medium,
-                            color = LocalColors.current.textNorm,
+                            style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Medium,
+                            color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
                         )
                     }
                 }

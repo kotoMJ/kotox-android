@@ -19,9 +19,9 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import cz.kotox.common.ui.theme.LocalColors
-import cz.kotox.common.ui.theme.LocalTypography
-import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.LocalTypography
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 
 
 sealed class MeetingNoteAppBarEvent {
@@ -51,7 +51,7 @@ fun MainScreenAppBarView(
     modifier: Modifier = Modifier,
     @PreviewParameter(MainScreenAppBarPreviewProvider::class) input: MainScreenAppBarInput,
 ) {
-    KotoxBasicTheme {
+    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
 
         Box(
             modifier = Modifier
@@ -66,8 +66,8 @@ fun MainScreenAppBarView(
                         Text(
                             modifier = Modifier.align(Alignment.Center),
                             text = input.title,
-                            style = LocalTypography.current.headline,
-                            color = LocalColors.current.textNorm,
+                            style = cz.kotox.common.designsystem.theme.LocalTypography.current.headline,
+                            color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
                         )
                     }
                 }

@@ -31,8 +31,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import cz.kotox.starter.R
-import cz.kotox.common.ui.theme.KotoxBasicTheme
-import cz.kotox.common.ui.theme.LocalColors
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.LocalColors
 
 sealed class MainScreenEvent {
     object ClickMe : MainScreenEvent()
@@ -65,7 +65,7 @@ fun MainScreen(
     //@PreviewParameter(MainScreenPreviewProvider::class) input: MainScreenInput,
     onEventHandler: (MainScreenEvent) -> Unit = {}
 ) {
-    KotoxBasicTheme {
+    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
         Scaffold(
             backgroundColor = MaterialTheme.colors.surface,
             modifier = Modifier.systemBarsPadding(),
@@ -95,7 +95,7 @@ fun MainScreen(
                             shape = RoundedCornerShape(16.dp),
 
                             elevation = 2.dp,
-                            backgroundColor = LocalColors.current.background,
+                            backgroundColor = cz.kotox.common.designsystem.theme.LocalColors.current.background,
                         ) {
 
                             Row(
@@ -113,7 +113,7 @@ fun MainScreen(
                                     text = stringResource(id = R.string.main_screen_action_click_me),
                                     textAlign = TextAlign.Center,
 
-                                    color = LocalColors.current.onControlsPrimary
+                                    color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary
                                 )
                             }
                         }

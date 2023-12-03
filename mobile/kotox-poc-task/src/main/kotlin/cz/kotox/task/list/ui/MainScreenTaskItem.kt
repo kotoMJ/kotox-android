@@ -19,8 +19,8 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import cz.kotox.common.ui.theme.LocalColors
-import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import coil.compose.AsyncImage
 import cz.kotox.common.task.poc.ui.TaskSummaryComponent
 import cz.kotox.common.task.poc.ui.TaskSummaryComponentInput
@@ -44,7 +44,7 @@ fun MainScreenTaskItem(
     modifier: Modifier = Modifier,
     @PreviewParameter(TaskSummaryComponentPreviewProvider::class) input: TaskSummaryComponentInput
 ) {
-    KotoxBasicTheme {
+    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
 
         Box(
             modifier = modifier
@@ -57,7 +57,7 @@ fun MainScreenTaskItem(
                             modifier = Modifier
                                 .size(48.dp)
                                 .clip(RoundedCornerShape(8.dp))
-                                .background(LocalColors.current.divider)
+                                .background(cz.kotox.common.designsystem.theme.LocalColors.current.divider)
                         )
                         AsyncImage(
                             model = input.item.localImageUrl,

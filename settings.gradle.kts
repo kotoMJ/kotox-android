@@ -16,6 +16,7 @@ include(
     ":common:core",
     ":common:core-android",
     ":common:crypto",
+    ":common:design-system",
     ":common:i18n",
     ":common:network",
     ":common:task-poc",

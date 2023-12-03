@@ -1,4 +1,4 @@
-package cz.kotox.common.camera.custom.capture
+package cz.kotox.common.camera.custom.capture.zoom
 
 import android.content.Context
 import android.view.ScaleGestureDetector

@@ -13,9 +13,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import cz.kotox.common.ui.theme.KotoxBasicTheme
-import cz.kotox.common.ui.theme.LocalColors
-import cz.kotox.common.ui.theme.LocalTypography
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.LocalTypography
 import cz.kotox.common.i18n.domain.model.CountryUiModel
 
 @Composable
@@ -38,8 +38,8 @@ fun PhoneNumberPrefixSearchItem(
                 modifier = Modifier
                     .weight(1f, true)
                     .padding(horizontal = 4.dp),
-                style = LocalTypography.current.body1Medium,
-                color = LocalColors.current.textNorm,
+                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Medium,
+                color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
                 text = "${item.countryName} (+${item.countryCode})"
@@ -63,10 +63,10 @@ fun PhoneNumberPrefixSearchItem(
 @SuppressWarnings("UnusedPrivateMember")
 @Composable
 private fun PhoneNumberPrefixSearchItemPreview() {
-    KotoxBasicTheme() {
+    cz.kotox.common.designsystem.theme.KotoxBasicTheme() {
         PhoneNumberPrefixSearchItem(
             item = CountryUiModel.CountryUiModelFallbackItem(),
-            modifier = Modifier.background(LocalColors.current.background)
+            modifier = Modifier.background(cz.kotox.common.designsystem.theme.LocalColors.current.background)
         )
     }
 }

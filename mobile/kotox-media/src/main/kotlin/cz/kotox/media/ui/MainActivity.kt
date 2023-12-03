@@ -10,7 +10,7 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.remember
 import cz.kotox.common.core.android.extension.collectAsStateWithLifecycle
 import cz.kotox.common.camera.custom.CameraCustomActivityLauncher
-import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import cz.kotox.media.ui.main.MainScreen
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity(), CameraCustomActivityLauncher {
 
 
         setContent {
-            KotoxBasicTheme {
+            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
 
                 val listener = remember {
                     object : MainActivityListener {

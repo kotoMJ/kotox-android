@@ -35,8 +35,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import cz.kotox.common.task.poc.ui.TaskSummaryComponentInput
 import cz.kotox.common.task.poc.ui.TaskSummaryItem
-import cz.kotox.common.ui.theme.LocalColors
-import cz.kotox.common.ui.theme.LocalTypography
+import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.LocalTypography
 import cz.kotox.feature.task.poc.detail.R
 import java.time.LocalDateTime
 
@@ -108,7 +108,7 @@ fun TaskDetailScreen(
                                     modifier = Modifier
                                         .width(360.dp)
                                         .fillMaxHeight()
-                                        .background(LocalColors.current.divider)
+                                        .background(cz.kotox.common.designsystem.theme.LocalColors.current.divider)
                                 )
                                 AsyncImage(
                                     model = input.taskItem.localImageUrl,
@@ -154,7 +154,7 @@ fun TaskDetailScreen(
                                     } else {
                                         Text(
                                             text = stringResource(id = R.string.task_detail_button_download_label),
-                                            style = LocalTypography.current.body1Regular,
+                                            style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Regular,
                                         )
                                     }
                                 }
@@ -168,7 +168,7 @@ fun TaskDetailScreen(
                                 modifier = Modifier
                                     .height(200.dp)
                                     .fillMaxWidth()
-                                    .background(LocalColors.current.divider)
+                                    .background(cz.kotox.common.designsystem.theme.LocalColors.current.divider)
                             )
                             AsyncImage(
                                 model = input.taskItem.localImageUrl,
@@ -213,7 +213,7 @@ fun TaskDetailScreen(
                                 } else {
                                     Text(
                                         text = stringResource(id = R.string.task_detail_button_download_label),
-                                        style = LocalTypography.current.body1Regular,
+                                        style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Regular,
                                     )
                                 }
                             }

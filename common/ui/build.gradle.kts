@@ -15,10 +15,13 @@ dependencies {
     api(libs.androidx.compose.runtime)
     api(libs.androidx.compose.ui.tooling.preview)
 
+
     debugApi(libs.androidx.compose.ui.tooling)
 
     implementation(projects.common.core)
     implementation(projects.common.coreAndroid)
+    implementation(projects.common.designSystem)
+    
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core)

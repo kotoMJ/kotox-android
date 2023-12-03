@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import cz.kotox.common.task.poc.ui.TaskSummaryComponent
 import cz.kotox.common.task.poc.ui.TaskSummaryComponentInput
 import cz.kotox.common.task.poc.ui.TaskSummaryComponentPreviewProvider
-import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 
 @Preview(
     device = Devices.PIXEL,
@@ -32,7 +32,7 @@ import cz.kotox.common.ui.theme.KotoxBasicTheme
 fun TaskDetailItem(
     @PreviewParameter(TaskSummaryComponentPreviewProvider::class) input: TaskSummaryComponentInput
 ) {
-    KotoxBasicTheme {
+    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
 
         Box(
             modifier = Modifier

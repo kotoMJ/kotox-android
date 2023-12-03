@@ -70,9 +70,10 @@ dependencies {
     lintChecks(projects.lint)
 
     implementation(projects.common.core)
-    implementation(projects.common.ui)
+    implementation(projects.common.designSystem)
     implementation(projects.common.network)
     implementation(projects.common.taskPoc)
+    implementation(projects.common.ui)
     implementation(projects.feature.taskPoc.detail)
     implementation(projects.feature.taskPoc.dashboard)
 

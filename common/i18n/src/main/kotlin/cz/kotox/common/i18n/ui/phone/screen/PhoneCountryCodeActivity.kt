@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import cz.kotox.common.ui.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,7 +16,7 @@ class PhoneCountryCodeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            KotoxBasicTheme {
+            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
                 PhoneCountryCodeScreen(viewModel = viewModel)
             }
         }

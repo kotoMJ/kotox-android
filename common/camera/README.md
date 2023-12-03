@@ -1,3 +1,11 @@
-# Custom camera
+# Camera
 
-Module providing reusable custom camera feature.
+Module providing reusable camera features.
+
+# Custom.capture Feature
+
+Feature providing custom camera reusable implementation by using CameraX wrapper.
+
+
+
+

@@ -29,7 +29,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.layoutId
-import cz.kotox.common.ui.theme.LocalColors
+import cz.kotox.common.designsystem.theme.LocalColors
 import cz.kotox.feature.task.poc.detail.ui.TaskDetailActivityIntentUtil
 import cz.kotox.task.R
 import cz.kotox.common.task.poc.R as CTPR
@@ -120,7 +120,7 @@ fun MainScreen(
                                         id = CTPR.drawable.ic_refresh
                                     ),
                                     contentDescription = stringResource(id = R.string.generic_click_to_refresh),
-                                    tint = LocalColors.current.primary,
+                                    tint = cz.kotox.common.designsystem.theme.LocalColors.current.primary,
                                 )
                             }
                         }
@@ -149,7 +149,7 @@ fun MainScreen(
                                     )
                                     if (index < input.mainFeedState.taskGroups[page].tasks.lastIndex)
                                         Divider(
-                                            color = LocalColors.current.divider,
+                                            color = cz.kotox.common.designsystem.theme.LocalColors.current.divider,
                                             thickness = 1.dp
                                         )
                                 }
