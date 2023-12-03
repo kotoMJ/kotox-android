@@ -10,6 +10,7 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.UseCase
 import androidx.camera.core.ZoomState
 import androidx.camera.view.PreviewView
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -24,6 +25,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -35,9 +37,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -45,7 +44,12 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import cz.kotox.common.core.android.permission.Permission
 import cz.kotox.common.camera.custom.R
 import cz.kotox.common.camera.custom.LensFacing
+import cz.kotox.common.camera.custom.capture.permission.PermissionNotAvailableScreenContent
+import cz.kotox.common.camera.custom.capture.zoom.createScaleGestureDetector
 import cz.kotox.common.camera.custom.utils.AppSettingsIntentUtils.getAppSettingsIntent
+import cz.kotox.common.designsystem.preview.KotoxBasicThemeFullSizePreview
+import cz.kotox.common.designsystem.preview.PreviewMobileLarge
+import cz.kotox.common.designsystem.theme.LocalColors
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import timber.log.Timber
@@ -61,15 +65,9 @@ data class CameraCaptureInput(
 
 @OptIn(ExperimentalPermissionsApi::class)
 @ExperimentalCoroutinesApi
-@androidx.compose.ui.tooling.preview.Preview(
-    device = Devices.PIXEL,
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true,
-    name = "Dark Mode"
-)
 @Composable
 fun CameraCapture(
-    @PreviewParameter(CameraCapturePreviewProvider::class) input: CameraCaptureInput,
+    input: CameraCaptureInput,
     modifier: Modifier = Modifier,
     onEventHandler: (CameraScreenEvent) -> Unit = {}
 ) {
@@ -77,16 +75,16 @@ fun CameraCapture(
 
     val backgroundColor = Color.Black
 
-    var camera: Camera? by remember { mutableStateOf<Camera?>(null) }
+    var camera: Camera? by remember { mutableStateOf(null) }
 
-    var gestureDetected by remember { mutableStateOf<Boolean>(false) }
-    var gestureDetectedCountDownSeconds by remember { mutableStateOf(0) }
+    var gestureDetected by remember { mutableStateOf(false) }
+    var gestureDetectedCountDownSeconds by remember { mutableIntStateOf(0) }
 
     var scaleGestureDetector: ScaleGestureDetector? by remember {
         mutableStateOf(null)
     }
 
-    var previewView: PreviewView? by remember { mutableStateOf<PreviewView?>(null) }
+    var previewView: PreviewView? by remember { mutableStateOf(null) }
 
     val lifecycleOwner = LocalLifecycleOwner.current
 
@@ -137,102 +135,59 @@ fun CameraCapture(
     Permission(
         permission = Manifest.permission.CAMERA,
         permissionNotAvailableContent = {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(color = backgroundColor)
-            ) {
-
-                Box(
-                    modifier = Modifier
-                        .wrapContentSize()
-                        .align(Alignment.Center)
-                ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text(
-                            modifier = Modifier.padding(16.dp),
-                            text = stringResource(id = R.string.camera_capture_permission_not_available),
-                            color = Color.White,
-                            textAlign = TextAlign.Center
-                        )
-                        OutlinedButton(
-                            modifier = Modifier.padding(top = 16.dp),
-                            border = BorderStroke(2.dp, Color.White),
-                            contentPadding = PaddingValues(8.dp),
-                            colors = ButtonDefaults.outlinedButtonColors(
-                                contentColor = Color.White,
-                                backgroundColor = Color.Black
-                            ),
-                            onClick = {
-                                context.startActivity(getAppSettingsIntent(context))
-                            }) {
-                            Text(text = "Permission settings", color = Color.White)
-                        }
-                    }
-                }
-
-            }
+            PermissionNotAvailableScreenContent(backgroundColor, context)
 
         }
     ) {
         if (input.currentSelector == null || input.currentSelector == LensFacing.NOT_DETECTED) {
             if (input.currentSelector == LensFacing.NOT_DETECTED) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(color = backgroundColor)
-                ) {
-
-                    Text(
-                        modifier = Modifier
-                            .align(Alignment.Center),
-                        text = stringResource(id = R.string.camera_capture_camera_not_detected),
-                        color = Color.White,
-                        textAlign = TextAlign.Center
-                    )
-                }
+                CameraNotDetectedScreenContent(backgroundColor)
             }
         } else {
-            if (isLandscape()) {
-                CameraCaptureLandscape(
-                    modifier = modifier,
-                    backgroundColor = backgroundColor,
-                    currentSelector = input.currentSelector,
-                    onEventHandler = onEventHandler,
-                    onCameraBind = { camera ->
-                        onCameraBind(camera)
-                    },
-                    onCameraUnbind = { onCameraUnbind() },
-                    onUpdateZoomRatio = { zoomRatio ->
-                        setZoomRatio(zoomRatio)
-                    },
-                    currentZoomValues = input.currentZoomValues,
-                    onPreviewViewCreated = { onPreviewViewCreated(it) },
-                    gestureDetected = gestureDetected
-                )
-            }
+            Crossfade(targetState = isLandscape()) {
+                when (it) {
+                    true -> {
+                        CameraCaptureLandscape(
+                            modifier = modifier,
+                            backgroundColor = backgroundColor,
+                            currentSelector = input.currentSelector,
+                            onEventHandler = onEventHandler,
+                            onCameraBind = { camera ->
+                                onCameraBind(camera)
+                            },
+                            onCameraUnbind = { onCameraUnbind() },
+                            onUpdateZoomRatio = { zoomRatio ->
+                                setZoomRatio(zoomRatio)
+                            },
+                            currentZoomValues = input.currentZoomValues,
+                            onPreviewViewCreated = { onPreviewViewCreated(it) },
+                            gestureDetected = gestureDetected
+                        )
+                    }
 
-            if (!isLandscape()) {
-                CameraCapturePortrait(
-                    modifier = modifier,
-                    backgroundColor = backgroundColor,
+                    false -> {
+                        CameraCapturePortrait(
+                            modifier = modifier,
+                            backgroundColor = backgroundColor,
 
-                    currentSelector = input.currentSelector,
-                    onEventHandler = onEventHandler,
-                    onCameraBind = { camera ->
-                        onCameraBind(camera)
-                    },
-                    onCameraUnbind = { onCameraUnbind() },
-                    onUpdateZoomRatio = { zoomRatio ->
-                        setZoomRatio(zoomRatio)
-                    },
-                    onUpdateLinearZoomValue = { linearZoomValue ->
-                        setLinearZoom(linearZoomValue)
-                    },
-                    currentZoomValues = input.currentZoomValues,
-                    onPreviewViewCreated = { onPreviewViewCreated(it) },
-                    gestureDetected = gestureDetected
-                )
+                            currentSelector = input.currentSelector,
+                            onEventHandler = onEventHandler,
+                            onCameraBind = { camera ->
+                                onCameraBind(camera)
+                            },
+                            onCameraUnbind = { onCameraUnbind() },
+                            onUpdateZoomRatio = { zoomRatio ->
+                                setZoomRatio(zoomRatio)
+                            },
+                            onUpdateLinearZoomValue = { linearZoomValue ->
+                                setLinearZoom(linearZoomValue)
+                            },
+                            currentZoomValues = input.currentZoomValues,
+                            onPreviewViewCreated = { onPreviewViewCreated(it) },
+                            gestureDetected = gestureDetected
+                        )
+                    }
+                }
             }
         }
     }
@@ -277,9 +232,3 @@ internal fun LaunchCameraUseCase(
     }
 }
 
-class CameraCapturePreviewProvider : PreviewParameterProvider<CameraCaptureInput> {
-    override val values: Sequence<CameraCaptureInput> = sequenceOf(
-        CameraCaptureInput(LensFacing.BACK, currentZoomValues = null, Observer { }),
-        CameraCaptureInput(LensFacing.FRONT, currentZoomValues = null, Observer { })
-    )
-}

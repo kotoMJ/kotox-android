@@ -30,7 +30,7 @@ val EMPTY_IMAGE_URI: Uri = Uri.parse("file:/$EMPTY_IMAGE_FILE_PATH_NAME")
 @AndroidEntryPoint
 class CameraCustomActivity : ComponentActivity() {
 
-    val viewModel: CameraActivityViewModel by viewModels()
+    private val viewModel: CameraActivityViewModel by viewModels()
 
     private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
 
@@ -50,7 +50,7 @@ class CameraCustomActivity : ComponentActivity() {
         cameraProviderFuture.get()
 
         setContent {
-            cz.kotox.common.designsystem.theme.KotoxBasicTheme() {
+            KotoxBasicTheme() {
                 CameraScreenContent(
                     input = CameraScreenViewState(
                         currentCameraSelector = viewModel.currentCameraSelectorPresenter.value,
