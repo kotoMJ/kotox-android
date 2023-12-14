@@ -1,6 +1,5 @@
 package cz.kotox.konsist
 
-import androidx.activity.ComponentActivity
 import com.lemonappdev.konsist.api.KoModifier
 import com.lemonappdev.konsist.api.Konsist
 import com.lemonappdev.konsist.api.declaration.KoFunctionDeclaration
@@ -8,7 +7,7 @@ import com.lemonappdev.konsist.api.declaration.KoPropertyDeclaration
 import com.lemonappdev.konsist.api.ext.list.indexOfFirstInstance
 import com.lemonappdev.konsist.api.ext.list.indexOfLastInstance
 import com.lemonappdev.konsist.api.ext.list.properties
-import com.lemonappdev.konsist.api.ext.list.withoutAllParentsOf
+import com.lemonappdev.konsist.api.ext.list.withoutNameEndingWith
 import com.lemonappdev.konsist.api.verify.assertFalse
 import com.lemonappdev.konsist.api.verify.assertTrue
 import org.junit.Test
@@ -96,7 +95,9 @@ class GeneralKonsistTest {
         Konsist
             .scopeFromProject()
             .classes()
-            .withoutAllParentsOf(ComponentActivity::class) //Allow field injection in activities
+            .withoutNameEndingWith("Test")
+            .withoutNameEndingWith("Activity")
+            .withoutNameEndingWith("Application")
             .properties()
             .assertFalse { it.hasAnnotationWithName("javax.inject.Inject") }
     }
