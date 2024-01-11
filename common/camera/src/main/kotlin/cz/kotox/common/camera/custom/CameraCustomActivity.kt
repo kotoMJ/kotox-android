@@ -62,10 +62,12 @@ class CameraCustomActivity : ComponentActivity() {
         orientationListener = object : OrientationEventListener(this) {
             override fun onOrientationChanged(orientation: Int) {
                 /**
-                 * FIXME MJ - HOLD the idea. Do not listen for specific range.
+                 * FIXME MJ - Do not listen for specific range.
                  * - Detect current orientation
                  * - Keep that orientation until orientation reach almost orientation change
                  * - Update orientatation and again keep orientation until device reach the other orientation
+                 *
+                 * - Also keep in mind it's not about UX (switching icons) but also set proper orientation to the saved image!!!
                  */
                 when (orientation) {
                     in 0..90 -> Timber.d(">>>_ orientation PORTRAIT $orientation")
