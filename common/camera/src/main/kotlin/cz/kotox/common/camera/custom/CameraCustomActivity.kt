@@ -3,6 +3,7 @@ package cz.kotox.common.camera.custom
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.OrientationEventListener
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -12,17 +13,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
 import com.google.common.util.concurrent.ListenableFuture
-import cz.kotox.common.core.extension.exhaustive
 import cz.kotox.common.camera.custom.capture.CameraScreenContent
 import cz.kotox.common.camera.custom.capture.CameraScreenEvent
 import cz.kotox.common.camera.custom.capture.CameraScreenViewState
 import cz.kotox.common.camera.custom.capture.EMPTY_IMAGE_FILE_PATH_NAME
+import cz.kotox.common.core.extension.exhaustive
 import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import timber.log.Timber
 
 val EMPTY_IMAGE_URI: Uri = Uri.parse("file:/$EMPTY_IMAGE_FILE_PATH_NAME")
+const val UNKNOWN = -1
+const val PORTRAIT = 0
+const val PORTRAIT_REV = 2
+const val LANDSCAPE = 1
+const val LANDSCAPE_REV = 3
 
 @OptIn(
     ExperimentalCoroutinesApi::class,
@@ -33,6 +39,8 @@ class CameraCustomActivity : ComponentActivity() {
     private val viewModel: CameraActivityViewModel by viewModels()
 
     private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
+
+    private lateinit var orientationListener: OrientationEventListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +56,28 @@ class CameraCustomActivity : ComponentActivity() {
             }
         }, ContextCompat.getMainExecutor(this))
         cameraProviderFuture.get()
+
+
+        @Suppress("MagicNumber")
+        orientationListener = object : OrientationEventListener(this) {
+            override fun onOrientationChanged(orientation: Int) {
+                /**
+                 * FIXME MJ - HOLD the idea. Do not listen for specific range.
+                 * - Detect current orientation
+                 * - Keep that orientation until orientation reach almost orientation change
+                 * - Update orientatation and again keep orientation until device reach the other orientation
+                 */
+                when (orientation) {
+                    in 0..90 -> Timber.d(">>>_ orientation PORTRAIT $orientation")
+                    in 91..180 -> Timber.d(">>>_ orientation LANDSCAPE_REV $orientation")
+                    in 181..270 -> Timber.d(">>>_ orientation PORTRAIT_REV $orientation")
+                    in 271..360 -> Timber.d(">>>_ orientation LANDSCAPE $orientation")
+                }
+
+            }
+
+        }
+
 
         setContent {
             KotoxBasicTheme() {
@@ -75,6 +105,16 @@ class CameraCustomActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        orientationListener.enable()
+    }
+
+    override fun onPause() {
+        orientationListener.disable()
+        super.onPause()
     }
 
     private fun exitActivity(uri: Uri) {
