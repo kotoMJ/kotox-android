@@ -4,11 +4,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 
 @Suppress("FunctionNaming")
-internal fun CameraScreenPresenter(
+internal fun OrientationViewStatePresenter(
     rotationDegreeFlow: Flow<Int>,
     directionClockwiseFlow: Flow<Boolean>
 ) = combine(rotationDegreeFlow, directionClockwiseFlow) { rotationDegree, direction ->
-    CameraViewState(
+    OrientationViewState(
         rotationDegree = rotationDegree,
         directionClockwise = direction
     )

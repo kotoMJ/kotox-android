@@ -10,11 +10,14 @@ import androidx.activity.viewModels
 import androidx.camera.core.CameraInfoUnavailableException
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.common.util.concurrent.ListenableFuture
-import cz.kotox.common.camera.custom.capture.CameraScreenContent
+import cz.kotox.common.camera.custom.capture.CameraScreenMultiLayout
 import cz.kotox.common.camera.custom.capture.CameraScreenEvent
+import cz.kotox.common.camera.custom.capture.CameraScreenSingleLayout
 import cz.kotox.common.camera.custom.capture.CameraScreenViewState
 import cz.kotox.common.camera.custom.capture.EMPTY_IMAGE_FILE_PATH_NAME
 import cz.kotox.common.core.extension.exhaustive
@@ -60,46 +63,61 @@ class CameraCustomActivity : ComponentActivity() {
         @Suppress("MagicNumber")
         orientationListener = object : OrientationEventListener(this) {
             override fun onOrientationChanged(orientation: Int) {
-                /**
-                 * FIXME MJ - Do not listen for specific range.
-                 * - Detect current orientation
-                 * - Keep that orientation until orientation reach almost orientation change
-                 * - Update orientatation and again keep orientation until device reach the other orientation
-                 *
-                 * - Also keep in mind it's not about UX (switching icons) but also set proper orientation to the saved image!!!
-                 */
-                when (orientation) {
-                    in 0..90 -> Timber.d(">>>_ orientation PORTRAIT $orientation")
-                    in 91..180 -> Timber.d(">>>_ orientation LANDSCAPE_REV $orientation")
-                    in 181..270 -> Timber.d(">>>_ orientation PORTRAIT_REV $orientation")
-                    in 271..360 -> Timber.d(">>>_ orientation LANDSCAPE $orientation")
-                }
+                viewModel.setCurrentCameraRotation(orientation)
             }
         }
 
         setContent {
+            val orientationViewState: State<OrientationViewState> = viewModel.orientationViewState.collectAsStateWithLifecycle()
+
             KotoxBasicTheme() {
-                CameraScreenContent(
-                    input = CameraScreenViewState(
-                        currentCameraSelector = viewModel.currentCameraSelectorPresenter.value,
-                        currentZoomValues = viewModel.currentZoomValuesPresenter.value,
-                        zoomStateObserver = viewModel.zoomStateObserver
-                    ),
-                    modifier = Modifier.fillMaxSize()
-                ) { event ->
-                    when (event) {
-                        is CameraScreenEvent.SwitchCameraSelector -> {
-                            viewModel.setNextCameraSelector()
-                        }
+                if (false) { //FIXME MJ - add flag to run activity with
+                    CameraScreenSingleLayout(
+                        input = CameraScreenViewState(
+                            currentCameraSelector = viewModel.currentCameraSelectorPresenter.value,
+                            currentZoomValues = viewModel.currentZoomValuesPresenter.value,
+                            zoomStateObserver = viewModel.zoomStateObserver
+                        ),
+                        orientation = orientationViewState,
+                        modifier = Modifier.fillMaxSize()
+                    ) { event ->
+                        when (event) {
+                            is CameraScreenEvent.SwitchCameraSelector -> {
+                                viewModel.setNextCameraSelector()
+                            }
 
-                        is CameraScreenEvent.ExitCamera -> {
-                            exitActivity(event.uri)
-                        }
+                            is CameraScreenEvent.ExitCamera -> {
+                                exitActivity(event.uri)
+                            }
 
-                        is CameraScreenEvent.CaptureImageFile -> {
-                            // Event is processed on the CameraCapture level only.
-                        }
-                    }.exhaustive
+                            is CameraScreenEvent.CaptureImageFile -> {
+                                // Event is processed on the CameraCapture level only.
+                            }
+                        }.exhaustive
+                    }
+                } else {
+                    CameraScreenMultiLayout(
+                        input = CameraScreenViewState(
+                            currentCameraSelector = viewModel.currentCameraSelectorPresenter.value,
+                            currentZoomValues = viewModel.currentZoomValuesPresenter.value,
+                            zoomStateObserver = viewModel.zoomStateObserver
+                        ),
+                        modifier = Modifier.fillMaxSize()
+                    ) { event ->
+                        when (event) {
+                            is CameraScreenEvent.SwitchCameraSelector -> {
+                                viewModel.setNextCameraSelector()
+                            }
+
+                            is CameraScreenEvent.ExitCamera -> {
+                                exitActivity(event.uri)
+                            }
+
+                            is CameraScreenEvent.CaptureImageFile -> {
+                                // Event is processed on the CameraCapture level only.
+                            }
+                        }.exhaustive
+                    }
                 }
             }
         }

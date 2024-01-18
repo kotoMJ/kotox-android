@@ -1,8 +1,5 @@
 package cz.kotox.common.camera.custom.capture
 
-import android.content.res.Configuration
-import android.net.Uri
-import androidx.camera.core.ZoomState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -13,6 +10,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,7 +18,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
@@ -29,33 +26,26 @@ import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import cz.kotox.common.camera.custom.EMPTY_IMAGE_URI
 import cz.kotox.common.camera.custom.LensFacing
+import cz.kotox.common.camera.custom.OrientationViewState
 import cz.kotox.common.camera.custom.R
 import cz.kotox.common.camera.custom.capture.actionbutton.CaptureBackButton
 import cz.kotox.common.camera.custom.capture.actionbutton.CaptureConfirmButton
 import cz.kotox.common.camera.custom.capture.actionbutton.CapturePhotoLibraryButton
+import cz.kotox.common.camera.custom.capture.layout.single.CameraCaptureSingleLayout
 import cz.kotox.common.camera.custom.gallery.GallerySelect
-import java.io.File
-
-data class CameraScreenViewState(
-    val currentCameraSelector: LensFacing?,
-    val currentZoomValues: ZoomValues?,
-    val zoomStateObserver: Observer<ZoomState>
-)
-
-sealed class CameraScreenEvent {
-    object SwitchCameraSelector : CameraScreenEvent()
-    data class ExitCamera(val uri: Uri) : CameraScreenEvent()
-    data class CaptureImageFile(val file: File?) : CameraScreenEvent()
-}
+import cz.kotox.common.designsystem.preview.KotoxBasicThemeFullSizePreview
+import cz.kotox.common.designsystem.preview.PreviewMobileLarge
+import cz.kotox.common.designsystem.theme.LocalColors
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun CameraScreenContent(
+internal fun CameraScreenSingleLayout(
     input: CameraScreenViewState,
+    orientation: State<OrientationViewState>,
     modifier: Modifier = Modifier,
     onEventHandler: (CameraScreenEvent) -> Unit = {}
 ) {
-    val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
+    val isLandscape = false//FIXME MJ
     var imageUri by remember { mutableStateOf(EMPTY_IMAGE_URI) }
     if (imageUri != EMPTY_IMAGE_URI) {
         Box(modifier = modifier) {
@@ -95,15 +85,16 @@ fun CameraScreenContent(
                 }
             )
         } else {
-            val isLandscape =
-                LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
+//            val isLandscape =
+//                LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
             Box(modifier = modifier) {
-                CameraCapture(
+                CameraCaptureSingleLayout(
                     input = CameraCaptureInput(
                         currentSelector = input.currentCameraSelector,
                         currentZoomValues = input.currentZoomValues,
                         zoomStateObserver = input.zoomStateObserver
                     ),
+                    orientationViewState = orientation,
                     modifier = modifier,
                     onEventHandler = { event ->
                         if (event is CameraScreenEvent.CaptureImageFile) {
@@ -129,12 +120,11 @@ fun CameraScreenContent(
                     onClick = {
                         onEventHandler.invoke(CameraScreenEvent.ExitCamera(EMPTY_IMAGE_URI))
                     }
-                )
-                {
+                ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_close),
                         contentDescription = null,
-                        tint = cz.kotox.common.designsystem.theme.LocalColors.current.divider // FIXME MJ, update proper color
+                        tint = LocalColors.current.divider // FIXME MJ, update proper color
                     )
                 }
             }
@@ -142,9 +132,17 @@ fun CameraScreenContent(
     }
 }
 
-// class CameraScreenPreviewProvider : PreviewParameterProvider<CameraScreenViewState> {
-//    override val values: Sequence<CameraScreenViewState> = sequenceOf(
-//        CameraScreenViewState(LensFacing.BACK, currentZoomValues = null, Observer { }),
-//        CameraScreenViewState(LensFacing.FRONT, currentZoomValues = null, Observer { })
-//    )
-// }
+@PreviewMobileLarge
+@Composable
+private fun CameraScreenContentPreview() {
+    KotoxBasicThemeFullSizePreview {
+        CameraScreenSingleLayout(
+            input = CameraScreenViewState(LensFacing.BACK, currentZoomValues = null, Observer { }),
+            orientation = remember {
+                mutableStateOf(
+                    OrientationViewState(0, true)
+                )
+            }
+        )
+    }
+}

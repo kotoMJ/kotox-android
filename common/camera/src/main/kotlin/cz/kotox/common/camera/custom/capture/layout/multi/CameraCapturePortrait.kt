@@ -1,4 +1,4 @@
-package cz.kotox.common.camera.custom.capture
+package cz.kotox.common.camera.custom.capture.layout.multi
 
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
@@ -27,8 +27,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import cz.kotox.common.camera.custom.LensFacing
+import cz.kotox.common.camera.custom.capture.CameraPreview
+import cz.kotox.common.camera.custom.capture.CameraScreenEvent
+import cz.kotox.common.camera.custom.capture.ZoomValues
 import cz.kotox.common.camera.custom.capture.actionbutton.CaptureFlipCameraButton
 import cz.kotox.common.camera.custom.capture.actionbutton.CapturePictureButton
+import cz.kotox.common.camera.custom.capture.executor
+import cz.kotox.common.camera.custom.capture.takePicture
 import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomSlider
 import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomSliderViewState
 import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggle
@@ -41,7 +46,7 @@ import timber.log.Timber
 private const val SHOW_SLIDER_COUNTDOWN_IN_SECONDS = 3
 
 @Composable
-fun CameraCapturePortrait(
+internal fun CameraCapturePortrait(
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.Black,
     currentSelector: LensFacing? = null,

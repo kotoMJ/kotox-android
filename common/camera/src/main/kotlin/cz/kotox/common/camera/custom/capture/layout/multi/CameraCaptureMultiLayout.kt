@@ -1,4 +1,4 @@
-package cz.kotox.common.camera.custom.capture
+package cz.kotox.common.camera.custom.capture.layout.multi
 
 import android.Manifest
 import android.content.Context
@@ -8,7 +8,6 @@ import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.UseCase
-import androidx.camera.core.ZoomState
 import androidx.camera.view.PreviewView
 import androidx.compose.animation.Crossfade
 import androidx.compose.runtime.Composable
@@ -24,29 +23,27 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import cz.kotox.common.camera.custom.LensFacing
+import cz.kotox.common.camera.custom.capture.CameraCaptureInput
+import cz.kotox.common.camera.custom.capture.CameraNotDetectedScreenContent
+import cz.kotox.common.camera.custom.capture.CameraScreenEvent
+import cz.kotox.common.camera.custom.capture.getCameraProvider
 import cz.kotox.common.camera.custom.capture.permission.PermissionNotAvailableScreenContent
 import cz.kotox.common.camera.custom.capture.zoom.createScaleGestureDetector
 import cz.kotox.common.core.android.permission.Permission
-import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import timber.log.Timber
+import kotlin.time.Duration.Companion.seconds
 
 private const val SCALE_GESTURE_COUNTDOWN_IN_SECONDS = 3
 
-data class CameraCaptureInput(
-    val currentSelector: LensFacing? = null,
-    val currentZoomValues: ZoomValues?,
-    val zoomStateObserver: Observer<ZoomState>
-)
 
 @OptIn(ExperimentalPermissionsApi::class)
 @ExperimentalCoroutinesApi
 @Composable
-fun CameraCapture(
+fun CameraCaptureMultiLayout(
     input: CameraCaptureInput,
     modifier: Modifier = Modifier,
     onEventHandler: (CameraScreenEvent) -> Unit = {}

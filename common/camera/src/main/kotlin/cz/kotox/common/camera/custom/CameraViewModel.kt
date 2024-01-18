@@ -26,6 +26,13 @@ enum class LensFacing {
     NOT_DETECTED
 }
 
+enum class CameraOrientation {
+    PORTRAIT,
+    LANDSCAPE_REV,
+    PORTRAIT_REV,
+    LANDSCAPE
+}
+
 @HiltViewModel
 @ExperimentalCoroutinesApi
 class CameraActivityViewModel @Inject constructor(
@@ -65,12 +72,12 @@ class CameraActivityViewModel @Inject constructor(
         defaultValue = true
     )
 
-    internal val state: StateFlow<CameraViewState> = CameraScreenPresenter(
+    val orientationViewState: StateFlow<OrientationViewState> = OrientationViewStatePresenter(
         rotationDegreeFlow = rotationDegree.state,
         directionClockwiseFlow = directionClockwise.state
     ).stateInForScope(
         scope = viewModelScope,
-        initialValue = CameraViewState(0, true)
+        initialValue = OrientationViewState(0, true)
     )
 
     init {
@@ -114,5 +121,25 @@ class CameraActivityViewModel @Inject constructor(
             }
             currentCameraSelector.value = nextSelector
         }
+    }
+
+    fun setCurrentCameraRotation(newRotationDegree: Int) {
+        directionClockwise.value = ((newRotationDegree - rotationDegree.value) > 0)
+        rotationDegree.value = newRotationDegree
+
+        /**
+         * FIXME MJ - Do not listen for specific range.
+         * - Detect current orientation
+         * - Keep that orientation until orientation reach almost orientation change
+         * - Update orientatation and again keep orientation until device reach the other orientation
+         *
+         * - Also keep in mind it's not about UX (switching icons) but also set proper orientation to the saved image!!!
+         */
+//        when (rotationInDegree) {
+//            in 0..90 -> Timber.d(">>>_ orientation PORTRAIT $rotationInDegree")
+//            in 91..180 -> Timber.d(">>>_ orientation LANDSCAPE_REV $rotationInDegree")
+//            in 181..270 -> Timber.d(">>>_ orientation PORTRAIT_REV $rotationInDegree")
+//            in 271..360 -> Timber.d(">>>_ orientation LANDSCAPE $rotationInDegree")
+//        }
     }
 }

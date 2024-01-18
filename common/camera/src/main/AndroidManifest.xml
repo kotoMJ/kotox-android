@@ -6,9 +6,9 @@
     <application>
         <activity
             android:name="cz.kotox.common.camera.custom.CameraCustomActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
         </activity>
     </application>
 
 </manifest>
+<!--android:screenOrientation="portrait"-->
