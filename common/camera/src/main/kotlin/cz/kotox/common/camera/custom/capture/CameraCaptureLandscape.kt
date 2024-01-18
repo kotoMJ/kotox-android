@@ -46,7 +46,6 @@ fun CameraCaptureLandscape(
     onUpdateZoomRatio: (zoomRatio: Float) -> Unit,
     onPreviewViewCreated: (PreviewView) -> Unit = {}
 ) {
-
     val context = LocalContext.current
 
     Box(modifier = modifier.background(color = backgroundColor)) {
@@ -60,7 +59,6 @@ fun CameraCaptureLandscape(
                     .build()
             )
         }
-
 
         CameraPreview(
             modifier = Modifier
@@ -133,7 +131,8 @@ fun CameraCaptureLandscape(
                     imageCaptureUseCase,
                     CameraSelector.DEFAULT_BACK_CAMERA,
                     { onCameraBind(it) },
-                    { onCameraUnbind() })
+                    { onCameraUnbind() }
+                )
             }
 
             LensFacing.FRONT -> {
@@ -144,7 +143,8 @@ fun CameraCaptureLandscape(
                     imageCaptureUseCase,
                     CameraSelector.DEFAULT_FRONT_CAMERA,
                     { onCameraBind(it) },
-                    { onCameraUnbind() })
+                    { onCameraUnbind() }
+                )
             }
 
             else -> {
@@ -153,4 +153,3 @@ fun CameraCaptureLandscape(
         }
     }
 }
-

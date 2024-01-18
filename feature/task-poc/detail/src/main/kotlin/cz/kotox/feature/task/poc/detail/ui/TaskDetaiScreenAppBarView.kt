@@ -21,17 +21,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import cz.kotox.common.designsystem.theme.LocalColors
 import cz.kotox.common.designsystem.theme.LocalTypography
-import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import cz.kotox.common.task.poc.R as CTPR
-
 sealed class TaskDetailAppBarEvent {
     object AppBarHomeEvent : TaskDetailAppBarEvent()
 }
 
 data class TaskDetailAppBarInput constructor(
-    val title: String,
+    val title: String
 )
 
 @Preview(
@@ -50,27 +49,27 @@ data class TaskDetailAppBarInput constructor(
 @Composable
 fun MainScreenAppBarView(
     @PreviewParameter(MainScreenAppBarPreviewProvider::class) input: TaskDetailAppBarInput,
-    backButtonModifier: Modifier = Modifier,
+    modifier: Modifier = Modifier,
     onEventHandler: (TaskDetailAppBarEvent) -> Unit = {}
 ) {
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
-
+    KotoxBasicTheme {
         Box(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
                 .sizeIn(minHeight = 56.dp)
         ) {
-
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column() {
                     IconButton(
-                        onClick = { onEventHandler.invoke(TaskDetailAppBarEvent.AppBarHomeEvent) },
+                        onClick = { onEventHandler.invoke(TaskDetailAppBarEvent.AppBarHomeEvent) }
                     ) {
                         Icon(
                             painter = painterResource(CTPR.drawable.ic_arrow_left),
-                            contentDescription = stringResource(CTPR.string.generic_back_description),
-                            tint = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
+                            contentDescription = stringResource(
+                                CTPR.string.generic_back_description
+                            ),
+                            tint = LocalColors.current.textNorm
                         )
                     }
                 }
@@ -79,15 +78,13 @@ fun MainScreenAppBarView(
                         Text(
                             modifier = Modifier.align(Alignment.Center),
                             text = input.title,
-                            style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Medium,
-                            color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
+                            style = LocalTypography.current.body1Medium,
+                            color = LocalColors.current.textNorm
                         )
                     }
                 }
             }
-
         }
-
     }
 }
 

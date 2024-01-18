@@ -1,1 +1,1 @@
-./gradlew ktlintFormat detekt lint konsist_test:test --rerun-tasks
+./gradlew ktlintFormat clean detekt lint konsist_test:test --rerun-tasks

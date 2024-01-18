@@ -25,7 +25,7 @@ import cz.kotox.common.designsystem.preview.PreviewMobileLarge
 @Composable
 fun CaptureConfirmButton(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = { },
+    onClick: () -> Unit = { }
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -35,7 +35,10 @@ fun CaptureConfirmButton(
         shape = CircleShape,
         border = BorderStroke(2.dp, Color.White),
         contentPadding = contentPadding,
-        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White, backgroundColor = Color.Black),
+        colors = ButtonDefaults.outlinedButtonColors(
+            contentColor = Color.White,
+            backgroundColor = Color.Black
+        ),
         onClick = { /* GNDN */ },
         enabled = false
     ) {

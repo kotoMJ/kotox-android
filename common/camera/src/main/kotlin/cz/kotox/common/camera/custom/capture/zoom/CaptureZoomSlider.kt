@@ -46,8 +46,11 @@ fun CaptureZoomSlider(
     input: CaptureZoomSliderViewState,
     onValueChange: (value: Float) -> Unit = {}
 ) {
-
-    val (timeLineSliderValueLocal, setTimeLineSliderValue) = remember { mutableFloatStateOf(input.zoomValues.currentLinearZoom) }
+    val (timeLineSliderValueLocal, setTimeLineSliderValue) = remember {
+        mutableFloatStateOf(
+            input.zoomValues.currentLinearZoom
+        )
+    }
 
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -71,17 +74,17 @@ fun CaptureZoomSlider(
                         .background(Color.White)
                         .padding(
                             vertical = 8.dp,
-                            horizontal = 16.dp,
+                            horizontal = 16.dp
                         ),
                     fontFamily = FontFamily.Default,
-                    fontSize = 12.sp,
+                    fontSize = 12.sp
                 )
             }
 
             val thumbSize: Dp = if (isInteracting) 16.dp else 32.dp
             androidx.compose.material3.Slider(
                 modifier = Modifier.semantics { contentDescription = "Localized Description" },
-                value =  input.zoomValues.currentLinearZoom,
+                value = input.zoomValues.currentLinearZoom,
                 colors = captureZoomSliderColors(),
                 onValueChange = {
 //            Timber.d(">>>_ seek in progress: $it")
@@ -89,8 +92,8 @@ fun CaptureZoomSlider(
                     onValueChange(it)
                 },
                 onValueChangeFinished = {
-                    Timber.d(">>>_ seek finished: ${timeLineSliderValueLocal}")
-                    //onValueChangeFinished(timeLineSliderValueLocal.progress)
+                    Timber.d(">>>_ seek finished: $timeLineSliderValueLocal")
+                    // onValueChangeFinished(timeLineSliderValueLocal.progress)
                 },
                 thumb = {
                     val shape = CircleShape
@@ -110,19 +113,24 @@ fun CaptureZoomSlider(
                     )
 
                     AnimatedVisibility(visible = !isInteracting) {
-                        Box(modifier = Modifier.defaultMinSize(minWidth = thumbSize, minHeight = thumbSize)) {
+                        Box(
+                            modifier = Modifier.defaultMinSize(
+                                minWidth = thumbSize,
+                                minHeight = thumbSize
+                            )
+                        ) {
                             Text(
                                 modifier = Modifier.align(Alignment.Center),
                                 textAlign = TextAlign.Center,
                                 text = "${input.zoomValues.currentRatio}",
                                 color = Color.Black,
                                 fontFamily = FontFamily.Default,
-                                fontSize = 12.sp,
+                                fontSize = 12.sp
                             )
                         }
                     }
                 },
-                interactionSource = interactionSource,
+                interactionSource = interactionSource
             )
         }
     }
@@ -130,11 +138,11 @@ fun CaptureZoomSlider(
 
 data class CaptureZoomSliderViewState(
     val zoomValues: ZoomValues,
-    val showVertical: Boolean = false,
+    val showVertical: Boolean = false
 )
 
 @Composable
-@SuppressWarnings("MagicNumber")//FIXME MJ
+@SuppressWarnings("MagicNumber") // FIXME MJ
 private fun captureZoomSliderColors(): androidx.compose.material3.SliderColors = androidx.compose.material3.SliderDefaults.colors(
     activeTickColor = Color.Transparent,
     inactiveTickColor = Color.Transparent,

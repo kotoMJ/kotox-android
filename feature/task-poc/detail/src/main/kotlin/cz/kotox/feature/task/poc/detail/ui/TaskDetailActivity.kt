@@ -10,8 +10,8 @@ import androidx.lifecycle.viewModelScope
 import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import cz.kotox.feature.task.poc.detail.R
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TaskDetailActivity : ComponentActivity() {
@@ -51,11 +51,13 @@ class TaskDetailActivity : ComponentActivity() {
                                             viewModel.setDownloadFinished()
                                         }
                                     } else {
-                                        //We currently use toast as the simplest messaging solution.
+                                        // We currently use toast as the simplest messaging solution.
                                         if (!this@TaskDetailActivity.isDestroyed && !this@TaskDetailActivity.isFinishing) {
                                             Toast.makeText(
                                                 this@TaskDetailActivity,
-                                                this@TaskDetailActivity.getString(R.string.task_detail_image_download_failed),
+                                                this@TaskDetailActivity.getString(
+                                                    R.string.task_detail_image_download_failed
+                                                ),
                                                 Toast.LENGTH_LONG
                                             ).show()
                                         }

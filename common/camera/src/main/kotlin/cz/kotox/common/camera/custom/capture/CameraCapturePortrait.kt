@@ -33,10 +33,10 @@ import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomSlider
 import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomSliderViewState
 import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggle
 import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggleViewState
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import kotlin.time.Duration.Companion.seconds
 
 private const val SHOW_SLIDER_COUNTDOWN_IN_SECONDS = 3
 
@@ -54,7 +54,6 @@ fun CameraCapturePortrait(
     onUpdateZoomRatio: (zoomRatio: Float) -> Unit,
     onPreviewViewCreated: (PreviewView) -> Unit = {}
 ) {
-
     val context = LocalContext.current
 
     var showSlider by remember { mutableStateOf<Boolean>(false) }
@@ -71,7 +70,6 @@ fun CameraCapturePortrait(
                     .build()
             )
         }
-
 
         CameraPreview(
             modifier = Modifier
@@ -101,7 +99,6 @@ fun CameraCapturePortrait(
             modifier = Modifier.align(Alignment.BottomCenter),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             if (currentZoomValues != null) {
                 AnimatedVisibility(visible = !showSlider && !gestureDetected) {
                     Timber.d(">>>_ TOGGLE CaptureZoomToggle")
@@ -151,10 +148,9 @@ fun CameraCapturePortrait(
                             )
                         )
                     }
-                },
+                }
             )
         }
-
 
         when (currentSelector) {
             LensFacing.BACK -> {
@@ -165,7 +161,8 @@ fun CameraCapturePortrait(
                     imageCaptureUseCase,
                     CameraSelector.DEFAULT_BACK_CAMERA,
                     { onCameraBind(it) },
-                    { onCameraUnbind() })
+                    { onCameraUnbind() }
+                )
             }
 
             LensFacing.FRONT -> {
@@ -176,7 +173,8 @@ fun CameraCapturePortrait(
                     imageCaptureUseCase,
                     CameraSelector.DEFAULT_FRONT_CAMERA,
                     { onCameraBind(it) },
-                    { onCameraUnbind() })
+                    { onCameraUnbind() }
+                )
             }
 
             else -> {
@@ -197,4 +195,3 @@ fun CameraCapturePortrait(
         }
     }
 }
-

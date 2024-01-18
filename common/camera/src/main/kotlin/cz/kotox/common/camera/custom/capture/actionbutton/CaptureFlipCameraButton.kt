@@ -23,7 +23,7 @@ import cz.kotox.common.designsystem.preview.PreviewMobileLarge
 @Composable
 fun CaptureFlipCameraButton(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = { },
+    onClick: () -> Unit = { }
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -35,20 +35,20 @@ fun CaptureFlipCameraButton(
             shape = CircleShape,
             border = BorderStroke(2.dp, Color.White),
             contentPadding = contentPadding,
-            colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.White, backgroundColor = Color.Black),
+            colors = ButtonDefaults.outlinedButtonColors(
+                contentColor = Color.White,
+                backgroundColor = Color.Black
+            ),
             onClick = { /*GNDN*/ },
             enabled = false
         ) {
-
             IconButton(onClick = { onClick.invoke() }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_camera_flip),
                     contentDescription = null,
                     tint = Color.White
                 )
-
             }
-
         }
     }
 }

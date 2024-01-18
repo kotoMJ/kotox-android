@@ -30,10 +30,10 @@ import cz.kotox.common.camera.custom.LensFacing
 import cz.kotox.common.camera.custom.capture.permission.PermissionNotAvailableScreenContent
 import cz.kotox.common.camera.custom.capture.zoom.createScaleGestureDetector
 import cz.kotox.common.core.android.permission.Permission
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import timber.log.Timber
-import kotlin.time.Duration.Companion.seconds
 
 private const val SCALE_GESTURE_COUNTDOWN_IN_SECONDS = 3
 
@@ -116,7 +116,6 @@ fun CameraCapture(
         permission = Manifest.permission.CAMERA,
         permissionNotAvailableContent = {
             PermissionNotAvailableScreenContent(backgroundColor, context)
-
         }
     ) {
         if (input.currentSelector == null || input.currentSelector == LensFacing.NOT_DETECTED) {
@@ -182,7 +181,6 @@ fun CameraCapture(
             gestureDetected = false
         }
     }
-
 }
 
 @SuppressWarnings("TooGenericExceptionCaught")
@@ -203,7 +201,10 @@ internal fun LaunchCameraUseCase(
             onCameraUnbind.invoke()
             cameraProvider.unbindAll()
             val camera = cameraProvider.bindToLifecycle(
-                lifecycleOwner, cameraSelector, previewUseCase, imageCaptureUseCase
+                lifecycleOwner,
+                cameraSelector,
+                previewUseCase,
+                imageCaptureUseCase
             )
             onCameraBind.invoke(camera)
         } catch (ex: Exception) {
@@ -211,4 +212,3 @@ internal fun LaunchCameraUseCase(
         }
     }
 }
-

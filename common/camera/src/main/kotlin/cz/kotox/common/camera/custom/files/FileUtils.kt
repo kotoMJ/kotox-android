@@ -1,14 +1,14 @@
 package cz.kotox.common.camera.custom.files
 
-//import android.content.Context
-//import android.net.Uri
-//import android.os.Build
-//import android.os.Environment
-//import androidx.core.content.FileProvider
-//import timber.log.Timber
-//import java.io.File
+// import android.content.Context
+// import android.net.Uri
+// import android.os.Build
+// import android.os.Environment
+// import androidx.core.content.FileProvider
+// import timber.log.Timber
+// import java.io.File
 
-//object FileUtils {
+// object FileUtils {
 //    /**
 //     * Get URI to image received from capture by camera.
 //     * URI location: sdcard/Android/data/com.aisense.otter.../files/Pictures/pickImageResult12345.jpeg
@@ -40,4 +40,4 @@ package cz.kotox.common.camera.custom.files
 //        }
 //        return outputFileUri
 //    }
-//}
+// }

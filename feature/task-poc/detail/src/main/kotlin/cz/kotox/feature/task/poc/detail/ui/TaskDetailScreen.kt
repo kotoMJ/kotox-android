@@ -33,10 +33,10 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import cz.kotox.common.task.poc.ui.TaskSummaryComponentInput
-import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import cz.kotox.common.designsystem.theme.LocalColors
 import cz.kotox.common.designsystem.theme.LocalTypography
+import cz.kotox.common.task.poc.ui.TaskSummaryComponentInput
+import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import cz.kotox.feature.task.poc.detail.R
 import java.time.LocalDateTime
 
@@ -52,8 +52,6 @@ data class TaskDetailScreenInput(
     val onGoingDownload: Boolean = false
 )
 
-//TODO: Comment out text marked with TODO to see the preview, there is some issue with
-// preview text inside the button
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Preview(
     device = Devices.PIXEL,
@@ -65,16 +63,15 @@ data class TaskDetailScreenInput(
     device = "spec:width=411dp,height=891dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape",
     uiMode = Configuration.UI_MODE_NIGHT_NO,
     showBackground = true,
-    name = "Light Mode",
+    name = "Light Mode"
 
-    )
+)
 @Suppress("All JetPack Compose previews contain 'Preview' in method name")
 @Composable
 fun TaskDetailScreen(
     @PreviewParameter(MainScreenPreviewProvider::class) input: TaskDetailScreenInput,
     onEventHandler: (TaskDetailScreenEvent) -> Unit = {}
 ) {
-
     Scaffold(
         backgroundColor = MaterialTheme.colors.surface,
         modifier = Modifier.systemBarsPadding(),
@@ -108,14 +105,16 @@ fun TaskDetailScreen(
                                     modifier = Modifier
                                         .width(360.dp)
                                         .fillMaxHeight()
-                                        .background(cz.kotox.common.designsystem.theme.LocalColors.current.divider)
+                                        .background(
+                                            cz.kotox.common.designsystem.theme.LocalColors.current.divider
+                                        )
                                 )
                                 AsyncImage(
                                     model = input.taskItem.localImageUrl,
                                     contentDescription = null,
                                     modifier = Modifier
                                         .width(360.dp),
-                                    contentScale = ContentScale.Crop,
+                                    contentScale = ContentScale.Crop
                                 )
                             }
                         }
@@ -139,7 +138,9 @@ fun TaskDetailScreen(
                                         .testTag(
                                             UI_TEST_DOWNLOAD_BUTTON_TAG
                                         ),
-                                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
+                                    colors = ButtonDefaults.buttonColors(
+                                        backgroundColor = MaterialTheme.colors.primary
+                                    ),
                                     enabled = !input.onGoingDownload,
                                     onClick = {
                                         onEventHandler.invoke(
@@ -153,8 +154,10 @@ fun TaskDetailScreen(
                                         CircularProgressIndicator()
                                     } else {
                                         Text(
-                                            text = stringResource(id = R.string.task_detail_button_download_label),
-                                            style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Regular,
+                                            text = stringResource(
+                                                id = R.string.task_detail_button_download_label
+                                            ),
+                                            style = LocalTypography.current.body1Regular
                                         )
                                     }
                                 }
@@ -168,14 +171,16 @@ fun TaskDetailScreen(
                                 modifier = Modifier
                                     .height(200.dp)
                                     .fillMaxWidth()
-                                    .background(cz.kotox.common.designsystem.theme.LocalColors.current.divider)
+                                    .background(
+                                        cz.kotox.common.designsystem.theme.LocalColors.current.divider
+                                    )
                             )
                             AsyncImage(
                                 model = input.taskItem.localImageUrl,
                                 contentDescription = null,
                                 modifier = Modifier
                                     .height(200.dp),
-                                contentScale = ContentScale.Crop,
+                                contentScale = ContentScale.Crop
                             )
                         }
                         TaskDetailItem(
@@ -198,7 +203,9 @@ fun TaskDetailScreen(
                                     .testTag(
                                         UI_TEST_DOWNLOAD_BUTTON_TAG
                                     ),
-                                colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
+                                colors = ButtonDefaults.buttonColors(
+                                    backgroundColor = MaterialTheme.colors.primary
+                                ),
                                 enabled = !input.onGoingDownload,
                                 onClick = {
                                     onEventHandler.invoke(
@@ -212,8 +219,10 @@ fun TaskDetailScreen(
                                     CircularProgressIndicator()
                                 } else {
                                     Text(
-                                        text = stringResource(id = R.string.task_detail_button_download_label),
-                                        style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Regular,
+                                        text = stringResource(
+                                            id = R.string.task_detail_button_download_label
+                                        ),
+                                        style = LocalTypography.current.body1Regular
                                     )
                                 }
                             }
@@ -224,7 +233,6 @@ fun TaskDetailScreen(
         }
     )
 }
-
 
 class MainScreenPreviewProvider : PreviewParameterProvider<TaskDetailScreenInput> {
     override val values: Sequence<TaskDetailScreenInput> = sequenceOf(

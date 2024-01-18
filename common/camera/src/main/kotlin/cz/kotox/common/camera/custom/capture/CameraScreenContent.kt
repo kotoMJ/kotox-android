@@ -27,9 +27,9 @@ import androidx.core.net.toUri
 import androidx.lifecycle.Observer
 import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import cz.kotox.common.camera.custom.R
 import cz.kotox.common.camera.custom.EMPTY_IMAGE_URI
 import cz.kotox.common.camera.custom.LensFacing
+import cz.kotox.common.camera.custom.R
 import cz.kotox.common.camera.custom.capture.actionbutton.CaptureBackButton
 import cz.kotox.common.camera.custom.capture.actionbutton.CaptureConfirmButton
 import cz.kotox.common.camera.custom.capture.actionbutton.CapturePhotoLibraryButton
@@ -39,7 +39,7 @@ import java.io.File
 data class CameraScreenViewState(
     val currentCameraSelector: LensFacing?,
     val currentZoomValues: ZoomValues?,
-    val zoomStateObserver: Observer<ZoomState>,
+    val zoomStateObserver: Observer<ZoomState>
 )
 
 sealed class CameraScreenEvent {
@@ -110,7 +110,7 @@ fun CameraScreenContent(
                             imageUri = event.file?.toUri() ?: EMPTY_IMAGE_URI
                         }
                         onEventHandler.invoke(event)
-                    },
+                    }
                 )
                 CapturePhotoLibraryButton(
                     modifier = Modifier
@@ -128,23 +128,23 @@ fun CameraScreenContent(
                         .align(Alignment.TopStart),
                     onClick = {
                         onEventHandler.invoke(CameraScreenEvent.ExitCamera(EMPTY_IMAGE_URI))
-                    })
+                    }
+                )
                 {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_close),
                         contentDescription = null,
-                        tint = cz.kotox.common.designsystem.theme.LocalColors.current.divider //FIXME MJ, update proper color
+                        tint = cz.kotox.common.designsystem.theme.LocalColors.current.divider // FIXME MJ, update proper color
                     )
                 }
-
             }
         }
     }
 }
 
-//class CameraScreenPreviewProvider : PreviewParameterProvider<CameraScreenViewState> {
+// class CameraScreenPreviewProvider : PreviewParameterProvider<CameraScreenViewState> {
 //    override val values: Sequence<CameraScreenViewState> = sequenceOf(
 //        CameraScreenViewState(LensFacing.BACK, currentZoomValues = null, Observer { }),
 //        CameraScreenViewState(LensFacing.FRONT, currentZoomValues = null, Observer { })
 //    )
-//}
+// }

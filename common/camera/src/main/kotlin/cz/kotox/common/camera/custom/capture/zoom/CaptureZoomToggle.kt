@@ -26,10 +26,9 @@ import cz.kotox.common.designsystem.preview.PreviewMobileLarge
 fun CaptureZoomToggle(
     input: CaptureZoomToggleViewState,
     onChange: (ratio: Float) -> Unit = {},
-    onLongPress: () -> Unit = {},
+    onLongPress: () -> Unit = {}
 ) {
-
-    val darkColor = Color(0xFF1d1d1d)//FIXME MJ
+    val darkColor = Color(0xFF1d1d1d) // FIXME MJ
     val contrastColor = Color.White
 
     Surface(
@@ -44,7 +43,6 @@ fun CaptureZoomToggle(
                     .clip(shape = RoundedCornerShape(percent = 50))
                     .background(color = darkColor)
             ) {
-
                 input.zoomValues.toToggleStates(input.lensFacing).forEach { floatValue ->
                     Text(
                         text = "$floatValue",
@@ -70,8 +68,8 @@ fun CaptureZoomToggle(
                             )
                             .padding(
                                 vertical = 16.dp,
-                                horizontal = 8.dp,
-                            ),
+                                horizontal = 8.dp
+                            )
                     )
                 }
             }
@@ -106,8 +104,8 @@ fun CaptureZoomToggle(
                             )
                             .padding(
                                 vertical = 8.dp,
-                                horizontal = 16.dp,
-                            ),
+                                horizontal = 16.dp
+                            )
                     )
                 }
             }
@@ -119,7 +117,7 @@ data class CaptureZoomToggleViewState(
     val modifier: Modifier = Modifier,
     val zoomValues: ZoomValues,
     val lensFacing: LensFacing?,
-    val showVertical: Boolean = false,
+    val showVertical: Boolean = false
 )
 
 val horizontal: CaptureZoomToggleViewState = CaptureZoomToggleViewState(
@@ -187,4 +185,3 @@ internal fun CaptureZoomToggleVerticalFrontPreview() {
         )
     }
 }
-

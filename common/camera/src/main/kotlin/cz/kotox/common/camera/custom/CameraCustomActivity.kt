@@ -31,7 +31,7 @@ const val LANDSCAPE = 1
 const val LANDSCAPE_REV = 3
 
 @OptIn(
-    ExperimentalCoroutinesApi::class,
+    ExperimentalCoroutinesApi::class
 )
 @AndroidEntryPoint
 class CameraCustomActivity : ComponentActivity() {
@@ -57,7 +57,6 @@ class CameraCustomActivity : ComponentActivity() {
         }, ContextCompat.getMainExecutor(this))
         cameraProviderFuture.get()
 
-
         @Suppress("MagicNumber")
         orientationListener = object : OrientationEventListener(this) {
             override fun onOrientationChanged(orientation: Int) {
@@ -75,11 +74,8 @@ class CameraCustomActivity : ComponentActivity() {
                     in 181..270 -> Timber.d(">>>_ orientation PORTRAIT_REV $orientation")
                     in 271..360 -> Timber.d(">>>_ orientation LANDSCAPE $orientation")
                 }
-
             }
-
         }
-
 
         setContent {
             KotoxBasicTheme() {
@@ -101,7 +97,7 @@ class CameraCustomActivity : ComponentActivity() {
                         }
 
                         is CameraScreenEvent.CaptureImageFile -> {
-                            //Event is processed on the CameraCapture level only.
+                            // Event is processed on the CameraCapture level only.
                         }
                     }.exhaustive
                 }
@@ -120,7 +116,6 @@ class CameraCustomActivity : ComponentActivity() {
     }
 
     private fun exitActivity(uri: Uri) {
-
         setResult(
             if (uri == EMPTY_IMAGE_URI) RESULT_CANCELED else RESULT_OK,
             Intent().apply {
@@ -134,5 +129,4 @@ class CameraCustomActivity : ComponentActivity() {
         )
         finish()
     }
-
 }
