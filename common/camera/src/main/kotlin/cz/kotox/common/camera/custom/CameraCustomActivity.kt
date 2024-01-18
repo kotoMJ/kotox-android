@@ -15,11 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.common.util.concurrent.ListenableFuture
-import cz.kotox.common.camera.custom.capture.CameraScreenMultiLayout
 import cz.kotox.common.camera.custom.capture.CameraScreenEvent
+import cz.kotox.common.camera.custom.capture.CameraScreenMultiLayout
 import cz.kotox.common.camera.custom.capture.CameraScreenSingleLayout
 import cz.kotox.common.camera.custom.capture.CameraScreenViewState
 import cz.kotox.common.camera.custom.capture.EMPTY_IMAGE_FILE_PATH_NAME
+import cz.kotox.common.core.android.extension.lockDeviceRotation
 import cz.kotox.common.core.extension.exhaustive
 import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,15 +64,30 @@ class CameraCustomActivity : ComponentActivity() {
         @Suppress("MagicNumber")
         orientationListener = object : OrientationEventListener(this) {
             override fun onOrientationChanged(orientation: Int) {
-                viewModel.setCurrentCameraRotation(orientation)
+                when (orientation) {
+                    in 0..359 -> {
+                        viewModel.setCurrentCameraRotation(orientation)
+                    }
+
+                    -1 -> {
+                        // Unable to get orientation from the sensor - e.g. phone is lying on the desk
+                    }
+
+                    else -> {
+                        Timber.e("Illegal degree for rotation $orientation !")
+                    }
+                }
             }
         }
 
+        val useSingleAdaptiveLayout = false // FIXME MJ - parametrize activity by layout customization
+
+        lockDeviceRotation(useSingleAdaptiveLayout)
+
         setContent {
             val orientationViewState: State<OrientationViewState> = viewModel.orientationViewState.collectAsStateWithLifecycle()
-
-            KotoxBasicTheme() {
-                if (false) { //FIXME MJ - add flag to run activity with
+            KotoxBasicTheme {
+                if (useSingleAdaptiveLayout) { // FIXME MJ - add flag to run activity with
                     CameraScreenSingleLayout(
                         input = CameraScreenViewState(
                             currentCameraSelector = viewModel.currentCameraSelectorPresenter.value,

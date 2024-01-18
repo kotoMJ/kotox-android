@@ -32,13 +32,12 @@ import cz.kotox.common.camera.custom.capture.getCameraProvider
 import cz.kotox.common.camera.custom.capture.permission.PermissionNotAvailableScreenContent
 import cz.kotox.common.camera.custom.capture.zoom.createScaleGestureDetector
 import cz.kotox.common.core.android.permission.Permission
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import timber.log.Timber
-import kotlin.time.Duration.Companion.seconds
 
 private const val SCALE_GESTURE_COUNTDOWN_IN_SECONDS = 3
-
 
 @OptIn(ExperimentalPermissionsApi::class)
 @ExperimentalCoroutinesApi

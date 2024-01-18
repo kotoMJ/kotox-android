@@ -45,7 +45,7 @@ internal fun CameraScreenSingleLayout(
     modifier: Modifier = Modifier,
     onEventHandler: (CameraScreenEvent) -> Unit = {}
 ) {
-    val isLandscape = false//FIXME MJ
+    val isLandscape = false // FIXME MJ
     var imageUri by remember { mutableStateOf(EMPTY_IMAGE_URI) }
     if (imageUri != EMPTY_IMAGE_URI) {
         Box(modifier = modifier) {

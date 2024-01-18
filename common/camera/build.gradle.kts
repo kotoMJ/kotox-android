@@ -15,7 +15,7 @@ dependencies {
     implementation(projects.common.coreAndroid) // prefs,enhanced permissions
     implementation(projects.common.designSystem)
 
-    implementation(libs.androidx.lifecycle.runtime.compose) //FIXME MJ - solve this hardcoding better - collectAsStateWithLifecycle
+    implementation(libs.androidx.lifecycle.runtime.compose) // FIXME MJ - solve this hardcoding better - collectAsStateWithLifecycle
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
     implementation(libs.androidx.camera.camera2)

@@ -133,7 +133,7 @@ internal fun CameraScreenMultiLayout(
 private fun CameraScreenContentPreview() {
     KotoxBasicThemeFullSizePreview {
         CameraScreenMultiLayout(
-            input = CameraScreenViewState(LensFacing.BACK, currentZoomValues = null, Observer { }),
+            input = CameraScreenViewState(LensFacing.BACK, currentZoomValues = null, Observer { })
         )
     }
 }
