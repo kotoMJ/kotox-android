@@ -31,7 +31,7 @@ import cz.kotox.common.camera.custom.R
 import cz.kotox.common.camera.custom.capture.actionbutton.CaptureBackButton
 import cz.kotox.common.camera.custom.capture.actionbutton.CaptureConfirmButton
 import cz.kotox.common.camera.custom.capture.actionbutton.CapturePhotoLibraryButton
-import cz.kotox.common.camera.custom.capture.layout.single.CameraCaptureSingleLayout
+import cz.kotox.common.camera.custom.capture.layout.single.CameraCaptureAdaptiveLayout
 import cz.kotox.common.camera.custom.gallery.GallerySelect
 import cz.kotox.common.designsystem.preview.KotoxBasicThemeFullSizePreview
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
@@ -39,7 +39,7 @@ import cz.kotox.common.designsystem.theme.LocalColors
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-internal fun CameraScreenSingleLayout(
+internal fun CameraScreenAdaptiveLayout(
     input: CameraScreenViewState,
     orientation: State<OrientationViewState>,
     modifier: Modifier = Modifier,
@@ -88,7 +88,7 @@ internal fun CameraScreenSingleLayout(
 //            val isLandscape =
 //                LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
             Box(modifier = modifier) {
-                CameraCaptureSingleLayout(
+                CameraCaptureAdaptiveLayout(
                     input = CameraCaptureInput(
                         currentSelector = input.currentCameraSelector,
                         currentZoomValues = input.currentZoomValues,
@@ -136,7 +136,7 @@ internal fun CameraScreenSingleLayout(
 @Composable
 private fun CameraScreenContentPreview() {
     KotoxBasicThemeFullSizePreview {
-        CameraScreenSingleLayout(
+        CameraScreenAdaptiveLayout(
             input = CameraScreenViewState(LensFacing.BACK, currentZoomValues = null, Observer { }),
             orientation = remember {
                 mutableStateOf(

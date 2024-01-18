@@ -42,9 +42,9 @@ private const val SCALE_GESTURE_COUNTDOWN_IN_SECONDS = 3
 @OptIn(ExperimentalPermissionsApi::class)
 @ExperimentalCoroutinesApi
 @Composable
-fun CameraCaptureSingleLayout(
+fun CameraCaptureAdaptiveLayout(
     input: CameraCaptureInput,
-    orientationViewState: State<OrientationViewState>,//FIXME MJ
+    orientationViewState: State<OrientationViewState>, // FIXME MJ
     modifier: Modifier = Modifier,
     onEventHandler: (CameraScreenEvent) -> Unit = {}
 ) {
@@ -116,7 +116,7 @@ fun CameraCaptureSingleLayout(
                 CameraNotDetectedScreenContent(backgroundColor)
             }
         } else {
-            CameraCapturePortraitDynamic(
+            CameraCapturePortraitAdaptive(
                 modifier = modifier,
                 backgroundColor = backgroundColor,
 

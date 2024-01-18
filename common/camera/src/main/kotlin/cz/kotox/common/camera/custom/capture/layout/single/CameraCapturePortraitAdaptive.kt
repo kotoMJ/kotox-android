@@ -46,7 +46,7 @@ import timber.log.Timber
 private const val SHOW_SLIDER_COUNTDOWN_IN_SECONDS = 3
 
 @Composable
-internal fun CameraCapturePortraitDynamic(
+internal fun CameraCapturePortraitAdaptive(
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.Black,
     currentSelector: LensFacing? = null,
@@ -106,7 +106,6 @@ internal fun CameraCapturePortraitDynamic(
         ) {
             if (currentZoomValues != null) {
                 AnimatedVisibility(visible = !showSlider && !gestureDetected) {
-                    Timber.d(">>>_ TOGGLE CaptureZoomToggle")
                     CaptureZoomToggle(
                         onLongPress = {
                             Timber.d(">>>_ TOGGLE CaptureZoomToggle longpress")

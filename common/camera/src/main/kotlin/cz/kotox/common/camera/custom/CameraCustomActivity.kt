@@ -15,9 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.common.util.concurrent.ListenableFuture
+import cz.kotox.common.camera.custom.capture.CameraScreenAdaptiveLayout
 import cz.kotox.common.camera.custom.capture.CameraScreenEvent
 import cz.kotox.common.camera.custom.capture.CameraScreenMultiLayout
-import cz.kotox.common.camera.custom.capture.CameraScreenSingleLayout
 import cz.kotox.common.camera.custom.capture.CameraScreenViewState
 import cz.kotox.common.camera.custom.capture.EMPTY_IMAGE_FILE_PATH_NAME
 import cz.kotox.common.core.android.extension.lockDeviceRotation
@@ -80,7 +80,7 @@ class CameraCustomActivity : ComponentActivity() {
             }
         }
 
-        val useSingleAdaptiveLayout = false // FIXME MJ - parametrize activity by layout customization
+        val useSingleAdaptiveLayout = true // FIXME MJ - parametrize activity by layout customization
 
         lockDeviceRotation(useSingleAdaptiveLayout)
 
@@ -88,7 +88,8 @@ class CameraCustomActivity : ComponentActivity() {
             val orientationViewState: State<OrientationViewState> = viewModel.orientationViewState.collectAsStateWithLifecycle()
             KotoxBasicTheme {
                 if (useSingleAdaptiveLayout) { // FIXME MJ - add flag to run activity with
-                    CameraScreenSingleLayout(
+                    Timber.d(">>>_ orientation: ${orientationViewState.value.cameraOrientation}")
+                    CameraScreenAdaptiveLayout(
                         input = CameraScreenViewState(
                             currentCameraSelector = viewModel.currentCameraSelectorPresenter.value,
                             currentZoomValues = viewModel.currentZoomValuesPresenter.value,
