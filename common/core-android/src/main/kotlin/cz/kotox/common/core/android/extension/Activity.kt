@@ -18,3 +18,12 @@ fun Activity.lockDeviceRotation(value: Boolean) {
         ActivityInfo.SCREEN_ORIENTATION_FULL_USER
     }
 }
+
+fun Activity.lockDeviceRotationPortrait(value: Boolean) {
+    requestedOrientation = if (value) {
+        ActivityInfo.SCREEN_ORIENTATION_USER_PORTRAIT
+    } else {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+        ActivityInfo.SCREEN_ORIENTATION_FULL_USER
+    }
+}

@@ -20,7 +20,7 @@ import cz.kotox.common.camera.custom.capture.CameraScreenEvent
 import cz.kotox.common.camera.custom.capture.CameraScreenMultiLayout
 import cz.kotox.common.camera.custom.capture.CameraScreenViewState
 import cz.kotox.common.camera.custom.capture.EMPTY_IMAGE_FILE_PATH_NAME
-import cz.kotox.common.core.android.extension.lockDeviceRotation
+import cz.kotox.common.core.android.extension.lockDeviceRotationPortrait
 import cz.kotox.common.core.android.extension.serializable
 import cz.kotox.common.core.extension.exhaustive
 import cz.kotox.common.designsystem.theme.KotoxBasicTheme
@@ -92,7 +92,7 @@ class CameraCustomActivity : ComponentActivity() {
             }
         }
 
-        lockDeviceRotation(cameraLayout == CameraCustomLayout.Adaptive)
+        lockDeviceRotationPortrait(cameraLayout == CameraCustomLayout.Adaptive)
 
         setContent {
             val orientationViewState: State<OrientationViewState> = viewModel.orientationViewState.collectAsStateWithLifecycle()
