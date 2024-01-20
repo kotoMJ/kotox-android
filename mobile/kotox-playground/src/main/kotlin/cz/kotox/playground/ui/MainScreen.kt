@@ -60,7 +60,7 @@ fun MainScreen(
     //@PreviewParameter(MainScreenPreviewProvider::class) input: MainScreenInput,
     onEventHandler: (MainScreenEvent) -> Unit = {}
 ) {
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+    KotoxBasicTheme {
         Scaffold(
             backgroundColor = MaterialTheme.colors.surface,
             modifier = Modifier.systemBarsPadding(),
@@ -88,11 +88,11 @@ fun MainScreen(
                     ) {
 
                         OutlinedButton(
-                            border = BorderStroke(1.dp, cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary),
+                            border = BorderStroke(1.dp, LocalColors.current.onControlsPrimary),
                             contentPadding = PaddingValues(8.dp),
                             colors = ButtonDefaults.outlinedButtonColors(
-                                contentColor = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary,
-                                backgroundColor = cz.kotox.common.designsystem.theme.LocalColors.current.background
+                                contentColor = LocalColors.current.onControlsPrimary,
+                                backgroundColor = LocalColors.current.background
                             ),
                             onClick = {
                                 onEventHandler.invoke(MainScreenEvent.OpenBouncingBoxAnimation)

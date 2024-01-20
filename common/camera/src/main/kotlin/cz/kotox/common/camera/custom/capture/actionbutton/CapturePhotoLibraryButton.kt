@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import cz.kotox.common.camera.custom.R
 import cz.kotox.common.designsystem.preview.KotoxBasicThemeWidgetPreview
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.LocalColors
 
 @Composable
 fun CapturePhotoLibraryButton(
@@ -29,7 +31,7 @@ fun CapturePhotoLibraryButton(
     val isPressed by interactionSource.collectIsPressedAsState()
     val contentPadding = PaddingValues(if (isPressed) 8.dp else 12.dp)
 
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme() {
+    KotoxBasicTheme {
         OutlinedButton(
             modifier = modifier,
             shape = CircleShape,
@@ -46,7 +48,7 @@ fun CapturePhotoLibraryButton(
                 Icon(
                     painter = painterResource(id = R.drawable.ic_photo_library),
                     contentDescription = null,
-                    tint = cz.kotox.common.designsystem.theme.LocalColors.current.divider
+                    tint = LocalColors.current.divider
                 )
             }
         }

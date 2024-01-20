@@ -24,7 +24,7 @@ class TaskDetailActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+            KotoxBasicTheme {
                 TaskDetailScreen(
                     input = TaskDetailScreenInput(
                         viewModel.uiState.collectAsState().value,

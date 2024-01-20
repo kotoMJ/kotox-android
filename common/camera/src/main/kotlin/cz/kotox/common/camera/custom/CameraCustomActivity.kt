@@ -21,6 +21,7 @@ import cz.kotox.common.camera.custom.capture.CameraScreenMultiLayout
 import cz.kotox.common.camera.custom.capture.CameraScreenViewState
 import cz.kotox.common.camera.custom.capture.EMPTY_IMAGE_FILE_PATH_NAME
 import cz.kotox.common.core.android.extension.lockDeviceRotation
+import cz.kotox.common.core.android.extension.serializable
 import cz.kotox.common.core.extension.exhaustive
 import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,11 +29,18 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import timber.log.Timber
 
 val EMPTY_IMAGE_URI: Uri = Uri.parse("file:/$EMPTY_IMAGE_FILE_PATH_NAME")
+const val ARG_CAMERA_LAYOUT = "ARG_CAMERA_LAYOUT"
+
 const val UNKNOWN = -1
 const val PORTRAIT = 0
 const val PORTRAIT_REV = 2
 const val LANDSCAPE = 1
 const val LANDSCAPE_REV = 3
+
+enum class CameraCustomLayout {
+    Adaptive,
+    Multi
+}
 
 @OptIn(
     ExperimentalCoroutinesApi::class
@@ -48,6 +56,10 @@ class CameraCustomActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val cameraLayout: CameraCustomLayout = intent.extras?.serializable<CameraCustomLayout>(
+            ARG_CAMERA_LAYOUT
+        ) ?: CameraCustomLayout.Adaptive
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
@@ -80,60 +92,64 @@ class CameraCustomActivity : ComponentActivity() {
             }
         }
 
-        val useSingleAdaptiveLayout = true // FIXME MJ - parametrize activity by layout customization
-
-        lockDeviceRotation(useSingleAdaptiveLayout)
+        lockDeviceRotation(cameraLayout == CameraCustomLayout.Adaptive)
 
         setContent {
             val orientationViewState: State<OrientationViewState> = viewModel.orientationViewState.collectAsStateWithLifecycle()
             KotoxBasicTheme {
-                if (useSingleAdaptiveLayout) { // FIXME MJ - add flag to run activity with
-                    Timber.d(">>>_ orientation: ${orientationViewState.value.cameraOrientation}")
-                    CameraScreenAdaptiveLayout(
-                        input = CameraScreenViewState(
-                            currentCameraSelector = viewModel.currentCameraSelectorPresenter.value,
-                            currentZoomValues = viewModel.currentZoomValuesPresenter.value,
-                            zoomStateObserver = viewModel.zoomStateObserver
-                        ),
-                        orientation = orientationViewState,
-                        modifier = Modifier.fillMaxSize()
-                    ) { event ->
-                        when (event) {
-                            is CameraScreenEvent.SwitchCameraSelector -> {
-                                viewModel.setNextCameraSelector()
-                            }
+                when (cameraLayout) {
+                    CameraCustomLayout.Adaptive -> {
+                        Timber.d(
+                            ">>>_ orientation: ${orientationViewState.value.cameraOrientation}"
+                        )
+                        CameraScreenAdaptiveLayout(
+                            input = CameraScreenViewState(
+                                currentCameraSelector = viewModel.currentCameraSelectorPresenter.value,
+                                currentZoomValues = viewModel.currentZoomValuesPresenter.value,
+                                zoomStateObserver = viewModel.zoomStateObserver
+                            ),
+                            orientation = orientationViewState,
+                            modifier = Modifier.fillMaxSize()
+                        ) { event ->
+                            when (event) {
+                                is CameraScreenEvent.SwitchCameraSelector -> {
+                                    viewModel.setNextCameraSelector()
+                                }
 
-                            is CameraScreenEvent.ExitCamera -> {
-                                exitActivity(event.uri)
-                            }
+                                is CameraScreenEvent.ExitCamera -> {
+                                    exitActivity(event.uri)
+                                }
 
-                            is CameraScreenEvent.CaptureImageFile -> {
-                                // Event is processed on the CameraCapture level only.
-                            }
-                        }.exhaustive
+                                is CameraScreenEvent.CaptureImageFile -> {
+                                    // Event is processed on the CameraCapture level only.
+                                }
+                            }.exhaustive
+                        }
                     }
-                } else {
-                    CameraScreenMultiLayout(
-                        input = CameraScreenViewState(
-                            currentCameraSelector = viewModel.currentCameraSelectorPresenter.value,
-                            currentZoomValues = viewModel.currentZoomValuesPresenter.value,
-                            zoomStateObserver = viewModel.zoomStateObserver
-                        ),
-                        modifier = Modifier.fillMaxSize()
-                    ) { event ->
-                        when (event) {
-                            is CameraScreenEvent.SwitchCameraSelector -> {
-                                viewModel.setNextCameraSelector()
-                            }
 
-                            is CameraScreenEvent.ExitCamera -> {
-                                exitActivity(event.uri)
-                            }
+                    CameraCustomLayout.Multi -> {
+                        CameraScreenMultiLayout(
+                            input = CameraScreenViewState(
+                                currentCameraSelector = viewModel.currentCameraSelectorPresenter.value,
+                                currentZoomValues = viewModel.currentZoomValuesPresenter.value,
+                                zoomStateObserver = viewModel.zoomStateObserver
+                            ),
+                            modifier = Modifier.fillMaxSize()
+                        ) { event ->
+                            when (event) {
+                                is CameraScreenEvent.SwitchCameraSelector -> {
+                                    viewModel.setNextCameraSelector()
+                                }
 
-                            is CameraScreenEvent.CaptureImageFile -> {
-                                // Event is processed on the CameraCapture level only.
-                            }
-                        }.exhaustive
+                                is CameraScreenEvent.ExitCamera -> {
+                                    exitActivity(event.uri)
+                                }
+
+                                is CameraScreenEvent.CaptureImageFile -> {
+                                    // Event is processed on the CameraCapture level only.
+                                }
+                            }.exhaustive
+                        }
                     }
                 }
             }

@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import cz.kotox.common.camera.custom.R
 import cz.kotox.common.designsystem.preview.KotoxBasicThemeWidgetPreview
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 
 @Composable
 fun CaptureBackButton(
@@ -29,7 +30,7 @@ fun CaptureBackButton(
     val isPressed by interactionSource.collectIsPressedAsState()
     val contentPadding = PaddingValues(if (isPressed) 8.dp else 12.dp)
 
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme() {
+    KotoxBasicTheme {
         OutlinedButton(
             modifier = modifier,
             shape = CircleShape,

@@ -38,8 +38,8 @@ fun PhoneNumberPrefixSearchItem(
                 modifier = Modifier
                     .weight(1f, true)
                     .padding(horizontal = 4.dp),
-                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Medium,
-                color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
+                style = LocalTypography.current.body1Medium,
+                color = LocalColors.current.textNorm,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
                 text = "${item.countryName} (+${item.countryCode})"
@@ -63,10 +63,10 @@ fun PhoneNumberPrefixSearchItem(
 @SuppressWarnings("UnusedPrivateMember")
 @Composable
 private fun PhoneNumberPrefixSearchItemPreview() {
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme() {
+    KotoxBasicTheme {
         PhoneNumberPrefixSearchItem(
             item = CountryUiModel.CountryUiModelFallbackItem(),
-            modifier = Modifier.background(cz.kotox.common.designsystem.theme.LocalColors.current.background)
+            modifier = Modifier.background(LocalColors.current.background)
         )
     }
 }

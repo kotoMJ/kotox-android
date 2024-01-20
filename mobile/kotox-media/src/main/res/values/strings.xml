@@ -5,7 +5,9 @@
 
     <string name="main_screen_title">@string/app_name</string>
     <string name="main_screen_image_placeholder">Nothing captured</string>
-    <string name="main_screen_action_camera_custom">Custom</string>
+    <string name="main_screen_action_camera_system">Default</string>
+    <string name="main_screen_action_camera_custom_layout_adaptive"> Adaptive</string>
+    <string name="main_screen_action_camera_custom_layout_multi">Multi-layout</string>
     <string name="main_screen_significant_colors_title">Significant colors:</string>
 
 </resources>

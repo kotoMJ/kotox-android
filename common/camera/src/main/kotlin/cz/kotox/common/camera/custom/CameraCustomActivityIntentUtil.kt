@@ -6,9 +6,12 @@ import android.content.Intent
 object CameraCustomActivityIntentUtil {
 
     fun getCameraStartIntent(
-        context: Context
+        context: Context,
+        layout: CameraCustomLayout
     ): Intent {
         val clazz = CameraCustomActivity::class.java
-        return Intent(context.applicationContext, clazz)
+        return Intent(context.applicationContext, clazz).apply {
+            putExtra(ARG_CAMERA_LAYOUT, layout)
+        }
     }
 }

@@ -51,7 +51,7 @@ fun MainScreenAppBarView(
     modifier: Modifier = Modifier,
     @PreviewParameter(MainScreenAppBarPreviewProvider::class) input: MainScreenAppBarInput,
 ) {
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+    KotoxBasicTheme {
 
         Box(
             modifier = Modifier
@@ -66,8 +66,8 @@ fun MainScreenAppBarView(
                         Text(
                             modifier = Modifier.align(Alignment.Center),
                             text = input.title,
-                            style = cz.kotox.common.designsystem.theme.LocalTypography.current.headline,
-                            color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
+                            style = LocalTypography.current.headline,
+                            color = LocalColors.current.textNorm,
                         )
                     }
                 }

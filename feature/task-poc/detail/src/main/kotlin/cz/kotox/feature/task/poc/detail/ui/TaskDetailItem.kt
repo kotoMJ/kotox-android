@@ -32,7 +32,7 @@ import cz.kotox.common.task.poc.ui.TaskSummaryComponentPreviewProvider
 fun TaskDetailItem(
     @PreviewParameter(TaskSummaryComponentPreviewProvider::class) input: TaskSummaryComponentInput
 ) {
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+    KotoxBasicTheme {
         Box(
             modifier = Modifier
                 .padding(horizontal = 16.dp, vertical = 12.dp)

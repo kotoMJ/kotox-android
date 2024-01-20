@@ -15,9 +15,12 @@ interface CameraCustomActivityLauncher {
 
     val baseActivity: ComponentActivity
 
-    fun launchCustomCamera() {
+    fun launchCustomCamera(layout: CameraCustomLayout) {
         cameraActivityLauncher.launch(
-            CameraCustomActivityIntentUtil.getCameraStartIntent(baseActivity)
+            CameraCustomActivityIntentUtil.getCameraStartIntent(
+                context = baseActivity,
+                layout = layout
+            )
         )
     }
 

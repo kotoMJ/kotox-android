@@ -16,7 +16,7 @@ class PhoneCountryCodeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+            KotoxBasicTheme {
                 PhoneCountryCodeScreen(viewModel = viewModel)
             }
         }

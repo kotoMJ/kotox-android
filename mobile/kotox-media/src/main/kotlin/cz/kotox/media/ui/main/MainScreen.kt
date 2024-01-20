@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -55,14 +56,12 @@ import cz.kotox.media.ui.MainActivityViewState
 import getBitmap
 import getSignificantColors
 
-
 @Composable
 internal fun MainScreen(
     state: State<MainActivityViewState>,
     listener: MainActivityListener,
     viewModel: MainScreenViewModel = hiltViewModel()
 ) {
-
 
     val context = LocalContext.current
 
@@ -73,7 +72,6 @@ internal fun MainScreen(
         viewModel.updateColors(newColorList ?: emptyList())
 
     }
-
 
     val viewState = viewModel.state.collectAsStateWithLifecycle()
 
@@ -148,7 +146,21 @@ private fun PortraitMainScreen(
                     isPortrait = true
                 )
                 Spacer(modifier = Modifier.size(8.dp))
-                StartCustomCameraButton(listener::onStartCustomCamera)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+
+                    StartCustomCameraButton(
+                        onClick = listener::onStartCustomCameraAdaptiveLayout,
+                        buttonText = stringResource(id = R.string.main_screen_action_camera_custom_layout_adaptive)
+                    )
+                    StartCustomCameraButton(
+                        onClick = listener::onStartCustomCameraMultiLayout,
+                        buttonText = stringResource(id = R.string.main_screen_action_camera_custom_layout_multi)
+                    )
+                }
+
             }
         }
 
@@ -177,12 +189,12 @@ private fun LandscapeMainScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
-                .weight(0.3f)
+                .weight(0.3f),
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxSize()
-                    .weight(0.8f),
+                    .weight(0.5f),
                 horizontalArrangement = Arrangement.End
             ) {
                 SignificantColorsView(
@@ -191,23 +203,38 @@ private fun LandscapeMainScreen(
                 )
             }
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.End
+                modifier = Modifier.fillMaxSize().weight(0.5f),
+                horizontalArrangement = Arrangement.End,
             ) {
-                StartCustomCameraButton(listener::onStartCustomCamera)
+                Column(
+                    horizontalAlignment = Alignment.Start,
+                ) {
+
+                    StartCustomCameraButton(
+                        onClick = listener::onStartCustomCameraAdaptiveLayout,
+                        buttonText = stringResource(id = R.string.main_screen_action_camera_custom_layout_adaptive)
+                    )
+                    StartCustomCameraButton(
+                        onClick = listener::onStartCustomCameraMultiLayout,
+                        buttonText = stringResource(id = R.string.main_screen_action_camera_custom_layout_multi)
+                    )
+                }
             }
         }
     }
 }
 
 @Composable
-private fun StartCustomCameraButton(onClick: () -> Unit) {
+private fun StartCustomCameraButton(
+    buttonText: String,
+    onClick: () -> Unit
+) {
     OutlinedButton(
-        border = BorderStroke(1.dp, cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary),
+        border = BorderStroke(1.dp, LocalColors.current.onControlsPrimary),
         contentPadding = PaddingValues(8.dp),
         colors = ButtonDefaults.outlinedButtonColors(
-            contentColor = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary,
-            backgroundColor = cz.kotox.common.designsystem.theme.LocalColors.current.background
+            contentColor = LocalColors.current.onControlsPrimary,
+            backgroundColor = LocalColors.current.background
         ),
         onClick = onClick
     ) {
@@ -218,8 +245,8 @@ private fun StartCustomCameraButton(onClick: () -> Unit) {
             //tint = LocalColors.current.divider
         )
         Text(
-            text = stringResource(id = R.string.main_screen_action_camera_custom),
-            color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary
+            text = buttonText,
+            color = LocalColors.current.onControlsPrimary
         )
     }
 }
@@ -242,11 +269,11 @@ private fun CapturedImageView(state: State<MainScreenViewState>) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_image),
                         contentDescription = null,
-                        tint = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsSecondary
+                        tint = LocalColors.current.onControlsSecondary
                     )
                     Text(
                         text = stringResource(id = R.string.main_screen_image_placeholder),
-                        color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsSecondary
+                        color = LocalColors.current.onControlsSecondary
                     )
                 }
             }
@@ -271,7 +298,7 @@ fun SignificantColorsView(colors: List<Int>, isPortrait: Boolean) {
                     ) {
                         Text(
                             text = stringResource(id = R.string.main_screen_significant_colors_title),
-                            color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsSecondary
+                            color = LocalColors.current.onControlsSecondary
                         )
                         Spacer(modifier = Modifier.size(8.dp))
                         colors.forEach { rgbColorInt ->
@@ -295,7 +322,7 @@ fun SignificantColorsView(colors: List<Int>, isPortrait: Boolean) {
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.End,
                             text = stringResource(id = R.string.main_screen_significant_colors_title),
-                            color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsSecondary
+                            color = LocalColors.current.onControlsSecondary
                         )
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -336,7 +363,12 @@ internal val mainActivityViewStatePreview = MainScreenViewState(
 )
 
 private val mainActivityListenerPreview = object : MainActivityListener {
-    override fun onStartCustomCamera() {
+
+    override fun onStartCustomCameraAdaptiveLayout() {
+        /*Do nothing in Preview*/
+    }
+
+    override fun onStartCustomCameraMultiLayout() {
         /*Do nothing in Preview*/
     }
 }
@@ -360,7 +392,7 @@ private val mainActivityListenerPreview = object : MainActivityListener {
 )
 @Composable
 private fun EnterPassContentPreview() {
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+    KotoxBasicTheme {
         MainScreenScaffold(
             state = remember {
                 mutableStateOf(
