@@ -51,10 +51,10 @@ jobs:
         uses: gradle/wrapper-validation-action@v1
 
       - name: setup java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '17'
+          java-version: '21'
           check-latest: true
 
       - name: setup gradle cache
