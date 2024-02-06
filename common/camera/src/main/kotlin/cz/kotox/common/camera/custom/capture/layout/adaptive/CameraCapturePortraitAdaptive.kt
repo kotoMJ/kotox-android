@@ -1,4 +1,4 @@
-package cz.kotox.common.camera.custom.capture.layout.single
+package cz.kotox.common.camera.custom.capture.layout.adaptive
 
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector

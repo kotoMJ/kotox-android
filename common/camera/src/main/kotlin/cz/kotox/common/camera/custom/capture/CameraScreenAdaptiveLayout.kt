@@ -21,7 +21,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
-import androidx.lifecycle.Observer
 import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import cz.kotox.common.camera.custom.EMPTY_IMAGE_URI
@@ -31,7 +30,7 @@ import cz.kotox.common.camera.custom.R
 import cz.kotox.common.camera.custom.capture.actionbutton.CaptureBackButton
 import cz.kotox.common.camera.custom.capture.actionbutton.CaptureConfirmButton
 import cz.kotox.common.camera.custom.capture.actionbutton.CapturePhotoLibraryButton
-import cz.kotox.common.camera.custom.capture.layout.single.CameraCaptureAdaptiveLayout
+import cz.kotox.common.camera.custom.capture.layout.adaptive.CameraCaptureAdaptiveLayout
 import cz.kotox.common.camera.custom.gallery.GallerySelect
 import cz.kotox.common.designsystem.preview.KotoxBasicThemeFullSizePreview
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
@@ -45,7 +44,6 @@ internal fun CameraScreenAdaptiveLayout(
     modifier: Modifier = Modifier,
     onEventHandler: (CameraScreenEvent) -> Unit = {}
 ) {
-    val isLandscape = false // FIXME MJ
     var imageUri by remember { mutableStateOf(EMPTY_IMAGE_URI) }
     if (imageUri != EMPTY_IMAGE_URI) {
         Box(modifier = modifier) {
@@ -60,7 +58,7 @@ internal fun CameraScreenAdaptiveLayout(
             CaptureBackButton(
                 modifier = Modifier
                     .size(100.dp)
-                    .align(if (isLandscape) Alignment.BottomEnd else Alignment.BottomStart)
+                    .align(Alignment.BottomStart)
                     .padding(24.dp)
             ) {
                 imageUri = EMPTY_IMAGE_URI
@@ -70,7 +68,7 @@ internal fun CameraScreenAdaptiveLayout(
                 modifier = Modifier
                     .size(100.dp)
                     .padding(16.dp)
-                    .align(if (isLandscape) Alignment.CenterEnd else Alignment.BottomCenter)
+                    .align(Alignment.BottomCenter)
             ) {
                 onEventHandler.invoke(CameraScreenEvent.ExitCamera(imageUri))
             }
@@ -85,8 +83,6 @@ internal fun CameraScreenAdaptiveLayout(
                 }
             )
         } else {
-//            val isLandscape =
-//                LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
             Box(modifier = modifier) {
                 CameraCaptureAdaptiveLayout(
                     input = CameraCaptureInput(
@@ -106,7 +102,7 @@ internal fun CameraScreenAdaptiveLayout(
                 CapturePhotoLibraryButton(
                     modifier = Modifier
                         .size(100.dp)
-                        .align(if (isLandscape) Alignment.TopEnd else Alignment.BottomEnd)
+                        .align(Alignment.BottomEnd)
                         .padding(24.dp)
                 ) {
                     showGallerySelect = true
@@ -137,7 +133,7 @@ internal fun CameraScreenAdaptiveLayout(
 private fun CameraScreenContentPreview() {
     KotoxBasicThemeFullSizePreview {
         CameraScreenAdaptiveLayout(
-            input = CameraScreenViewState(LensFacing.BACK, currentZoomValues = null, Observer { }),
+            input = CameraScreenViewState(LensFacing.BACK, currentZoomValues = null, { }),
             orientation = remember {
                 mutableStateOf(
                     OrientationViewState(0, true)

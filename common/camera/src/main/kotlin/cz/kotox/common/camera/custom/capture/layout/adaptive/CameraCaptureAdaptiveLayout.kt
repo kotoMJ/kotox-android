@@ -1,4 +1,4 @@
-package cz.kotox.common.camera.custom.capture.layout.single
+package cz.kotox.common.camera.custom.capture.layout.adaptive
 
 import android.Manifest
 import android.content.Context
