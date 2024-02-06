@@ -41,7 +41,7 @@ class TaskDetailScreenSmokeTest {
     fun detailScreenSmokeTest() {
 
         detailTaskActivityTestRule.setContent {
-            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+            KotoxBasicTheme {
                 TaskDetailScreen(input = TaskDetailScreenInput(
                     TaskSummaryItem.from(
                         Task(

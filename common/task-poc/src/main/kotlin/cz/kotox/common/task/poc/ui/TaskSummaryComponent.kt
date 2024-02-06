@@ -48,7 +48,7 @@ data class TaskSummaryComponentInput(
 fun TaskSummaryComponent(
     @PreviewParameter(TaskSummaryComponentPreviewProvider::class) input: TaskSummaryComponentInput
 ) {
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+    KotoxBasicTheme {
 
         ConstraintLayout(
             modifier = Modifier
@@ -121,11 +121,11 @@ fun TaskSummaryComponent(
                 modifier = Modifier.layoutId("title"),
                 text = input.item.title,
                 style = if (input.useHeadlineTitle) {
-                    cz.kotox.common.designsystem.theme.LocalTypography.current.headline
+                    LocalTypography.current.headline
                 } else {
-                    cz.kotox.common.designsystem.theme.LocalTypography.current.body1Medium
+                    LocalTypography.current.body1Medium
                 },
-                color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
+                color = LocalColors.current.textNorm,
                 textAlign = TextAlign.Center,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -134,8 +134,8 @@ fun TaskSummaryComponent(
             Text(
                 modifier = Modifier.layoutId("description"),
                 text = input.item.description,
-                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body2Regular,
-                color = cz.kotox.common.designsystem.theme.LocalColors.current.textWeak,
+                style = LocalTypography.current.body2Regular,
+                color = LocalColors.current.textWeak,
                 textAlign = TextAlign.Center,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -145,22 +145,22 @@ fun TaskSummaryComponent(
                 modifier = Modifier.layoutId("createdIcon"),
                 painter = painterResource(id = R.drawable.ic_calendar),
                 contentDescription = null,
-                tint = cz.kotox.common.designsystem.theme.LocalColors.current.primary,
+                tint = LocalColors.current.primary,
             )
 
             Text(
                 modifier = Modifier.layoutId("createdLabel"),
                 text = stringResource(id = R.string.task_summary_component_label_created),
-                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body2Medium,
-                color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
+                style = LocalTypography.current.body2Medium,
+                color = LocalColors.current.textNorm,
                 textAlign = TextAlign.Center,
             )
 
             Text(
                 modifier = Modifier.layoutId("createdDateTime"),
                 text = input.item.creationDate.toDateTimeTaskString(),
-                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body2Regular,
-                color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
+                style = LocalTypography.current.body2Regular,
+                color = LocalColors.current.textNorm,
                 textAlign = TextAlign.Center,
             )
 
@@ -168,21 +168,21 @@ fun TaskSummaryComponent(
                 modifier = Modifier.layoutId("dueIcon"),
                 painter = painterResource(id = R.drawable.ic_bell),
                 contentDescription = null,
-                tint = cz.kotox.common.designsystem.theme.LocalColors.current.primary,
+                tint = LocalColors.current.primary,
             )
             Text(
                 modifier = Modifier.layoutId("dueLabel"),
                 text = stringResource(id = R.string.task_summary_component_label_due),
-                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body2Medium,
-                color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
+                style = LocalTypography.current.body2Medium,
+                color = LocalColors.current.textNorm,
                 textAlign = TextAlign.Center,
             )
 
             Text(
                 modifier = Modifier.layoutId("dueDateTime"),
                 text = input.item.dueDate.toDateTimeTaskString(),
-                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body2Regular,
-                color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm,
+                style = LocalTypography.current.body2Regular,
+                color = LocalColors.current.textNorm,
                 textAlign = TextAlign.Center,
             )
         }

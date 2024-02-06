@@ -1,8 +1,8 @@
 plugins {
-    alias(libs.plugins.cz.kotox.linters)
     alias(libs.plugins.cz.kotox.android.library)
     alias(libs.plugins.cz.kotox.android.library.compose)
     alias(libs.plugins.cz.kotox.android.feature)
+    alias(libs.plugins.cz.kotox.linters)
 }
 
 android {
@@ -14,6 +14,9 @@ dependencies {
 
     implementation(projects.common.coreAndroid) // prefs,enhanced permissions
     implementation(projects.common.designSystem)
+
+    implementation(libs.androidx.lifecycle.runtime.compose) // FIXME MJ - solve this hardcoding better - collectAsStateWithLifecycle
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)

@@ -15,6 +15,7 @@ internal fun Project.configureKotlin(
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
 
+    //This is also important for ktlint to be applied
     sourceSets["main"].java.srcDir("src/main/kotlin")
 
     kotlinOptions {

@@ -15,15 +15,17 @@ interface CameraCustomActivityLauncher {
 
     val baseActivity: ComponentActivity
 
-    fun launchCustomCamera() {
+    fun launchCustomCamera(layout: CameraCustomLayout) {
         cameraActivityLauncher.launch(
-            CameraCustomActivityIntentUtil.getCameraStartIntent(baseActivity)
+            CameraCustomActivityIntentUtil.getCameraStartIntent(
+                context = baseActivity,
+                layout = layout
+            )
         )
     }
 
     fun createCameraLauncher(): ActivityResultLauncher<Intent> =
         baseActivity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-
             val photoUri = it.data?.getParcelableExtra<Uri>(ARG_OUT_PHOTO_URI)
             Timber.d("Photo uri: $photoUri")
             if (photoUri != null) {

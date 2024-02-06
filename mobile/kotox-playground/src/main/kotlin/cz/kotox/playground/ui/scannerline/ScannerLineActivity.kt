@@ -26,7 +26,7 @@ class ScannerLineActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+            KotoxBasicTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),

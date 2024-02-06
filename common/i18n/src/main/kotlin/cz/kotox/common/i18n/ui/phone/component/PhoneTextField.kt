@@ -121,7 +121,7 @@ fun PhoneTextField(
                             append(completePhoneNumberString)
                             addStyle(
                                 style = SpanStyle(
-                                    fontStyle = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Regular.fontStyle,
+                                    fontStyle = LocalTypography.current.body1Regular.fontStyle,
                                     color = Color.Red
                                 ),
                                 start = 0,
@@ -130,7 +130,7 @@ fun PhoneTextField(
                             addStyle(
                                 style = SpanStyle(
                                     fontWeight = FontWeight.Thin,
-                                    color = cz.kotox.common.designsystem.theme.LocalColors.current.textWeak
+                                    color = LocalColors.current.textWeak
                                 ),
                                 start = startFixedPart.length + inputValue.length,
                                 end = completePhoneNumberString.length
@@ -192,8 +192,8 @@ fun PhoneTextFieldPreview() {
     val expectedCountryCode = 420
     val hint = "601123456"
 
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme() {
-        Column() {
+    KotoxBasicTheme {
+        Column {
             PhoneTextField(
                 inputValue = inputValue,
                 onValueChange = {},
@@ -237,8 +237,8 @@ fun PhoneTextFieldComparisonForPreview(
         placeholder = {
             Text(
                 text = hint,
-                style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Regular,
-                color = cz.kotox.common.designsystem.theme.LocalColors.current.textWeak,
+                style = LocalTypography.current.body1Regular,
+                color = LocalColors.current.textWeak,
             )
         },
     )

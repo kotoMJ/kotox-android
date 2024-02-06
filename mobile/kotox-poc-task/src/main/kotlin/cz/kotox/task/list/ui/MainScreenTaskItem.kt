@@ -44,7 +44,7 @@ fun MainScreenTaskItem(
     modifier: Modifier = Modifier,
     @PreviewParameter(TaskSummaryComponentPreviewProvider::class) input: TaskSummaryComponentInput
 ) {
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+    KotoxBasicTheme {
 
         Box(
             modifier = modifier
@@ -57,7 +57,7 @@ fun MainScreenTaskItem(
                             modifier = Modifier
                                 .size(48.dp)
                                 .clip(RoundedCornerShape(8.dp))
-                                .background(cz.kotox.common.designsystem.theme.LocalColors.current.divider)
+                                .background(LocalColors.current.divider)
                         )
                         AsyncImage(
                             model = input.item.localImageUrl,

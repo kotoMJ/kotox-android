@@ -10,13 +10,15 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.remember
 import cz.kotox.common.core.android.extension.collectAsStateWithLifecycle
 import cz.kotox.common.camera.custom.CameraCustomActivityLauncher
+import cz.kotox.common.camera.custom.CameraCustomLayout
 import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import cz.kotox.media.ui.main.MainScreen
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 internal interface MainActivityListener {
-    fun onStartCustomCamera()
+    fun onStartCustomCameraAdaptiveLayout()
+    fun onStartCustomCameraMultiLayout()
 }
 
 @AndroidEntryPoint
@@ -38,12 +40,17 @@ class MainActivity : ComponentActivity(), CameraCustomActivityLauncher {
 
 
         setContent {
-            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+            KotoxBasicTheme {
 
                 val listener = remember {
                     object : MainActivityListener {
-                        override fun onStartCustomCamera() {
-                            launchCustomCamera()
+
+                        override fun onStartCustomCameraAdaptiveLayout() {
+                            launchCustomCamera(CameraCustomLayout.Adaptive)
+                        }
+
+                        override fun onStartCustomCameraMultiLayout() {
+                            launchCustomCamera(CameraCustomLayout.Multi)
                         }
 
                     }

@@ -1,4 +1,4 @@
-package cz.kotox.common.camera.custom.capture
+package cz.kotox.common.camera.custom.capture.layout.multi
 
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
@@ -6,13 +6,15 @@ import androidx.camera.core.ImageCapture
 import androidx.camera.core.Preview
 import androidx.camera.core.UseCase
 import androidx.camera.view.PreviewView
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,17 +26,29 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
+import cz.kotox.common.camera.custom.CameraOrientation
 import cz.kotox.common.camera.custom.LensFacing
+import cz.kotox.common.camera.custom.OrientationViewState
+import cz.kotox.common.camera.custom.capture.CameraPreview
+import cz.kotox.common.camera.custom.capture.CameraScreenEvent
+import cz.kotox.common.camera.custom.capture.ZoomValues
 import cz.kotox.common.camera.custom.capture.actionbutton.CaptureFlipCameraButton
 import cz.kotox.common.camera.custom.capture.actionbutton.CapturePictureButton
+import cz.kotox.common.camera.custom.capture.executor
+import cz.kotox.common.camera.custom.capture.takePicture
+import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomSlider
+import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomSliderViewState
 import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggle
 import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggleViewState
+import kotlin.time.Duration.Companion.seconds
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-@SuppressWarnings("MagicNumber", "UnusedParameter")
+private const val SHOW_SLIDER_COUNTDOWN_IN_SECONDS = 3
+
 @Composable
-fun CameraCaptureLandscape(
+internal fun CameraCapturePortrait(
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.Black,
     currentSelector: LensFacing? = null,
@@ -43,11 +57,14 @@ fun CameraCaptureLandscape(
     onEventHandler: (CameraScreenEvent) -> Unit = {},
     onCameraBind: (camera: Camera) -> Unit,
     onCameraUnbind: () -> Unit,
+    onUpdateLinearZoomValue: (linearZoomValue: Float) -> Unit,
     onUpdateZoomRatio: (zoomRatio: Float) -> Unit,
     onPreviewViewCreated: (PreviewView) -> Unit = {}
 ) {
-
     val context = LocalContext.current
+
+    var showSlider by remember { mutableStateOf<Boolean>(false) }
+    var showSliderCountDownSeconds by remember { mutableStateOf(0) }
 
     Box(modifier = modifier.background(color = backgroundColor)) {
         val lifecycleOwner = LocalLifecycleOwner.current
@@ -61,21 +78,20 @@ fun CameraCaptureLandscape(
             )
         }
 
-
         CameraPreview(
             modifier = Modifier
                 .fillMaxSize()
-                .align(Alignment.CenterStart)
-                .padding(end = 148.dp),
+                .align(Alignment.TopCenter)
+                .padding(bottom = 148.dp),
             onUseCase = {
                 previewUseCase = it
             },
             onPreviewViewCreated = onPreviewViewCreated
         )
 
-        Row(
-            modifier = Modifier.align(Alignment.BottomEnd),
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            modifier = Modifier.align(Alignment.BottomStart),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CaptureFlipCameraButton(
                 modifier = Modifier
@@ -86,26 +102,48 @@ fun CameraCaptureLandscape(
             }
         }
 
-        Row(
-            modifier = Modifier.align(Alignment.CenterEnd),
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            modifier = Modifier.align(Alignment.BottomCenter),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             if (currentZoomValues != null) {
-                CaptureZoomToggle(
-                    onLongPress = {
-                        Timber.d(">>>_ SLIDER CaptureZoomToggle longpress")
-                    },
-                    onChange = { zoomRatio ->
-                        onUpdateZoomRatio.invoke(zoomRatio)
-                    },
-                    input = CaptureZoomToggleViewState(
-                        modifier = Modifier
-                            .padding(end = 16.dp),
-                        zoomValues = currentZoomValues,
-                        lensFacing = currentSelector,
-                        showVertical = true
+                AnimatedVisibility(visible = !showSlider && !gestureDetected) {
+                    Timber.d(">>>_ TOGGLE CaptureZoomToggle")
+                    CaptureZoomToggle(
+                        onLongPress = {
+                            Timber.d(">>>_ TOGGLE CaptureZoomToggle longpress")
+                            showSliderCountDownSeconds = SHOW_SLIDER_COUNTDOWN_IN_SECONDS
+                            showSlider = true
+                        },
+                        onChange = { zoomRatio ->
+                            onUpdateZoomRatio.invoke(zoomRatio)
+                        },
+                        input = CaptureZoomToggleViewState(
+                            modifier = Modifier
+                                .padding(bottom = 16.dp),
+                            zoomValues = currentZoomValues,
+                            showVertical = false,
+                            lensFacing = currentSelector
+                        )
                     )
-                )
+                }
+                AnimatedVisibility(visible = showSlider || gestureDetected) {
+                    Timber.d(">>>_ SLIDER CaptureZoomSlider")
+                    CaptureZoomSlider(
+                        input = CaptureZoomSliderViewState(
+                            zoomValues = currentZoomValues,
+                            orientationViewState = OrientationViewState(
+                                CameraOrientation.PORTRAIT.rotation.toInt(),
+                                true
+                            )
+                        ),
+                        onValueChange = { linearZoomValue ->
+                            showSliderCountDownSeconds = SHOW_SLIDER_COUNTDOWN_IN_SECONDS
+                            showSlider = true
+                            onUpdateLinearZoomValue.invoke(linearZoomValue)
+                        }
+                    )
+                }
             }
 
             CapturePictureButton(
@@ -133,7 +171,8 @@ fun CameraCaptureLandscape(
                     imageCaptureUseCase,
                     CameraSelector.DEFAULT_BACK_CAMERA,
                     { onCameraBind(it) },
-                    { onCameraUnbind() })
+                    { onCameraUnbind() }
+                )
             }
 
             LensFacing.FRONT -> {
@@ -144,7 +183,8 @@ fun CameraCaptureLandscape(
                     imageCaptureUseCase,
                     CameraSelector.DEFAULT_FRONT_CAMERA,
                     { onCameraBind(it) },
-                    { onCameraUnbind() })
+                    { onCameraUnbind() }
+                )
             }
 
             else -> {
@@ -152,5 +192,16 @@ fun CameraCaptureLandscape(
             }
         }
     }
-}
 
+    LaunchedEffect(showSlider) {
+        Timber.d(">>>_ SLIDER showSlider $showSlider")
+        if (showSlider) {
+            while (showSliderCountDownSeconds > 0) {
+                delay(1.seconds)
+                showSliderCountDownSeconds -= 1
+                Timber.d(">>>_ SLIDER showSlider decreased $showSlider")
+            }
+            showSlider = false
+        }
+    }
+}

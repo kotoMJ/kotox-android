@@ -11,11 +11,11 @@ object AppSettingsIntentUtils {
         val appSettingsIntent = Intent()
         appSettingsIntent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
         val uri: Uri = Uri.fromParts(
-            "package", context.packageName,
+            "package",
+            context.packageName,
             null
         )
         appSettingsIntent.data = uri
         return appSettingsIntent
     }
-
 }

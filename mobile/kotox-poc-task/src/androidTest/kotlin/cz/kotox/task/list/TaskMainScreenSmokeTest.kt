@@ -27,7 +27,7 @@ class TaskMainScreenSmokeTest {
     fun mainScreenListDisplayedSmokeTest() {
 
         composeTestRule.setContent {
-            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+            KotoxBasicTheme {
                 MainScreen(
                     input = MainScreenInput(
                         mainFeedState = MainFeedState(
@@ -117,7 +117,7 @@ class TaskMainScreenSmokeTest {
     fun mainScreenListEmptySmokeTest() {
 
         composeTestRule.setContent {
-            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+            KotoxBasicTheme {
                 MainScreen(
                     input = MainScreenInput(
                         mainFeedState = MainFeedState(

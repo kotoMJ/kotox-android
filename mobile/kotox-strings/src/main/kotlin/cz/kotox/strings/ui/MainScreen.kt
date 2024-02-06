@@ -50,7 +50,7 @@ data class MainScreenInput(
 @Suppress("All JetPack Compose previews contain 'Preview' in method name")
 @Composable
 fun MainScreen() {
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+    KotoxBasicTheme {
 
         Scaffold(
             backgroundColor = MaterialTheme.colors.surface,

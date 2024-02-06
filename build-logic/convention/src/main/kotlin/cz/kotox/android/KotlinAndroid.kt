@@ -6,6 +6,7 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.get
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 
 /**
@@ -29,6 +30,9 @@ internal fun Project.configureKotlinAndroid(
             targetCompatibility = JavaVersion.VERSION_17
             isCoreLibraryDesugaringEnabled = true
         }
+
+        //This is also important for ktlint to be applied
+        sourceSets["main"].java.srcDir("src/main/kotlin")
 
         kotlinOptions {
             // Treat all Kotlin warnings as errors (disabled by default)

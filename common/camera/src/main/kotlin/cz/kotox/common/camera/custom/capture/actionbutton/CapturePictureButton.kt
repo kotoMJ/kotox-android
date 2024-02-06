@@ -22,7 +22,7 @@ import cz.kotox.common.designsystem.preview.PreviewMobileLarge
 @Composable
 fun CapturePictureButton(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = { },
+    onClick: () -> Unit = { }
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -33,7 +33,10 @@ fun CapturePictureButton(
         shape = CircleShape,
         border = BorderStroke(2.dp, Color.Black),
         contentPadding = contentPadding,
-        colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Black, backgroundColor = Color.White),
+        colors = ButtonDefaults.outlinedButtonColors(
+            contentColor = Color.Black,
+            backgroundColor = Color.White
+        ),
         onClick = { /* GNDN */ },
         enabled = false
     ) {

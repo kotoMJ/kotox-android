@@ -63,7 +63,7 @@ fun MainScreenSectionTabRow(
     onEventHandler: (MainScreenSectionTabEvent) -> Unit = {},
 ) {
 
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+    KotoxBasicTheme {
 
         val selectedTabIndex by remember { derivedStateOf { input.pagerState.currentPage } }
 
@@ -94,15 +94,15 @@ fun MainScreenSectionTabRow(
                             )
                         )
                     },
-                    selectedContentColor = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary,
-                    unselectedContentColor = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsSecondary,
+                    selectedContentColor = LocalColors.current.onControlsPrimary,
+                    unselectedContentColor = LocalColors.current.onControlsSecondary,
                 ) {
 
                     Box(modifier = Modifier.padding(vertical = 4.dp)) {
                         Text(
                             modifier = Modifier.padding(12.dp).testTag(UI_TEST_MAIN_TAB_TAG),
                             text = taskGroup.getTitleString(),
-                            style = cz.kotox.common.designsystem.theme.LocalTypography.current.body2Medium,
+                            style = LocalTypography.current.body2Medium,
                         )
                     }
                 }

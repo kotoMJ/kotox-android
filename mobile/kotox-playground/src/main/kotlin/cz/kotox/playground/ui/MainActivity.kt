@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
 
 
         setContent {
-            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+            KotoxBasicTheme {
                 MainScreen(
                     onEventHandler = { event ->
                         when (event) {

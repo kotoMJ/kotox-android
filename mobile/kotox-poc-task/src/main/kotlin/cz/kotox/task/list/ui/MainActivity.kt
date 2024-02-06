@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
         }
 
         setContent {
-            cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+            KotoxBasicTheme {
                 MainScreen(
                     input = MainScreenInput(
                         mainFeedState = viewModel.uiState.collectAsState().value,

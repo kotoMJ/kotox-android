@@ -1,4 +1,4 @@
-package cz.kotox.common.camera.custom.capture
+package cz.kotox.common.camera.custom.capture.layout.adaptive
 
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,21 +28,28 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import cz.kotox.common.camera.custom.LensFacing
+import cz.kotox.common.camera.custom.OrientationViewState
+import cz.kotox.common.camera.custom.capture.CameraPreview
+import cz.kotox.common.camera.custom.capture.CameraScreenEvent
+import cz.kotox.common.camera.custom.capture.ZoomValues
 import cz.kotox.common.camera.custom.capture.actionbutton.CaptureFlipCameraButton
 import cz.kotox.common.camera.custom.capture.actionbutton.CapturePictureButton
+import cz.kotox.common.camera.custom.capture.executor
+import cz.kotox.common.camera.custom.capture.takePicture
 import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomSlider
 import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomSliderViewState
-import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggle
-import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggleViewState
+import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggleAdaptive
+import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggleAdaptiveViewState
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import kotlin.time.Duration.Companion.seconds
 
 private const val SHOW_SLIDER_COUNTDOWN_IN_SECONDS = 3
 
 @Composable
-fun CameraCapturePortrait(
+internal fun CameraCapturePortraitAdaptive(
+    orientationViewState: State<OrientationViewState>,
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.Black,
     currentSelector: LensFacing? = null,
@@ -54,7 +62,6 @@ fun CameraCapturePortrait(
     onUpdateZoomRatio: (zoomRatio: Float) -> Unit,
     onPreviewViewCreated: (PreviewView) -> Unit = {}
 ) {
-
     val context = LocalContext.current
 
     var showSlider by remember { mutableStateOf<Boolean>(false) }
@@ -71,7 +78,6 @@ fun CameraCapturePortrait(
                     .build()
             )
         }
-
 
         CameraPreview(
             modifier = Modifier
@@ -101,11 +107,9 @@ fun CameraCapturePortrait(
             modifier = Modifier.align(Alignment.BottomCenter),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
             if (currentZoomValues != null) {
                 AnimatedVisibility(visible = !showSlider && !gestureDetected) {
-                    Timber.d(">>>_ TOGGLE CaptureZoomToggle")
-                    CaptureZoomToggle(
+                    CaptureZoomToggleAdaptive(
                         onLongPress = {
                             Timber.d(">>>_ TOGGLE CaptureZoomToggle longpress")
                             showSliderCountDownSeconds = SHOW_SLIDER_COUNTDOWN_IN_SECONDS
@@ -114,11 +118,11 @@ fun CameraCapturePortrait(
                         onChange = { zoomRatio ->
                             onUpdateZoomRatio.invoke(zoomRatio)
                         },
-                        input = CaptureZoomToggleViewState(
+                        input = CaptureZoomToggleAdaptiveViewState(
                             modifier = Modifier
                                 .padding(bottom = 16.dp),
                             zoomValues = currentZoomValues,
-                            showVertical = false,
+                            orientationViewState = orientationViewState.value,
                             lensFacing = currentSelector
                         )
                     )
@@ -128,7 +132,7 @@ fun CameraCapturePortrait(
                     CaptureZoomSlider(
                         input = CaptureZoomSliderViewState(
                             zoomValues = currentZoomValues,
-                            showVertical = false
+                            orientationViewState = orientationViewState.value
                         ),
                         onValueChange = { linearZoomValue ->
                             showSliderCountDownSeconds = SHOW_SLIDER_COUNTDOWN_IN_SECONDS
@@ -151,10 +155,9 @@ fun CameraCapturePortrait(
                             )
                         )
                     }
-                },
+                }
             )
         }
-
 
         when (currentSelector) {
             LensFacing.BACK -> {
@@ -165,7 +168,8 @@ fun CameraCapturePortrait(
                     imageCaptureUseCase,
                     CameraSelector.DEFAULT_BACK_CAMERA,
                     { onCameraBind(it) },
-                    { onCameraUnbind() })
+                    { onCameraUnbind() }
+                )
             }
 
             LensFacing.FRONT -> {
@@ -176,7 +180,8 @@ fun CameraCapturePortrait(
                     imageCaptureUseCase,
                     CameraSelector.DEFAULT_FRONT_CAMERA,
                     { onCameraBind(it) },
-                    { onCameraUnbind() })
+                    { onCameraUnbind() }
+                )
             }
 
             else -> {
@@ -197,4 +202,3 @@ fun CameraCapturePortrait(
         }
     }
 }
-

@@ -14,5 +14,4 @@ object TaskDetailActivityIntentUtil {
             putExtra(ARG_TASK_ID, taskId)
         }
     }
-
 }

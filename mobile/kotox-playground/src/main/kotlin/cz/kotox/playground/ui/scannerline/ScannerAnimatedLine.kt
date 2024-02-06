@@ -279,7 +279,7 @@ private fun heightKeyFramesSpec(
 )
 @Composable
 private fun ScannerAnimatedLinePreview() {
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme() {
+    KotoxBasicTheme {
 
         var size by remember { mutableStateOf(IntSize.Zero) }
 

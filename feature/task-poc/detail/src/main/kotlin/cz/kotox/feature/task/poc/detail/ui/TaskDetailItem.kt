@@ -10,10 +10,10 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 import cz.kotox.common.task.poc.ui.TaskSummaryComponent
 import cz.kotox.common.task.poc.ui.TaskSummaryComponentInput
 import cz.kotox.common.task.poc.ui.TaskSummaryComponentPreviewProvider
-import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 
 @Preview(
     device = Devices.PIXEL,
@@ -32,8 +32,7 @@ import cz.kotox.common.designsystem.theme.KotoxBasicTheme
 fun TaskDetailItem(
     @PreviewParameter(TaskSummaryComponentPreviewProvider::class) input: TaskSummaryComponentInput
 ) {
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
-
+    KotoxBasicTheme {
         Box(
             modifier = Modifier
                 .padding(horizontal = 16.dp, vertical = 12.dp)

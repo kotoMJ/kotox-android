@@ -18,7 +18,7 @@ fun Permission(
     permissionNotAvailableContent: @Composable () -> Unit = { },
     content: @Composable () -> Unit = { }
 ) {
-    val permissionState = rememberPermissionState(permission)
+    val permissionState = rememberPermissionStateSafe(permission)
 
     val permissionDataStore = PermissionPersistence(LocalContext.current)
     val permissionNotRequestedYet =

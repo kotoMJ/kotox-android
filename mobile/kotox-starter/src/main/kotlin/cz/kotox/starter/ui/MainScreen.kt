@@ -65,7 +65,7 @@ fun MainScreen(
     //@PreviewParameter(MainScreenPreviewProvider::class) input: MainScreenInput,
     onEventHandler: (MainScreenEvent) -> Unit = {}
 ) {
-    cz.kotox.common.designsystem.theme.KotoxBasicTheme {
+    KotoxBasicTheme {
         Scaffold(
             backgroundColor = MaterialTheme.colors.surface,
             modifier = Modifier.systemBarsPadding(),
@@ -95,7 +95,7 @@ fun MainScreen(
                             shape = RoundedCornerShape(16.dp),
 
                             elevation = 2.dp,
-                            backgroundColor = cz.kotox.common.designsystem.theme.LocalColors.current.background,
+                            backgroundColor = LocalColors.current.background,
                         ) {
 
                             Row(
@@ -113,7 +113,7 @@ fun MainScreen(
                                     text = stringResource(id = R.string.main_screen_action_click_me),
                                     textAlign = TextAlign.Center,
 
-                                    color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary
+                                    color = LocalColors.current.onControlsPrimary
                                 )
                             }
                         }

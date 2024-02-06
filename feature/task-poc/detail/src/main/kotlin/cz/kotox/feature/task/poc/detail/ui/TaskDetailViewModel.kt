@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 const val ARG_TASK_ID = "arg_task_id"
 
@@ -17,7 +17,7 @@ const val ARG_TASK_ID = "arg_task_id"
 class TaskDetailViewModel @Inject constructor(
     private val getOneTasksUseCase: cz.kotox.common.task.poc.domain.usecase.GetOneTaskUseCase,
     private val getOneTaskImageUseCase: cz.kotox.common.task.poc.domain.usecase.GetOneTaskImageUseCase,
-    savedStateHandle: SavedStateHandle,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<TaskSummaryItem?>(null)
@@ -29,7 +29,6 @@ class TaskDetailViewModel @Inject constructor(
     //
     private val taskId: String =
         requireNotNull(savedStateHandle[ARG_TASK_ID]) { "Task ID NOT set!" }
-
 
     init {
         viewModelScope.launch {
@@ -50,5 +49,4 @@ class TaskDetailViewModel @Inject constructor(
     fun setDownloadFinished() {
         _ongoingDownload.update { false }
     }
-
 }
