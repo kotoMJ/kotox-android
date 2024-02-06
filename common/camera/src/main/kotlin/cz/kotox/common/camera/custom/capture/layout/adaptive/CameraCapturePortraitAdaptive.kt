@@ -132,7 +132,7 @@ internal fun CameraCapturePortraitAdaptive(
                     CaptureZoomSlider(
                         input = CaptureZoomSliderViewState(
                             zoomValues = currentZoomValues,
-                            showVertical = false
+                            orientationViewState = orientationViewState.value
                         ),
                         onValueChange = { linearZoomValue ->
                             showSliderCountDownSeconds = SHOW_SLIDER_COUNTDOWN_IN_SECONDS

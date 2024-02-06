@@ -26,7 +26,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
+import cz.kotox.common.camera.custom.CameraOrientation
 import cz.kotox.common.camera.custom.LensFacing
+import cz.kotox.common.camera.custom.OrientationViewState
 import cz.kotox.common.camera.custom.capture.CameraPreview
 import cz.kotox.common.camera.custom.capture.CameraScreenEvent
 import cz.kotox.common.camera.custom.capture.ZoomValues
@@ -130,7 +132,10 @@ internal fun CameraCapturePortrait(
                     CaptureZoomSlider(
                         input = CaptureZoomSliderViewState(
                             zoomValues = currentZoomValues,
-                            showVertical = false
+                            orientationViewState = OrientationViewState(
+                                CameraOrientation.PORTRAIT.rotation.toInt(),
+                                true
+                            )
                         ),
                         onValueChange = { linearZoomValue ->
                             showSliderCountDownSeconds = SHOW_SLIDER_COUNTDOWN_IN_SECONDS

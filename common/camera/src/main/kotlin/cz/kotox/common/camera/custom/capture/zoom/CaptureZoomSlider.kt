@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
@@ -35,6 +36,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cz.kotox.common.camera.custom.CameraOrientation
+import cz.kotox.common.camera.custom.OrientationViewState
 import cz.kotox.common.camera.custom.capture.ZoomValues
 import cz.kotox.common.designsystem.preview.KotoxBasicThemeWidgetPreview
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
@@ -57,88 +60,82 @@ fun CaptureZoomSlider(
     val isDragged by interactionSource.collectIsDraggedAsState()
     val isInteracting by remember { derivedStateOf { isPressed || isDragged } }
 
-    if (input.showVertical) {
-        /**
-         * TODO vertical variant can be implemented simply by rotating this component modifier.rotate(-90f)
-         * together with rotating the text.
-         * There is just a bit issue with alignment of this component so vertical variant is omitted for now.
-         */
-    } else {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            AnimatedVisibility(visible = isInteracting) {
-                Text(
-                    text = "${input.zoomValues.currentRatio}",
-                    color = Color.Black,
-                    modifier = Modifier
-                        .clip(shape = RoundedCornerShape(percent = 50))
-                        .background(Color.White)
-                        .padding(
-                            vertical = 8.dp,
-                            horizontal = 16.dp
-                        ),
-                    fontFamily = FontFamily.Default,
-                    fontSize = 12.sp
-                )
-            }
-
-            val thumbSize: Dp = if (isInteracting) 16.dp else 32.dp
-            androidx.compose.material3.Slider(
-                modifier = Modifier.semantics { contentDescription = "Localized Description" },
-                value = input.zoomValues.currentLinearZoom,
-                colors = captureZoomSliderColors(),
-                onValueChange = {
-//            Timber.d(">>>_ seek in progress: $it")
-                    setTimeLineSliderValue(it)
-                    onValueChange(it)
-                },
-                onValueChangeFinished = {
-                    Timber.d(">>>_ seek finished: $timeLineSliderValueLocal")
-                    // onValueChangeFinished(timeLineSliderValueLocal.progress)
-                },
-                thumb = {
-                    val shape = CircleShape
-                    Spacer(
-                        modifier = Modifier
-                            .size(thumbSize)
-                            .indication(
-                                interactionSource = interactionSource,
-                                indication = rememberRipple(
-                                    bounded = false,
-                                    radius = thumbSize
-                                )
-                            )
-                            .hoverable(interactionSource = interactionSource)
-                            .shadow(if (/*enabled*/true) 6.dp else 0.dp, shape, clip = false)
-                            .background(Color.White, shape)
-                    )
-
-                    AnimatedVisibility(visible = !isInteracting) {
-                        Box(
-                            modifier = Modifier.defaultMinSize(
-                                minWidth = thumbSize,
-                                minHeight = thumbSize
-                            )
-                        ) {
-                            Text(
-                                modifier = Modifier.align(Alignment.Center),
-                                textAlign = TextAlign.Center,
-                                text = "${input.zoomValues.currentRatio}",
-                                color = Color.Black,
-                                fontFamily = FontFamily.Default,
-                                fontSize = 12.sp
-                            )
-                        }
-                    }
-                },
-                interactionSource = interactionSource
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        AnimatedVisibility(visible = isInteracting) {
+            Text(
+                text = "${input.zoomValues.currentRatio}",
+                color = Color.Black,
+                modifier = Modifier
+                    .clip(shape = RoundedCornerShape(percent = 50))
+                    .background(Color.White)
+                    .padding(
+                        vertical = 8.dp,
+                        horizontal = 16.dp
+                    ),
+                fontFamily = FontFamily.Default,
+                fontSize = 12.sp
             )
         }
+
+        val thumbSize: Dp = if (isInteracting) 16.dp else 32.dp
+        androidx.compose.material3.Slider(
+            modifier = Modifier.semantics { contentDescription = "Localized Description" },
+            value = input.zoomValues.currentLinearZoom,
+            colors = captureZoomSliderColors(),
+            onValueChange = {
+//            Timber.d(">>>_ seek in progress: $it")
+                setTimeLineSliderValue(it)
+                onValueChange(it)
+            },
+            onValueChangeFinished = {
+                Timber.d(">>>_ seek finished: $timeLineSliderValueLocal")
+                // onValueChangeFinished(timeLineSliderValueLocal.progress)
+            },
+            thumb = {
+                val shape = CircleShape
+                Spacer(
+                    modifier = Modifier
+                        .size(thumbSize)
+                        .indication(
+                            interactionSource = interactionSource,
+                            indication = rememberRipple(
+                                bounded = false,
+                                radius = thumbSize
+                            )
+                        )
+                        .hoverable(interactionSource = interactionSource)
+                        .shadow(if (/*enabled*/true) 6.dp else 0.dp, shape, clip = false)
+                        .background(Color.White, shape)
+                )
+
+                AnimatedVisibility(visible = !isInteracting) {
+                    Box(
+                        modifier = Modifier.defaultMinSize(
+                            minWidth = thumbSize,
+                            minHeight = thumbSize
+                        )
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .rotate(-input.orientationViewState.rotationDegree.toFloat()),
+                            textAlign = TextAlign.Center,
+                            text = "${input.zoomValues.currentRatio}",
+                            color = Color.Black,
+                            fontFamily = FontFamily.Default,
+                            fontSize = 12.sp
+                        )
+                    }
+                }
+            },
+            interactionSource = interactionSource
+        )
     }
 }
 
 data class CaptureZoomSliderViewState(
     val zoomValues: ZoomValues,
-    val showVertical: Boolean = false
+    val orientationViewState: OrientationViewState
 )
 
 @Composable
@@ -164,7 +161,10 @@ internal fun CaptureZoomSliderPreview() {
                     currentRatio = 1f,
                     currentLinearZoom = 0.36446497f
                 ),
-                showVertical = false
+                orientationViewState = OrientationViewState(
+                    CameraOrientation.PORTRAIT.rotation.toInt(),
+                    true
+                )
             )
         )
     }

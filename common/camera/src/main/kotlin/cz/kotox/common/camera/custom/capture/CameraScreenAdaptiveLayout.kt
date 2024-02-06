@@ -110,7 +110,7 @@ internal fun CameraScreenAdaptiveLayout(
 
                 IconButton(
                     modifier = Modifier
-                        .padding(top = 8.dp)
+                        .padding(8.dp)
                         .defaultMinSize(32.dp)
                         .align(Alignment.TopStart),
                     onClick = {
