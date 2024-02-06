@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,6 +28,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import cz.kotox.common.camera.custom.LensFacing
+import cz.kotox.common.camera.custom.OrientationViewState
 import cz.kotox.common.camera.custom.capture.CameraPreview
 import cz.kotox.common.camera.custom.capture.CameraScreenEvent
 import cz.kotox.common.camera.custom.capture.ZoomValues
@@ -36,8 +38,8 @@ import cz.kotox.common.camera.custom.capture.executor
 import cz.kotox.common.camera.custom.capture.takePicture
 import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomSlider
 import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomSliderViewState
-import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggle
-import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggleViewState
+import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggleAdaptive
+import cz.kotox.common.camera.custom.capture.zoom.CaptureZoomToggleAdaptiveViewState
 import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -47,6 +49,7 @@ private const val SHOW_SLIDER_COUNTDOWN_IN_SECONDS = 3
 
 @Composable
 internal fun CameraCapturePortraitAdaptive(
+    orientationViewState: State<OrientationViewState>,
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.Black,
     currentSelector: LensFacing? = null,
@@ -106,7 +109,7 @@ internal fun CameraCapturePortraitAdaptive(
         ) {
             if (currentZoomValues != null) {
                 AnimatedVisibility(visible = !showSlider && !gestureDetected) {
-                    CaptureZoomToggle(
+                    CaptureZoomToggleAdaptive(
                         onLongPress = {
                             Timber.d(">>>_ TOGGLE CaptureZoomToggle longpress")
                             showSliderCountDownSeconds = SHOW_SLIDER_COUNTDOWN_IN_SECONDS
@@ -115,11 +118,11 @@ internal fun CameraCapturePortraitAdaptive(
                         onChange = { zoomRatio ->
                             onUpdateZoomRatio.invoke(zoomRatio)
                         },
-                        input = CaptureZoomToggleViewState(
+                        input = CaptureZoomToggleAdaptiveViewState(
                             modifier = Modifier
                                 .padding(bottom = 16.dp),
                             zoomValues = currentZoomValues,
-                            showVertical = false,
+                            orientationViewState = orientationViewState.value,
                             lensFacing = currentSelector
                         )
                     )

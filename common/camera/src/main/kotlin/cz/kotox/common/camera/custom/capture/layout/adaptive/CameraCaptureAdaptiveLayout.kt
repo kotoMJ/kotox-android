@@ -117,6 +117,7 @@ fun CameraCaptureAdaptiveLayout(
             }
         } else {
             CameraCapturePortraitAdaptive(
+                orientationViewState = orientationViewState,
                 modifier = modifier,
                 backgroundColor = backgroundColor,
 
