@@ -73,16 +73,12 @@ dependencies {
 
     implementation(projects.common.core)
     implementation(projects.common.designSystem)
+    implementation(projects.common.i18n)
     implementation(projects.common.ui)
 
-    implementation(projects.common.i18n)
 
-    //FIXME MJ - add this dependency by convention plugin.
-    implementation(libs.android.material)
     implementation(libs.timber)
-    //implementation(libs.androidx.activity.compose)
-
-
+    implementation(libs.android.material)
     debugImplementation(libs.leakcanary)
 
     debugImplementation(libs.androidx.compose.ui.test.manifest)
