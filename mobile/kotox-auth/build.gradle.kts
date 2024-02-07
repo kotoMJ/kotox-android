@@ -77,34 +77,11 @@ dependencies {
 
     implementation(projects.common.i18n)
 
+    //FIXME MJ - add this dependency by convention plugin.
     implementation(libs.android.material)
-
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.core)
-
-    implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.hilt.navigation.compose)
-
-    implementation(libs.accompanist.pager)
-    implementation(libs.accompanist.pager.indicators)
-    implementation(libs.accompanist.swiperefresh)
-
-    implementation(libs.androidx.constraint.compose)
-
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.kotlinx.coroutines.core)
-
-    implementation(libs.moshi.kotlin)
-    implementation(libs.retorofit)
-
-    implementation(libs.coil.kt)
-    implementation(libs.coil.kt.compose)
-
     implementation(libs.timber)
+    //implementation(libs.androidx.activity.compose)
+
 
     debugImplementation(libs.leakcanary)
 
