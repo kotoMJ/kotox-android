@@ -1,7 +1,7 @@
-package cz.kotox.starter.config
+package cz.kotox.auth.config
 
+import cz.kotox.auth.BuildConfig
 import cz.kotox.common.core.config.AppProperties
-import cz.kotox.starter.BuildConfig
 
 private enum class BuildType(val buildTypeName: String) {
     Debug("debug"),
@@ -10,7 +10,7 @@ private enum class BuildType(val buildTypeName: String) {
 
 private val currentAppBuildType = BuildType.entries.first { it.buildTypeName == BuildConfig.BUILD_TYPE }
 
-data class KotoxStarterAppProperties(
+data class KotoxAuthAppProperties(
     override val isDevEnvironment: Boolean = currentAppBuildType == BuildType.Debug,
     override val isDarkMode: Boolean
 ) : AppProperties

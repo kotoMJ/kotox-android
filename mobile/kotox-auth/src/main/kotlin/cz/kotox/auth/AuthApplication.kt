@@ -1,4 +1,4 @@
-package cz.kotox.starter
+package cz.kotox.auth
 
 import android.app.Application
 import cz.kotox.common.designsystem.ThemeUtils
@@ -6,7 +6,7 @@ import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 @HiltAndroidApp
-class StarterApplication : Application() {
+class AuthApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
