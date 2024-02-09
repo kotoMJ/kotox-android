@@ -7,7 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.viewModelScope
-import cz.kotox.common.designsystem.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicTheme
 import cz.kotox.feature.task.poc.detail.R
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

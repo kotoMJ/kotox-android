@@ -76,7 +76,6 @@ dependencies {
     implementation(projects.common.i18n)
     implementation(projects.common.ui)
 
-
     implementation(libs.timber)
     implementation(libs.android.material)
     debugImplementation(libs.leakcanary)

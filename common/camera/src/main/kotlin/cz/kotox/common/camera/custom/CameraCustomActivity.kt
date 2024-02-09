@@ -23,7 +23,7 @@ import cz.kotox.common.camera.custom.capture.EMPTY_IMAGE_FILE_PATH_NAME
 import cz.kotox.common.core.android.extension.lockDeviceRotationPortrait
 import cz.kotox.common.core.android.extension.serializable
 import cz.kotox.common.core.extension.exhaustive
-import cz.kotox.common.designsystem.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import timber.log.Timber

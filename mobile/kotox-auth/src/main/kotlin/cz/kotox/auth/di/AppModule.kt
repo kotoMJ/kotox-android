@@ -20,5 +20,4 @@ object AppModule {
     fun provideAppProperties(@ApplicationContext appContext: Context): AppProperties = KotoxAuthAppProperties(
         isDarkMode = appContext.isDarkMode()
     )
-
 }

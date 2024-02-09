@@ -26,8 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import cz.kotox.playground.R
-import cz.kotox.common.designsystem.theme.KotoxBasicTheme
-import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.shiraz.LocalColors
 
 sealed class MainScreenEvent {
     object OpenBouncingBoxAnimation : MainScreenEvent()
@@ -105,7 +105,7 @@ fun MainScreen(
                             )
                             Text(
                                 text = stringResource(id = R.string.main_screen_action_bouncing_box),
-                                color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary
+                                color = LocalColors.current.onControlsPrimary
                             )
                         }
                     }
@@ -118,11 +118,11 @@ fun MainScreen(
                     ) {
 
                         OutlinedButton(
-                            border = BorderStroke(1.dp, cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary),
+                            border = BorderStroke(1.dp, LocalColors.current.onControlsPrimary),
                             contentPadding = PaddingValues(8.dp),
                             colors = ButtonDefaults.outlinedButtonColors(
-                                contentColor = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary,
-                                backgroundColor = cz.kotox.common.designsystem.theme.LocalColors.current.background
+                                contentColor = LocalColors.current.onControlsPrimary,
+                                backgroundColor = LocalColors.current.background
                             ),
                             onClick = {
                                 onEventHandler.invoke(MainScreenEvent.OpenScannerLineAnimation)
@@ -135,7 +135,7 @@ fun MainScreen(
                             )
                             Text(
                                 text = stringResource(id = R.string.main_screen_action_scanner_line),
-                                color = cz.kotox.common.designsystem.theme.LocalColors.current.onControlsPrimary
+                                color = LocalColors.current.onControlsPrimary
                             )
                         }
                     }

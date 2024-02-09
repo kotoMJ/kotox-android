@@ -14,8 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import cz.kotox.common.designsystem.theme.LocalColors
-import cz.kotox.common.designsystem.theme.LocalTypography
+import cz.kotox.common.designsystem.theme.shiraz.LocalColors
+import cz.kotox.common.designsystem.theme.shiraz.LocalTypography
 
 @Composable
 fun ResourceCard(
@@ -29,7 +29,7 @@ fun ResourceCard(
         shape = RoundedCornerShape(16.dp),
 
         elevation = 2.dp,
-        backgroundColor = cz.kotox.common.designsystem.theme.LocalColors.current.background,
+        backgroundColor = LocalColors.current.background,
     ) {
 
         Column {
@@ -41,8 +41,8 @@ fun ResourceCard(
             ) {
                 Text(
                     text = stringResource(id = titleRes),
-                    style = cz.kotox.common.designsystem.theme.LocalTypography.current.body1Medium,
-                    color = cz.kotox.common.designsystem.theme.LocalColors.current.textNorm
+                    style = LocalTypography.current.body1Medium,
+                    color = LocalColors.current.textNorm
                 )
             }
 

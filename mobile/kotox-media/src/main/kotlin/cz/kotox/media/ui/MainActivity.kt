@@ -11,7 +11,7 @@ import androidx.compose.runtime.remember
 import cz.kotox.common.core.android.extension.collectAsStateWithLifecycle
 import cz.kotox.common.camera.custom.CameraCustomActivityLauncher
 import cz.kotox.common.camera.custom.CameraCustomLayout
-import cz.kotox.common.designsystem.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicTheme
 import cz.kotox.media.ui.main.MainScreen
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber

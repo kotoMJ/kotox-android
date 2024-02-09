@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -49,8 +48,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import cz.kotox.media.R
 import cz.kotox.common.core.android.extension.collectAsStateWithLifecycle
-import cz.kotox.common.designsystem.theme.KotoxBasicTheme
-import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.shiraz.LocalColors
 import cz.kotox.media.ui.MainActivityListener
 import cz.kotox.media.ui.MainActivityViewState
 import getBitmap

@@ -19,10 +19,9 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import cz.kotox.common.designsystem.theme.LocalColors
-import cz.kotox.common.designsystem.theme.LocalTypography
-import cz.kotox.common.designsystem.theme.KotoxBasicTheme
-
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.shiraz.LocalColors
+import cz.kotox.common.designsystem.theme.shiraz.LocalTypography
 
 sealed class MeetingNoteAppBarEvent {
     object AppBarHomeEvent : MeetingNoteAppBarEvent()
@@ -30,7 +29,7 @@ sealed class MeetingNoteAppBarEvent {
 }
 
 data class MainScreenAppBarInput constructor(
-    val title: String,
+    val title: String
 )
 
 @Preview(
@@ -48,19 +47,17 @@ data class MainScreenAppBarInput constructor(
 @Suppress("All JetPack Compose previews contain 'Preview' in method name")
 @Composable
 fun MainScreenAppBarView(
-    @PreviewParameter(MainScreenAppBarPreviewProvider::class) input: MainScreenAppBarInput,
-    backButtonModifier: Modifier = Modifier,
-    onEventHandler: (MeetingNoteAppBarEvent) -> Unit = {}
+    @PreviewParameter(MainScreenAppBarPreviewProvider::class) input: MainScreenAppBarInput
+    // backButtonModifier: Modifier = Modifier,
+    // onEventHandler: (MeetingNoteAppBarEvent) -> Unit = {}
 ) {
     KotoxBasicTheme {
-
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
                 .sizeIn(minHeight = 56.dp)
         ) {
-
             Row(verticalAlignment = Alignment.CenterVertically) {
 //                Column() {
 //                    IconButton(
@@ -88,14 +85,12 @@ fun MainScreenAppBarView(
                             modifier = Modifier.align(Alignment.Center),
                             text = input.title,
                             style = LocalTypography.current.body1Medium,
-                            color = LocalColors.current.textNorm,
+                            color = LocalColors.current.textNorm
                         )
                     }
                 }
             }
-
         }
-
     }
 }
 

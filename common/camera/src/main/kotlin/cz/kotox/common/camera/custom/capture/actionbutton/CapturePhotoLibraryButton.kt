@@ -17,10 +17,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import cz.kotox.common.camera.custom.R
-import cz.kotox.common.designsystem.preview.KotoxBasicThemeWidgetPreview
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
-import cz.kotox.common.designsystem.theme.KotoxBasicTheme
-import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicThemeWidgetPreview
+import cz.kotox.common.designsystem.theme.shiraz.LocalColors
 
 @Composable
 fun CapturePhotoLibraryButton(

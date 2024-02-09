@@ -31,8 +31,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import cz.kotox.starter.R
-import cz.kotox.common.designsystem.theme.KotoxBasicTheme
-import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.shiraz.LocalColors
 
 sealed class MainScreenEvent {
     object ClickMe : MainScreenEvent()

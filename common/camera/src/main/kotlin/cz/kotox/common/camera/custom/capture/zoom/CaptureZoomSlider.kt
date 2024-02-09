@@ -39,8 +39,8 @@ import androidx.compose.ui.unit.sp
 import cz.kotox.common.camera.custom.CameraOrientation
 import cz.kotox.common.camera.custom.OrientationViewState
 import cz.kotox.common.camera.custom.capture.ZoomValues
-import cz.kotox.common.designsystem.preview.KotoxBasicThemeWidgetPreview
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicThemeWidgetPreview
 import timber.log.Timber
 
 @OptIn(ExperimentalMaterial3Api::class)

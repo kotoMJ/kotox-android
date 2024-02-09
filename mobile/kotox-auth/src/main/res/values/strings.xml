@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">Kotox Auth</string>
+    <string name="app_name">Kotox Firebase Auth</string>
     <string name="generic_back_description">Go to the previous screen</string>
     <string name="generic_click_to_refresh">Click to refresh</string>
 
     <string name="main_screen_title">@string/app_name</string>
-    <string name="main_screen_action_click_me">Click me</string>
+    <string name="main_screen_action_click_anonymous">Anonymous</string>
+    <string name="main_screen_action_click_username_password">Username / Password</string>
 
 </resources>

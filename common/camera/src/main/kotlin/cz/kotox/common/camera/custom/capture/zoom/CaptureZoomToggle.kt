@@ -17,8 +17,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import cz.kotox.common.camera.custom.LensFacing
 import cz.kotox.common.camera.custom.capture.ZoomValues
-import cz.kotox.common.designsystem.preview.KotoxBasicThemeWidgetPreview
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicThemeWidgetPreview
 
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressWarnings("MagicNumber")

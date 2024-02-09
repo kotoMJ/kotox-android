@@ -11,9 +11,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import cz.kotox.common.camera.custom.R
-import cz.kotox.common.designsystem.preview.KotoxBasicThemeFullSizePreview
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
-import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicThemeFullSizePreview
+import cz.kotox.common.designsystem.theme.shiraz.LocalColors
 
 @Composable
 internal fun CameraNotDetectedScreenContent(backgroundColor: Color) {
