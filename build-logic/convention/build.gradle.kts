@@ -85,5 +85,10 @@ gradlePlugin {
             id = "cz.kotox.kotlin.library"
             implementationClass = "KotlinLibraryConventionPlugin"
         }
+
+        register("androidFirebase") {
+            id = "cz.kotox.android.firebase"
+            implementationClass = "AndroidApplicationFirebaseConventionPlugin"
+        }
     }
 }

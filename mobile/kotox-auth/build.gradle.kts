@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.cz.kotox.android.application.compose)
     alias(libs.plugins.cz.kotox.android.poeditor)
     alias(libs.plugins.cz.kotox.android.hilt)
+    alias(libs.plugins.cz.kotox.android.firebase)
 }
 
 android {
@@ -75,6 +76,10 @@ dependencies {
     implementation(projects.common.designSystem)
     implementation(projects.common.i18n)
     implementation(projects.common.ui)
+
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.navigation)
+    implementation(libs.hilt.navigation.compose)
 
     implementation(libs.timber)
     implementation(libs.android.material)

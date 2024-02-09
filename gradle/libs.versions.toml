@@ -61,7 +61,7 @@ androidx-exifinterface = "1.3.2"
 androidx-fragment = "1.4.0"
 androidx-gridlayout = "1.0.0"
 androidx-lifecycle = "2.7.0"
-androidx-navigation = "2.4.1"
+androidx-navigation = "2.7.6"
 androidx-palette = "1.0.0"
 androidx-recyclerview = "1.2.1"
 androidx-room = "2.6.1"
@@ -93,19 +93,19 @@ lint = "31.2.2"
 # Other libs
 # ==================================================================================================
 
-desugar-jdk =  "2.0.4"
+desugar-jdk = "2.0.4"
 
 androidMaterial = "1.11.0"
 
+firebaseBom = "32.7.1"
+
 google-firebase-appdistribution-gradle = "4.0.1"
-google-firebase-config = "21.6.0"
-google-firebase-core = "21.1.1"
-google-firebase-crashlytics = "18.6.1"
 google-firebase-crashlytics-gradle = "2.9.9"
 google-libphonenumber = "8.13.5"
 
 coil = "2.5.0"
 commonmark = "0.21.0"
+gmsPlugin = "4.4.0"
 gradleDependencyUpdate = "0.47.0"
 junit = "4.13.2"
 kotlinx-coroutines = "1.7.3"
@@ -160,6 +160,8 @@ androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-savedstate = { module = "androidx.lifecycle:lifecycle-viewmodel-savedstate", version.ref = "androidx-lifecycle" }
 
+androidx-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+
 androidx-palette = { module = "androidx.palette:palette-ktx", version.ref = "androidx-palette" }
 
 androidx-constraint-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "androidx-constraintlayout-compose" }
@@ -193,11 +195,18 @@ coil-kt-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
 
 commonmark = { module = "org.commonmark:commonmark", version.ref = "commonmark" }
 
-google-firebase-appdistribution-gradle = { module = "com.google.firebase:firebase-appdistribution-gradle", version.ref = "google-firebase-appdistribution-gradle" }
-google-firebase-config = { module = "com.google.firebase:firebase-config", version.ref = "google-firebase-config" }
-google-firebase-core = { module = "com.google.firebase:firebase-core", version.ref = "google-firebase-core" }
-google-firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx", version.ref = "google-firebase-crashlytics" }
-google-firebase-crashlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "google-firebase-crashlytics-gradle" }
+
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
+firebase-cloud-messaging = { group = "com.google.firebase", name = "firebase-messaging-ktx" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
+firebase-performance = { group = "com.google.firebase", name = "firebase-perf-ktx" }
+firebase-config = { group = "com.google.firebase", name = "firebase-config" }
+
+
+firebase-crashlytics-gradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "google-firebase-crashlytics-gradle" }
+firebase-appdistribution-gradle = { module = "com.google.firebase:firebase-appdistribution-gradle", version.ref = "google-firebase-appdistribution-gradle" }
+
 google-libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "google-libphonenumber" }
 
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -208,7 +217,7 @@ kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 
-konsist = {module = "com.lemonappdev: konsist", version.ref = "konsist"}
+konsist = { module = "com.lemonappdev: konsist", version.ref = "konsist" }
 
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 
@@ -253,6 +262,7 @@ ktint-gradlePlugin = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+gms = { id = "com.google.gms.google-services", version.ref = "gmsPlugin" }
 gradleDependencyUpdate = { id = "com.github.ben-manes.versions", version.ref = "gradleDependencyUpdate" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
@@ -267,12 +277,14 @@ android-lint = { id = "com.android.lint", version.ref = "androidGradlePlugin" }
 cz-kotox-android-application = { id = "cz.kotox.android.application", version = "unspecified" }
 cz-kotox-android-application-compose = { id = "cz.kotox.android.application.compose", version = "unspecified" }
 cz-kotox-android-feature = { id = "cz.kotox.android.feature", version = "unspecified" }
+cz-kotox-android-firebase = {id= "cz.kotox.android.firebase",  version = "unspecified" }
 cz-kotox-android-hilt = { id = "cz.kotox.android.hilt", version = "unspecified" }
 cz-kotox-android-library = { id = "cz.kotox.android.library", version = "unspecified" }
 cz-kotox-android-library-compose = { id = "cz.kotox.android.library.compose", version = "unspecified" }
 cz-kotox-android-poeditor = { id = "cz.kotox.android.poeditor", version = "unspecified" }
 cz-kotox-linters = { id = "cz.kotox.linters", version = "unspecified" }
-cz-kotox-kotlin-library = { id = "cz.kotox.kotlin.library", version = "unspecified"}
+cz-kotox-kotlin-library = { id = "cz.kotox.kotlin.library", version = "unspecified" }
+
 
 [bundles]
 

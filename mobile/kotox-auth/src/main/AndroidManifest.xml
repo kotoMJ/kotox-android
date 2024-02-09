@@ -15,7 +15,7 @@
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
 
         <activity
-            android:name="cz.kotox.auth.ui.MainActivity"
+            android:name="cz.kotox.auth.ui.AuthAppActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

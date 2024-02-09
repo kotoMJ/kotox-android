@@ -1,4 +1,4 @@
-package cz.kotox.auth.config
+package cz.kotox.auth.data.config
 
 import cz.kotox.auth.BuildConfig
 import cz.kotox.common.core.config.AppProperties
