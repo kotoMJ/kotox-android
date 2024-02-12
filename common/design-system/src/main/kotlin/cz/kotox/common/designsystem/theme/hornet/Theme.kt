@@ -325,23 +325,6 @@ fun HornetTheme(
     typography: Typography,
     content: @Composable() () -> Unit
 ) {
-    val view = LocalView.current
-//    if (!view.isInEditMode) {
-//        SideEffect {
-//            val window = (view.context as Activity).window
-//            window.statusBarColor = colorScheme.primary.toArgb()
-//            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
-//        }
-//    }
-
-    val systemUiController = rememberSystemUiController()
-
-    SideEffect {
-        systemUiController.setSystemBarsColor(
-            color = Color.Transparent,
-            darkIcons = darkTheme.not() // TODO test
-        )
-    }
 
     CompositionLocalProvider(
         LocalHornetColors provides colorScheme,
