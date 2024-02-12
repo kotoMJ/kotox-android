@@ -16,12 +16,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cz.kotox.auth.R
 import cz.kotox.auth.domain.model.User
-import cz.kotox.common.designsystem.component.BasicButton
+import cz.kotox.common.designsystem.component.button.BasicButton
+import cz.kotox.common.designsystem.component.toolbar.BasicToolbar
 import cz.kotox.common.designsystem.extension.basicButton
 import cz.kotox.common.designsystem.extension.spacer
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
 import cz.kotox.common.designsystem.theme.hornet.HornetThemeFullSizePreview
-import cz.kotox.common.ui.compose.toolbar.BasicToolbar
 import timber.log.Timber
 
 @Suppress("UnusedMaterialScaffoldPaddingParameter")

@@ -1,4 +1,4 @@
-package cz.kotox.common.ui.compose.toolbar
+package cz.kotox.common.designsystem.component.toolbar
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 
 @Composable
 fun BasicToolbar(@StringRes title: Int) {
-  TopAppBar(title = { Text(stringResource(title)) }, backgroundColor = toolbarColor())
+  TopAppBar(title = { Text(stringResource(title)) }, backgroundColor = toolbarColor(), contentColor = MaterialTheme.colorScheme.onSurface)
 }
 
 @Composable
@@ -21,5 +21,5 @@ fun BasicToolbar(title: String) {
 
 @Composable
 private fun toolbarColor(darkTheme: Boolean = isSystemInDarkTheme()): Color {
-  return if (darkTheme) MaterialTheme.colorScheme.surfaceVariant else MaterialTheme.colorScheme.surface
+  return if (darkTheme) MaterialTheme.colorScheme.surface else MaterialTheme.colorScheme.surface
 }

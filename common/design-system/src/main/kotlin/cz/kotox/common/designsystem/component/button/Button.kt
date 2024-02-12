@@ -1,4 +1,4 @@
-package cz.kotox.common.designsystem.component
+package cz.kotox.common.designsystem.component.button
 
 import androidx.annotation.StringRes
 import androidx.compose.material3.Button

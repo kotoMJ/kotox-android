@@ -10,13 +10,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.safeGesturesPadding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.ScaffoldState
-import androidx.compose.material.Snackbar
-import androidx.compose.material.SnackbarHost
-import androidx.compose.material.Surface
-import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
@@ -42,7 +41,6 @@ import kotlinx.coroutines.CoroutineScope
 class AuthAppActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         when {
             isDarkMode() ->
                 enableEdgeToEdge(
@@ -65,24 +63,30 @@ class AuthAppActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
+            val snackBarHostState = remember { SnackbarHostState() }
+
             HornetAppTheme {
-                Surface(color = MaterialTheme.colors.background) {
-                    Box(modifier = Modifier
-                        .safeDrawingPadding()
-                        .safeGesturesPadding()) {
-                        val appState = rememberAppState()
+                Surface(
+                    color = MaterialTheme.colorScheme.surface,
+                    contentColor = MaterialTheme.colorScheme.onSurface
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .safeDrawingPadding()
+                            .safeGesturesPadding()
+                    ) {
+                        val appState = rememberAppState(snackBarHostState)
 
                         Scaffold(
                             snackbarHost = {
                                 SnackbarHost(
-                                    hostState = it,
+                                    hostState = snackBarHostState,
                                     modifier = Modifier.padding(8.dp),
                                     snackbar = { snackbarData ->
-                                        Snackbar(snackbarData, contentColor = MaterialTheme.colors.onPrimary)
+                                        Snackbar(snackbarData, contentColor = MaterialTheme.colorScheme.onPrimary)
                                     }
                                 )
-                            },
-                            scaffoldState = appState.scaffoldState
+                            }
                         ) { innerPaddingModifier ->
                             NavHost(
                                 navController = appState.navController,
@@ -108,12 +112,12 @@ fun resources(): Resources {
 
 @Composable
 fun rememberAppState(
-    scaffoldState: ScaffoldState = rememberScaffoldState(),
+    snackbarHostState: SnackbarHostState,
     navController: NavHostController = rememberNavController(),
     snackbarManager: SnackbarManager = SnackbarManager,
     resources: Resources = resources(),
     coroutineScope: CoroutineScope = rememberCoroutineScope()
 ) =
-    remember(scaffoldState, navController, snackbarManager, resources, coroutineScope) {
-        AuthAppState(scaffoldState, navController, snackbarManager, resources, coroutineScope)
+    remember(snackbarHostState, navController, snackbarManager, resources, coroutineScope) {
+        AuthAppState(snackbarHostState, navController, snackbarManager, resources, coroutineScope)
     }

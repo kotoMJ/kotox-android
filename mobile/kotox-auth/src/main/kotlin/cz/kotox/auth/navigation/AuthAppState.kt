@@ -1,7 +1,7 @@
 package cz.kotox.auth.navigation
 
 import android.content.res.Resources
-import androidx.compose.material.ScaffoldState
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Stable
 import androidx.navigation.NavHostController
 import cz.kotox.auth.ui.snackbar.SnackbarManager
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 @Stable
 class AuthAppState(
-    val scaffoldState: ScaffoldState,
+    val snackbarHostState: SnackbarHostState,
     val navController: NavHostController,
     private val snackbarManager: SnackbarManager,
     private val resources: Resources,
@@ -22,7 +22,7 @@ class AuthAppState(
         coroutineScope.launch {
             snackbarManager.snackbarMessages.filterNotNull().collect { snackbarMessage ->
                 val text = snackbarMessage.toMessage(resources)
-                scaffoldState.snackbarHostState.showSnackbar(text)
+                snackbarHostState.showSnackbar(text)
                 snackbarManager.clearSnackbarState()
             }
         }
