@@ -16,7 +16,8 @@ limitations under the License.
 
 package cz.kotox.auth.domain.model
 
-data class User(
-    val id: String = "",
-    val isAnonymous: Boolean = true
-)
+sealed class User {
+    data object None : User()
+    data class Anonymous(val id: String) : User()
+    data class Authorized(val id: String) : User()
+}

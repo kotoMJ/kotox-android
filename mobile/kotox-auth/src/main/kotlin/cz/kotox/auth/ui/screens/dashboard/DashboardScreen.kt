@@ -1,5 +1,6 @@
 package cz.kotox.auth.ui.screens.dashboard
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,19 +15,21 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cz.kotox.auth.R
+import cz.kotox.auth.domain.model.User
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
 import cz.kotox.common.designsystem.theme.orange.KotoxOrangeThemeFullSizePreview
 import cz.kotox.common.ui.compose.button.BasicButton
 import cz.kotox.common.ui.compose.extension.basicButton
 import cz.kotox.common.ui.compose.extension.spacer
 import cz.kotox.common.ui.compose.toolbar.BasicToolbar
+import timber.log.Timber
 
 @Suppress("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun DashboardScreen(
     viewModel: DashboardViewModel = hiltViewModel()
 ) {
-    val state by viewModel.state.collectAsStateWithLifecycle(initialValue = DashboardViewState(null))
+    val state by viewModel.state.collectAsStateWithLifecycle(initialValue = DashboardViewState(User.None))
     DashboardScreenContent(state)
 }
 
@@ -35,6 +38,16 @@ fun DashboardScreenContent(
     state: DashboardViewState,
     modifier: Modifier = Modifier
 ) {
+    Timber.d("state.user = ${state.user}")
+
+    Crossfade(targetState = state.user) {
+        when (it) {
+            is User.Anonymous -> BasicToolbar("Anonymous user: ${it.id}")
+            is User.Authorized -> BasicToolbar("User: ${it.id}")
+            User.None -> BasicToolbar("User not logged in")
+        }
+    }
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -43,8 +56,6 @@ fun DashboardScreenContent(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        BasicToolbar("user: ${state.user?.id ?: "not logged in"}")
-
         Spacer(modifier = Modifier.spacer())
 
         BasicButton(
@@ -63,7 +74,7 @@ fun DashboardScreenContent(
 private fun ProfileScanResultErrorContentPreview() {
     KotoxOrangeThemeFullSizePreview {
         DashboardScreenContent(
-            state = DashboardViewState(user = null)
+            state = DashboardViewState(user = User.None)
             // onEventHandler = {}
         )
     }
