@@ -16,11 +16,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cz.kotox.auth.R
 import cz.kotox.auth.domain.model.User
+import cz.kotox.common.designsystem.component.BasicButton
+import cz.kotox.common.designsystem.extension.basicButton
+import cz.kotox.common.designsystem.extension.spacer
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
-import cz.kotox.common.designsystem.theme.orange.KotoxOrangeThemeFullSizePreview
-import cz.kotox.common.ui.compose.button.BasicButton
-import cz.kotox.common.ui.compose.extension.basicButton
-import cz.kotox.common.ui.compose.extension.spacer
+import cz.kotox.common.designsystem.theme.hornet.HornetThemeFullSizePreview
 import cz.kotox.common.ui.compose.toolbar.BasicToolbar
 import timber.log.Timber
 
@@ -72,7 +72,7 @@ fun DashboardScreenContent(
 @PreviewMobileLarge
 @Composable
 private fun ProfileScanResultErrorContentPreview() {
-    KotoxOrangeThemeFullSizePreview {
+    HornetThemeFullSizePreview {
         DashboardScreenContent(
             state = DashboardViewState(user = User.None)
             // onEventHandler = {}

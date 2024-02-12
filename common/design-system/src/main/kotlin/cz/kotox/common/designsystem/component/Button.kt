@@ -1,19 +1,19 @@
-package cz.kotox.common.ui.compose.button
+package cz.kotox.common.designsystem.component
 
 import androidx.annotation.StringRes
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
+import cz.kotox.common.designsystem.R
+import cz.kotox.common.designsystem.extension.basicButton
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
+import cz.kotox.common.designsystem.theme.hornet.HornetThemeWidgetPreview
 import cz.kotox.common.designsystem.theme.orange.KotoxOrangeThemeWidgetPreview
 import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicThemeWidgetPreview
-import cz.kotox.common.ui.R
-import cz.kotox.common.ui.compose.extension.basicButton
 
 @Composable
 fun BasicButton(
@@ -25,14 +25,24 @@ fun BasicButton(
         onClick = action,
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = MaterialTheme.colors.primary,
-            contentColor = MaterialTheme.colors.onPrimary
-        )
+            //containerColor = MaterialTheme.colorScheme.onBackground,
+
+        ),
     ) {
         Text(text = stringResource(textRes), fontSize = 16.sp)
     }
 }
 
+@PreviewMobileLarge
+@Composable
+private fun BasicButtonNaturePreview() {
+    HornetThemeWidgetPreview(fillMaxWidth = true) {
+        BasicButton(
+            textRes = R.string.general_button_ok,
+            modifier = Modifier.basicButton()
+        ) { /*Do nothing in preview */ }
+    }
+}
 @PreviewMobileLarge
 @Composable
 private fun BasicButtonShirazPreview() {

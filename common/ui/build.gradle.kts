@@ -10,7 +10,7 @@ android {
 
 dependencies {
 
-    api(libs.androidx.compose.material)
+//    api(libs.androidx.compose.material)
     api(libs.androidx.compose.material3)
     api(libs.androidx.compose.runtime)
     api(libs.androidx.compose.ui.tooling.preview)

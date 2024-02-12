@@ -27,7 +27,7 @@ import cz.kotox.auth.navigation.AuthAppState
 import cz.kotox.auth.navigation.DASHBOARD_SCREEN
 import cz.kotox.auth.navigation.authAppGraph
 import cz.kotox.auth.ui.snackbar.SnackbarManager
-import cz.kotox.common.designsystem.theme.orange.KotoxOrangeTheme
+import cz.kotox.common.designsystem.theme.hornet.HornetAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 
@@ -38,7 +38,7 @@ class AuthAppActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            KotoxOrangeTheme {
+            HornetAppTheme {
                 Surface(color = MaterialTheme.colors.background) {
                     val appState = rememberAppState()
 
