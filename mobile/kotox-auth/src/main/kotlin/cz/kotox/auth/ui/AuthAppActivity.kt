@@ -4,8 +4,8 @@ import android.content.res.Resources
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.safeGesturesPadding
@@ -22,14 +22,18 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import cz.kotox.auth.navigation.AuthAppState
-import cz.kotox.auth.navigation.DASHBOARD_SCREEN
-import cz.kotox.auth.navigation.authAppGraph
+import cz.kotox.auth.navigation.AuthBottomNavigation
+import cz.kotox.auth.navigation.LoginRoute
+import cz.kotox.auth.navigation.loginScreen
+import cz.kotox.auth.navigation.profileScreen
+import cz.kotox.auth.navigation.settingScreen
 import cz.kotox.auth.ui.snackbar.SnackbarManager
 import cz.kotox.common.designsystem.extension.enableEdgeToEdge
 import cz.kotox.common.designsystem.extension.isDarkMode
@@ -65,18 +69,27 @@ class AuthAppActivity : ComponentActivity() {
                                 SnackbarHost(
                                     hostState = snackBarHostState,
                                     modifier = Modifier.padding(8.dp),
-                                    snackbar = { snackbarData ->
-                                        Snackbar(snackbarData, contentColor = MaterialTheme.colorScheme.onPrimary)
+                                    snackbar = { snackBarData ->
+                                        Snackbar(snackBarData, contentColor = MaterialTheme.colorScheme.onPrimary)
                                     }
+                                )
+                            }, bottomBar = {
+                                AuthBottomNavigation(
+                                    navController = appState.navController,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .testTag("bottom_navigation"),
                                 )
                             }
                         ) { innerPaddingModifier ->
                             NavHost(
                                 navController = appState.navController,
-                                startDestination = DASHBOARD_SCREEN,
+                                startDestination = LoginRoute,
                                 modifier = Modifier.padding(innerPaddingModifier)
                             ) {
-                                authAppGraph(appState)
+                                loginScreen()
+                                profileScreen()
+                                settingScreen()
                             }
                         }
                     }

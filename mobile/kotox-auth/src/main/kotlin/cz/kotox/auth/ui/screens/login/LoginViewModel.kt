@@ -1,4 +1,4 @@
-package cz.kotox.auth.ui.screens.dashboard
+package cz.kotox.auth.ui.screens.login
 
 import androidx.lifecycle.ViewModel
 import cz.kotox.auth.domain.service.AccountService
@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardViewModel @Inject constructor(
+class LoginViewModel @Inject constructor(
     private val accountService: AccountService
 ) : ViewModel() {
 
-    val state = accountService.currentUser.map { DashboardViewState(it) }
+    val state = accountService.currentUser.map { LoginViewState(it) }
 }

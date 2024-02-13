@@ -1,4 +1,4 @@
-package cz.kotox.auth.ui.screens.dashboard
+package cz.kotox.auth.ui.screens.login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,16 +24,16 @@ import timber.log.Timber
 
 @Suppress("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun DashboardScreen(
-    viewModel: DashboardViewModel = hiltViewModel()
+fun LoginScreen(
+    viewModel: LoginViewModel = hiltViewModel()
 ) {
-    val state by viewModel.state.collectAsStateWithLifecycle(initialValue = DashboardViewState(User.None))
-    DashboardScreenContent(state)
+    val state by viewModel.state.collectAsStateWithLifecycle(initialValue = LoginViewState(User.None))
+    LoginScreenContent(state)
 }
 
 @Composable
-fun DashboardScreenContent(
-    state: DashboardViewState,
+fun LoginScreenContent(
+    state: LoginViewState,
     modifier: Modifier = Modifier
 ) {
     Timber.d("state.user = ${state.user}")
@@ -63,8 +63,8 @@ fun DashboardScreenContent(
 @Composable
 private fun ProfileScanResultErrorContentPreview() {
     HornetThemeFullSizePreview {
-        DashboardScreenContent(
-            state = DashboardViewState(user = User.None)
+        LoginScreenContent(
+            state = LoginViewState(user = User.None)
             // onEventHandler = {}
         )
     }
