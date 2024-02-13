@@ -16,7 +16,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cz.kotox.auth.R
 import cz.kotox.auth.domain.model.User
-import cz.kotox.common.designsystem.component.button.BasicButton
+import cz.kotox.common.designsystem.component.button.FilledTonalButton
 import cz.kotox.common.designsystem.component.toolbar.BasicToolbar
 import cz.kotox.common.designsystem.extension.basicButton
 import cz.kotox.common.designsystem.extension.spacer
@@ -58,11 +58,11 @@ fun DashboardScreenContent(
     ) {
         Spacer(modifier = Modifier.spacer())
 
-        BasicButton(
+        FilledTonalButton(
             textRes = R.string.main_screen_action_click_username_password,
             modifier = Modifier.basicButton()
         ) { }
-        BasicButton(
+        FilledTonalButton(
             textRes = R.string.main_screen_action_click_anonymous,
             modifier = Modifier.basicButton()
         ) { }

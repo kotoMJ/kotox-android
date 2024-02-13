@@ -1,7 +1,7 @@
 package cz.kotox.common.designsystem.component.button
 
 import androidx.annotation.StringRes
-import androidx.compose.material3.Button
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,12 +13,12 @@ import cz.kotox.common.designsystem.preview.PreviewTheme
 import cz.kotox.common.designsystem.theme.hornet.HornetThemeWidgetPreview
 
 @Composable
-fun BasicButton(
+fun FilledTonalButton(
     @StringRes textRes: Int,
     modifier: Modifier = Modifier,
     action: () -> Unit
 ) {
-    Button(
+    FilledTonalButton(
         onClick = action,
         modifier = modifier,
     ) {
@@ -30,7 +30,7 @@ fun BasicButton(
 @Composable
 private fun BasicButtonHornetPreview() {
     HornetThemeWidgetPreview(fillMaxWidth = true) {
-        BasicButton(
+        FilledTonalButton(
             textRes = R.string.general_button_ok,
             modifier = Modifier.basicButton()
         ) { /*Do nothing in preview */ }
