@@ -1,6 +1,5 @@
 package cz.kotox.auth.ui.screens.dashboard
 
-import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,7 +16,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cz.kotox.auth.R
 import cz.kotox.auth.domain.model.User
 import cz.kotox.common.designsystem.component.button.FilledTonalButton
-import cz.kotox.common.designsystem.component.toolbar.BasicToolbar
 import cz.kotox.common.designsystem.extension.basicButton
 import cz.kotox.common.designsystem.extension.spacer
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
@@ -39,14 +37,6 @@ fun DashboardScreenContent(
     modifier: Modifier = Modifier
 ) {
     Timber.d("state.user = ${state.user}")
-
-    Crossfade(targetState = state.user) {
-        when (it) {
-            is User.Anonymous -> BasicToolbar("Anonymous user: ${it.id}")
-            is User.Authorized -> BasicToolbar("User: ${it.id}")
-            User.None -> BasicToolbar("User not logged in")
-        }
-    }
 
     Column(
         modifier = modifier

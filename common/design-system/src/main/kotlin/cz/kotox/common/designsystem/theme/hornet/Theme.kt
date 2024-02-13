@@ -1,11 +1,9 @@
 package cz.kotox.common.designsystem.theme.hornet
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.Typography
@@ -15,18 +13,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.ReadOnlyComposable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
-import androidx.core.view.WindowCompat
+import androidx.compose.ui.platform.LocalInspectionMode
+import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import cz.kotox.common.designsystem.ThemeUtils
-import cz.kotox.common.designsystem.theme.shiraz.DarkColorPalette
-import cz.kotox.common.designsystem.theme.shiraz.LightColorPalette
 
 //@Immutable
 //data class ExtendedColorScheme(
@@ -51,7 +45,7 @@ private val lightScheme: ColorScheme = lightColorScheme(
     onErrorContainer = onErrorContainerLight,
     background = backgroundLight,
     onBackground = onBackgroundLight,
-    surface = surfaceContainerLowestLight,//just to match surface with status bar
+    surface = surfaceLight,
     onSurface = onSurfaceLight,
     surfaceVariant = surfaceVariantLight,
     onSurfaceVariant = onSurfaceVariantLight,
@@ -286,12 +280,19 @@ data class ColorFamily(
     val onColorContainer: Color
 )
 
+val HornetNonComposeColors =
+    if (ThemeUtils.isDarkThemeIncludingAppLocalSettingsNonComposable()) {
+        darkScheme
+    } else {
+        lightScheme
+    }
+
 val HornetLocalColors =
     compositionLocalOf {
         if (ThemeUtils.isDarkThemeIncludingAppLocalSettingsNonComposable()) {
-            DarkColorPalette
+            darkScheme
         } else {
-            LightColorPalette
+            lightScheme
         }
     }
 
@@ -302,19 +303,55 @@ fun HornetAppTheme(
     dynamicColor: Boolean = true,
     content: @Composable() () -> Unit
 ) {
+    val systemUiController = rememberSystemUiController()
+
+    val colorScheme = detectColorScheme(dynamicColor, darkTheme)
+
+    forceSystemBarColors(systemUiController, colorScheme, darkTheme)
+
     HornetTheme(
         darkTheme = darkTheme,
-        colorScheme = when {
-//            dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-//                val context = LocalContext.current
-//                if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-//            }
+        colorScheme = colorScheme,
+        typography = HornetTypography,
+        content = content
+    )
+}
+
+@Composable
+private fun detectColorScheme(dynamicColor: Boolean, darkTheme: Boolean) =
+    // FIXME MJ - enable dynamic colors support with proper switch in the app
+    if (true or LocalInspectionMode.current) {
+        // Preview has trouble render dynamic color resources due to unknown colors :-(
+        when {
+            darkTheme -> darkScheme
+            else -> lightScheme
+        }
+    } else {
+        when {
+            dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+                val context = LocalContext.current
+                if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            }
 
             darkTheme -> darkScheme
             else -> lightScheme
-        },
-        typography = HornetTypography,
-        content = content
+        }
+    }
+
+/**
+ * Using ComponentActivity.enableEdgeToEdge does not change system bar colors with dark/light mode switch without app restart.
+ * So this is workaround to achieve the change immediately.
+ */
+@Composable
+private fun forceSystemBarColors(
+    systemUiController: SystemUiController,
+    colorScheme: ColorScheme,
+    darkTheme: Boolean
+) {
+
+    systemUiController.setSystemBarsColor(
+        color = colorScheme.surface,
+        darkIcons = !darkTheme
     )
 }
 
