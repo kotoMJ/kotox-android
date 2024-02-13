@@ -2,8 +2,11 @@ package cz.kotox.common.designsystem.component.navigation
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Login
+import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Key
 import androidx.compose.material.icons.filled.KeyOff
+import androidx.compose.material.icons.filled.Login
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.MaterialTheme
@@ -49,15 +52,15 @@ internal fun AndroidTemplateNavigationBarPreview() {
             )
 
             KotoxNavigationBarItem(
-                iconPainter = rememberVectorPainter(image = Icons.Filled.Key),
-                title = "Sign In",
+                iconPainter = rememberVectorPainter(image = Icons.AutoMirrored.Filled.Login),
+                title = "Log In",
                 selected = { true },
                 onClick = {},
             )
 
             KotoxNavigationBarItem(
-                iconPainter = rememberVectorPainter(image = Icons.Filled.KeyOff),
-                title = "Sign Out",
+                iconPainter = rememberVectorPainter(image = Icons.AutoMirrored.Filled.Logout),
+                title = "Log Out",
                 selected = { true },
                 onClick = {},
             )
