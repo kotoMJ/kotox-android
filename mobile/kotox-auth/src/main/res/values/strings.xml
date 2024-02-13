@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kotox Firebase Auth</string>
+    <string name="app_name">Kotox Auth</string>
     <string name="generic_back_description">Go to the previous screen</string>
     <string name="generic_click_to_refresh">Click to refresh</string>
     <string name="generic_error">Something wrong happened. Please try again.</string>
