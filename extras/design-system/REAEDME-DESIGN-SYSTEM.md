@@ -22,6 +22,6 @@ Use [ICON KITCHEN] to create basic icon, color it, export it.
 
 
 
-[IMAGE PICKER] (https://coolors.co/image-picker)
-[MATERIAL 3 DESIGN KIT] (https://www.figma.com/community/file/1035203688168086460)
-[ICON KITCHEN] (https://icon.kitchen/)
+[IMAGE PICKER](https://coolors.co/image-picker)  
+[MATERIAL 3 DESIGN KIT](https://www.figma.com/community/file/1035203688168086460)  
+[ICON KITCHEN](https://icon.kitchen/)  
