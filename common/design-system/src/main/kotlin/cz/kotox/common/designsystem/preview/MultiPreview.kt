@@ -8,13 +8,13 @@ import androidx.compose.ui.tooling.preview.Preview
     device = Devices.PIXEL_4_XL,
     uiMode = Configuration.UI_MODE_NIGHT_NO,
     showBackground = true,
-    name = "Pixel4XL"
+    name = "Pixel4XL Light"
 )
 @Preview(
     device = Devices.PIXEL_4_XL,
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true,
-    name = "Pixel4XL"
+    name = "Pixel4XL Dark"
 )
 annotation class PreviewMobileLarge
 
@@ -22,13 +22,13 @@ annotation class PreviewMobileLarge
     device = Devices.PIXEL,
     uiMode = Configuration.UI_MODE_NIGHT_NO,
     showBackground = true,
-    name = "Pixel"
+    name = "Pixel Light"
 )
 @Preview(
     device = Devices.PIXEL,
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true,
-    name = "Pixel"
+    name = "Pixel Dark"
 )
 annotation class PreviewMobileSmall
 
@@ -41,3 +41,7 @@ annotation class PreviewMobileSmall
     device = "spec:shape=Normal,width=1024,height=680,unit=dp,dpi=340"
 )
 annotation class PreviewTablet
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, name = "Light theme")
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark theme")
+annotation class PreviewTheme
