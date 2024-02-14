@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-object SnackbarManager {
+object SnackbarMessageHandler {
     private val messages: MutableStateFlow<SnackbarMessage?> = MutableStateFlow(null)
     val snackbarMessages: StateFlow<SnackbarMessage?>
         get() = messages.asStateFlow()
