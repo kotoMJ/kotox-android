@@ -5,14 +5,15 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 
+@SuppressWarnings("TopLevelPropertyNaming")
 const val UsernameRoute = "usernamePassword"
 
 fun NavController.navigateToFirebaseUsernameScreen(
-    navOptions: NavOptions? = null,
+    navOptions: NavOptions? = null
 ) {
     navigate(
         route = UsernameRoute,
-        navOptions = navOptions,
+        navOptions = navOptions
     )
 }
 

@@ -26,14 +26,10 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import cz.kotox.auth.navigation.AuthAppState
-import cz.kotox.auth.navigation.AuthBottomNavigation
-import cz.kotox.auth.navigation.LoginRoute
-import cz.kotox.auth.navigation.loginScreen
-import cz.kotox.auth.navigation.profileScreen
-import cz.kotox.auth.navigation.settingScreen
+import cz.kotox.auth.ui.navigation.AuthAppNavHost
+import cz.kotox.auth.ui.navigation.AuthAppState
+import cz.kotox.auth.ui.navigation.AuthBottomNavigation
 import cz.kotox.auth.ui.snackbar.SnackbarManager
 import cz.kotox.common.designsystem.extension.enableEdgeToEdge
 import cz.kotox.common.designsystem.extension.isDarkMode
@@ -73,24 +69,20 @@ class AuthAppActivity : ComponentActivity() {
                                         Snackbar(snackBarData, contentColor = MaterialTheme.colorScheme.onPrimary)
                                     }
                                 )
-                            }, bottomBar = {
+                            },
+                            bottomBar = {
                                 AuthBottomNavigation(
                                     navController = appState.navController,
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .testTag("bottom_navigation"),
+                                        .testTag("bottom_navigation")
                                 )
                             }
                         ) { innerPaddingModifier ->
-                            NavHost(
+                            AuthAppNavHost(
                                 navController = appState.navController,
-                                startDestination = LoginRoute,
                                 modifier = Modifier.padding(innerPaddingModifier)
-                            ) {
-                                loginScreen()
-                                profileScreen()
-                                settingScreen()
-                            }
+                            )
                         }
                     }
                 }

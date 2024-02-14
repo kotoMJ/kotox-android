@@ -1,4 +1,4 @@
-package cz.kotox.auth.navigation
+package cz.kotox.auth.ui.navigation
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -20,7 +20,7 @@ import cz.kotox.common.designsystem.component.navigation.KotoxNavigationBarItem
 @Composable
 internal fun AuthBottomNavigation(
     navController: NavHostController,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
@@ -38,10 +38,10 @@ internal fun AuthBottomNavigation(
 
     AnimatedVisibility(
         modifier = modifier,
-        visible = bottomNavVisible,
+        visible = bottomNavVisible
     ) {
         KotoxNavigationBar(
-            modifier = Modifier.navigationBarsPadding(),
+            modifier = Modifier.navigationBarsPadding()
         ) {
             BottomNavScreen.values.forEach { screen ->
                 val isSelected = remember(screen) {
@@ -70,7 +70,7 @@ internal fun AuthBottomNavigation(
                             // Restore state when re-selecting a previously selected item
                             restoreState = true
                         }
-                    },
+                    }
                 )
             }
         }

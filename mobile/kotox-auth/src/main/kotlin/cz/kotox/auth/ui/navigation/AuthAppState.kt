@@ -1,4 +1,4 @@
-package cz.kotox.auth.navigation
+package cz.kotox.auth.ui.navigation
 
 import android.content.res.Resources
 import androidx.compose.material3.SnackbarHostState

@@ -25,16 +25,21 @@ import timber.log.Timber
 @Suppress("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun LoginScreen(
+    navigateToFirebaseUsernamePasswordAuthentication: () -> Unit,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle(initialValue = LoginViewState(User.None))
-    LoginScreenContent(state)
+    LoginScreenContent(
+        state = state,
+        onUsernamePasswordClick = navigateToFirebaseUsernamePasswordAuthentication
+    )
 }
 
 @Composable
 fun LoginScreenContent(
     state: LoginViewState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onUsernamePasswordClick: () -> Unit
 ) {
     Timber.d("state.user = ${state.user}")
 
@@ -50,8 +55,9 @@ fun LoginScreenContent(
 
         FilledTonalButton(
             textRes = R.string.main_screen_action_click_username_password,
-            modifier = Modifier.basicButton()
-        ) { }
+            modifier = Modifier.basicButton(),
+            action = onUsernamePasswordClick
+        )
         FilledTonalButton(
             textRes = R.string.main_screen_action_click_anonymous,
             modifier = Modifier.basicButton()
@@ -64,8 +70,8 @@ fun LoginScreenContent(
 private fun ProfileScanResultErrorContentPreview() {
     HornetThemeFullSizePreview {
         LoginScreenContent(
-            state = LoginViewState(user = User.None)
-            // onEventHandler = {}
+            state = LoginViewState(user = User.None),
+            onUsernamePasswordClick = {/*Do nothing in preview*/ }
         )
     }
 }

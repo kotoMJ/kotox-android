@@ -1,4 +1,4 @@
-package cz.kotox.auth.navigation
+package cz.kotox.auth.ui.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons

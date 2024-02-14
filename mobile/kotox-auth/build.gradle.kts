@@ -77,6 +77,8 @@ dependencies {
     implementation(projects.common.i18n)
     implementation(projects.common.ui)
 
+    implementation(projects.feature.firebaseAuth.username)
+
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.navigation)
     implementation(libs.hilt.navigation.compose)
