@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -25,6 +24,7 @@ import cz.kotox.auth.ui.navigation.AuthAppNavHost
 import cz.kotox.auth.ui.navigation.AuthAppState
 import cz.kotox.auth.ui.navigation.AuthBottomNavigation
 import cz.kotox.auth.ui.snackbar.SnackbarManager
+import cz.kotox.common.designsystem.component.snackbar.KotoxSnackbar
 import cz.kotox.common.designsystem.extension.enableEdgeToEdge
 import cz.kotox.common.designsystem.extension.isDarkMode
 import cz.kotox.common.designsystem.theme.hornet.HornetAppTheme
@@ -32,7 +32,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import androidx.compose.material3.MaterialTheme as Material3Theme
 import androidx.compose.material3.Scaffold as Material3Scaffold
-import androidx.compose.material3.Snackbar as Material3Snackbar
 import androidx.compose.material3.SnackbarHost as Material3SnackbarHost
 import androidx.compose.material3.SnackbarHostState as Material3SnackbarHostState
 import androidx.compose.material3.Surface as Material3Surface
@@ -64,9 +63,10 @@ class AuthAppActivity : ComponentActivity() {
                             snackbarHost = {
                                 Material3SnackbarHost(
                                     hostState = snackBarHostState,
-                                    modifier = Modifier.padding(8.dp),
                                     snackbar = { snackBarData ->
-                                        Material3Snackbar(snackBarData, contentColor = Material3Theme.colorScheme.onPrimary)
+                                        KotoxSnackbar(
+                                            snackBarData
+                                        )
                                     }
                                 )
                             },

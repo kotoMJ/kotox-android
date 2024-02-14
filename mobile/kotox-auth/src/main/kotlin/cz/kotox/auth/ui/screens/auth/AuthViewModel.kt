@@ -12,4 +12,6 @@ class AuthViewModel @Inject constructor(
 ) : ViewModel() {
 
     val state = accountService.currentUser.map { AuthViewState(it) }
+
+    // fun showTestSnack() = SnackbarManager.showMessage(R.string.app_name)
 }

@@ -2,8 +2,9 @@ package cz.kotox.common.designsystem.theme.hornet
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.ColorScheme
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ColorScheme as Material3ColorScheme
+import androidx.compose.material3.MaterialTheme as Material3Theme
+import androidx.compose.material3.Shapes as Material3Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.Typography
@@ -22,11 +23,8 @@ import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import cz.kotox.common.designsystem.ThemeUtils
 
-//@Immutable
-//data class ExtendedColorScheme(
-//)
 
-private val lightScheme: ColorScheme = lightColorScheme(
+private val lightScheme: Material3ColorScheme = lightColorScheme(
     primary = primaryLight,
     onPrimary = onPrimaryLight,
     primaryContainer = primaryContainerLight,
@@ -55,16 +53,16 @@ private val lightScheme: ColorScheme = lightColorScheme(
     inverseSurface = inverseSurfaceLight,
     inverseOnSurface = inverseOnSurfaceLight,
     inversePrimary = inversePrimaryLight,
-//    surfaceDim = surfaceDimLight,
-//    surfaceBright = surfaceBrightLight,
-//    surfaceContainerLowest = surfaceContainerLowestLight,
-//    surfaceContainerLow = surfaceContainerLowLight,
-//    surfaceContainer = surfaceContainerLight,
-//    surfaceContainerHigh = surfaceContainerHighLight,
-//    surfaceContainerHighest = surfaceContainerHighestLight,
+    surfaceDim = surfaceDimLight,
+    surfaceBright = surfaceBrightLight,
+    surfaceContainerLowest = surfaceContainerLowestLight,
+    surfaceContainerLow = surfaceContainerLowLight,
+    surfaceContainer = surfaceContainerLight,
+    surfaceContainerHigh = surfaceContainerHighLight,
+    surfaceContainerHighest = surfaceContainerHighestLight,
 )
 
-private val darkScheme: ColorScheme = darkColorScheme(
+private val darkScheme: Material3ColorScheme = darkColorScheme(
     primary = primaryDark,
     onPrimary = onPrimaryDark,
     primaryContainer = primaryContainerDark,
@@ -93,16 +91,16 @@ private val darkScheme: ColorScheme = darkColorScheme(
     inverseSurface = inverseSurfaceDark,
     inverseOnSurface = inverseOnSurfaceDark,
     inversePrimary = inversePrimaryDark,
-//    surfaceDim = surfaceDimDark,
-//    surfaceBright = surfaceBrightDark,
-//    surfaceContainerLowest = surfaceContainerLowestDark,
-//    surfaceContainerLow = surfaceContainerLowDark,
-//    surfaceContainer = surfaceContainerDark,
-//    surfaceContainerHigh = surfaceContainerHighDark,
-//    surfaceContainerHighest = surfaceContainerHighestDark,
+    surfaceDim = surfaceDimDark,
+    surfaceBright = surfaceBrightDark,
+    surfaceContainerLowest = surfaceContainerLowestDark,
+    surfaceContainerLow = surfaceContainerLowDark,
+    surfaceContainer = surfaceContainerDark,
+    surfaceContainerHigh = surfaceContainerHighDark,
+    surfaceContainerHighest = surfaceContainerHighestDark,
 )
 
-private val mediumContrastLightColorScheme: ColorScheme = lightColorScheme(
+private val mediumContrastLightColorScheme: Material3ColorScheme = lightColorScheme(
     primary = primaryLightMediumContrast,
     onPrimary = onPrimaryLightMediumContrast,
     primaryContainer = primaryContainerLightMediumContrast,
@@ -131,16 +129,16 @@ private val mediumContrastLightColorScheme: ColorScheme = lightColorScheme(
     inverseSurface = inverseSurfaceLightMediumContrast,
     inverseOnSurface = inverseOnSurfaceLightMediumContrast,
     inversePrimary = inversePrimaryLightMediumContrast,
-//    surfaceDim = surfaceDimLightMediumContrast,
-//    surfaceBright = surfaceBrightLightMediumContrast,
-//    surfaceContainerLowest = surfaceContainerLowestLightMediumContrast,
-//    surfaceContainerLow = surfaceContainerLowLightMediumContrast,
-//    surfaceContainer = surfaceContainerLightMediumContrast,
-//    surfaceContainerHigh = surfaceContainerHighLightMediumContrast,
-//    surfaceContainerHighest = surfaceContainerHighestLightMediumContrast,
+    surfaceDim = surfaceDimLightMediumContrast,
+    surfaceBright = surfaceBrightLightMediumContrast,
+    surfaceContainerLowest = surfaceContainerLowestLightMediumContrast,
+    surfaceContainerLow = surfaceContainerLowLightMediumContrast,
+    surfaceContainer = surfaceContainerLightMediumContrast,
+    surfaceContainerHigh = surfaceContainerHighLightMediumContrast,
+    surfaceContainerHighest = surfaceContainerHighestLightMediumContrast,
 )
 
-private val highContrastLightColorScheme: ColorScheme = lightColorScheme(
+private val highContrastLightColorScheme: Material3ColorScheme = lightColorScheme(
     primary = primaryLightHighContrast,
     onPrimary = onPrimaryLightHighContrast,
     primaryContainer = primaryContainerLightHighContrast,
@@ -169,16 +167,16 @@ private val highContrastLightColorScheme: ColorScheme = lightColorScheme(
     inverseSurface = inverseSurfaceLightHighContrast,
     inverseOnSurface = inverseOnSurfaceLightHighContrast,
     inversePrimary = inversePrimaryLightHighContrast,
-//    surfaceDim = surfaceDimLightHighContrast,
-//    surfaceBright = surfaceBrightLightHighContrast,
-//    surfaceContainerLowest = surfaceContainerLowestLightHighContrast,
-//    surfaceContainerLow = surfaceContainerLowLightHighContrast,
-//    surfaceContainer = surfaceContainerLightHighContrast,
-//    surfaceContainerHigh = surfaceContainerHighLightHighContrast,
-//    surfaceContainerHighest = surfaceContainerHighestLightHighContrast,
+    surfaceDim = surfaceDimLightHighContrast,
+    surfaceBright = surfaceBrightLightHighContrast,
+    surfaceContainerLowest = surfaceContainerLowestLightHighContrast,
+    surfaceContainerLow = surfaceContainerLowLightHighContrast,
+    surfaceContainer = surfaceContainerLightHighContrast,
+    surfaceContainerHigh = surfaceContainerHighLightHighContrast,
+    surfaceContainerHighest = surfaceContainerHighestLightHighContrast,
 )
 
-private val mediumContrastDarkColorScheme: ColorScheme = darkColorScheme(
+private val mediumContrastDarkColorScheme: Material3ColorScheme = darkColorScheme(
     primary = primaryDarkMediumContrast,
     onPrimary = onPrimaryDarkMediumContrast,
     primaryContainer = primaryContainerDarkMediumContrast,
@@ -207,13 +205,13 @@ private val mediumContrastDarkColorScheme: ColorScheme = darkColorScheme(
     inverseSurface = inverseSurfaceDarkMediumContrast,
     inverseOnSurface = inverseOnSurfaceDarkMediumContrast,
     inversePrimary = inversePrimaryDarkMediumContrast,
-//    surfaceDim = surfaceDimDarkMediumContrast,
-//    surfaceBright = surfaceBrightDarkMediumContrast,
-//    surfaceContainerLowest = surfaceContainerLowestDarkMediumContrast,
-//    surfaceContainerLow = surfaceContainerLowDarkMediumContrast,
-//    surfaceContainer = surfaceContainerDarkMediumContrast,
-//    surfaceContainerHigh = surfaceContainerHighDarkMediumContrast,
-//    surfaceContainerHighest = surfaceContainerHighestDarkMediumContrast,
+    surfaceDim = surfaceDimDarkMediumContrast,
+    surfaceBright = surfaceBrightDarkMediumContrast,
+    surfaceContainerLowest = surfaceContainerLowestDarkMediumContrast,
+    surfaceContainerLow = surfaceContainerLowDarkMediumContrast,
+    surfaceContainer = surfaceContainerDarkMediumContrast,
+    surfaceContainerHigh = surfaceContainerHighDarkMediumContrast,
+    surfaceContainerHighest = surfaceContainerHighestDarkMediumContrast,
 )
 
 private val highContrastDarkColorScheme = darkColorScheme(
@@ -245,32 +243,14 @@ private val highContrastDarkColorScheme = darkColorScheme(
     inverseSurface = inverseSurfaceDarkHighContrast,
     inverseOnSurface = inverseOnSurfaceDarkHighContrast,
     inversePrimary = inversePrimaryDarkHighContrast,
-//    surfaceDim = surfaceDimDarkHighContrast,
-//    surfaceBright = surfaceBrightDarkHighContrast,
-//    surfaceContainerLowest = surfaceContainerLowestDarkHighContrast,
-//    surfaceContainerLow = surfaceContainerLowDarkHighContrast,
-//    surfaceContainer = surfaceContainerDarkHighContrast,
-//    surfaceContainerHigh = surfaceContainerHighDarkHighContrast,
-//    surfaceContainerHighest = surfaceContainerHighestDarkHighContrast,
+    surfaceDim = surfaceDimDarkHighContrast,
+    surfaceBright = surfaceBrightDarkHighContrast,
+    surfaceContainerLowest = surfaceContainerLowestDarkHighContrast,
+    surfaceContainerLow = surfaceContainerLowDarkHighContrast,
+    surfaceContainer = surfaceContainerDarkHighContrast,
+    surfaceContainerHigh = surfaceContainerHighDarkHighContrast,
+    surfaceContainerHighest = surfaceContainerHighestDarkHighContrast,
 )
-
-//val extendedLight = ExtendedColorScheme(
-//)
-//
-//val extendedDark = ExtendedColorScheme(
-//)
-//
-//val extendedLightMediumContrast = ExtendedColorScheme(
-//)
-//
-//val extendedLightHighContrast = ExtendedColorScheme(
-//)
-//
-//val extendedDarkMediumContrast = ExtendedColorScheme(
-//)
-//
-//val extendedDarkHighContrast = ExtendedColorScheme(
-//)
 
 @Immutable
 data class ColorFamily(
@@ -313,6 +293,7 @@ fun HornetAppTheme(
         darkTheme = darkTheme,
         colorScheme = colorScheme,
         typography = HornetTypography,
+        shapes = HornetShapes,
         content = content
     )
 }
@@ -345,7 +326,7 @@ private fun detectColorScheme(dynamicColor: Boolean, darkTheme: Boolean) =
 @Composable
 private fun forceSystemBarColors(
     systemUiController: SystemUiController,
-    colorScheme: ColorScheme,
+    colorScheme: Material3ColorScheme,
     darkTheme: Boolean
 ) {
 
@@ -358,7 +339,8 @@ private fun forceSystemBarColors(
 @Composable
 fun HornetTheme(
     darkTheme: Boolean,
-    colorScheme: ColorScheme,
+    colorScheme: Material3ColorScheme,
+    shapes: Material3Shapes,
     typography: Typography,
     content: @Composable() () -> Unit
 ) {
@@ -367,16 +349,17 @@ fun HornetTheme(
         LocalHornetColors provides colorScheme,
         LocalHornetTypography provides typography
     ) {
-        MaterialTheme(
+        Material3Theme(
             colorScheme = colorScheme,
             typography = typography,
+            shapes = shapes,
             content = content
         )
     }
 }
 
 object HornetTheme {
-    val colors: ColorScheme
+    val colors: Material3ColorScheme
         @Composable
         @ReadOnlyComposable
         get() = LocalHornetColors.current
@@ -389,7 +372,7 @@ object HornetTheme {
 }
 
 @Suppress("CompositionLocalAllowlist")
-internal val LocalHornetColors = staticCompositionLocalOf<ColorScheme> {
+internal val LocalHornetColors = staticCompositionLocalOf<Material3ColorScheme> {
     error("No LocalEnterColors provided")
 }
 
@@ -400,7 +383,7 @@ val LocalHornetTypography = staticCompositionLocalOf<Typography> {
 
 private fun devAlertColors(
     alertColor: Color = Color.Red
-) = ColorScheme(
+) = Material3ColorScheme(
     primary = alertColor,
     onPrimary = alertColor,
     primaryContainer = alertColor,
