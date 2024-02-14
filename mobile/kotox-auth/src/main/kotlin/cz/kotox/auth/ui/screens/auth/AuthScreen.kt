@@ -1,4 +1,4 @@
-package cz.kotox.auth.ui.screens.login
+package cz.kotox.auth.ui.screens.auth
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,22 +24,25 @@ import timber.log.Timber
 
 @Suppress("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun LoginScreen(
-    navigateToFirebaseUsernamePasswordAuthentication: () -> Unit,
-    viewModel: LoginViewModel = hiltViewModel()
+fun AuthScreen(
+    navigateToFirebaseSignIn: () -> Unit,
+    navigateToFirebaseSignUp: () -> Unit,
+    viewModel: AuthViewModel = hiltViewModel()
 ) {
-    val state by viewModel.state.collectAsStateWithLifecycle(initialValue = LoginViewState(FirebaseUser.None))
-    LoginScreenContent(
+    val state by viewModel.state.collectAsStateWithLifecycle(initialValue = AuthViewState(FirebaseUser.None))
+    AuthScreenContent(
         state = state,
-        onUsernamePasswordClick = navigateToFirebaseUsernamePasswordAuthentication
+        onSignInFirebaseClick = navigateToFirebaseSignIn,
+        onSignUpFirebaseClick = navigateToFirebaseSignUp
     )
 }
 
 @Composable
-fun LoginScreenContent(
-    state: LoginViewState,
+fun AuthScreenContent(
+    state: AuthViewState,
     modifier: Modifier = Modifier,
-    onUsernamePasswordClick: () -> Unit
+    onSignInFirebaseClick: () -> Unit,
+    onSignUpFirebaseClick: () -> Unit
 ) {
     Timber.d("state.user = ${state.user}")
 
@@ -54,14 +57,15 @@ fun LoginScreenContent(
         Spacer(modifier = Modifier.spacer())
 
         FilledTonalButton(
-            textRes = R.string.main_screen_action_click_username_password,
+            textRes = R.string.auth_screen_action_click_signIn,
             modifier = Modifier.basicButton(),
-            action = onUsernamePasswordClick
+            action = onSignInFirebaseClick
         )
         FilledTonalButton(
-            textRes = R.string.main_screen_action_click_anonymous,
-            modifier = Modifier.basicButton()
-        ) { }
+            textRes = R.string.auth_screen_action_click_signUp,
+            modifier = Modifier.basicButton(),
+            action = onSignUpFirebaseClick
+        )
     }
 }
 
@@ -69,9 +73,10 @@ fun LoginScreenContent(
 @Composable
 private fun ProfileScanResultErrorContentPreview() {
     HornetThemeFullSizePreview {
-        LoginScreenContent(
-            state = LoginViewState(user = FirebaseUser.None),
-            onUsernamePasswordClick = {/*Do nothing in preview*/ }
+        AuthScreenContent(
+            state = AuthViewState(user = FirebaseUser.None),
+            onSignInFirebaseClick = {/*Do nothing in preview*/ },
+            onSignUpFirebaseClick = {/*Do nothing in preview*/ }
         )
     }
 }

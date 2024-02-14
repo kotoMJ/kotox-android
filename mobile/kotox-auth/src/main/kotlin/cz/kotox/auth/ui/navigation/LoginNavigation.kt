@@ -4,26 +4,28 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import cz.kotox.auth.ui.screens.login.LoginScreen
+import cz.kotox.auth.ui.screens.auth.AuthScreen
 
 @SuppressWarnings("TopLevelPropertyNaming")
-const val LoginRoute = "login"
+const val AuthRoute = "auth"
 
 fun NavController.navigateToLoginScreen(
     navOptions: NavOptions? = null
 ) {
     navigate(
-        route = LoginRoute,
+        route = AuthRoute,
         navOptions = navOptions
     )
 }
 
-fun NavGraphBuilder.loginScreen(
-    navigateToFirebaseUsernamePasswordAuthentication: () -> Unit
+fun NavGraphBuilder.authScreen(
+    navigateToFirebaseSignIn: () -> Unit,
+    navigateToFirebaseSignUp: () -> Unit
 ) {
-    composable(route = LoginRoute) {
-        LoginScreen(
-            navigateToFirebaseUsernamePasswordAuthentication = navigateToFirebaseUsernamePasswordAuthentication
+    composable(route = AuthRoute) {
+        AuthScreen(
+            navigateToFirebaseSignIn = navigateToFirebaseSignIn,
+            navigateToFirebaseSignUp = navigateToFirebaseSignUp
         )
     }
 }

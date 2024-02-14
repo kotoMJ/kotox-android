@@ -19,9 +19,9 @@ sealed interface BottomNavScreen {
     val testTag: String
 
     data object Login : BottomNavScreen {
-        override val route: String = LoginRoute
+        override val route: String = AuthRoute
         override val iconImageVecot = Icons.AutoMirrored.Filled.Login
-        override val titleId = R.string.bottom_screen_title_login
+        override val titleId = R.string.bottom_screen_title_auth
         override val testTag = "bottom_nav_item_login"
     }
 

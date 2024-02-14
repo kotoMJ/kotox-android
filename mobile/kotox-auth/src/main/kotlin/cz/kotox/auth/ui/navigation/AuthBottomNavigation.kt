@@ -28,7 +28,7 @@ internal fun AuthBottomNavigation(
         derivedStateOf {
             val currentDestination = navBackStackEntry?.destination
             when (currentDestination?.route) {
-                LoginRoute -> true
+                AuthRoute -> true
                 ProfileRoute -> true
                 SettingRoute -> true
                 else -> false

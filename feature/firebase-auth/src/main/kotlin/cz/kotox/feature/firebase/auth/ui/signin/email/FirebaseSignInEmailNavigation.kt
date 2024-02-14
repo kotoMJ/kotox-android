@@ -1,4 +1,4 @@
-package cz.kotox.feature.firebase.auth.ui
+package cz.kotox.feature.firebase.auth.ui.signin.email
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
@@ -6,19 +6,19 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 
 @SuppressWarnings("TopLevelPropertyNaming")
-const val UsernameRoute = "usernamePassword"
+const val EmailSignInRoute = "emailSignIn"
 
-fun NavController.navigateToFirebaseUsernameScreen(
+fun NavController.navigateToFirebaseEmailSignInScreen(
     navOptions: NavOptions? = null
 ) {
     navigate(
-        route = UsernameRoute,
+        route = EmailSignInRoute,
         navOptions = navOptions
     )
 }
 
-fun NavGraphBuilder.firebaseUsernameScreen() {
-    composable(route = UsernameRoute) {
-        FirebaseUsernameScreen()
+fun NavGraphBuilder.firebaseEmailSignInScreen() {
+    composable(route = EmailSignInRoute) {
+        FirebaseSignInEmailScreen()
     }
 }

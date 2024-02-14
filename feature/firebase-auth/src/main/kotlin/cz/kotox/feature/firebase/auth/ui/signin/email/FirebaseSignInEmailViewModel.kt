@@ -1,4 +1,4 @@
-package cz.kotox.feature.firebase.auth.ui
+package cz.kotox.feature.firebase.auth.ui.signin.email
 
 import androidx.lifecycle.ViewModel
 import cz.kotox.feature.firebase.auth.service.AccountService
@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
-class FirebaseUsernameViewModel @Inject constructor(
+class FirebaseSignInEmailViewModel @Inject constructor(
     private val accountService: AccountService
 ) : ViewModel() {
 
-    val state = accountService.currentUser.map { FirebaseUsernameViewState(it) }
+    val state = accountService.currentUser.map { FirebaseSignInEmailViewState(it) }
 }
