@@ -9,12 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.safeGesturesPadding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Snackbar
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
@@ -36,6 +30,12 @@ import cz.kotox.common.designsystem.extension.isDarkMode
 import cz.kotox.common.designsystem.theme.hornet.HornetAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
+import androidx.compose.material3.MaterialTheme as Material3Theme
+import androidx.compose.material3.Scaffold as Material3Scaffold
+import androidx.compose.material3.Snackbar as Material3Snackbar
+import androidx.compose.material3.SnackbarHost as Material3SnackbarHost
+import androidx.compose.material3.SnackbarHostState as Material3SnackbarHostState
+import androidx.compose.material3.Surface as Material3Surface
 
 @AndroidEntryPoint
 class AuthAppActivity : ComponentActivity() {
@@ -46,12 +46,12 @@ class AuthAppActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val snackBarHostState = remember { SnackbarHostState() }
+            val snackBarHostState = remember { Material3SnackbarHostState() }
 
             HornetAppTheme {
-                Surface(
-                    color = MaterialTheme.colorScheme.surface,
-                    contentColor = MaterialTheme.colorScheme.onSurface
+                Material3Surface(
+                    color = Material3Theme.colorScheme.surface,
+                    contentColor = Material3Theme.colorScheme.onSurface
                 ) {
                     Box(
                         modifier = Modifier
@@ -60,13 +60,13 @@ class AuthAppActivity : ComponentActivity() {
                     ) {
                         val appState = rememberAppState(snackBarHostState)
 
-                        Scaffold(
+                        Material3Scaffold(
                             snackbarHost = {
-                                SnackbarHost(
+                                Material3SnackbarHost(
                                     hostState = snackBarHostState,
                                     modifier = Modifier.padding(8.dp),
                                     snackbar = { snackBarData ->
-                                        Snackbar(snackBarData, contentColor = MaterialTheme.colorScheme.onPrimary)
+                                        Material3Snackbar(snackBarData, contentColor = Material3Theme.colorScheme.onPrimary)
                                     }
                                 )
                             },
@@ -100,7 +100,7 @@ fun resources(): Resources {
 
 @Composable
 fun rememberAppState(
-    snackbarHostState: SnackbarHostState,
+    snackbarHostState: Material3SnackbarHostState,
     navController: NavHostController = rememberNavController(),
     snackbarManager: SnackbarManager = SnackbarManager,
     resources: Resources = resources(),
