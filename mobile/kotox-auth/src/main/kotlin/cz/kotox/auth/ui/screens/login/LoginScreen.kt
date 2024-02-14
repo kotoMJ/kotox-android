@@ -14,12 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cz.kotox.auth.R
-import cz.kotox.feature.firebase.auth.model.FirebaseUser
 import cz.kotox.common.designsystem.component.button.FilledTonalButton
 import cz.kotox.common.designsystem.extension.basicButton
 import cz.kotox.common.designsystem.extension.spacer
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
 import cz.kotox.common.designsystem.theme.hornet.HornetThemeFullSizePreview
+import cz.kotox.feature.firebase.auth.model.FirebaseUser
 import timber.log.Timber
 
 @Suppress("UnusedMaterialScaffoldPaddingParameter")

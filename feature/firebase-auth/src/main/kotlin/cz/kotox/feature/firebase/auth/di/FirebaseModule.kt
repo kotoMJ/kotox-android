@@ -1,4 +1,4 @@
-package cz.kotox.feature.firebase.di
+package cz.kotox.feature.firebase.auth.di
 
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
