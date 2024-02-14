@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cz.kotox.auth.R
-import cz.kotox.auth.domain.model.User
+import cz.kotox.feature.firebase.auth.model.FirebaseUser
 import cz.kotox.common.designsystem.component.button.FilledTonalButton
 import cz.kotox.common.designsystem.extension.basicButton
 import cz.kotox.common.designsystem.extension.spacer
@@ -28,7 +28,7 @@ fun LoginScreen(
     navigateToFirebaseUsernamePasswordAuthentication: () -> Unit,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
-    val state by viewModel.state.collectAsStateWithLifecycle(initialValue = LoginViewState(User.None))
+    val state by viewModel.state.collectAsStateWithLifecycle(initialValue = LoginViewState(FirebaseUser.None))
     LoginScreenContent(
         state = state,
         onUsernamePasswordClick = navigateToFirebaseUsernamePasswordAuthentication
@@ -70,7 +70,7 @@ fun LoginScreenContent(
 private fun ProfileScanResultErrorContentPreview() {
     HornetThemeFullSizePreview {
         LoginScreenContent(
-            state = LoginViewState(user = User.None),
+            state = LoginViewState(user = FirebaseUser.None),
             onUsernamePasswordClick = {/*Do nothing in preview*/ }
         )
     }

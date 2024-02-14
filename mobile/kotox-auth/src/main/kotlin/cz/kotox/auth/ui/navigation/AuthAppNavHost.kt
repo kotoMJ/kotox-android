@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import cz.kotox.feature.firebase.auth.username.ui.firebaseUsernameScreen
-import cz.kotox.feature.firebase.auth.username.ui.navigateToFirebaseUsernameScreen
+import cz.kotox.feature.firebase.auth.ui.firebaseUsernameScreen
+import cz.kotox.feature.firebase.auth.ui.navigateToFirebaseUsernameScreen
 
 @Composable
 internal fun AuthAppNavHost(

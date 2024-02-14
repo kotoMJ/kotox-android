@@ -1,4 +1,4 @@
-package cz.kotox.feature.firebase.auth.username.ui
+package cz.kotox.feature.firebase.auth.ui
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder

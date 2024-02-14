@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "cz.kotox.feature.firebase.auth.username"
+    namespace = "cz.kotox.feature.firebase.auth"
 }
 
 dependencies {

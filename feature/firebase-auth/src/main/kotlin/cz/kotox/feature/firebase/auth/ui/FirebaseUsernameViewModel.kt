@@ -1,7 +1,7 @@
-package cz.kotox.feature.firebase.auth.username.ui
+package cz.kotox.feature.firebase.auth.ui
 
 import androidx.lifecycle.ViewModel
-import cz.kotox.auth.domain.service.AccountService
+import cz.kotox.feature.firebase.auth.service.AccountService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

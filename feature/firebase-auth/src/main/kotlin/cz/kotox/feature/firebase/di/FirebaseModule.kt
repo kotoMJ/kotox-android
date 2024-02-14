@@ -1,10 +1,10 @@
-package cz.kotox.feature.firebase.auth.username.di
+package cz.kotox.feature.firebase.di
 
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import cz.kotox.auth.domain.service.AccountService
-import cz.kotox.auth.domain.service.AccountServiceImpl
+import cz.kotox.feature.firebase.auth.service.AccountService
+import cz.kotox.feature.firebase.auth.service.AccountServiceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
