@@ -1,6 +1,7 @@
 package cz.kotox.auth.ui.screens.auth
 
 import androidx.lifecycle.ViewModel
+import cz.kotox.auth.ui.snackbar.SnackbarMessageHandler
 import cz.kotox.feature.firebase.auth.service.AccountService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map
@@ -13,5 +14,5 @@ class AuthViewModel @Inject constructor(
 
     val state = accountService.currentUser.map { AuthViewState(it) }
 
-    // fun showTestSnack() = SnackbarManager.showMessage(R.string.app_name)
+    fun showTestSnack() = SnackbarMessageHandler.showMessage("test")
 }
