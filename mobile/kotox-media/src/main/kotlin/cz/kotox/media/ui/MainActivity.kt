@@ -8,7 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.viewModels
 import androidx.compose.runtime.remember
-import cz.kotox.common.core.android.extension.collectAsStateWithLifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cz.kotox.common.camera.custom.CameraCustomActivityLauncher
 import cz.kotox.common.camera.custom.CameraCustomLayout
 import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicTheme

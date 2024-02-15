@@ -19,6 +19,6 @@ fun NavController.navigateToFirebaseSignInDashboardScreen(
 
 fun NavGraphBuilder.firebaseSignInDashboardScreen() {
     composable(route = SignInDashboardRoute) {
-        FirebaseSignInDashboard()
+        FirebaseSignInDashboardScreen()
     }
 }

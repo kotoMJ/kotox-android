@@ -45,9 +45,9 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.rememberAsyncImagePainter
 import cz.kotox.media.R
-import cz.kotox.common.core.android.extension.collectAsStateWithLifecycle
 import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicTheme
 import cz.kotox.common.designsystem.theme.shiraz.LocalColors
 import cz.kotox.media.ui.MainActivityListener

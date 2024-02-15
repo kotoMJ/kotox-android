@@ -71,6 +71,7 @@ dependencies {
     implementation(projects.common.designSystem)
     implementation(projects.common.ui)
 
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.android.material)
 
     implementation(libs.androidx.activity.compose)

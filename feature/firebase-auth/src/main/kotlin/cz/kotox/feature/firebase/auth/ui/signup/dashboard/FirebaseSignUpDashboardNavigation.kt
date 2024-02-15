@@ -18,7 +18,9 @@ fun NavController.navigateToFirebaseSignUpDashboardScreen(
 }
 
 fun NavGraphBuilder.firebaseSignUpDashboardScreen() {
-    composable(route = SignUpDashboardRoute) {
+    composable(
+        route = SignUpDashboardRoute
+    ) {
         FirebaseSignUpDashboard()
     }
 }

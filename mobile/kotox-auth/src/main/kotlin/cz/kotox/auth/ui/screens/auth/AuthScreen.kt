@@ -2,7 +2,6 @@ package cz.kotox.auth.ui.screens.auth
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.rememberScrollState
@@ -16,7 +15,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cz.kotox.auth.R
 import cz.kotox.common.designsystem.component.button.FilledTonalButton
 import cz.kotox.common.designsystem.extension.basicButton
-import cz.kotox.common.designsystem.extension.spacer
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
 import cz.kotox.common.designsystem.theme.hornet.HornetThemeFullSizePreview
 import cz.kotox.feature.firebase.auth.model.FirebaseUser
@@ -54,7 +52,6 @@ fun AuthScreenContent(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.spacer())
 
         FilledTonalButton(
             textRes = R.string.auth_screen_action_click_signIn,

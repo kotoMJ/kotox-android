@@ -12,8 +12,12 @@ android {
 }
 
 dependencies {
-    implementation(projects.common.taskPoc)
+    implementation(projects.common.designSystem)
+    implementation(projects.common.ui)
+    implementation(projects.common.coreAndroid)
 
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.test.ext.junit)

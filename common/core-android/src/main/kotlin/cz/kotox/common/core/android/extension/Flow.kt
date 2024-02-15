@@ -48,22 +48,22 @@ fun <T : R, R> Flow<T>.collectWithLifecycle(
     })
 }
 
-@Composable
-@SuppressLint("FlowOperatorInvokedInComposition")
-fun <T : R, R> Flow<T>.collectAsStateWithLifecycle(
-    initial: R,
-    context: CoroutineContext = EmptyCoroutineContext,
-    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
-): State<R> = rememberFlow(minActiveState = minActiveState)
-    .collectAsState(initial = initial, context = context)
-
-@Composable
-@SuppressLint("StateFlowValueCalledInComposition", "FlowOperatorInvokedInComposition")
-fun <T> StateFlow<T>.collectAsStateWithLifecycle(
-    context: CoroutineContext = EmptyCoroutineContext,
-    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
-): State<T> = rememberFlow(minActiveState = minActiveState)
-    .collectAsState(initial = value, context = context)
+//@Composable
+//@SuppressLint("FlowOperatorInvokedInComposition")
+//fun <T : R, R> Flow<T>.collectAsStateWithLifecycle(
+//    initial: R,
+//    context: CoroutineContext = EmptyCoroutineContext,
+//    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
+//): State<R> = rememberFlow(minActiveState = minActiveState)
+//    .collectAsState(initial = initial, context = context)
+//
+//@Composable
+//@SuppressLint("StateFlowValueCalledInComposition", "FlowOperatorInvokedInComposition")
+//fun <T> StateFlow<T>.collectAsStateWithLifecycle(
+//    context: CoroutineContext = EmptyCoroutineContext,
+//    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
+//): State<T> = rememberFlow(minActiveState = minActiveState)
+//    .collectAsState(initial = value, context = context)
 
 
 /**

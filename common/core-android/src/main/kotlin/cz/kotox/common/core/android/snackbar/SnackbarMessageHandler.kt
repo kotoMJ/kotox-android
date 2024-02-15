@@ -1,4 +1,4 @@
-package cz.kotox.auth.ui.snackbar
+package cz.kotox.common.core.android.snackbar
 
 import androidx.annotation.StringRes
 import kotlinx.coroutines.flow.MutableStateFlow

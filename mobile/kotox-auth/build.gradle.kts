@@ -73,6 +73,7 @@ dependencies {
     implementation(libs.androidx.compose.material3) // customize slider
 
     implementation(projects.common.core)
+    implementation(projects.common.coreAndroid)
     implementation(projects.common.designSystem)
     implementation(projects.common.i18n)
     implementation(projects.common.ui)

@@ -11,5 +11,5 @@ class FirebaseSignInEmailViewModel @Inject constructor(
     private val accountService: AccountService
 ) : ViewModel() {
 
-    val state = accountService.currentUser.map { FirebaseSignInEmailViewState(it) }
+    val state = accountService.currentUser.map { FirebaseSignInEmailViewState() }
 }

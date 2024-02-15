@@ -5,8 +5,8 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Stable
 import androidx.navigation.NavHostController
-import cz.kotox.auth.ui.snackbar.SnackbarMessage.Companion.toMessage
-import cz.kotox.auth.ui.snackbar.SnackbarMessageHandler
+import cz.kotox.common.core.android.snackbar.SnackbarMessage.Companion.toMessage
+import cz.kotox.common.core.android.snackbar.SnackbarMessageHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 class AuthAppState(
     val snackbarHostState: SnackbarHostState,
     val navController: NavHostController,
-    private val snackbarMessageHandler: SnackbarMessageHandler,
+    private val snackbarMessageHandler: cz.kotox.common.core.android.snackbar.SnackbarMessageHandler,
     private val resources: Resources,
     coroutineScope: CoroutineScope
 ) {

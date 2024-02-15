@@ -1,8 +1,8 @@
-package cz.kotox.auth.ui.snackbar
+package cz.kotox.common.core.android.snackbar
 
 import android.content.res.Resources
 import androidx.annotation.StringRes
-import cz.kotox.auth.R.string as AppText
+import cz.kotox.common.core.android.R
 
 sealed class SnackbarMessage {
     class StringSnackbar(val message: String) : SnackbarMessage()
@@ -21,7 +21,7 @@ sealed class SnackbarMessage {
             return if (message.isNotBlank()) {
                 StringSnackbar(message)
             } else {
-                ResourceSnackbar(AppText.generic_error)
+                ResourceSnackbar(R.string.generic_error)
             }
         }
     }

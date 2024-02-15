@@ -23,7 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import cz.kotox.auth.ui.navigation.AuthAppNavHost
 import cz.kotox.auth.ui.navigation.AuthAppState
 import cz.kotox.auth.ui.navigation.AuthBottomNavigation
-import cz.kotox.auth.ui.snackbar.SnackbarMessageHandler
+import cz.kotox.common.core.android.snackbar.SnackbarMessageHandler
 import cz.kotox.common.designsystem.component.snackbar.KotoxSnackbar
 import cz.kotox.common.designsystem.extension.enableEdgeToEdge
 import cz.kotox.common.designsystem.extension.isDarkMode
@@ -102,7 +102,7 @@ fun resources(): Resources {
 fun rememberAppState(
     snackbarHostState: Material3SnackbarHostState,
     navController: NavHostController = rememberNavController(),
-    snackbarManager: SnackbarMessageHandler = SnackbarMessageHandler,
+    snackbarManager: cz.kotox.common.core.android.snackbar.SnackbarMessageHandler = cz.kotox.common.core.android.snackbar.SnackbarMessageHandler,
     resources: Resources = resources(),
     coroutineScope: CoroutineScope = rememberCoroutineScope()
 ) =

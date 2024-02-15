@@ -4,17 +4,18 @@ import android.content.res.Configuration
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 
-@Preview(
-    device = Devices.PIXEL_4_XL,
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-    showBackground = true,
-    name = "Pixel4XL Light"
-)
+
 @Preview(
     device = Devices.PIXEL_4_XL,
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true,
     name = "Pixel4XL Dark"
+)
+@Preview(
+    device = Devices.PIXEL_4_XL,
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    showBackground = true,
+    name = "Pixel4XL Light"
 )
 annotation class PreviewMobileLarge
 
