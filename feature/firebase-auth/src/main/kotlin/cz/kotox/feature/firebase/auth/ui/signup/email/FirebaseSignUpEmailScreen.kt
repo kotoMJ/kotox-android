@@ -34,10 +34,10 @@ fun FirebaseSignUpEmailScreen(
     val state by viewModel.state.collectAsStateWithLifecycle(initialValue = FirebaseSignUpEmailViewState())
     FirebaseSignInEmailScreenContent(
         state = state,
-        onEmailChange = {},
+        onEmailChange = viewModel::onEmailChange,
         onForgotPasswordClick = {},
-        onPasswordChange = {},
-        onRepeatPasswordChange = {},
+        onPasswordChange = viewModel::onPasswordChange,
+        onRepeatPasswordChange = viewModel::onRepeatPasswordChange,
         onSignUpClick = {
             viewModel.onSignUpClick(closeAuthAndPopUp)
         }
@@ -66,7 +66,7 @@ fun FirebaseSignInEmailScreenContent(
     ) {
         EmailField(state.email, onEmailChange, fieldModifier)
         PasswordField(state.password, onPasswordChange, fieldModifier)
-        RepeatPasswordField(state.password, onRepeatPasswordChange, fieldModifier)
+        RepeatPasswordField(state.repeatPassword, onRepeatPasswordChange, fieldModifier)
         FilledTonalButton(R.string.login_screen_sign_in, Modifier.basicButton()) { onSignUpClick() }
 
         TextButton(onClick = onForgotPasswordClick) {

@@ -57,6 +57,18 @@ class FirebaseSignUpEmailViewModel @Inject constructor(
         )
     )
 
+    fun onEmailChange(newValue: String) {
+        email.value = newValue
+    }
+
+    fun onPasswordChange(newValue: String) {
+        password.value = newValue
+    }
+
+    fun onRepeatPasswordChange(newValue: String) {
+        repeatPassword.value = newValue
+    }
+
     fun onSignUpClick(closeAuthAndPopup: (String) -> Unit) {
         if (!email.value.isValidEmail()) {
             SnackbarMessageHandler.showMessage(R.string.signup_email_error)
