@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import cz.kotox.feature.firebase.auth.ui.navigation.firebaseAuthNavGraph
 import cz.kotox.feature.firebase.auth.ui.signin.dashboard.navigateToFirebaseSignInDashboardScreen
 import cz.kotox.feature.firebase.auth.ui.signup.dashboard.navigateToFirebaseSignUpDashboardScreen
+import cz.kotox.feature.firebase.auth.ui.signup.email.navigateToFirebaseEmailSignUpScreen
 
 @Composable
 internal fun AuthAppNavHost(
@@ -30,6 +31,10 @@ internal fun AuthAppNavHost(
         profileScreen()
         settingScreen()
 
-        firebaseAuthNavGraph(closeAuthAndPopUp)
+        firebaseAuthNavGraph(
+            closeAuthAndPopUp = closeAuthAndPopUp,
+            onSignUpEmail = {
+                navController.navigateToFirebaseEmailSignUpScreen(null)
+            })
     }
 }

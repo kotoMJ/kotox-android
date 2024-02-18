@@ -11,10 +11,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import cz.kotox.common.designsystem.component.button.FilledTonalButton
 import cz.kotox.common.designsystem.extension.basicButton
+import cz.kotox.common.designsystem.preview.PreviewMobileLarge
+import cz.kotox.common.designsystem.theme.hornet.HornetThemeFullSizePreview
 import cz.kotox.feature.firebase.auth.R
+import cz.kotox.feature.firebase.auth.ui.signup.email.FirebaseSignInEmailScreenContent
+import cz.kotox.feature.firebase.auth.ui.signup.email.FirebaseSignUpEmailViewState
 
 @Composable
 fun FirebaseSignUpDashboard(
+    onSignUpEmail: () -> Unit,
     modifier: Modifier = Modifier
 ){
 
@@ -28,10 +33,18 @@ fun FirebaseSignUpDashboard(
     ) {
 
         FilledTonalButton(
-            textRes = R.string.login_screen_login_details,
+            textRes = R.string.signup_email,
             modifier = Modifier.basicButton(),
-            action = {}
+            action = onSignUpEmail
         )
 
+    }
+}
+
+@PreviewMobileLarge
+@Composable
+private fun ProfileScanResultErrorContentPreview() {
+    HornetThemeFullSizePreview {
+        FirebaseSignUpDashboard({})
     }
 }
