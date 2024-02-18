@@ -18,7 +18,7 @@ class NetworkModuleProvider {
     ): HttpLoggingInterceptor = HttpLoggingInterceptor { message ->
         Timber.tag("OkHttp").d(message)
     }.apply {
-        level = when (applicationProperties.isDevEnvironment) {
+        level = when (applicationProperties.isDebugBuildType) {
             false -> HttpLoggingInterceptor.Level.BASIC
             true -> HttpLoggingInterceptor.Level.BODY
         }

@@ -5,6 +5,7 @@ import cz.kotox.feature.firebase.auth.model.FirebaseUser
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : AccountService {
@@ -27,4 +28,11 @@ class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : A
             auth.addAuthStateListener(listener)
             awaitClose { auth.removeAuthStateListener(listener) }
         }
+
+    override suspend fun createAccount(email: String, password: String) {
+        if (hasUser) {
+            auth.signOut()
+        }
+        auth.createUserWithEmailAndPassword(email, password).await()
+    }
 }

@@ -23,6 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import cz.kotox.auth.ui.navigation.AuthAppNavHost
 import cz.kotox.auth.ui.navigation.AuthAppState
 import cz.kotox.auth.ui.navigation.AuthBottomNavigation
+import cz.kotox.auth.ui.navigation.ProfileRoute
 import cz.kotox.common.core.android.snackbar.SnackbarMessageHandler
 import cz.kotox.common.designsystem.component.snackbar.KotoxSnackbar
 import cz.kotox.common.designsystem.extension.enableEdgeToEdge
@@ -81,7 +82,8 @@ class AuthAppActivity : ComponentActivity() {
                         ) { innerPaddingModifier ->
                             AuthAppNavHost(
                                 navController = appState.navController,
-                                modifier = Modifier.padding(innerPaddingModifier)
+                                modifier = Modifier.padding(innerPaddingModifier),
+                                closeAuthAndPopUp = { popup -> appState.navigateAndPopUp(ProfileRoute, popup) }
                             )
                         }
                     }
@@ -102,7 +104,7 @@ fun resources(): Resources {
 fun rememberAppState(
     snackbarHostState: Material3SnackbarHostState,
     navController: NavHostController = rememberNavController(),
-    snackbarManager: cz.kotox.common.core.android.snackbar.SnackbarMessageHandler = cz.kotox.common.core.android.snackbar.SnackbarMessageHandler,
+    snackbarManager: SnackbarMessageHandler = SnackbarMessageHandler,
     resources: Resources = resources(),
     coroutineScope: CoroutineScope = rememberCoroutineScope()
 ) =

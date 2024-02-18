@@ -11,6 +11,6 @@ private enum class BuildType(val buildTypeName: String) {
 private val currentAppBuildType = BuildType.entries.first { it.buildTypeName == BuildConfig.BUILD_TYPE }
 
 data class KotoxAuthAppProperties(
-    override val isDevEnvironment: Boolean = currentAppBuildType == BuildType.Debug,
+    override val isDebugBuildType: Boolean = currentAppBuildType == BuildType.Debug,
     override val isDarkMode: Boolean
 ) : AppProperties

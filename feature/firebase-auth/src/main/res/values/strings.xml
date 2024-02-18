@@ -7,4 +7,9 @@
     <string name="login_screen_recovery_email_sent">Check your inbox for the recovery email.</string>
     <string name="login_screen_empty_password_error">Password cannot be empty.</string>
 
+    <string name="signup_email_error">Please insert a valid email.</string>
+    <string name="signup_password_error">Your password should have at least six digits and include one digit, one lower case letter and one upper case letter.</string>
+    <string name="signup_password_match_error">Passwords do not match.</string>
+
+
 </resources>

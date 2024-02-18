@@ -17,8 +17,8 @@ fun NavController.navigateToFirebaseEmailSignUpScreen(
     )
 }
 
-fun NavGraphBuilder.firebaseEmailSignInScreen() {
+fun NavGraphBuilder.firebaseEmailSignUpScreen(closeAuthAndPopUp: (String) -> Unit) {
     composable(route = EmailSignUpRoute) {
-        FirebaseSignUpEmailScreen()
+        FirebaseSignUpEmailScreen(closeAuthAndPopUp = { popUp -> closeAuthAndPopUp(popUp) })
     }
 }

@@ -11,7 +11,8 @@ import cz.kotox.feature.firebase.auth.ui.signup.dashboard.navigateToFirebaseSign
 @Composable
 internal fun AuthAppNavHost(
     navController: NavHostController,
-    modifier: Modifier
+    modifier: Modifier,
+    closeAuthAndPopUp: (String) -> Unit,
 ) {
     NavHost(
         navController = navController,
@@ -29,6 +30,6 @@ internal fun AuthAppNavHost(
         profileScreen()
         settingScreen()
 
-        firebaseAuthNavGraph()
+        firebaseAuthNavGraph(closeAuthAndPopUp)
     }
 }

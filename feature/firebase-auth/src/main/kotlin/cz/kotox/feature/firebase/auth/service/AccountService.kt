@@ -9,4 +9,6 @@ interface AccountService {
     val hasUser: Boolean
 
     val currentUser: Flow<FirebaseUser>
+
+    suspend fun createAccount(email: String, password: String)
 }
