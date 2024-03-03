@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.safeGesturesPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -18,6 +19,8 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.core.view.WindowCompat
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import cz.kotox.auth.ui.navigation.AuthAppNavHost
@@ -40,13 +43,17 @@ import androidx.compose.material3.Surface as Material3Surface
 @AndroidEntryPoint
 class AuthAppActivity : ComponentActivity() {
 
+    private lateinit var snackBarHostState: Material3SnackbarHostState
+    private var navHostListener: NavController.OnDestinationChangedListener =
+        NavController.OnDestinationChangedListener { _, _, _ -> snackBarHostState.currentSnackbarData?.dismiss() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge(isDarkMode())
         WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onCreate(savedInstanceState)
 
         setContent {
-            val snackBarHostState = remember { Material3SnackbarHostState() }
+            snackBarHostState = remember { Material3SnackbarHostState() }
 
             HornetAppTheme {
                 Material3Surface(
@@ -59,6 +66,8 @@ class AuthAppActivity : ComponentActivity() {
                             .safeGesturesPadding()
                     ) {
                         val appState = rememberAppState(snackBarHostState)
+
+                        appState.navController.addOnDestinationChangedListener(navHostListener)
 
                         Material3Scaffold(
                             snackbarHost = {
