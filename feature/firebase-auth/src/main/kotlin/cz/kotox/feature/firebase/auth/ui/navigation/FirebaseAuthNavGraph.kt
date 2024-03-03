@@ -13,7 +13,9 @@ fun NavGraphBuilder.firebaseAuthNavGraph(
 ) {
     firebaseSignInDashboardScreen()
     firebaseSignUpDashboardScreen(onSignUpEmail = onSignUpEmail)
-    firebaseEmailSignInScreen()
+    firebaseEmailSignInScreen(
+        closeAuthAndPopUp = closeAuthAndPopUp
+    )
     firebaseEmailSignUpScreen(
         closeAuthAndPopUp = closeAuthAndPopUp,
         tryLoginWithEmail = onSignInEmail

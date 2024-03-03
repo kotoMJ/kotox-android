@@ -3,26 +3,30 @@ package cz.kotox.feature.firebase.auth.ui.signin.email
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import cz.kotox.common.core.android.extension.launchCatching
 import cz.kotox.common.core.android.extension.stateInForScope
 import cz.kotox.common.core.android.flow.SaveableMutableSaveStateFlow
+import cz.kotox.feature.firebase.auth.model.FirebaseUser
+import cz.kotox.feature.firebase.auth.service.AccountService
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
 @HiltViewModel
 class FirebaseSignInEmailViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle
-//    private val accountService: AccountService
+    private val savedStateHandle: SavedStateHandle,
+    private val accountService: AccountService
 ) : ViewModel() {
 
-    // val state = accountService.currentUser.map { FirebaseSignInEmailViewState() }
+    private val firebaseUser: Flow<FirebaseUser> = accountService.currentUser.stateInForScope(scope = viewModelScope, initialValue = FirebaseUser.None)
 
-    val defaultEmail: String = savedStateHandle[ARG_EMAIL] ?: ""
+    private val defaultEmail: String? = savedStateHandle[ARG_EMAIL]
 
     private val email = SaveableMutableSaveStateFlow(
         savedStateHandle = savedStateHandle,
         key = "email",
-        defaultValue = defaultEmail
+        defaultValue = defaultEmail ?: ""
     )
 
     private val password = SaveableMutableSaveStateFlow(
@@ -33,13 +37,37 @@ class FirebaseSignInEmailViewModel @Inject constructor(
 
     internal val state: StateFlow<FirebaseSignInEmailViewState> = FirebaseSignInEmailScreenPresenter(
         emailFlow = email.state,
-        passwordFlow = password.state
-
+        passwordFlow = password.state,
+        firebaseUserFlow = firebaseUser
     ).stateInForScope(
         scope = viewModelScope,
         initialValue = FirebaseSignInEmailViewState(
             email = email.value,
-            password = password.value
+            password = password.value,
+            firebaseUser = FirebaseUser.None
         )
     )
+
+    fun onEmailChange(newValue: String) {
+        email.value = newValue
+    }
+    fun onPasswordChange(newValue: String) {
+        password.value = newValue
+    }
+
+    fun onSignInClick(
+        closeAuthAndPopup: (String) -> Unit
+    ) {
+        this.launchCatching() {
+            if (accountService.loginUserEmail(state.value.email, state.value.password)) {
+                closeAuthAndPopup(
+                    if (defaultEmail == null) {
+                        FirebaseSignInDestinations.email.destination
+                    } else {
+                        FirebaseSignInDestinations.emailPrefilled.destination
+                    }
+                )
+            }
+        }
+    }
 }

@@ -15,4 +15,9 @@ interface AccountService {
         password: String,
         emailAlreadyInUse: (email: String) -> Unit
     ): Boolean
+
+    suspend fun loginUserEmail(
+        email: String,
+        password: String
+    ): Boolean
 }

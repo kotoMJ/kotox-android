@@ -52,4 +52,21 @@ class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : A
             false
         }
     }
+
+    @Suppress("TooGenericExceptionCaught")
+    override suspend fun loginUserEmail(
+        email: String,
+        password: String
+    ): Boolean {
+        if (hasUser) {
+            auth.signOut()
+        }
+        return try {
+            auth.signInWithEmailAndPassword(email, password).await()
+            true
+        } catch (t: Throwable) {
+            Timber.w(t, "Unable to login using email: $email")
+            false
+        }
+    }
 }

@@ -26,15 +26,20 @@ import cz.kotox.feature.firebase.auth.R
 
 @Composable
 fun FirebaseSignInEmailScreen(
+    closeAuthAndPopUp: (String) -> Unit,
     viewModel: FirebaseSignInEmailViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle(initialValue = FirebaseSignInEmailViewState())
     FirebaseSignInEmailScreenContent(
         state = state,
-        onEmailChange = {},
+        onEmailChange = viewModel::onEmailChange,
         onForgotPasswordClick = {},
-        onPasswordChange = {},
-        onSignInClick = {}
+        onPasswordChange = viewModel::onPasswordChange,
+        onSignInClick = {
+            viewModel.onSignInClick(
+                closeAuthAndPopup = closeAuthAndPopUp
+            )
+        }
     )
 }
 

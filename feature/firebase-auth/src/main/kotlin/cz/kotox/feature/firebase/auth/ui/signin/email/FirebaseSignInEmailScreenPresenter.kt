@@ -1,24 +1,22 @@
 package cz.kotox.feature.firebase.auth.ui.signin.email
 
+import cz.kotox.feature.firebase.auth.model.FirebaseUser
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 
 @Suppress("FunctionNaming")
 internal fun FirebaseSignInEmailScreenPresenter(
     emailFlow: Flow<String>,
-    passwordFlow: Flow<String>
-//    repeatPasswordFlow: Flow<String>,
-//    emailAlreadyInUseFlow: Flow<Boolean>
+    passwordFlow: Flow<String>,
+    firebaseUserFlow: Flow<FirebaseUser>
 ) = combine(
     emailFlow,
-    passwordFlow
-//    repeatPasswordFlow,
-//    emailAlreadyInUseFlow
-) { email, password /*, repeatPassword, emailAlreadyInUse*/ ->
+    passwordFlow,
+    firebaseUserFlow
+) { email, password, firebaseUser ->
     FirebaseSignInEmailViewState(
         email = email,
-        password = password
-//        repeatPassword = repeatPassword,
-//        emailAlreadyInUse = emailAlreadyInUse
+        password = password,
+        firebaseUser = firebaseUser
     )
 }

@@ -47,9 +47,11 @@ fun NavController.navigateToFirebaseEmailSignInScreen(
     )
 }
 
-fun NavGraphBuilder.firebaseEmailSignInScreen() {
+fun NavGraphBuilder.firebaseEmailSignInScreen(
+    closeAuthAndPopUp: (String) -> Unit
+) {
     composable(route = FirebaseSignInDestinations.email.destination) {
-        FirebaseSignInEmailScreen()
+        FirebaseSignInEmailScreen(closeAuthAndPopUp = closeAuthAndPopUp)
     }
 
     composable(
@@ -57,6 +59,6 @@ fun NavGraphBuilder.firebaseEmailSignInScreen() {
             "/{${FirebaseSignInDestinations.emailPrefilled.arguments[0].name}}",
         arguments = FirebaseSignInDestinations.emailPrefilled.arguments
     ) {
-        FirebaseSignInEmailScreen()
+        FirebaseSignInEmailScreen(closeAuthAndPopUp = closeAuthAndPopUp)
     }
 }
