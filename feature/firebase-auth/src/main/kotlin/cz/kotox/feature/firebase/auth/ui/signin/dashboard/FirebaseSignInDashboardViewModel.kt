@@ -5,7 +5,4 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class FirebaseSignInDashboardViewModel @Inject constructor(
-) : ViewModel() {
-
-}
+class FirebaseSignInDashboardViewModel @Inject constructor() : ViewModel()

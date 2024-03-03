@@ -16,9 +16,8 @@ dependencies {
     implementation(projects.common.ui)
     implementation(projects.common.coreAndroid)
 
-
     implementation(libs.androidx.lifecycle.runtime.compose)
-    
+
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.test.ext.junit)

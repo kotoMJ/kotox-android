@@ -52,7 +52,6 @@ fun AuthScreenContent(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         FilledTonalButton(
             textRes = R.string.auth_screen_action_click_signIn,
             modifier = Modifier.basicButton(),

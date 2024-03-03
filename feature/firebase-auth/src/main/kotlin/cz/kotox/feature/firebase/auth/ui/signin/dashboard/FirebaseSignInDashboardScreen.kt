@@ -4,13 +4,12 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun FirebaseSignInDashboardScreen(
-    //viewModel: FirebaseSignInDashboardViewModel = hiltViewModel()
+    // viewModel: FirebaseSignInDashboardViewModel = hiltViewModel()
 ) {
     FirebaseSignInDashboardScreenContent()
 }
 
 @Composable
 fun FirebaseSignInDashboardScreenContent() {
-
-
+    /* Not implemented yet */
 }

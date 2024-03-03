@@ -13,7 +13,7 @@ internal fun FirebaseSignUpEmailScreenPresenter(
     emailFlow,
     passwordFlow,
     repeatPasswordFlow,
-    emailAlreadyInUseFlow,
+    emailAlreadyInUseFlow
 ) { email, password, repeatPassword, emailAlreadyInUse ->
     FirebaseSignUpEmailViewState(
         email = email,

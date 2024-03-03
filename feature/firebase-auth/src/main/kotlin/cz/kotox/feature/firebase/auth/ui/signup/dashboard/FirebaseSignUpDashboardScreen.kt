@@ -14,15 +14,12 @@ import cz.kotox.common.designsystem.extension.basicButton
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
 import cz.kotox.common.designsystem.theme.hornet.HornetThemeFullSizePreview
 import cz.kotox.feature.firebase.auth.R
-import cz.kotox.feature.firebase.auth.ui.signup.email.FirebaseSignInEmailScreenContent
-import cz.kotox.feature.firebase.auth.ui.signup.email.FirebaseSignUpEmailViewState
 
 @Composable
 fun FirebaseSignUpDashboard(
     onSignUpEmail: () -> Unit,
     modifier: Modifier = Modifier
 ){
-
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -31,13 +28,11 @@ fun FirebaseSignUpDashboard(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         FilledTonalButton(
             textRes = R.string.signup_email,
             modifier = Modifier.basicButton(),
             action = onSignUpEmail
         )
-
     }
 }
 

@@ -14,14 +14,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import cz.kotox.common.designsystem.component.textfield.EmailField
-import cz.kotox.common.designsystem.component.textfield.PasswordField
-import cz.kotox.feature.firebase.auth.model.FirebaseUser
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cz.kotox.common.designsystem.component.button.FilledTonalButton
+import cz.kotox.common.designsystem.component.textfield.EmailField
+import cz.kotox.common.designsystem.component.textfield.PasswordField
 import cz.kotox.common.designsystem.extension.basicButton
 import cz.kotox.common.designsystem.extension.fieldModifier
-import cz.kotox.common.designsystem.extension.textButton
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
 import cz.kotox.common.designsystem.theme.hornet.HornetThemeFullSizePreview
 import cz.kotox.feature.firebase.auth.R
@@ -30,7 +28,6 @@ import cz.kotox.feature.firebase.auth.R
 fun FirebaseSignInEmailScreen(
     viewModel: FirebaseSignInEmailViewModel = hiltViewModel()
 ) {
-
     val state by viewModel.state.collectAsStateWithLifecycle(initialValue = FirebaseSignInEmailViewState())
     FirebaseSignInEmailScreenContent(
         state = state,
@@ -78,8 +75,7 @@ private fun ProfileScanResultErrorContentPreview() {
             onEmailChange = {/*Do nothing in preview*/ },
             onPasswordChange = {/*Do nothing in preview*/ },
             onSignInClick = {/*Do nothing in preview*/ },
-            onForgotPasswordClick = {/*Do nothing in preview*/ },
+            onForgotPasswordClick = {/*Do nothing in preview*/ }
         )
     }
 }
-

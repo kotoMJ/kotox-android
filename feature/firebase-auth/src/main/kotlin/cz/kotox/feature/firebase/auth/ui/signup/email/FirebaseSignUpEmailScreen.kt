@@ -32,7 +32,6 @@ fun FirebaseSignUpEmailScreen(
     tryLoginWithEmail: (String) -> Unit,
     viewModel: FirebaseSignUpEmailViewModel = hiltViewModel()
 ) {
-
     val state by viewModel.state.collectAsStateWithLifecycle(initialValue = FirebaseSignUpEmailViewState())
     FirebaseSignInEmailScreenContent(
         state = state,
@@ -41,7 +40,7 @@ fun FirebaseSignUpEmailScreen(
         onRepeatPasswordChange = viewModel::onRepeatPasswordChange,
         onSignUpClick = {
             viewModel.onSignUpClick(
-                closeAuthAndPopup = closeAuthAndPopUp,
+                closeAuthAndPopup = closeAuthAndPopUp
             )
         },
         tryLoginWithEmail = tryLoginWithEmail
@@ -56,7 +55,7 @@ fun FirebaseSignInEmailScreenContent(
     onPasswordChange: (String) -> Unit,
     onRepeatPasswordChange: (String) -> Unit,
     onSignUpClick: () -> Unit,
-    tryLoginWithEmail: (String) -> Unit,
+    tryLoginWithEmail: (String) -> Unit
 ) {
     val fieldModifier = Modifier.fieldModifier()
 
@@ -95,8 +94,7 @@ private fun ProfileScanResultErrorContentPreview() {
             onPasswordChange = {/*Do nothing in preview*/ },
             onRepeatPasswordChange = {/*Do nothing in preview*/ },
             onSignUpClick = {/*Do nothing in preview*/ },
-            tryLoginWithEmail = {/*Do nothing in preview*/ },
+            tryLoginWithEmail = {/*Do nothing in preview*/ }
         )
     }
 }
-

@@ -15,7 +15,7 @@ import timber.log.Timber
 internal fun AuthAppNavHost(
     navController: NavHostController,
     modifier: Modifier,
-    closeAuthAndPopUp: (String) -> Unit,
+    closeAuthAndPopUp: (String) -> Unit
 ) {
     NavHost(
         navController = navController,

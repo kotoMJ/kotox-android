@@ -19,11 +19,11 @@ import javax.inject.Inject
 @HiltViewModel
 class FirebaseSignUpEmailViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val accountService: AccountService,
-    //private val logService: LogService
+    private val accountService: AccountService
+    // private val logService: LogService
 ) : ViewModel() {
 
-    //val state = accountService.currentUser.map { FirebaseSignUpEmailViewState() }
+    // val state = accountService.currentUser.map { FirebaseSignUpEmailViewState() }
 
     private val email = SaveableMutableSaveStateFlow(
         savedStateHandle = savedStateHandle,
@@ -53,7 +53,7 @@ class FirebaseSignUpEmailViewModel @Inject constructor(
         emailFlow = email.state,
         passwordFlow = password.state,
         repeatPasswordFlow = repeatPassword.state,
-        emailAlreadyInUseFlow = emailAlreadyInUse.state,
+        emailAlreadyInUseFlow = emailAlreadyInUse.state
     ).stateInForScope(
         scope = viewModelScope,
         initialValue = FirebaseSignUpEmailViewState(
@@ -78,7 +78,7 @@ class FirebaseSignUpEmailViewModel @Inject constructor(
     }
 
     fun onSignUpClick(
-        closeAuthAndPopup: (String) -> Unit,
+        closeAuthAndPopup: (String) -> Unit
     ) {
         when {
             !email.value.isValidEmail() -> {
