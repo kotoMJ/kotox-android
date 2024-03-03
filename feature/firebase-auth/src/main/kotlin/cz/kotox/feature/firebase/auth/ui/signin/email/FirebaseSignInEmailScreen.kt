@@ -63,10 +63,10 @@ fun FirebaseSignInEmailScreenContent(
         EmailField(state.email, onEmailChange, Modifier.fieldModifier())
         PasswordField(state.password, onPasswordChange, Modifier.fieldModifier())
 
-        FilledTonalButton(R.string.login_screen_sign_in, Modifier.basicButton()) { onSignInClick() }
+        FilledTonalButton(R.string.login_email_screen_sign_in, Modifier.basicButton()) { onSignInClick() }
 
         TextButton(onClick = onForgotPasswordClick) {
-            Text(text = stringResource(id = R.string.login_screen_forgot_password))
+            Text(text = stringResource(id = R.string.login_email_screen_forgot_password))
         }
     }
 }

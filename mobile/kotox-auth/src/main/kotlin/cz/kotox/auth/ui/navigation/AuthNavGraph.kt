@@ -39,9 +39,13 @@ internal fun AuthAppNavHost(
                 Timber.d(">>>_ let's navigate to SignUpEmail")
                 navController.navigateToFirebaseEmailSignUpScreen(null)
             },
-            onSignInEmail = { email ->
+            onSignInEmailPrefilled = { email ->
                 Timber.d(">>>_ let's navigate to SignInEmail with: $email")
                 navController.navigateToFirebaseEmailSignInScreen(email)
+            },
+            onSignInEmail = {
+                Timber.d(">>>_ let's navigate to SignInEmail.")
+                navController.navigateToFirebaseEmailSignInScreen()
             }
         )
     }

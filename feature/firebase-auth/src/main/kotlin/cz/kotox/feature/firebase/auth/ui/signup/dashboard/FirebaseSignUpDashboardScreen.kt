@@ -16,7 +16,7 @@ import cz.kotox.common.designsystem.theme.hornet.HornetThemeFullSizePreview
 import cz.kotox.feature.firebase.auth.R
 
 @Composable
-fun FirebaseSignUpDashboard(
+fun FirebaseSignUpDashboardScreen(
     onSignUpEmail: () -> Unit,
     modifier: Modifier = Modifier
 ){
@@ -38,8 +38,8 @@ fun FirebaseSignUpDashboard(
 
 @PreviewMobileLarge
 @Composable
-private fun ProfileScanResultErrorContentPreview() {
+private fun FirebaseSignUpDashboardPreview() {
     HornetThemeFullSizePreview {
-        FirebaseSignUpDashboard({})
+        FirebaseSignUpDashboardScreen({})
     }
 }

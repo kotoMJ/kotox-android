@@ -9,15 +9,18 @@ import cz.kotox.feature.firebase.auth.ui.signup.email.firebaseEmailSignUpScreen
 fun NavGraphBuilder.firebaseAuthNavGraph(
     closeAuthAndPopUp: (String) -> Unit,
     onSignUpEmail: () -> Unit,
-    onSignInEmail: (String) -> Unit
+    onSignInEmail: () -> Unit,
+    onSignInEmailPrefilled: (String) -> Unit
 ) {
-    firebaseSignInDashboardScreen()
+    firebaseSignInDashboardScreen(
+        onSignInEmail = onSignInEmail
+    )
     firebaseSignUpDashboardScreen(onSignUpEmail = onSignUpEmail)
     firebaseEmailSignInScreen(
         closeAuthAndPopUp = closeAuthAndPopUp
     )
     firebaseEmailSignUpScreen(
         closeAuthAndPopUp = closeAuthAndPopUp,
-        tryLoginWithEmail = onSignInEmail
+        tryLoginWithEmail = onSignInEmailPrefilled
     )
 }

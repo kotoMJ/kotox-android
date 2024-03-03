@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="login_screen_sign_in">Sign in</string>
-    <string name="login_screen_login_details">Enter your login details</string>
-    <string name="login_screen_forgot_password">Forgot password? Click to get recovery email</string>
-    <string name="login_screen_recovery_email_sent">Check your inbox for the recovery email.</string>
-    <string name="login_screen_empty_password_error">Password cannot be empty.</string>
+    <string name="login_dashboard_screen_sign_in_email">Sign with email</string>
+
+    <string name="login_email_screen_sign_in">Sign in</string>
+    <string name="login_email_screen_login_details">Enter your login details</string>
+    <string name="login_email_screen_forgot_password">Forgot password? Click to get recovery email</string>
+    <string name="login_email_screen_recovery_email_sent">Check your inbox for the recovery email.</string>
+    <string name="login_email_screen_empty_password_error">Password cannot be empty.</string>
 
     <string name="signup_screen_sign_up">Sign up</string>
     <string name="signup_screen_already_in_use">This email is already in use</string>

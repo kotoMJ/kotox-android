@@ -23,7 +23,7 @@ fun NavGraphBuilder.firebaseSignUpDashboardScreen(
     composable(
         route = SignUpDashboardRoute
     ) {
-        FirebaseSignUpDashboard(
+        FirebaseSignUpDashboardScreen(
             onSignUpEmail = onSignUpEmail
         )
     }
