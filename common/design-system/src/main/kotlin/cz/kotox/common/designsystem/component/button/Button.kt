@@ -16,10 +16,12 @@ import cz.kotox.common.designsystem.theme.hornet.HornetThemeWidgetPreview
 fun FilledTonalButton(
     @StringRes textRes: Int,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     action: () -> Unit
 ) {
     FilledTonalButton(
         onClick = action,
+        enabled = enabled,
         modifier = modifier,
     ) {
         Text(text = stringResource(textRes), fontSize = 16.sp)

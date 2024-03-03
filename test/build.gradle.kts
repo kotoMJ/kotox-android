@@ -10,6 +10,7 @@ android {
         resources {
             excludes.add("META-INF/LICENSE.md")
             excludes.add("META-INF/LICENSE-notice.md")
+            //merges.add()
         }
         jniLibs {
             useLegacyPackaging = true

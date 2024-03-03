@@ -13,6 +13,6 @@ interface AccountService {
     suspend fun createAccount(
         email: String,
         password: String,
-        suggestLoginInstead: (emailAlreadyInUse: String) -> Unit
+        emailAlreadyInUse: (email: String) -> Unit
     ): Boolean
 }

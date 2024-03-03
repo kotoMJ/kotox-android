@@ -1,5 +1,6 @@
 package cz.kotox.feature.firebase.auth.ui.signup.email
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -36,15 +37,14 @@ fun FirebaseSignUpEmailScreen(
     FirebaseSignInEmailScreenContent(
         state = state,
         onEmailChange = viewModel::onEmailChange,
-        onForgotPasswordClick = {},
         onPasswordChange = viewModel::onPasswordChange,
         onRepeatPasswordChange = viewModel::onRepeatPasswordChange,
         onSignUpClick = {
             viewModel.onSignUpClick(
                 closeAuthAndPopup = closeAuthAndPopUp,
-                tryLoginWithEmail = tryLoginWithEmail
             )
-        }
+        },
+        tryLoginWithEmail = tryLoginWithEmail
     )
 }
 
@@ -56,7 +56,7 @@ fun FirebaseSignInEmailScreenContent(
     onPasswordChange: (String) -> Unit,
     onRepeatPasswordChange: (String) -> Unit,
     onSignUpClick: () -> Unit,
-    onForgotPasswordClick: () -> Unit
+    tryLoginWithEmail: (String) -> Unit,
 ) {
     val fieldModifier = Modifier.fieldModifier()
 
@@ -71,10 +71,16 @@ fun FirebaseSignInEmailScreenContent(
         EmailField(state.email, onEmailChange, fieldModifier)
         PasswordField(state.password, onPasswordChange, fieldModifier)
         RepeatPasswordField(state.repeatPassword, onRepeatPasswordChange, fieldModifier)
-        FilledTonalButton(R.string.login_screen_sign_in, Modifier.basicButton()) { onSignUpClick() }
+        FilledTonalButton(
+            textRes = R.string.signup_screen_sign_up,
+            modifier = Modifier.basicButton(),
+            enabled = state.signUpEnabled
+        ) { onSignUpClick() }
 
-        TextButton(onClick = onForgotPasswordClick) {
-            Text(text = stringResource(id = R.string.login_screen_forgot_password))
+        AnimatedVisibility(visible = state.emailAlreadyInUse) {
+            TextButton(onClick = { tryLoginWithEmail(state.email) }) {
+                Text(text = stringResource(id = R.string.signup_screen_account_exists))
+            }
         }
     }
 }
@@ -89,7 +95,7 @@ private fun ProfileScanResultErrorContentPreview() {
             onPasswordChange = {/*Do nothing in preview*/ },
             onRepeatPasswordChange = {/*Do nothing in preview*/ },
             onSignUpClick = {/*Do nothing in preview*/ },
-            onForgotPasswordClick = {/*Do nothing in preview*/ },
+            tryLoginWithEmail = {/*Do nothing in preview*/ },
         )
     }
 }

@@ -35,7 +35,7 @@ class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : A
     override suspend fun createAccount(
         email: String,
         password: String,
-        suggestLoginInstead: (emailAlreadyInUse: String) -> Unit
+        emailAlreadyInUse: (email: String) -> Unit
     ): Boolean {
         if (hasUser) {
             auth.signOut()
@@ -43,9 +43,9 @@ class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : A
         return try {
             auth.createUserWithEmailAndPassword(email, password).await()
             true
-        } catch (fauce: FirebaseAuthUserCollisionException) {
-            Timber.d(fauce, "Email: $email already in use.")
-            suggestLoginInstead(email)
+        } catch (e: FirebaseAuthUserCollisionException) {
+            Timber.d(e, "Email: $email already in use.")
+            emailAlreadyInUse(email)
             false
         } catch (t: Throwable) {
             Timber.w(t, "Unable to create an account for email: $email")

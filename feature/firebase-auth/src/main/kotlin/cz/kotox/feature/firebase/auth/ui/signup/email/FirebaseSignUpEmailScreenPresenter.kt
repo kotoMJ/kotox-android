@@ -7,15 +7,18 @@ import kotlinx.coroutines.flow.combine
 internal fun FirebaseSignUpEmailScreenPresenter(
     emailFlow: Flow<String>,
     passwordFlow: Flow<String>,
-    repeatPasswordFlow: Flow<String>
+    repeatPasswordFlow: Flow<String>,
+    emailAlreadyInUseFlow: Flow<Boolean>
 ) = combine(
     emailFlow,
     passwordFlow,
-    repeatPasswordFlow
-) { email, password, repeatPassword ->
+    repeatPasswordFlow,
+    emailAlreadyInUseFlow,
+) { email, password, repeatPassword, emailAlreadyInUse ->
     FirebaseSignUpEmailViewState(
         email = email,
         password = password,
-        repeatPassword = repeatPassword
+        repeatPassword = repeatPassword,
+        emailAlreadyInUse = emailAlreadyInUse
     )
 }

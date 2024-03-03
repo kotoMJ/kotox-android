@@ -10,7 +10,6 @@ import cz.kotox.common.core.android.extension.passwordMatches
 import cz.kotox.common.core.android.extension.stateInForScope
 import cz.kotox.common.core.android.flow.SaveableMutableSaveStateFlow
 import cz.kotox.common.core.android.snackbar.SnackbarMessageHandler
-import cz.kotox.common.core.logging.LogService
 import cz.kotox.feature.firebase.auth.R
 import cz.kotox.feature.firebase.auth.service.AccountService
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -44,20 +43,29 @@ class FirebaseSignUpEmailViewModel @Inject constructor(
         defaultValue = ""
     )
 
+    private val emailAlreadyInUse = SaveableMutableSaveStateFlow(
+        savedStateHandle = savedStateHandle,
+        key = "emailAlreadyInUse",
+        defaultValue = false
+    )
+
     internal val state: StateFlow<FirebaseSignUpEmailViewState> = FirebaseSignUpEmailScreenPresenter(
         emailFlow = email.state,
         passwordFlow = password.state,
-        repeatPasswordFlow = repeatPassword.state
+        repeatPasswordFlow = repeatPassword.state,
+        emailAlreadyInUseFlow = emailAlreadyInUse.state,
     ).stateInForScope(
         scope = viewModelScope,
         initialValue = FirebaseSignUpEmailViewState(
             email = email.value,
             password = password.value,
-            repeatPassword = repeatPassword.value
+            repeatPassword = repeatPassword.value,
+            emailAlreadyInUse = emailAlreadyInUse.value
         )
     )
 
     fun onEmailChange(newValue: String) {
+        emailAlreadyInUse.value = false
         email.value = newValue
     }
 
@@ -71,7 +79,6 @@ class FirebaseSignUpEmailViewModel @Inject constructor(
 
     fun onSignUpClick(
         closeAuthAndPopup: (String) -> Unit,
-        tryLoginWithEmail: (String) -> Unit,
     ) {
         when {
             !email.value.isValidEmail() -> {
@@ -91,9 +98,11 @@ class FirebaseSignUpEmailViewModel @Inject constructor(
                     if (accountService.createAccount(
                             email = email.value,
                             password = password.value,
-                            suggestLoginInstead = { emailAlreadyInUse ->
-                                tryLoginWithEmail(emailAlreadyInUse)
-                            })
+                            emailAlreadyInUse = { _ ->
+                                emailAlreadyInUse.value = true
+                                SnackbarMessageHandler.showMessage(R.string.signup_screen_already_in_use)
+                            }
+                        )
                     ) {
                         closeAuthAndPopup(EmailSignUpRoute)
                     }
