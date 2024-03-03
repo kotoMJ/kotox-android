@@ -1,6 +1,7 @@
 package cz.kotox.feature.firebase.auth.service
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import cz.kotox.feature.firebase.auth.model.FirebaseUser
 import kotlinx.coroutines.channels.awaitClose
@@ -35,7 +36,7 @@ class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : A
     override suspend fun createAccount(
         email: String,
         password: String,
-        emailAlreadyInUse: (email: String) -> Unit
+        onEmailAlreadyInUse: (email: String) -> Unit
     ): Boolean {
         if (hasUser) {
             auth.signOut()
@@ -45,7 +46,7 @@ class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : A
             true
         } catch (e: FirebaseAuthUserCollisionException) {
             Timber.d(e, "Email: $email already in use.")
-            emailAlreadyInUse(email)
+            onEmailAlreadyInUse(email)
             false
         } catch (t: Throwable) {
             Timber.w(t, "Unable to create an account for email: $email")
@@ -56,7 +57,8 @@ class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : A
     @Suppress("TooGenericExceptionCaught")
     override suspend fun loginUserEmail(
         email: String,
-        password: String
+        password: String,
+        onInvalidCredentials: () -> Unit
     ): Boolean {
         if (hasUser) {
             auth.signOut()
@@ -64,9 +66,19 @@ class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : A
         return try {
             auth.signInWithEmailAndPassword(email, password).await()
             true
+        } catch (e: FirebaseAuthInvalidCredentialsException) {
+            Timber.w(e, "Invalid credentials for email: $email")
+            onInvalidCredentials()
+            false
         } catch (t: Throwable) {
             Timber.w(t, "Unable to login using email: $email")
             false
+        }
+    }
+
+    override fun logoutCurrentUser(){
+        if (hasUser) {
+            auth.signOut()
         }
     }
 }

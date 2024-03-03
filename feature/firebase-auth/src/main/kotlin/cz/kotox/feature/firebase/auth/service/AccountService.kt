@@ -13,11 +13,14 @@ interface AccountService {
     suspend fun createAccount(
         email: String,
         password: String,
-        emailAlreadyInUse: (email: String) -> Unit
+        onEmailAlreadyInUse: (email: String) -> Unit
     ): Boolean
 
     suspend fun loginUserEmail(
         email: String,
-        password: String
+        password: String,
+        onInvalidCredentials: () -> Unit
     ): Boolean
+
+    fun logoutCurrentUser()
 }

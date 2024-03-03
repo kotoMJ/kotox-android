@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import cz.kotox.common.core.android.extension.launchCatching
 import cz.kotox.common.core.android.extension.stateInForScope
 import cz.kotox.common.core.android.flow.SaveableMutableSaveStateFlow
+import cz.kotox.common.core.android.snackbar.SnackbarMessageHandler
+import cz.kotox.feature.firebase.auth.R
 import cz.kotox.feature.firebase.auth.model.FirebaseUser
 import cz.kotox.feature.firebase.auth.service.AccountService
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -51,6 +53,7 @@ class FirebaseSignInEmailViewModel @Inject constructor(
     fun onEmailChange(newValue: String) {
         email.value = newValue
     }
+
     fun onPasswordChange(newValue: String) {
         password.value = newValue
     }
@@ -59,7 +62,14 @@ class FirebaseSignInEmailViewModel @Inject constructor(
         closeAuthAndPopup: (String) -> Unit
     ) {
         this.launchCatching() {
-            if (accountService.loginUserEmail(state.value.email, state.value.password)) {
+            if (accountService.loginUserEmail(
+                    email = state.value.email,
+                    password = state.value.password,
+                    onInvalidCredentials = {
+                        SnackbarMessageHandler.showMessage(R.string.login_email_screen_invalid_password)
+                    }
+                )
+            ) {
                 closeAuthAndPopup(
                     if (defaultEmail == null) {
                         FirebaseSignInDestinations.email.destination

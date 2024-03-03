@@ -3,10 +3,12 @@ package cz.kotox.auth.ui.navigation
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Login
+import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
 import cz.kotox.auth.R
+import cz.kotox.feature.firebase.auth.model.FirebaseUser
 
 sealed interface BottomNavScreen {
     val route: String
@@ -23,6 +25,13 @@ sealed interface BottomNavScreen {
         override val iconImageVecot = Icons.AutoMirrored.Filled.Login
         override val titleId = R.string.bottom_screen_title_auth
         override val testTag = "bottom_nav_item_login"
+    }
+
+    data object Logout : BottomNavScreen {
+        override val route: String = "tbd."
+        override val iconImageVecot = Icons.AutoMirrored.Filled.Logout
+        override val titleId = R.string.bottom_screen_title_logout
+        override val testTag = ""
     }
 
     data object Profile : BottomNavScreen {
@@ -42,8 +51,18 @@ sealed interface BottomNavScreen {
     companion object {
         val values = listOf(
             Login,
+            Logout,
             Profile,
             Settings
         )
+
+        fun valuesBasedOnCurrentUser(user: FirebaseUser) =
+            values.filterNot {
+                it in if (user == FirebaseUser.None) {
+                    listOf(Logout, Profile)
+                } else {
+                    listOf(Login)
+                }
+            }
     }
 }

@@ -98,7 +98,7 @@ class FirebaseSignUpEmailViewModel @Inject constructor(
                     if (accountService.createAccount(
                             email = email.value,
                             password = password.value,
-                            emailAlreadyInUse = { _ ->
+                            onEmailAlreadyInUse = { _ ->
                                 emailAlreadyInUse.value = true
                                 SnackbarMessageHandler.showMessage(R.string.signup_screen_already_in_use)
                             }

@@ -16,10 +16,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import cz.kotox.common.designsystem.component.navigation.KotoxNavigationBar
 import cz.kotox.common.designsystem.component.navigation.KotoxNavigationBarItem
+import cz.kotox.feature.firebase.auth.model.FirebaseUser
 
 @Composable
 internal fun AuthBottomNavigation(
     navController: NavHostController,
+    firebaseUser: FirebaseUser,
+    onLogout: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -43,7 +46,7 @@ internal fun AuthBottomNavigation(
         KotoxNavigationBar(
             modifier = Modifier.navigationBarsPadding()
         ) {
-            BottomNavScreen.values.forEach { screen ->
+            BottomNavScreen.valuesBasedOnCurrentUser(firebaseUser).forEach { screen ->
                 val isSelected = remember(screen) {
                     derivedStateOf {
                         navBackStackEntry?.destination?.hierarchy
@@ -57,18 +60,22 @@ internal fun AuthBottomNavigation(
                     title = stringResource(id = screen.titleId),
                     selected = { isSelected.value },
                     onClick = {
-                        navController.navigate(screen.route) {
-                            // Pop up to the start destination of the graph to
-                            // avoid building up a large stack of destinations
-                            // on the back stack as users select items
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
+                        if (screen == BottomNavScreen.Logout) {
+                            onLogout()
+                        } else {
+                            navController.navigate(screen.route) {
+                                // Pop up to the start destination of the graph to
+                                // avoid building up a large stack of destinations
+                                // on the back stack as users select items
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
+                                }
+                                // Avoid multiple copies of the same destination when
+                                // re-selecting the same item
+                                launchSingleTop = true
+                                // Restore state when re-selecting a previously selected item
+                                restoreState = true
                             }
-                            // Avoid multiple copies of the same destination when
-                            // re-selecting the same item
-                            launchSingleTop = true
-                            // Restore state when re-selecting a previously selected item
-                            restoreState = true
                         }
                     }
                 )

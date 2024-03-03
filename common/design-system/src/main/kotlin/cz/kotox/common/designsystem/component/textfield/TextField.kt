@@ -17,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -39,29 +40,53 @@ fun BasicField(
 }
 
 @Composable
-fun EmailField(value: String, onNewValue: (String) -> Unit, modifier: Modifier = Modifier) {
+fun EmailField(
+    value: String,
+    onNewValue: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    imeAction: ImeAction = ImeAction.Default,
+) {
     OutlinedTextField(
         singleLine = true,
         modifier = modifier,
         value = value,
         onValueChange = { onNewValue(it) },
         placeholder = { Text(stringResource(R.string.email)) },
-        leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "Email") }
+        leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "Email") },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = imeAction),
     )
 }
 
 @Composable
-fun PasswordField(value: String, onNewValue: (String) -> Unit, modifier: Modifier = Modifier) {
-    PasswordField(value, R.string.password, onNewValue, modifier)
+fun PasswordField(
+    value: String,
+    onNewValue: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    imeAction: ImeAction = ImeAction.Default,
+) {
+    PasswordField(
+        value = value,
+        placeholder = R.string.password,
+        onNewValue = onNewValue,
+        modifier = modifier,
+        imeAction = imeAction
+    )
 }
 
 @Composable
 fun RepeatPasswordField(
     value: String,
     onNewValue: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    imeAction: ImeAction = ImeAction.Default,
 ) {
-    PasswordField(value, R.string.repeat_password, onNewValue, modifier)
+    PasswordField(
+        value = value,
+        placeholder = R.string.repeat_password,
+        onNewValue = onNewValue,
+        modifier = modifier,
+        imeAction = imeAction
+    )
 }
 
 @Composable
@@ -69,7 +94,8 @@ private fun PasswordField(
     value: String,
     @StringRes placeholder: Int,
     onNewValue: (String) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    imeAction: ImeAction = ImeAction.Default,
 ) {
     var isVisible by remember { mutableStateOf(false) }
 
@@ -91,7 +117,7 @@ private fun PasswordField(
                 Icon(painter = icon, contentDescription = "Visibility")
             }
         },
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = imeAction),
         visualTransformation = visualTransformation
     )
 }

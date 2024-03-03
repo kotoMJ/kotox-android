@@ -4,6 +4,7 @@ import android.content.res.Resources
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.safeGesturesPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -18,6 +20,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -30,6 +33,8 @@ import cz.kotox.common.designsystem.component.snackbar.KotoxSnackbar
 import cz.kotox.common.designsystem.extension.enableEdgeToEdge
 import cz.kotox.common.designsystem.extension.isDarkMode
 import cz.kotox.common.designsystem.theme.hornet.HornetAppTheme
+import cz.kotox.feature.firebase.auth.model.FirebaseUser
+import cz.kotox.feature.firebase.auth.ui.signup.email.AuthAppActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import androidx.compose.material3.MaterialTheme as Material3Theme
@@ -45,6 +50,8 @@ class AuthAppActivity : ComponentActivity() {
     private var navHostListener: NavController.OnDestinationChangedListener =
         NavController.OnDestinationChangedListener { _, _, _ -> snackBarHostState.currentSnackbarData?.dismiss() }
 
+    private val viewModel: AuthAppActivityViewModel by viewModels<AuthAppActivityViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge(isDarkMode())
         WindowCompat.setDecorFitsSystemWindows(window, true)
@@ -52,6 +59,8 @@ class AuthAppActivity : ComponentActivity() {
 
         setContent {
             snackBarHostState = remember { Material3SnackbarHostState() }
+
+            val state by viewModel.currentUser.collectAsStateWithLifecycle(initialValue = FirebaseUser.None)
 
             HornetAppTheme {
                 Material3Surface(
@@ -81,6 +90,8 @@ class AuthAppActivity : ComponentActivity() {
                             bottomBar = {
                                 AuthBottomNavigation(
                                     navController = appState.navController,
+                                    firebaseUser = state,
+                                    onLogout = { viewModel.onLogout() },
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .testTag("bottom_navigation")
