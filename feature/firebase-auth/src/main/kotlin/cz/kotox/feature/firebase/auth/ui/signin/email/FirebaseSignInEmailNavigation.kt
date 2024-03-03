@@ -8,7 +8,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 
-private const val ARG_EMAIL = "ARG_EMAIL"
+const val ARG_EMAIL = "ARG_EMAIL"
 
 data class NavigationCommand(
     val destination: String,

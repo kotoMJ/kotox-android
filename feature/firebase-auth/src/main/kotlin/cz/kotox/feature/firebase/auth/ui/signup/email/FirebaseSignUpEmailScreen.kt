@@ -86,10 +86,28 @@ fun FirebaseSignInEmailScreenContent(
 
 @PreviewMobileLarge
 @Composable
-private fun ProfileScanResultErrorContentPreview() {
+private fun FirebaseSignUpEmailScreenContentPreview() {
     HornetThemeFullSizePreview {
         FirebaseSignInEmailScreenContent(
             state = FirebaseSignUpEmailViewState(),
+            onEmailChange = {/*Do nothing in preview*/ },
+            onPasswordChange = {/*Do nothing in preview*/ },
+            onRepeatPasswordChange = {/*Do nothing in preview*/ },
+            onSignUpClick = {/*Do nothing in preview*/ },
+            tryLoginWithEmail = {/*Do nothing in preview*/ }
+        )
+    }
+}
+
+@PreviewMobileLarge
+@Composable
+private fun FirebaseSignUpEmailAlreadyExistsScreenContentPreview() {
+    HornetThemeFullSizePreview {
+        FirebaseSignInEmailScreenContent(
+            state = FirebaseSignUpEmailViewState(
+                email = "email.already.registered@gmail.com",
+                emailAlreadyInUse = true
+            ),
             onEmailChange = {/*Do nothing in preview*/ },
             onPasswordChange = {/*Do nothing in preview*/ },
             onRepeatPasswordChange = {/*Do nothing in preview*/ },
