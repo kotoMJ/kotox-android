@@ -69,25 +69,36 @@ class FirebaseSignUpEmailViewModel @Inject constructor(
         repeatPassword.value = newValue
     }
 
-    fun onSignUpClick(closeAuthAndPopup: (String) -> Unit) {
-        if (!email.value.isValidEmail()) {
-            SnackbarMessageHandler.showMessage(R.string.signup_email_error)
-            return
-        }
+    fun onSignUpClick(
+        closeAuthAndPopup: (String) -> Unit,
+        tryLoginWithEmail: (String) -> Unit,
+    ) {
+        when {
+            !email.value.isValidEmail() -> {
+                SnackbarMessageHandler.showMessage(R.string.signup_email_error)
+            }
 
-        if (!password.value.isValidPassword()) {
-            SnackbarMessageHandler.showMessage(R.string.signup_password_error)
-            return
-        }
+            !password.value.isValidPassword() -> {
+                SnackbarMessageHandler.showMessage(R.string.signup_password_error)
+            }
 
-        if (!password.value.passwordMatches(state.value.repeatPassword)) {
-            SnackbarMessageHandler.showMessage(R.string.signup_password_match_error)
-            return
-        }
+            !password.value.passwordMatches(state.value.repeatPassword) -> {
+                SnackbarMessageHandler.showMessage(R.string.signup_password_match_error)
+            }
 
-        this.launchCatching() {
-            accountService.createAccount(email = email.value, password = password.value)
-            closeAuthAndPopup(EmailSignUpRoute)
+            else -> {
+                this.launchCatching() {
+                    if (accountService.createAccount(
+                            email = email.value,
+                            password = password.value,
+                            suggestLoginInstead = { emailAlreadyInUse ->
+                                tryLoginWithEmail(emailAlreadyInUse)
+                            })
+                    ) {
+                        closeAuthAndPopup(EmailSignUpRoute)
+                    }
+                }
+            }
         }
     }
 }

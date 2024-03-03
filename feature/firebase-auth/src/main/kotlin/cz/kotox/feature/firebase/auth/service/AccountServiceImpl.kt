@@ -1,11 +1,13 @@
 package cz.kotox.feature.firebase.auth.service
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import cz.kotox.feature.firebase.auth.model.FirebaseUser
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
+import timber.log.Timber
 import javax.inject.Inject
 
 class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : AccountService {
@@ -29,10 +31,25 @@ class AccountServiceImpl @Inject constructor(private val auth: FirebaseAuth) : A
             awaitClose { auth.removeAuthStateListener(listener) }
         }
 
-    override suspend fun createAccount(email: String, password: String) {
+    @Suppress("TooGenericExceptionCaught")
+    override suspend fun createAccount(
+        email: String,
+        password: String,
+        suggestLoginInstead: (emailAlreadyInUse: String) -> Unit
+    ): Boolean {
         if (hasUser) {
             auth.signOut()
         }
-        auth.createUserWithEmailAndPassword(email, password).await()
+        return try {
+            auth.createUserWithEmailAndPassword(email, password).await()
+            true
+        } catch (fauce: FirebaseAuthUserCollisionException) {
+            Timber.d(fauce, "Email: $email already in use.")
+            suggestLoginInstead(email)
+            false
+        } catch (t: Throwable) {
+            Timber.w(t, "Unable to create an account for email: $email")
+            false
+        }
     }
 }

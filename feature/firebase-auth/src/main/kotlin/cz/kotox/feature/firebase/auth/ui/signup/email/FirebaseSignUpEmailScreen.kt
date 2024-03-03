@@ -28,6 +28,7 @@ import cz.kotox.feature.firebase.auth.R
 @Composable
 fun FirebaseSignUpEmailScreen(
     closeAuthAndPopUp: (String) -> Unit,
+    tryLoginWithEmail: (String) -> Unit,
     viewModel: FirebaseSignUpEmailViewModel = hiltViewModel()
 ) {
 
@@ -39,7 +40,10 @@ fun FirebaseSignUpEmailScreen(
         onPasswordChange = viewModel::onPasswordChange,
         onRepeatPasswordChange = viewModel::onRepeatPasswordChange,
         onSignUpClick = {
-            viewModel.onSignUpClick(closeAuthAndPopUp)
+            viewModel.onSignUpClick(
+                closeAuthAndPopup = closeAuthAndPopUp,
+                tryLoginWithEmail = tryLoginWithEmail
+            )
         }
     )
 }
