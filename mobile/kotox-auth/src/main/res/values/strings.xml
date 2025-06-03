@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Kotox Auth</string>
+    <string name="generic_back_description">Go to the previous screen</string>
+    <string name="generic_click_to_refresh">Click to refresh</string>
+    <string name="generic_error">Something wrong happened. Please try again.</string>
+
+    <string name="auth_screen_title">@string/app_name</string>
+    <string name="auth_screen_action_click_signIn">Login with 🔥</string>
+    <string name="auth_screen_action_click_signUp">Create account with 🔥</string>
+
+    <string name="bottom_screen_title_auth">Auth</string>
+    <string name="bottom_screen_title_logout">Logout</string>
+    <string name="bottom_screen_title_profile">Profile</string>
+    <string name="bottom_screen_title_settings">Settings</string>
+
+</resources>

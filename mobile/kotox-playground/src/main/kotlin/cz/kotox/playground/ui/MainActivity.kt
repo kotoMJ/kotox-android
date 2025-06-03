@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import cz.kotox.common.designsystem.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicTheme
 import cz.kotox.playground.ui.bouncingbox.BouncingBoxActivityIntentUtil
 import cz.kotox.playground.ui.scannerline.ScannerLineActivityIntentUtil
 import dagger.hilt.android.AndroidEntryPoint

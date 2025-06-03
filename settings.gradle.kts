@@ -24,6 +24,8 @@ include(
     ":common:ui",
     ":feature:task-poc:detail",
     ":feature:task-poc:dashboard",
+    ":feature:firebase-auth",
+    ":mobile:kotox-auth",
     ":mobile:kotox-media",
     ":mobile:kotox-playground",
     ":mobile:kotox-starter",

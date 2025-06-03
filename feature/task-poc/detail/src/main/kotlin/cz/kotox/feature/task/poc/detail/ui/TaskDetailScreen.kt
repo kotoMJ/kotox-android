@@ -33,8 +33,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import cz.kotox.common.designsystem.theme.LocalColors
-import cz.kotox.common.designsystem.theme.LocalTypography
+import cz.kotox.common.designsystem.theme.shiraz.LocalColors
+import cz.kotox.common.designsystem.theme.shiraz.LocalTypography
 import cz.kotox.common.task.poc.ui.TaskSummaryComponentInput
 import cz.kotox.common.task.poc.ui.TaskSummaryItem
 import cz.kotox.feature.task.poc.detail.R
@@ -106,7 +106,7 @@ fun TaskDetailScreen(
                                         .width(360.dp)
                                         .fillMaxHeight()
                                         .background(
-                                            cz.kotox.common.designsystem.theme.LocalColors.current.divider
+                                            LocalColors.current.divider
                                         )
                                 )
                                 AsyncImage(
@@ -172,7 +172,7 @@ fun TaskDetailScreen(
                                     .height(200.dp)
                                     .fillMaxWidth()
                                     .background(
-                                        cz.kotox.common.designsystem.theme.LocalColors.current.divider
+                                        LocalColors.current.divider
                                     )
                             )
                             AsyncImage(

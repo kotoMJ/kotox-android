@@ -2,4 +2,5 @@
 <resources>
     <string name="general_button_showLess">Show less</string>
     <string name="general_button_showMore">Show more</string>
+    <string name="general_button_ok">Ok</string>
 </resources>

@@ -25,7 +25,7 @@ class TestAppNetworkingProperties(
 ) : AppNetworkingProperties
 
 class TestAppProperties(
-    override val isDevEnvironment: Boolean = true,
+    override val isDebugBuildType: Boolean = true,
     override val isDarkMode: Boolean = false,
 ) : AppProperties
 

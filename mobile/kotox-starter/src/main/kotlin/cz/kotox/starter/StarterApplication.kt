@@ -19,13 +19,4 @@ class StarterApplication : Application() {
             Timber.plant(Timber.DebugTree())
         }
     }
-
-    companion object {
-        lateinit var application: StarterApplication
-            private set
-    }
-
-    init {
-        application = this
-    }
 }

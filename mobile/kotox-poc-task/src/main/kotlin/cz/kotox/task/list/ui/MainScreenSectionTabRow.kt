@@ -22,9 +22,9 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import cz.kotox.common.designsystem.theme.LocalColors
-import cz.kotox.common.designsystem.theme.LocalTypography
-import cz.kotox.common.designsystem.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.shiraz.LocalColors
+import cz.kotox.common.designsystem.theme.shiraz.LocalTypography
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import cz.kotox.task.R

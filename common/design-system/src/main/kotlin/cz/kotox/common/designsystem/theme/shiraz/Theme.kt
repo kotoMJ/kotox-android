@@ -1,4 +1,4 @@
-package cz.kotox.common.designsystem.theme
+package cz.kotox.common.designsystem.theme.shiraz
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
@@ -8,6 +8,7 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import cz.kotox.common.designsystem.ThemeUtils
+import cz.kotox.common.designsystem.theme.Shapes
 
 val LightColorPalette = KotoxBasicColors(
     primary = Shiraz,

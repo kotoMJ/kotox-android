@@ -32,9 +32,9 @@ import cz.kotox.common.camera.custom.capture.actionbutton.CaptureConfirmButton
 import cz.kotox.common.camera.custom.capture.actionbutton.CapturePhotoLibraryButton
 import cz.kotox.common.camera.custom.capture.layout.adaptive.CameraCaptureAdaptiveLayout
 import cz.kotox.common.camera.custom.gallery.GallerySelect
-import cz.kotox.common.designsystem.preview.KotoxBasicThemeFullSizePreview
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
-import cz.kotox.common.designsystem.theme.LocalColors
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicThemeFullSizePreview
+import cz.kotox.common.designsystem.theme.shiraz.LocalColors
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable

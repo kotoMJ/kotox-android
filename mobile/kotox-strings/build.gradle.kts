@@ -58,6 +58,7 @@ android {
     packaging {
         resources {
             excludes.add("META-INF/LICENSE.md")
+            excludes.add("META-INF/LICENSE-notice.md")
         }
         jniLibs {
             useLegacyPackaging = true
@@ -114,4 +115,5 @@ dependencies {
     androidTestImplementation(libs.bundles.test.android)
     kaptAndroidTest(libs.hilt.compiler)
     testImplementation(libs.bundles.test.unit)
+
 }

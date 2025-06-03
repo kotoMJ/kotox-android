@@ -25,7 +25,7 @@ private const val URL = "https://api.npoint.io/"//"https://api.npoint.io/86329e6
 
 data class KotoxTaskAppProperties(
 
-    override val isDevEnvironment: Boolean = AppBuildType == BuildType.Debug,
+    override val isDebugBuildType: Boolean = AppBuildType == BuildType.Debug,
     override val isDarkMode: Boolean =
         TaskApplication.application.resources.configuration.uiMode
             .and(Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES

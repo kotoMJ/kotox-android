@@ -1,6 +1,6 @@
 package cz.kotox.common.core.config
 
 interface AppProperties {
-    val isDevEnvironment: Boolean
+    val isDebugBuildType: Boolean
     val isDarkMode: Boolean
 }

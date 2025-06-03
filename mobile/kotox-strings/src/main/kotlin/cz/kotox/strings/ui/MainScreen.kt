@@ -17,7 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import cz.kotox.strings.R
-import cz.kotox.common.designsystem.theme.KotoxBasicTheme
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicTheme
 import cz.kotox.strings.ui.components.CustomResourceCard
 import cz.kotox.strings.ui.components.DuplicatedResourceCard
 import cz.kotox.strings.ui.components.MarkdownResourceCard

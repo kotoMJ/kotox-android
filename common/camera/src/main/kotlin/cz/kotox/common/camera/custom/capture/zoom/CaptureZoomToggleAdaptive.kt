@@ -19,8 +19,8 @@ import cz.kotox.common.camera.custom.CameraOrientation
 import cz.kotox.common.camera.custom.LensFacing
 import cz.kotox.common.camera.custom.OrientationViewState
 import cz.kotox.common.camera.custom.capture.ZoomValues
-import cz.kotox.common.designsystem.preview.KotoxBasicThemeWidgetPreview
 import cz.kotox.common.designsystem.preview.PreviewMobileLarge
+import cz.kotox.common.designsystem.theme.shiraz.KotoxBasicThemeWidgetPreview
 
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressWarnings("MagicNumber")

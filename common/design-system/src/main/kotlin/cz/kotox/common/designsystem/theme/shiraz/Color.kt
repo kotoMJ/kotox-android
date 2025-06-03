@@ -1,4 +1,4 @@
-package cz.kotox.common.designsystem.theme
+package cz.kotox.common.designsystem.theme.shiraz
 
 import androidx.compose.material.Colors
 import androidx.compose.runtime.Immutable

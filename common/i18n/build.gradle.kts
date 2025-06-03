@@ -19,6 +19,8 @@ dependencies {
     implementation(projects.common.network)
     implementation(projects.common.ui)
 
+    implementation(libs.androidx.lifecycle.runtime.compose)
+
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.core)
 
