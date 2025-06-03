@@ -74,7 +74,6 @@ fun FirebaseSignInEmailScreenContent(
 ) {
     val fieldModifier = Modifier.fieldModifier()
 
-
     Column(
         modifier = modifier
             .fillMaxWidth()

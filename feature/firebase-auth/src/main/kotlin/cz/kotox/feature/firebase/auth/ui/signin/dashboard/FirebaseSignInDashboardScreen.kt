@@ -55,4 +55,3 @@ private fun ProfileScanResultErrorContentPreview() {
         FirebaseSignInDashboardScreen({})
     }
 }
-
